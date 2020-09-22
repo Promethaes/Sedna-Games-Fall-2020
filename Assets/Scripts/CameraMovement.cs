@@ -10,12 +10,13 @@ public class CameraMovement : MonoBehaviour
     public float rotationSpeedInverse = 1.0f;
 
     public GameObject lookingAt;
+    public GameObject player;
 
     Vector2 _mouseInput;
 
 
-    public float yUpperBound = 14.0f;
-    public float yLowerBound = 4.0f;
+    public float yUpperBound = 4.0f;
+    public float yLowerBound = -3.0f;
 
     void Awake()
     {
@@ -25,15 +26,24 @@ public class CameraMovement : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (rotationSpeedInverse < 1.0f)
             rotationSpeedInverse = 1.0f;
 
-        lookingAt.transform.rotation = lookingAt.transform.rotation * Quaternion.Euler(0.0f, _mouseInput.x / rotationSpeedInverse, 0.0f);
-        lookingAt.transform.rotation = lookingAt.transform.rotation * Quaternion.Euler(_mouseInput.y / rotationSpeedInverse, 0.0f, 0.0f);
+        //rotate camera on x z plane
+        player.transform.rotation = Quaternion.AngleAxis(_mouseInput.x/ rotationSpeedInverse,Vector3.up) * player.transform.rotation;
 
+        //increase/decrease height of camera target
+        lookingAt.transform.position = lookingAt.transform.position + new Vector3(0.0f,_mouseInput.y/(rotationSpeedInverse*10.0f),0.0f);
+
+        //clamp y position
+        if (lookingAt.transform.position.y > yUpperBound)
+            lookingAt.transform.position = new Vector3(lookingAt.transform.position.x, yUpperBound, lookingAt.transform.position.z);
+        else if(lookingAt.transform.position.y < yLowerBound)
+            lookingAt.transform.position = new Vector3(lookingAt.transform.position.x, yLowerBound, lookingAt.transform.position.z);
+
+        //lock on to target
         transform.LookAt(lookingAt.transform);
     }
     void OnEnable()

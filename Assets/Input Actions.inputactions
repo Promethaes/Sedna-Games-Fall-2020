@@ -80,11 +80,33 @@
                 },
                 {
                     "name": "",
+                    "id": "ec3227e3-2218-4c7e-b26d-571318ae4e1f",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "78249005-9f52-4586-933d-c96ba7aa569e",
                     "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
+                    "action": "Mouse Input",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b061f536-55f0-44b2-a37e-05cdebdd51e5",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Mouse Input",
                     "isComposite": false,
                     "isPartOfComposite": false
