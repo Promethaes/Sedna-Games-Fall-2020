@@ -4,32 +4,40 @@ using UnityEngine;
 
 public class PlayerInputScript : MonoBehaviour
 {
-    InputActions inputActions;
+    InputActions _inputActions;
 
     public float moveSpeed = 1.0f;
 
     Vector2 moveInput;
 
+    float _isSprinting = 0.0f;
+
     void Awake()
     {
-        inputActions = new InputActions();
-        inputActions.Default.Movement.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
-        inputActions.Default.Movement.canceled += ctx => moveInput = ctx.ReadValue<Vector2>();
+        _inputActions = new InputActions();
+        _inputActions.Default.Movement.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
+        _inputActions.Default.Movement.canceled += ctx => moveInput = ctx.ReadValue<Vector2>();
+        _inputActions.Default.Sprint.performed += ctx => _isSprinting = ctx.ReadValue<float>();
+        _inputActions.Default.Sprint.canceled += ctx => _isSprinting = ctx.ReadValue<float>();
     }
+
 
     // Update is called once per frame
     void FixedUpdate()
     {
         gameObject.GetComponent<Rigidbody>().velocity += new Vector3(moveInput.x,0.0f, moveInput.y) * moveSpeed;
+
+        if (_isSprinting > 0.0f)
+            Debug.Log("sprint");
     }
 
     void OnEnable()
     {
-        inputActions.Enable();
+        _inputActions.Enable();
     }
 
     void OnDisable()
     {
-        inputActions.Disable();
+        _inputActions.Disable();
     }
 }

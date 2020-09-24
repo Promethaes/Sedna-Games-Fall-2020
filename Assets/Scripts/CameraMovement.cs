@@ -26,6 +26,7 @@ public class CameraMovement : MonoBehaviour
 
     }
 
+    float _slerpParam = 0.0f;
     void Update()
     {
         if (rotationSpeedInverse < 1.0f)
@@ -36,6 +37,7 @@ public class CameraMovement : MonoBehaviour
 
         //increase/decrease height of camera target
         lookingAt.transform.position = lookingAt.transform.position + new Vector3(0.0f,_mouseInput.y/(rotationSpeedInverse*10.0f),0.0f);
+
 
         //clamp y position
         if (lookingAt.transform.position.y > yUpperBound)

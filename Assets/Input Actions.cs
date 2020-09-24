@@ -33,6 +33,14 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""4b6c27a0-4fa2-4785-89c3-676b882f91ee"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -123,6 +131,28 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""action"": ""Mouse Input"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b70b47b8-79ae-4544-870c-0bb82d686afc"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7612235c-9ee2-454c-b7e3-baca345bdcb8"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -139,6 +169,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_Default = asset.FindActionMap("Default", throwIfNotFound: true);
         m_Default_Movement = m_Default.FindAction("Movement", throwIfNotFound: true);
         m_Default_MouseInput = m_Default.FindAction("Mouse Input", throwIfNotFound: true);
+        m_Default_Sprint = m_Default.FindAction("Sprint", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -190,12 +221,14 @@ public class @InputActions : IInputActionCollection, IDisposable
     private IDefaultActions m_DefaultActionsCallbackInterface;
     private readonly InputAction m_Default_Movement;
     private readonly InputAction m_Default_MouseInput;
+    private readonly InputAction m_Default_Sprint;
     public struct DefaultActions
     {
         private @InputActions m_Wrapper;
         public DefaultActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Default_Movement;
         public InputAction @MouseInput => m_Wrapper.m_Default_MouseInput;
+        public InputAction @Sprint => m_Wrapper.m_Default_Sprint;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -211,6 +244,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @MouseInput.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMouseInput;
                 @MouseInput.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMouseInput;
                 @MouseInput.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMouseInput;
+                @Sprint.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnSprint;
+                @Sprint.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnSprint;
+                @Sprint.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnSprint;
             }
             m_Wrapper.m_DefaultActionsCallbackInterface = instance;
             if (instance != null)
@@ -221,6 +257,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @MouseInput.started += instance.OnMouseInput;
                 @MouseInput.performed += instance.OnMouseInput;
                 @MouseInput.canceled += instance.OnMouseInput;
+                @Sprint.started += instance.OnSprint;
+                @Sprint.performed += instance.OnSprint;
+                @Sprint.canceled += instance.OnSprint;
             }
         }
     }
@@ -238,5 +277,6 @@ public class @InputActions : IInputActionCollection, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnMouseInput(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
     }
 }
