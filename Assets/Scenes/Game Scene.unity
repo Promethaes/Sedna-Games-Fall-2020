@@ -326,8 +326,8 @@ MonoBehaviour:
   rotationSpeedInverse: 6
   lookingAt: {fileID: 372172786}
   player: {fileID: 392471142}
-  yUpperBound: 2
-  yLowerBound: 1
+  yUpperBound: 2.2
+  yLowerBound: 1.2
 --- !u!1 &372172786
 GameObject:
   m_ObjectHideFlags: 0
