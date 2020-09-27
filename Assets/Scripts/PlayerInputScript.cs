@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerInputScript : MonoBehaviour
 {
     InputActions inputActions;
-
     public float moveSpeed;
     public float jumpSpeed;
     float _dashCooldown = 0.0f;
@@ -16,9 +15,6 @@ public class PlayerInputScript : MonoBehaviour
     float _isJumping = 0.0f;
     bool _jumped = false;
     bool _doubleJumped = false;
-    float _velMax = 20.0f;
-    float _velMin = -20.0f;
-
     Vector2 _moveInput = new Vector2(0.0f,0.0f);
 
     void Awake()
@@ -54,44 +50,35 @@ public class PlayerInputScript : MonoBehaviour
 
     void Move(Vector2 _moveInput)
     {
-        //TODO: Move in the direction the camera faces
-        //Quaternion q = gameObject.GetComponent<Rigidbody>().rotation;
-        //transform.rotation = gameObject.GetComponent<Rigidbody>().rotation;
         float y = gameObject.GetComponent<Rigidbody>().velocity.y;
-        Vector3 vel = new Vector3(_moveInput.x, 0.0f, _moveInput.y)*moveSpeed;
+        Vector3 vel = Quaternion.AngleAxis(270, Vector3.up)*((Quaternion.AngleAxis(180, Vector3.up)*(transform.forward*_moveInput.x)) + (Quaternion.AngleAxis(90, Vector3.up)*(transform.forward*_moveInput.y)))*moveSpeed;
+        //NOTE: Dashing ignores camera direction when applied
         if (_dashCooldown > 0.0f)
-        {
             gameObject.GetComponent<Rigidbody>().velocity = new Vector3(gameObject.GetComponent<Rigidbody>().velocity.x, y, gameObject.GetComponent<Rigidbody>().velocity.z);
-        }
         else
-        {
-        gameObject.GetComponent<Rigidbody>().velocity = new Vector3(vel.x, y, vel.z);
-        }
+            gameObject.GetComponent<Rigidbody>().velocity = new Vector3(vel.x, y, vel.z);
     }
 
     void Jump()
     {
-        if (_jumped && !_doubleJumped)
+        //TODO: Replace jump cooldown with a check for floor collision
+        if (_jumpCooldown < 0.0f)
+        {
+            _jumped = false;
+            _doubleJumped = false;
+        }
+        if (_jumpCooldown < 1.8f && _jumped && !_doubleJumped)
         {
         gameObject.GetComponent<Rigidbody>().velocity += new Vector3(0.0f, _isJumping, 0.0f) * jumpSpeed;
         _doubleJumped = true;
-        //_jumped = false;
-        //[TODO] Replace cooldown with a check on touching ground
+        _jumped = false;
+        _jumpCooldown = 2.5f;
         }
-
         if (_jumpCooldown < 0.0f && !_jumped)
         {
         gameObject.GetComponent<Rigidbody>().velocity += new Vector3(0.0f, _isJumping, 0.0f) * jumpSpeed;
         _jumped = true;
-        _jumpCooldown = 5.0f;
-        //[TODO] Replace cooldown with a check on touching ground
-        //_jumpCooldown = 1.0f;
-        }
-        
-        if (_jumpCooldown < 0.0f)
-        {
-            _jumped = !_jumped;
-            _doubleJumped = !_doubleJumped;
+        _jumpCooldown = 2.5f;
         }
     }
     void Dash()
@@ -99,7 +86,7 @@ public class PlayerInputScript : MonoBehaviour
         if (_dashed && !_airDashed && _jumped)
         {
         Vector3 vel = gameObject.GetComponent<Rigidbody>().velocity;
-        gameObject.GetComponent<Rigidbody>().velocity += new Vector3(vel.x*1.2f, 0.0f, vel.z*1.2f);
+        gameObject.GetComponent<Rigidbody>().velocity = new Vector3(vel.x*2.0f, vel.y, vel.z*2.0f);
         _airDashed = true;
         //[TODO] Replace cooldown with a check on touching ground for air dashing
         _dashCooldown = 1.5f;
@@ -107,15 +94,15 @@ public class PlayerInputScript : MonoBehaviour
         if (_dashCooldown < 0.0f && !_dashed)
         {
         Vector3 vel = gameObject.GetComponent<Rigidbody>().velocity;
-        gameObject.GetComponent<Rigidbody>().velocity += new Vector3(vel.x*1.2f, 0.0f, vel.z*1.2f);
+        gameObject.GetComponent<Rigidbody>().velocity = new Vector3(vel.x*2.0f, vel.y, vel.z*2.0f);
         _dashed = true;
         //_dashCooldown represents duration of dash
         _dashCooldown = 1.5f;
         }
         if (_dashCooldown < 0.0f)
         {
-        _dashed = !_dashed;
-        _airDashed = !_airDashed;
+        _dashed = false;
+        _airDashed = false;
         }
     }
 
