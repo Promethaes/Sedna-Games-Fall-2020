@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerInputScript : MonoBehaviour
 {
-    InputActions inputActions;
+    InputActions _inputActions;
     public float moveSpeed;
     public float jumpSpeed;
     float _dashCooldown = 0.0f;
@@ -21,15 +21,15 @@ public class PlayerInputScript : MonoBehaviour
 
     void Awake()
     {
-        inputActions = new InputActions();
-        inputActions.Default.Movement.performed += ctx => _moveInput = ctx.ReadValue<Vector2>();
-        inputActions.Default.Movement.canceled += ctx => _moveInput = ctx.ReadValue<Vector2>();
+        _inputActions = new InputActions();
+        _inputActions.Default.Movement.performed += ctx => _moveInput = ctx.ReadValue<Vector2>();
+        _inputActions.Default.Movement.canceled += ctx => _moveInput = ctx.ReadValue<Vector2>();
 
-        inputActions.Default.Jump.performed += ctx => _isJumping = ctx.ReadValue<float>();
-        inputActions.Default.Jump.canceled += ctx => _isJumping = ctx.ReadValue<float>();
+        _inputActions.Default.Jump.performed += ctx => _isJumping = ctx.ReadValue<float>();
+        _inputActions.Default.Jump.canceled += ctx => _isJumping = ctx.ReadValue<float>();
 
-        inputActions.Default.Dash.performed += ctx => _isDashing = ctx.ReadValue<float>();
-        inputActions.Default.Dash.canceled += ctx => _isDashing = ctx.ReadValue<float>();
+        _inputActions.Default.Dash.performed += ctx => _isDashing = ctx.ReadValue<float>();
+        _inputActions.Default.Dash.canceled += ctx => _isDashing = ctx.ReadValue<float>();
     }
 
 
