@@ -40,10 +40,10 @@ public class CameraMovement : MonoBehaviour
 
 
         //clamp y position
-        if (lookingAt.transform.position.y > yUpperBound)
-            lookingAt.transform.position = new Vector3(lookingAt.transform.position.x, yUpperBound, lookingAt.transform.position.z);
-        else if(lookingAt.transform.position.y < yLowerBound)
-            lookingAt.transform.position = new Vector3(lookingAt.transform.position.x, yLowerBound, lookingAt.transform.position.z);
+        if (lookingAt.transform.localPosition.y > yUpperBound)
+            lookingAt.transform.localPosition = new Vector3(lookingAt.transform.localPosition.x, yUpperBound, lookingAt.transform.localPosition.z);
+        else if(lookingAt.transform.localPosition.y < yLowerBound)
+            lookingAt.transform.localPosition = new Vector3(lookingAt.transform.localPosition.x, yLowerBound, lookingAt.transform.localPosition.z);
 
         //lock on to target
         transform.LookAt(lookingAt.transform);
