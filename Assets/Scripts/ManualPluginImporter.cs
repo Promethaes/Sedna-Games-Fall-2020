@@ -24,7 +24,7 @@ public class ManualPluginImporter : MonoBehaviour
         IntPtr handle = LoadLibrary(path);
         if (handle == IntPtr.Zero)
         {
-            throw new Exception("Couldn't open native library: " + path);
+            throw new Exception("Couldn't open native plugin: " + path);
         }
         return handle;
     }
@@ -42,7 +42,7 @@ public class ManualPluginImporter : MonoBehaviour
         IntPtr symbol = GetProcAddress(libraryHandle, functionName);
         if (symbol == IntPtr.Zero)
         {
-            throw new Exception("Couldn't Get Function : " + functionName);
+            throw new Exception("Couldn't get function address: " + functionName);
         }
         return Marshal.GetDelegateForFunctionPointer(symbol, typeof(T)) as T;
     }

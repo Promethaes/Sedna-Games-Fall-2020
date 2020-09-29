@@ -328,6 +328,62 @@ MonoBehaviour:
   player: {fileID: 392471142}
   yUpperBound: 2.2
   yLowerBound: 1.2
+--- !u!1 &94093656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 94093659}
+  - component: {fileID: 94093658}
+  - component: {fileID: 94093657}
+  m_Layer: 0
+  m_Name: ManualPluginImporter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &94093657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94093656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fe5fc2f5b7fe8f4c962462bd179776b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &94093658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94093656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6e3934bdd646dd4d9d9bae0f223a6bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &94093659
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94093656}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.7693219, y: 0.6554048, z: -0.20931959}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &372172786
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,8 +426,6 @@ GameObject:
   - component: {fileID: 390205554}
   - component: {fileID: 390205553}
   - component: {fileID: 390205552}
-  - component: {fileID: 390205556}
-  - component: {fileID: 390205557}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
