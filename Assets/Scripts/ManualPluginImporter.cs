@@ -62,6 +62,7 @@ public static bool FunctionName() {
 const string dllPath = "Plugins/path/to/dll/file";
 #else
 const string dllPath = "Plugins/x86_64/path/to/dll/file";
+#endif
 
 private static IntPtr _pluginHandle = IntPtr.Zero;
 
