@@ -13,6 +13,12 @@ public class PlayerManager : MonoBehaviour
             players[i].SetActive(false);
     }
 
+
+    /*
+     * @brief: This function makes sure players are set to active/inactive based on the numPlayers
+     * @param: numPlayers is the number of players
+     * @return: void
+     */
     public void ActivePlayerSetup(int numPlayers)
     {
         Debug.Assert(!(numPlayers > 4) || !(numPlayers < 1));
@@ -29,5 +35,5 @@ public class PlayerManager : MonoBehaviour
         }
 
     }
-   
+
 }

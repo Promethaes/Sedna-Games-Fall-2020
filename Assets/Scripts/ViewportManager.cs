@@ -10,6 +10,11 @@ public class ViewportManager : MonoBehaviour
         
     }
 
+    /*
+     * @brief: Places, Scales and Activates all viewports according to the number of players currently active.
+     * @param: number of players
+     * @param: list of each player's camera
+     */
     public void SpaceViewportsAppropriately(int numPlayers,List<Camera> cameras)
     {
         if(numPlayers == 1)
