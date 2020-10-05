@@ -1,16 +1,30 @@
-﻿using System;
-using TestDLL;
+﻿//
+// @Cleanup: Maybe we can factor out a lot of the grudge work to load the DLL functions...
+//
+// Basic idea is: 
+// - Make init function that loads dll using OpenLibrary (called in Start() or Awake())
+// - Make shutdown function that unloads dll so it can be hotloaded (called in OnDestroy())
+// - *PER FUNCTION EXPORTED BY DLL*:
+//    - Make DelegateType with function definition
+//    - Make variable with DelegateType
+//    - In init(), use GetDelegate<DelegateType> to get the function pointer
+// - To call, use variable(params) or variable.Invoke(params) 
+//    - Invoke will give tooltips in VS Code (not sure about VS2019), but either will call the delegate function without error (hopefully)
+//    - Delegate calls should ideally be wrapped in C# static functions so that they can be called from anywhere in the project
+//    - Good practice would be to make sure the delegates are != null, but I don't know how much overhead this has...
+//
+
+using System;
 using UnityEngine;
 
-public class DLLTest : MonoBehaviour
+public class RandomPluginScript : MonoBehaviour
 {
 
 #if UNITY_EDITOR
-    const string dllPath = "/Plugins/TestDLL-cpp.dll";
+    const string _dllPath = "/Plugins/TestDLL-cpp.dll";
 #else
-    const string dllPath = "/Plugins/x86_x64/TestDLL-cpp.dll";
+    const string _dllPath = "/Plugins/x86_x64/TestDLL-cpp.dll";
 #endif
-    DLLClass test = new DLLClass();
 
     private delegate void RandomSeed();
     private delegate int RandomInt(int low = 0, int high = 10);
@@ -25,7 +39,8 @@ public class DLLTest : MonoBehaviour
 
     public static void initRandomPlugin() {
         if(_pluginHandle != IntPtr.Zero) return;       // @Incomplete: maybe log/error here?
-        _pluginHandle = ManualPluginImporter.OpenLibrary(Application.dataPath + dllPath);
+        
+        _pluginHandle = ManualPluginImporter.OpenLibrary(Application.dataPath + _dllPath);
         if(_pluginHandle == IntPtr.Zero) return;       // @Incomplete: maybe log/error here?
 
         _dllRandomSeed  = ManualPluginImporter.GetDelegate<RandomSeed> (_pluginHandle, "dllRandomSeed");
@@ -45,17 +60,17 @@ public class DLLTest : MonoBehaviour
 
     public static int GetRandomIntCPP(int low = 0, int high = 10) {
         if(_dllRandomInt == null) return 0;            // @Incomplete: maybe log here?
-        return _dllRandomInt/*.Invoke*/(low, high);
+        return _dllRandomInt.Invoke(low, high);
     }
 
     public static uint GetRandomUIntCPP(uint low = 0u, uint high = 10u) {
         if(_dllRandomUInt == null) return 0;            // @Incomplete: maybe log here?
-        return _dllRandomUInt/*.Invoke*/(low, high);
+        return _dllRandomUInt.Invoke(low, high);
     }
 
     public static float GetRandomFloat(float low = 0.0f, float high = 1.0f) {
         if(_dllRandomFloat == null) return 0;            // @Incomplete: maybe log here?
-        return _dllRandomFloat/*.Invoke*/(low, high);
+        return _dllRandomFloat.Invoke(low, high);
     }
 
     void Start() {
@@ -63,17 +78,14 @@ public class DLLTest : MonoBehaviour
     }
 
     void Update() {
-        int rand = test.GetRandomInt();
-        Debug.Log("Random int is: " + rand);
+        int rand1 = GetRandomIntCPP(0, 5);
+        Debug.Log("Random int is: " + rand1);
 
-        int rand2 = GetRandomIntCPP(0, 5);
-        Debug.Log("Random int 2 is: " + rand2);
+        uint rand2 = GetRandomUIntCPP(0, 20);
+        Debug.Log("Random uint is: " + rand2);
 
-        uint rand3 = GetRandomUIntCPP(0, 20);
-        Debug.Log("Random uint is: " + rand3);
-
-        float rand4 = GetRandomFloat(0.0f, 6.0f);
-        Debug.Log("Random float is: " + rand4);
+        float rand3 = GetRandomFloat(0.0f, 6.0f);
+        Debug.Log("Random float is: " + rand3);
     }
 
     void OnDestroy() {
