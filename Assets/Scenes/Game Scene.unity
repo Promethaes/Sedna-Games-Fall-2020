@@ -134,7 +134,6 @@ GameObject:
   - component: {fileID: 83790421}
   - component: {fileID: 83790420}
   - component: {fileID: 83790423}
-  - component: {fileID: 83790424}
   m_Layer: 0
   m_Name: P1 Camera
   m_TagString: MainCamera
@@ -311,23 +310,6 @@ MonoBehaviour:
       data1: 0
       data2: 0
   defaultFrameSettings: 0
---- !u!114 &83790424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 83790419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f1ff7773b65189428277d42855d7635, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeedInverse: 6
-  lookingAt: {fileID: 372172786}
-  player: {fileID: 392471142}
-  yUpperBound: 2.2
-  yLowerBound: 1.2
 --- !u!1 &372172786
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,6 +637,51 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 00e3ecd6-6914-4a4a-b2ec-bd4a155c068d
     m_ActionName: Default/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 444225912}
+        m_MethodName: OnMouseInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 76eeb984-87f8-42a9-b051-382d882c2ef9
+    m_ActionName: Default/MouseInput[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 444225912}
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 32599996-ab16-4977-af71-e30f56281d6d
+    m_ActionName: Default/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 444225912}
+        m_MethodName: OnDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: af5dadc5-c82a-405e-a63d-491adac75683
+    m_ActionName: Default/Dash[/Keyboard/shift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Default
@@ -673,12 +700,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  pCamera: {fileID: 0}
-  player: {fileID: 0}
-  lookingAt: {fileID: 0}
-  yUpperBound: 4
-  yLowerBound: -3
-  rotationSpeedInverse: 1
+  jumpSpeed: 10
+  dashSpeed: 40
+  pCamera: {fileID: 83790419}
+  player: {fileID: 392471142}
+  lookingAt: {fileID: 372172786}
+  yUpperBound: 2.22
+  yLowerBound: 1.11
+  rotationSpeedInverse: 6
 --- !u!1001 &478601977
 PrefabInstance:
   m_ObjectHideFlags: 0
