@@ -35,7 +35,6 @@ public class NPlayerInput : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -82,7 +81,11 @@ public class NPlayerInput : MonoBehaviour
     {
         float y = player.GetComponent<Rigidbody>().velocity.y;
         Vector3 vel = Quaternion.AngleAxis(270, Vector3.up) * ((Quaternion.AngleAxis(180, Vector3.up) * (transform.forward * _moveInput.x)) + (Quaternion.AngleAxis(90, Vector3.up) * (transform.forward * _moveInput.y))) * moveSpeed;
-        player.GetComponent<Rigidbody>().velocity = new Vector3(vel.x, y, vel.z);
+        //NOTE: Dashing ignores camera direction when applied
+        if (_dashCooldown > 0.0f)
+            player.GetComponent<Rigidbody>().velocity = new Vector3(player.GetComponent<Rigidbody>().velocity.x, y, player.GetComponent<Rigidbody>().velocity.z);
+        else
+            player.GetComponent<Rigidbody>().velocity = new Vector3(vel.x, y, vel.z);
     }
 
     void _Jump()

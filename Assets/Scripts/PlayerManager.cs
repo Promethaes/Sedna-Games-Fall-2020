@@ -4,36 +4,26 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-
-    public List<GameObject> players;
+    public List<Camera> playerCameras;
+    public ViewportManager viewportManager;
 
     private void Start()
     {
-        for (int i = 0; i < 4; i++)
-            players[i].SetActive(false);
+       
+    }
+
+    void setupVieports()
+    {
+        viewportManager.SpaceViewportsAppropriately(playerCameras.Count, playerCameras);
     }
 
 
-    /*
-     * @brief: This function makes sure players are set to active/inactive based on the numPlayers
-     * @param: numPlayers is the number of players
-     * @return: void
-     */
-    public void ActivePlayerSetup(int numPlayers)
+    int _lastNumPlayers = 0;
+    private void Update()
     {
-        Debug.Assert(!(numPlayers > 4) || !(numPlayers < 1));
-
-        for (int i = 0; i < numPlayers; i++)
-            players[i].SetActive(true);
-
-        int inactivePlayers = (4 - numPlayers);
-        int j = 3;
-        for (int i = 0; i < inactivePlayers; i++)
-        {
-            players[j].SetActive(false);
-            j--;
-        }
-
+        if (playerCameras.Count != _lastNumPlayers)
+            setupVieports();
+        _lastNumPlayers = playerCameras.Count;
     }
 
 }
