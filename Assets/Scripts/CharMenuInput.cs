@@ -12,7 +12,7 @@ public class CharMenuInput : MonoBehaviour
     bool _startButtonpressed = false;
 
     public List<GameObject> characterPrefabs;
-    public string playerType;
+    public int playerType;// 1, 2, 3, 4
     public Image confirmImage;
 
     int _selectionIndex = 0;
@@ -65,7 +65,7 @@ public class CharMenuInput : MonoBehaviour
     {
         gameObject.GetComponent<MeshFilter>().mesh = characterPrefabs[index].GetComponent<MeshFilter>().mesh;
         gameObject.GetComponent<MeshRenderer>().material = characterPrefabs[index].GetComponent<MeshRenderer>().material;
-        name = characterPrefabs[index].GetComponent<CharMenuInput>().name;
+        playerType = characterPrefabs[index].GetComponent<CharMenuInput>().playerType;
         _selectionCooldown = selectCooldown;
     }
 
@@ -94,6 +94,7 @@ public class CharMenuInput : MonoBehaviour
 
         if (temp >= 0.5f)
             confirm = true;
+        _ChangeCharacter(_selectionIndex);
     }
 
     public void OnUnConfirm(InputAction.CallbackContext ctx)
@@ -131,7 +132,9 @@ public class CharMenuInput : MonoBehaviour
     void _FinalizeSelection()
     {
         for(int i = 0; i < menuPlayerManager.players.Count; i++)
-            PlayerPrefs.SetString("p" + (i + 1).ToString() + "Type", menuPlayerManager.players[i].GetComponent<CharMenuInput>().playerType);
+            PlayerPrefs.SetInt("p" + (i + 1).ToString() + "Type", menuPlayerManager.players[i].GetComponent<CharMenuInput>().playerType);
+
+        PlayerPrefs.SetInt("numPlayers", menuPlayerManager.players.Count);
 
         SceneManager.LoadScene("Game Scene");
     }
