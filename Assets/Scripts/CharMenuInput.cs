@@ -63,8 +63,8 @@ public class CharMenuInput : MonoBehaviour
 
     void _ChangeCharacter(int index)
     {
-        gameObject.GetComponent<MeshFilter>().mesh = characterPrefabs[index].GetComponent<MeshFilter>().mesh;
-        gameObject.GetComponent<MeshRenderer>().material = characterPrefabs[index].GetComponent<MeshRenderer>().material;
+        gameObject.GetComponent<MeshFilter>().mesh = characterPrefabs[index].GetComponent<MeshFilter>().sharedMesh;
+        gameObject.GetComponent<MeshRenderer>().material = characterPrefabs[index].GetComponent<MeshRenderer>().sharedMaterial;
         playerType = characterPrefabs[index].GetComponent<CharMenuInput>().playerType;
         _selectionCooldown = selectCooldown;
     }

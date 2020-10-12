@@ -10,25 +10,22 @@ public class PlayerManager : MonoBehaviour
     public ViewportManager viewportManager;
     public List<GameObject> playerPrefabs;
 
-    public bool oneTimeSetup = false;
 
     private void Start()
     {
         var numPlayers = PlayerPrefs.GetInt("numPlayers");
-        for (int i = 0; i < numPlayers; i++)
-            gameObject.GetComponent<PlayerInputManager>().JoinPlayer();
 
     }
 
     void _SetAllPlayers()
     {
         var numPlayers = PlayerPrefs.GetInt("numPlayers");
-        for (int i = 0; i < numPlayers; i++)
+        for (int i = 0; i < players.Count; i++)
         {
             int type = PlayerPrefs.GetInt("p" + (i + 1).ToString() + "Type");
             type--;
-            players[i].GetComponent<MeshFilter>().mesh = playerPrefabs[type].GetComponent<MeshFilter>().mesh;
-            players[i].GetComponent<MeshRenderer>().material = playerPrefabs[type].GetComponent<MeshRenderer>().material;
+            players[i].GetComponent<MeshFilter>().mesh = playerPrefabs[type].GetComponent<MeshFilter>().sharedMesh;
+            players[i].GetComponent<MeshRenderer>().material = playerPrefabs[type].GetComponent<MeshRenderer>().sharedMaterial;
 
         }
     }
@@ -48,12 +45,6 @@ public class PlayerManager : MonoBehaviour
         }
         _lastNumPlayers = playerCameras.Count;
 
-        if (players.Count != 0 && !oneTimeSetup)
-        {
-            _SetAllPlayers();
-            setupVieports();
-            oneTimeSetup = true;
-        }
     }
 
 }
