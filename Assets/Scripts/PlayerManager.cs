@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class PlayerManager : MonoBehaviour
 {
     public List<GameObject> players;
-    public List<Camera> playerCameras;
     public ViewportManager viewportManager;
     public List<GameObject> playerPrefabs;
 
@@ -32,7 +31,12 @@ public class PlayerManager : MonoBehaviour
 
     void setupVieports()
     {
-        viewportManager.SpaceViewportsAppropriately(playerCameras.Count, playerCameras);
+        var temp = new List<Camera>();
+
+        foreach (var p in players)
+            temp.Add(p.GetComponentInChildren<Camera>());
+
+        viewportManager.SpaceViewportsAppropriately(players.Count, temp);
     }
 
 
@@ -43,7 +47,7 @@ public class PlayerManager : MonoBehaviour
         {
             setupVieports();
         }
-        _lastNumPlayers = playerCameras.Count;
+        _lastNumPlayers = players.Count;
 
     }
 

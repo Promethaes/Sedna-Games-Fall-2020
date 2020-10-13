@@ -24,6 +24,9 @@ public class CharMenuInput : MonoBehaviour
 
     public List<Image> selectionImages;
 
+    public GameObject enableOnLoad;
+    public GameObject disableOnLoad;
+
 
 
 
@@ -131,12 +134,20 @@ public class CharMenuInput : MonoBehaviour
     //Save the player's character types in the player prefs to be accessed next scene, then load the game scene
     void _FinalizeSelection()
     {
-        for(int i = 0; i < menuPlayerManager.players.Count; i++)
-            PlayerPrefs.SetInt("p" + (i + 1).ToString() + "Type", menuPlayerManager.players[i].GetComponent<CharMenuInput>().playerType);
+        // for(int i = 0; i < menuPlayerManager.players.Count; i++)
+        //     PlayerPrefs.SetInt("p" + (i + 1).ToString() + "Type", menuPlayerManager.players[i].GetComponent<CharMenuInput>().playerType);
+        //
+        // PlayerPrefs.SetInt("numPlayers", menuPlayerManager.players.Count);
 
-        PlayerPrefs.SetInt("numPlayers", menuPlayerManager.players.Count);
+        menuPlayerManager.PreservePlayers();
+        enableOnLoad.SetActive(true);
+        disableOnLoad.SetActive(false);
+        gameObject.GetComponent<PlayerInput>().enabled = false;
+        gameObject.GetComponent<Rigidbody>().useGravity = true;
 
         SceneManager.LoadScene("Game Scene");
+        this.enabled = false;
+
     }
 
 }
