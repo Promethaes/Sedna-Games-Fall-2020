@@ -107,6 +107,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b4fc8a6e76ce624f8f0f03d3d29d314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  confirm: 0
+  characterPrefabs: []
+  playerType: 3
+  confirmImage: {fileID: 0}
+  selectCooldown: 0.5
+  menuPlayerManager: {fileID: 0}
+  moveBy: 1
+  selectionImages: []
 --- !u!114 &3682845393880195036
 MonoBehaviour:
   m_ObjectHideFlags: 0

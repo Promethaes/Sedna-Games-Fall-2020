@@ -108,6 +108,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b4fc8a6e76ce624f8f0f03d3d29d314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  confirm: 0
+  characterPrefabs: []
+  playerType: 1
+  confirmImage: {fileID: 0}
+  selectCooldown: 0.5
+  menuPlayerManager: {fileID: 0}
+  moveBy: 1
+  selectionImages: []
 --- !u!114 &1896859594477858094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +157,18 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 3489fd21-2d7f-4ff9-8d18-4a8dfa3191a2
     m_ActionName: Default/MouseMove[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 54d43311-dc47-448d-a014-969ad0eb2a2e
+    m_ActionName: Default/Confirm[/XInputControllerWindows/buttonSouth,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 41263ddc-18f8-4bea-a97e-4b8ccc38b745
+    m_ActionName: Default/UnConfirm[/Keyboard/escape,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3056c845-f643-494d-a10f-aa6de6c1f85a
+    m_ActionName: Default/StartGame[/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Default
