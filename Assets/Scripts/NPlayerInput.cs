@@ -23,6 +23,11 @@ public class NPlayerInput : MonoBehaviour
     bool _jumped = false;
     bool _doubleJumped = false;
 
+    bool _useAbility = false;
+    public CharMenuInput charMenuInput;
+    public BubbleShieldScript bubbleShieldScript;
+
+
     //Camera
     public GameObject pCamera;
     public GameObject player;
@@ -53,6 +58,19 @@ public class NPlayerInput : MonoBehaviour
         //Dash Movement
         if (_isDashing == 1.0f)
             _Dash();
+
+        _UseAbility();
+    }
+
+
+    void _UseAbility()
+    {
+        if (!_useAbility)
+            return;
+
+        //add more
+        if (charMenuInput.playerType == 1)
+            bubbleShieldScript.AttemptToCast();
     }
 
     void _MouseInput()
@@ -153,6 +171,16 @@ public class NPlayerInput : MonoBehaviour
     public void OnDash(InputAction.CallbackContext ctx)
     {
         _isDashing = ctx.ReadValue<float>();
+    }
+
+    public void OnAbility(InputAction.CallbackContext ctx)
+    {
+        float temp = ctx.ReadValue<float>();
+
+        if (temp >= 0.5f)
+            _useAbility = true;
+        else
+            _useAbility = false;
     }
 
 }

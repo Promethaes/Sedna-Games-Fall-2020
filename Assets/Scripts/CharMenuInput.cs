@@ -28,8 +28,6 @@ public class CharMenuInput : MonoBehaviour
     public GameObject disableOnLoad;
 
 
-
-
     // Start is called before the first frame update
     void Start()
     {
