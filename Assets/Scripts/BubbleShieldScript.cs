@@ -40,6 +40,7 @@ public class BubbleShieldScript : MonoBehaviour
     {
         _pvtCooldown = cooldown;
         _pvtDuration = duration;
+        _casting = false;
         bubble.SetActive(false);
     }
 
