@@ -25,6 +25,7 @@ public class NPlayerInput : MonoBehaviour
 
     bool _useAbility = false;
     public CharMenuInput charMenuInput;
+    public int playerType;
     public BubbleShieldScript bubbleShieldScript;
 
 
@@ -40,6 +41,7 @@ public class NPlayerInput : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerType = charMenuInput.playerType;
     }
 
     // Update is called once per frame
@@ -69,7 +71,7 @@ public class NPlayerInput : MonoBehaviour
             return;
 
         //add more
-        if (charMenuInput.playerType == 1)
+        if (playerType == 1)
             bubbleShieldScript.AttemptToCast();
     }
 

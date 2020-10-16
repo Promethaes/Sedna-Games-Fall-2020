@@ -115,6 +115,8 @@ MonoBehaviour:
   menuPlayerManager: {fileID: 0}
   moveBy: 1
   selectionImages: []
+  enableOnLoad: {fileID: 0}
+  disableOnLoad: {fileID: 0}
 --- !u!114 &3682845393880195036
 MonoBehaviour:
   m_ObjectHideFlags: 0
