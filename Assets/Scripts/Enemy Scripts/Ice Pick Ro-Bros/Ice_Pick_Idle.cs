@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.XR;
 
-public class AIIdle : StateMachineBehaviour
+public class Ice_Pick_Idle : StateMachineBehaviour
 {
+
     private NavMeshAgent agent;
     private GameObject player;
     private GameObject enemy;
@@ -20,22 +22,27 @@ public class AIIdle : StateMachineBehaviour
             agent = enemyData.agent;
         }
 
-            agent.isStopped = true;
-        if (enemyData)
-            if (enemyData.patrol)
-            {
-                animator.SetBool("patrol", true);
-            }
-        Debug.Log("AI Idle");
+        agent.isStopped = true;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (animator.GetFloat("idleTime") > 0.0f)
-            animator.SetFloat("idleTime",animator.GetFloat("idleTime")-Time.deltaTime);
+        if (animator.GetFloat("IdleTime") > 0.0f)
+            animator.SetFloat("IdleTime", animator.GetFloat("IdleTime") - Time.deltaTime);
         if ((enemy.transform.position - player.transform.position).magnitude < enemyData.searchRadius)
-            animator.SetBool("tracking", true);
+        {
+            animator.SetBool("Tracking", true);
+            foreach(GameObject x in EnemyData.icePickEnemies)
+            {
+                if ((enemy.transform.position - x.transform.position).magnitude < enemyData.icePickRange)
+                {
+                    x.GetComponent<Animator>().SetBool("Tracking", true);
+                    //x join the hunt
+                }
+            }
+        }
+            
 
     }
 

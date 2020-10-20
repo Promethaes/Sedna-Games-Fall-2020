@@ -12,10 +12,17 @@ public class EnemyData : MonoBehaviour
     public List<Transform> destinations;
     public GameObject player;
     public NavMeshAgent agent;
+
+    public bool icePick = false;
+    public float icePickRange = 5.0f;
+    public static List<GameObject> icePickEnemies = new List<GameObject>();
+
     
+
     void Start()
     {
-        
+        if(icePick)
+            icePickEnemies.Add(this.gameObject);
     }
 
     // Update is called once per frame

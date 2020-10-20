@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AIIdle : StateMachineBehaviour
+public class Ice_Pick_Track : StateMachineBehaviour
 {
-    private NavMeshAgent agent;
     private GameObject player;
     private GameObject enemy;
     private EnemyData enemyData;
+    private NavMeshAgent agent;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -19,24 +19,22 @@ public class AIIdle : StateMachineBehaviour
             player = enemyData.player;
             agent = enemyData.agent;
         }
-
-            agent.isStopped = true;
-        if (enemyData)
-            if (enemyData.patrol)
-            {
-                animator.SetBool("patrol", true);
-            }
-        Debug.Log("AI Idle");
+        agent.isStopped = false;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (animator.GetFloat("idleTime") > 0.0f)
-            animator.SetFloat("idleTime",animator.GetFloat("idleTime")-Time.deltaTime);
-        if ((enemy.transform.position - player.transform.position).magnitude < enemyData.searchRadius)
-            animator.SetBool("tracking", true);
-
+        if ((enemy.transform.position - player.transform.position).magnitude < enemyData.searchRadius + 5)
+        {
+            agent.SetDestination(player.transform.position);
+        }
+        else
+        {
+            agent.SetDestination(enemy.transform.position);
+            animator.SetBool("Tracking", false);
+            animator.SetFloat("IdleTime", 2.0f);
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
