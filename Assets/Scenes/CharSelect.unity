@@ -121,6 +121,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &9516460
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9516461}
+  m_Layer: 0
+  m_Name: RamThrough
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9516461
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9516460}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 573632470}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &80888683
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,13 +720,16 @@ MonoBehaviour:
   jumpSpeed: 10
   dashSpeed: 2
   charMenuInput: {fileID: 7411057187977841898}
+  playerType: 0
+  insideCastingZone: 0
+  ramThrough: {fileID: 0}
   bubbleShieldScript: {fileID: 799855737}
   pCamera: {fileID: 394859046}
   player: {fileID: 483320099767046447}
   lookingAt: {fileID: 1551211731}
   yUpperBound: 2.22
   yLowerBound: 1.11
-  rotationSpeedInverse: 2
+  rotationSpeedInverse: 1
 --- !u!1 &394859046
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,6 +984,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 799855736}
+  - {fileID: 9516461}
   m_Father: {fileID: 1306556098}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

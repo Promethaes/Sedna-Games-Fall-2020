@@ -66,6 +66,7 @@ public class CharMenuInput : MonoBehaviour
     {
         gameObject.GetComponent<MeshFilter>().mesh = characterPrefabs[index].GetComponent<MeshFilter>().sharedMesh;
         gameObject.GetComponent<MeshRenderer>().material = characterPrefabs[index].GetComponent<MeshRenderer>().sharedMaterial;
+        gameObject.GetComponent<Rigidbody>().mass = characterPrefabs[index].GetComponent<Rigidbody>().mass;
         playerType = characterPrefabs[index].GetComponent<CharMenuInput>().playerType;
         _selectionCooldown = selectCooldown;
     }
@@ -132,20 +133,20 @@ public class CharMenuInput : MonoBehaviour
     //Save the player's character types in the player prefs to be accessed next scene, then load the game scene
     void _FinalizeSelection()
     {
-        // for(int i = 0; i < menuPlayerManager.players.Count; i++)
-        //     PlayerPrefs.SetInt("p" + (i + 1).ToString() + "Type", menuPlayerManager.players[i].GetComponent<CharMenuInput>().playerType);
-        //
-        // PlayerPrefs.SetInt("numPlayers", menuPlayerManager.players.Count);
-
         menuPlayerManager.PreservePlayers();
+
+        SceneManager.LoadScene("Game Scene");
+        this.enabled = false;
+    }
+
+    //This function is for when you wanna set up all the players for the game scene.
+    public void Cleanup()
+    {
         enableOnLoad.SetActive(true);
         disableOnLoad.SetActive(false);
         gameObject.GetComponent<PlayerInput>().enabled = false;
         gameObject.GetComponent<Rigidbody>().useGravity = true;
-
-        SceneManager.LoadScene("Game Scene");
-        this.enabled = false;
-
     }
+
 
 }

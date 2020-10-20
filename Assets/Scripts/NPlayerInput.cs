@@ -26,6 +26,8 @@ public class NPlayerInput : MonoBehaviour
     bool _useAbility = false;
     public CharMenuInput charMenuInput;
     public int playerType;
+    public bool insideCastingZone = false;
+    public RamThroughScript ramThrough;
     public BubbleShieldScript bubbleShieldScript;
 
 
@@ -61,7 +63,8 @@ public class NPlayerInput : MonoBehaviour
         if (_isDashing == 1.0f)
             _Dash();
 
-        _UseAbility();
+        if (insideCastingZone)
+            _UseAbility();
     }
 
 
@@ -70,9 +73,13 @@ public class NPlayerInput : MonoBehaviour
         if (!_useAbility)
             return;
 
-        //add more
+        //add more...wait i dont think we need to add more than one lmaooooooooooooooooooooooooo
         if (playerType == 1)
             bubbleShieldScript.AttemptToCast();
+        else if (playerType == 4)
+        {
+            ramThrough.hasRammed = true;
+        }
     }
 
     void _MouseInput()

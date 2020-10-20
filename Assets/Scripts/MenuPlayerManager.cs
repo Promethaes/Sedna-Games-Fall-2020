@@ -15,13 +15,18 @@ public class MenuPlayerManager : MonoBehaviour
     public void PreservePlayers()
     {
         foreach (var player in players)
+        {
             Object.DontDestroyOnLoad(player);
+            player.GetComponent<CharMenuInput>().Cleanup();
+        }
 
         gameObject.GetComponent<PlayerManager>().players = players;
         gameObject.GetComponent<PlayerManager>().enabled = true;
         gameObject.GetComponent<PlayerInputManager>().enabled = false;
        
     }
+
+
 
     // Update is called once per frame
     void Update()
