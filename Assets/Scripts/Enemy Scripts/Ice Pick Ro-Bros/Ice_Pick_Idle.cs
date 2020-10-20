@@ -11,9 +11,13 @@ public class Ice_Pick_Idle : StateMachineBehaviour
     private GameObject player;
     private GameObject enemy;
     private EnemyData enemyData;
+
+    public bool foundEnemy = false;
+    public bool originalSeeker = false;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        foundEnemy = false;
         enemy = animator.gameObject;
         if (enemy.GetComponent<EnemyData>())
         {
@@ -33,11 +37,18 @@ public class Ice_Pick_Idle : StateMachineBehaviour
         if ((enemy.transform.position - player.transform.position).magnitude < enemyData.searchRadius)
         {
             animator.SetBool("Tracking", true);
+            originalSeeker = true;
             foreach(GameObject x in EnemyData.icePickEnemies)
             {
                 if ((enemy.transform.position - x.transform.position).magnitude < enemyData.icePickRange)
                 {
-                    x.GetComponent<Animator>().SetBool("Tracking", true);
+                    if (!x.GetComponent<Animator>().GetBehaviour<Ice_Pick_Idle>().foundEnemy)
+                    {
+                        x.GetComponent<Animator>().SetBool("Tracking", true);
+                        if(!x.GetComponent<Animator>().GetBehaviour<Ice_Pick_Idle>().originalSeeker)
+                             x.GetComponent<Animator>().SetFloat("IdleTime", 1.0f);
+                        x.GetComponent<Animator>().GetBehaviour<Ice_Pick_Idle>().foundEnemy = true;
+                    }                    
                     //x join the hunt
                 }
             }
@@ -49,7 +60,8 @@ public class Ice_Pick_Idle : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        originalSeeker = false;
+        agent.isStopped = false;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

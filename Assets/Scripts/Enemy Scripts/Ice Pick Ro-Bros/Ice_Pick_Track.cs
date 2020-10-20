@@ -19,7 +19,6 @@ public class Ice_Pick_Track : StateMachineBehaviour
             player = enemyData.player;
             agent = enemyData.agent;
         }
-        agent.isStopped = false;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

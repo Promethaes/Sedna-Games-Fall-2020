@@ -19,7 +19,7 @@ public class Dumpage_Idle : StateMachineBehaviour
             player = enemyData.player;
             agent = enemyData.agent;
         }
-
+        enemy.GetComponent<MeshRenderer>().enabled = false;
         agent.isStopped = true;
     }
 
