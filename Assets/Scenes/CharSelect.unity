@@ -566,6 +566,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 333675296}
   m_CullTransparentMesh: 0
+--- !u!1 &335344936
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 335344938}
+  - component: {fileID: 335344937}
+  m_Layer: 0
+  m_Name: SceneChanger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &335344937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335344936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 605cd2d5282dab34a8a8e64b5caa7c22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &335344938
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335344936}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.9349318, y: 6.5887127, z: -3.234951}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &338503976
 GameObject:
   m_ObjectHideFlags: 0
@@ -2521,13 +2564,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85041796af5061d46964a050d9aa73fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  players: []
-  viewportManager: {fileID: 1840724999}
   playerPrefabs:
   - {fileID: 483320098317827860, guid: d8a8cddeb28e19c4599117950a47a7b4, type: 3}
   - {fileID: 5779060166629805307, guid: 7fb926f6c97b15c4b92444686ceed4a1, type: 3}
   - {fileID: 5263697372838691449, guid: 9fefb9379557ef04a90e34e81dab8699, type: 3}
   - {fileID: 5373521217964740057, guid: aaa48d45549274049a900ae64a76f2d5, type: 3}
+  players: []
+  sceneChanger: {fileID: 0}
+  oneTimeSetup: 1
+  viewportManager: {fileID: 1840724999}
 --- !u!114 &1840724999
 MonoBehaviour:
   m_ObjectHideFlags: 0

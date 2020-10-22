@@ -5,9 +5,15 @@ using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
-    public List<GameObject> players;
-    public ViewportManager viewportManager;
+    [Header("Lists")]
     public List<GameObject> playerPrefabs;
+    public List<GameObject> players;
+    [Header("Scene references")]
+
+    [Space]
+    public bool oneTimeSetup = true;
+
+    public ViewportManager viewportManager;
 
 
     private void Start()
@@ -29,7 +35,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    void setupVieports()
+    void setupViewports()
     {
         var temp = new List<Camera>();
 
@@ -41,11 +47,16 @@ public class PlayerManager : MonoBehaviour
 
 
     int _lastNumPlayers = 0;
-    private void Update()
-    {
-        if (players.Count != _lastNumPlayers)
-        {
-            setupVieports();
+    private void Update() {
+        if(players.Count == 0 && oneTimeSetup) {
+            // Scene index 3 should be the game over scene. Please update this if this is not the case.
+            GameObject.Find("SceneChanger").GetComponent<SceneChanger>().changeScene(3);
+            Destroy(gameObject);
+            return; // Don't bother doing anything else if we need to change scenes (not sure if LoadScene already does this...@Cleanup?)
+        }
+
+        if (players.Count != _lastNumPlayers) {
+            setupViewports();
         }
         _lastNumPlayers = players.Count;
 

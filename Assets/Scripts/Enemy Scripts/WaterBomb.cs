@@ -24,9 +24,9 @@ public class WaterBomb : MonoBehaviour
             {
                 if (enemy.transform.tag == "Player")
                 {
-                PlayerInputScript foe = enemy.collider.GetComponentInParent<PlayerInputScript>();
-                foe.takeDamage(_damage);
-                Debug.Log(foe.getHealth());
+               /// PlayerInputScript foe = enemy.collider.GetComponentInParent<PlayerInputScript>();
+               /// foe.takeDamage(_damage);
+               /// Debug.Log(foe.getHealth());
                 }
                 this.gameObject.SetActive(false);
             }   

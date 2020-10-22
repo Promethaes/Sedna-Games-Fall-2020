@@ -26,7 +26,7 @@ public class CameraMovement : MonoBehaviour
 
     }
 
-    float _slerpParam = 0.0f;
+    float _slerpParam = 0.0f; // @Cleanup? Editor warnings are annoying...
     void Update()
     {
         if (rotationSpeedInverse < 1.0f)

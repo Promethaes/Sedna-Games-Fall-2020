@@ -136,7 +136,9 @@ public class CharMenuInput : MonoBehaviour
     {
         menuPlayerManager.PreservePlayers();
 
-        SceneManager.LoadScene("Game Scene");
+        var sceneChanger = GameObject.Find("SceneChanger").GetComponent<SceneChanger>();
+        sceneChanger.changeScene(2);
+
         this.enabled = false;
     }
 

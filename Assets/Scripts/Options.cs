@@ -7,25 +7,16 @@ public class Options : MonoBehaviour
 {
 
     //@Temporary: only for debugging. Will delete later
-    public bool lockCurser = true;
+    public bool lockCursor = true;
 
     public int numPlayers = 1;
 
-    bool enableCouchCoop = true;
+    bool enableCouchCoop = true; // @Cleanup? Editor warnings are annoying...
+    int _lastNumPlayers = 0;   // @Cleanup?
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
+    void Start() {}
 
-    int _lastNumPlayers = 0;
-    // Update is called once per frame
-    void Update()
-    {
-        if (lockCurser)
-            Cursor.lockState = CursorLockMode.Locked;
-        else
-            Cursor.lockState = CursorLockMode.None;
-
+    void Update() {
+        Cursor.lockState = lockCursor ? CursorLockMode.Locked : CursorLockMode.None;
     }
 }

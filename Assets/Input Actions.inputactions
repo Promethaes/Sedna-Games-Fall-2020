@@ -169,6 +169,96 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "UI",
+            "id": "dc1a4dab-fdd2-4832-bf84-196a82108917",
+            "actions": [
+                {
+                    "name": "Point",
+                    "type": "Button",
+                    "id": "9b1a5ed3-624f-4dd6-b88a-68b258e98381",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "744546b7-8d28-424d-856c-d67e2631cc40",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a1cb7c16-641d-467d-b8c3-530ee8c8c3a6",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "20024994-b9f7-46df-9b4e-68ea4debdf12",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Point",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "bf9a84ca-1de8-4637-91e3-ac412cff4b62",
+                    "path": "<TrackedDevice>/devicePosition/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Point",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "07e15376-013c-4a1c-a8f4-17bcc2ae3f63",
+                    "path": "<TrackedDevice>/devicePosition/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Point",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "91021553-1df7-4153-a40a-e382942e3117",
+                    "path": "<TrackedDevice>/devicePosition/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Point",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "0ce5bb86-489b-4230-9add-c6ef6cde9de7",
+                    "path": "<TrackedDevice>/deviceRotation/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Point",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
         }
     ],
     "controlSchemes": [
