@@ -27,6 +27,7 @@ public class CharMenuInput : MonoBehaviour
     public GameObject enableOnLoad;
     public GameObject disableOnLoad;
 
+    public GameObject gameActionMap;
 
     // Start is called before the first frame update
     void Start()
@@ -144,8 +145,8 @@ public class CharMenuInput : MonoBehaviour
     {
         enableOnLoad.SetActive(true);
         disableOnLoad.SetActive(false);
-        gameObject.GetComponent<PlayerInput>().enabled = false;
         gameObject.GetComponent<Rigidbody>().useGravity = true;
+        gameObject.GetComponent<PlayerInput>().SwitchCurrentActionMap("Game");
     }
 
 
