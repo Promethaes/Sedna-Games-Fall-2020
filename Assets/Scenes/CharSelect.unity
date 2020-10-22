@@ -3062,3 +3062,4 @@ MonoBehaviour:
   - {fileID: 1748947127}
   enableOnLoad: {fileID: 1306556097}
   disableOnLoad: {fileID: 882539084}
+  gameActionMap: {fileID: 0}
