@@ -79,13 +79,13 @@ public class RandomPluginScript : MonoBehaviour
 
     void Update() {
         int rand1 = GetRandomIntCPP(0, 5);
-        Debug.Log("Random int is: " + rand1);
+        //Debug.Log("Random int is: " + rand1);
 
         uint rand2 = GetRandomUIntCPP(0, 20);
-        Debug.Log("Random uint is: " + rand2);
+        //Debug.Log("Random uint is: " + rand2);
 
         float rand3 = GetRandomFloat(0.0f, 6.0f);
-        Debug.Log("Random float is: " + rand3);
+        //Debug.Log("Random float is: " + rand3);
     }
 
     void OnDestroy() {

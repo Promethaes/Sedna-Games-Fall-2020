@@ -30,6 +30,12 @@ public class NPlayerInput : MonoBehaviour
     public RamThroughScript ramThrough;
     public BubbleShieldScript bubbleShieldScript;
 
+    bool _attack = false;
+    float _comboDuration = 0.0f;
+    float _animationDuration = 0.5f;
+    int _comboCounter = 0;
+    float[] _damageValues = new float[3];
+    float[] _animationDelay = new float[3];
 
     //Camera
     public GameObject pCamera;
@@ -44,6 +50,9 @@ public class NPlayerInput : MonoBehaviour
     void Start()
     {
         playerType = charMenuInput.playerType;
+
+        _setCombo(10.0f, 15.0f, 20.0f, 0.35f, 0.75f, 1.10f);
+
     }
 
     // Update is called once per frame
@@ -54,6 +63,8 @@ public class NPlayerInput : MonoBehaviour
 
         _jumpCooldown -= Time.deltaTime;
         _dashCooldown -= Time.deltaTime;
+        _comboDuration -= Time.deltaTime;
+        _animationDuration -= Time.deltaTime;
 
         //Jump Movement
         if (_isJumping == 1.0f)
@@ -65,6 +76,9 @@ public class NPlayerInput : MonoBehaviour
 
         if (insideCastingZone)
             _UseAbility();
+
+        if (_attack)
+            _Attack();
     }
 
 
@@ -163,6 +177,39 @@ public class NPlayerInput : MonoBehaviour
         }
     }
 
+    void _setCombo(float x, float y, float z, float u, float v, float w)
+    {
+        //Damage values for combo hits 1/2/3, animation length for combo hits 1/2/3
+        _damageValues[0] = x;
+        _damageValues[1] = y;
+        _damageValues[2] = z;
+        _animationDelay[0] = u;
+        _animationDelay[1] = v;
+        _animationDelay[2] = w;
+    }
+
+
+    void _Attack()
+    {
+        if (_animationDuration < 0.0f)
+        {
+            _animationDuration = _animationDelay[_comboCounter];
+            if (_comboDuration < 0.0f)
+                _comboCounter = 0;
+            //TODO: Animation
+            RaycastHit enemy;
+            if (Physics.Raycast(transform.position, transform.forward, out enemy, 2.0f) && enemy.transform.tag == "Enemy")
+            {
+                Enemy foe = enemy.collider.GetComponent<Enemy>();
+                foe.takeDamage(_damageValues[_comboCounter]);
+                Debug.Log(foe.getHealth());
+            }
+            _comboCounter++;
+            if (_comboCounter > 2)
+                _comboCounter = 0;
+            _comboDuration = 2.0f;
+        }
+    }
 
     public void OnMove(InputAction.CallbackContext ctx)
     {
@@ -191,5 +238,17 @@ public class NPlayerInput : MonoBehaviour
         else
             _useAbility = false;
     }
+
+    public void OnAttack(InputAction.CallbackContext ctx)
+    {
+        float temp = ctx.ReadValue<float>();
+
+        if (temp >= 0.5f)
+            _attack = true;
+        else
+            _attack = false;
+
+    }
+
 
 }

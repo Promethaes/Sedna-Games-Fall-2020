@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerInputScript : MonoBehaviour
 {
+    //Controls
     InputActions _inputActions;
+    //Movement
     public float moveSpeed;
     public float jumpSpeed;
     float _dashCooldown = 0.0f;
@@ -16,8 +18,17 @@ public class PlayerInputScript : MonoBehaviour
     bool _jumped = false;
     bool _doubleJumped = false;
     Vector2 _moveInput = new Vector2(0.0f,0.0f);
-
     float _isSprinting = 0.0f;
+
+    float _health = 100.0f;
+
+    //Attack
+    float _isAttacking = 0.0f;
+    float _comboDuration = 0.0f;
+    float _animationDuration = 0.5f;
+    int _comboCounter = 0;
+    float[] _damageValues = new float[3];
+    float[] _animationDelay = new float[3];
 
     void Awake()
     {
@@ -30,6 +41,11 @@ public class PlayerInputScript : MonoBehaviour
 
         _inputActions.Default.Dash.performed += ctx => _isDashing = ctx.ReadValue<float>();
         _inputActions.Default.Dash.canceled += ctx => _isDashing = ctx.ReadValue<float>();
+
+        _inputActions.Default.Attack.started += ctx => _isAttacking = ctx.ReadValue<float>();
+        _inputActions.Default.Attack.canceled += ctx => _isAttacking = ctx.ReadValue<float>();
+
+        setCombo(10.0f, 15.0f, 20.0f, 0.35f, 0.75f, 1.10f);
     }
 
 
@@ -41,6 +57,8 @@ public class PlayerInputScript : MonoBehaviour
 
         _jumpCooldown -= Time.deltaTime;
         _dashCooldown -= Time.deltaTime;
+        _comboDuration -= Time.deltaTime;
+        _animationDuration -= Time.deltaTime;
 
         //Jump Movement
         if (_isJumping == 1.0f)
@@ -49,6 +67,10 @@ public class PlayerInputScript : MonoBehaviour
         //Dash Movement
         if (_isDashing == 1.0f)
         Dash();
+
+        //Attacks
+        if (_isAttacking == 1.0f)
+        Attack();
     }
 
     void Move(Vector2 _moveInput)
@@ -109,6 +131,61 @@ public class PlayerInputScript : MonoBehaviour
         }
     }
 
+    void die()
+    {
+        if (_health <= 0.0f)
+        //TODO: Add more stuff in the future (i.e. animations, move to menuscreen, etc.)
+        gameObject.SetActive(false);
+    }
+    void Attack()
+    {
+        if (_animationDuration < 0.0f)
+        {
+            _animationDuration = _animationDelay[_comboCounter];
+            if (_comboDuration < 0.0f)
+                _comboCounter = 0;
+            //TODO: Animation
+            RaycastHit enemy;
+            if (Physics.Raycast(transform.position, transform.forward, out enemy, 2.0f) && enemy.transform.tag == "Enemy")
+            {
+                Enemy foe = enemy.collider.GetComponent<Enemy>();
+                foe.takeDamage(_damageValues[_comboCounter]);
+                Debug.Log(foe.getHealth());
+            }
+            _comboCounter++;
+            if (_comboCounter > 2)
+                _comboCounter = 0;
+            _comboDuration = 2.0f;
+        }
+    }
+    
+    void setCombo(float x, float y, float z, float u, float v, float w)
+    {
+        //Damage values for combo hits 1/2/3, animation length for combo hits 1/2/3
+        _damageValues[0]=x;
+        _damageValues[1]=y;
+        _damageValues[2]=z;
+        _animationDelay[0]=u;
+        _animationDelay[1]=v;
+        _animationDelay[2]=w;
+    }
+    
+    public void setHealth(float hp)
+    {
+        _health = hp;
+    }
+
+    public float getHealth()
+    {
+        return _health;
+    }
+
+    public void takeDamage(float hp)
+    {
+        _health-=hp;
+        if (_health <= 0.0f)
+        die();
+    }
     void OnEnable()
     {
         _inputActions.Enable();
