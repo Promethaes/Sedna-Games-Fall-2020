@@ -37,6 +37,8 @@ public class Dumpage_Track : StateMachineBehaviour
             animator.SetBool("Tracking", false);
             animator.SetFloat("IdleTime", 2.0f);
         }
+        enemyData._animationDuration -= Time.deltaTime;
+        Combo();
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -56,4 +58,23 @@ public class Dumpage_Track : StateMachineBehaviour
     //{
     //    // Implement code that sets up animation IK (inverse kinematics)
     //}
+
+    void Combo()
+    {
+        if (enemyData._animationDuration < 0.0f)
+        {
+            enemyData._animationDuration = enemyData._animationDelay[enemyData._comboCounter];
+            //TODO: Animation; heavy sludge attacks(?)
+            RaycastHit target;
+            if (Physics.Raycast(enemy.transform.position, enemy.transform.forward, out target, enemyData._range[enemyData._comboCounter]) && target.transform.tag == "Player")
+            {
+                //PlayerInputScript foe = target.collider.GetComponentInParent<PlayerInputScript>();
+                //foe.takeDamage(enemyData._damageValues[enemyData._comboCounter]);
+                //Debug.Log(foe.getHealth());
+            }
+            enemyData._comboCounter++;
+            if (enemyData._comboCounter > 2)
+                enemyData._comboCounter = 0;
+        }
+    }
 }

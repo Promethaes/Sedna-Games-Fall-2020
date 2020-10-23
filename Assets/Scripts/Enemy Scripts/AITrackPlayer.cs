@@ -20,7 +20,6 @@ public class AITrackPlayer : StateMachineBehaviour
             agent = enemyData.agent;
         }
         agent.isStopped = false;
-        Debug.Log("AI Tracking");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

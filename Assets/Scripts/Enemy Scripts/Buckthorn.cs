@@ -27,8 +27,8 @@ public class Buckthorn : Enemy
             RaycastHit enemy;
             if (Physics.Raycast(transform.position, transform.forward, out enemy, _range[_comboCounter]) && enemy.transform.tag == "Player")
             {
-            ///    PlayerInputScript foe = enemy.collider.GetComponentInParent<PlayerInputScript>();
-            ///    foe.takeDamage(_damageValues[_comboCounter]);
+                PlayerBackend foe = enemy.collider.GetComponentInParent<PlayerBackend>();
+                foe.hp -= _damageValues[_comboCounter];
             }
             _comboCounter++;
             if (_comboCounter > 2)

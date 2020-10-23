@@ -22,5 +22,7 @@ public class PlayerBackend : MonoBehaviour
     public void KillPlayer()
     {
         //not sure howe we're gonna implement this yet
+        GameObject.Find("PlayerManager").GetComponent<PlayerManager>().players = new List<GameObject>();
+        Destroy(gameObject);
     }
 }

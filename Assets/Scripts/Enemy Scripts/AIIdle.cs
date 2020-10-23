@@ -26,7 +26,6 @@ public class AIIdle : StateMachineBehaviour
             {
                 animator.SetBool("patrol", true);
             }
-        Debug.Log("AI Idle");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

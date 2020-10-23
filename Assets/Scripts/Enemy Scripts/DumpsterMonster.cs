@@ -28,9 +28,8 @@ public class DumpsterMonster : Enemy
             RaycastHit enemy;
             if (Physics.Raycast(transform.position, transform.forward, out enemy, _range[_comboCounter]) && enemy.transform.tag == "Player")
             {
-            ///    NPlayerInput foe = enemy.collider.GetComponentInParent<NPlayerInput>();
-            ///    foe.takeDamage(_damageValues[_comboCounter]);
-            ///    Debug.Log(foe.getHealth());
+                PlayerBackend foe = enemy.collider.GetComponentInParent<PlayerBackend>();
+                foe.hp -= _damageValues[_comboCounter];
             }
             _comboCounter++;
             if (_comboCounter > 2)
