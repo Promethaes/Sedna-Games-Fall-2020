@@ -61,7 +61,9 @@ public class EnemyData : MonoBehaviour
                 break;
             default:
                 break;
-        }            
+        }
+
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame

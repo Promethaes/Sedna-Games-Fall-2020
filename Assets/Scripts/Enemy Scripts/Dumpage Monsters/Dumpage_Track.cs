@@ -68,9 +68,8 @@ public class Dumpage_Track : StateMachineBehaviour
             RaycastHit target;
             if (Physics.Raycast(enemy.transform.position, enemy.transform.forward, out target, enemyData._range[enemyData._comboCounter]) && target.transform.tag == "Player")
             {
-                //PlayerInputScript foe = target.collider.GetComponentInParent<PlayerInputScript>();
-                //foe.takeDamage(enemyData._damageValues[enemyData._comboCounter]);
-                //Debug.Log(foe.getHealth());
+                PlayerBackend foe = target.collider.GetComponentInParent<PlayerBackend>();
+                foe.hp -= enemyData._damageValues[enemyData._comboCounter];
             }
             enemyData._comboCounter++;
             if (enemyData._comboCounter > 2)
