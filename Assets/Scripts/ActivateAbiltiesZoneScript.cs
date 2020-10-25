@@ -8,6 +8,7 @@ public class ActivateAbiltiesZoneScript : MonoBehaviour
     public AbilityZoneManager manager;
     //zone keeps track of what player it wants. This will help with placing the activation zones.
     public int zoneType = 1;
+    public GameObject[] blockade;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +31,8 @@ public class ActivateAbiltiesZoneScript : MonoBehaviour
             foreach (var p in playerManager.players)
                 if (other.gameObject == p && p.GetComponentInChildren<NPlayerInput>().playerType == zoneType)
                     p.GetComponentInChildren<NPlayerInput>().insideCastingZone = true;
+                    p.GetComponentInChildren<NPlayerInput>().bubbleShieldScript.blockades = blockade;
+                }
     }
 
     private void OnTriggerExit(Collider other)
@@ -40,6 +43,8 @@ public class ActivateAbiltiesZoneScript : MonoBehaviour
             foreach (var p in playerManager.players)
                 if (other.gameObject == p && p.GetComponentInChildren<NPlayerInput>().playerType == zoneType)
                     p.GetComponentInChildren<NPlayerInput>().insideCastingZone = false;
+                    p.GetComponentInChildren<NPlayerInput>().bubbleShieldScript.blockades = new GameObject[1]{null};
+                }
     }
 
 
