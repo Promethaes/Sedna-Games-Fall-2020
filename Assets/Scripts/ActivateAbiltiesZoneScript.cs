@@ -5,16 +5,20 @@ using UnityEngine;
 public class ActivateAbiltiesZoneScript : MonoBehaviour
 {
     public PlayerManager playerManager;
+    public AbilityZoneManager manager;
+    //zone keeps track of what player it wants. This will help with placing the activation zones.
+    public int zoneType = 1;
     // Start is called before the first frame update
     void Start()
     {
-
+        playerManager = FindObjectOfType<PlayerManager>();
+        manager = FindObjectOfType<AbilityZoneManager>();
+        manager.abilityZones.Add(this);
     }
 
     // Update is called once per frame
     void Update()
     {
-        playerManager = FindObjectOfType<PlayerManager>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,7 +28,7 @@ public class ActivateAbiltiesZoneScript : MonoBehaviour
 
         if (other.gameObject.GetComponent<CharMenuInput>())
             foreach (var p in playerManager.players)
-                if (other.gameObject == p)
+                if (other.gameObject == p && p.GetComponentInChildren<NPlayerInput>().playerType == zoneType)
                     p.GetComponentInChildren<NPlayerInput>().insideCastingZone = true;
     }
 
@@ -34,7 +38,7 @@ public class ActivateAbiltiesZoneScript : MonoBehaviour
             return;
         if (other.gameObject.GetComponent<CharMenuInput>())
             foreach (var p in playerManager.players)
-                if (other.gameObject == p)
+                if (other.gameObject == p && p.GetComponentInChildren<NPlayerInput>().playerType == zoneType)
                     p.GetComponentInChildren<NPlayerInput>().insideCastingZone = false;
     }
 

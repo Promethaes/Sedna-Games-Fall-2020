@@ -660,6 +660,7 @@ MonoBehaviour:
   insideCastingZone: 0
   ramThrough: {fileID: 0}
   bubbleShieldScript: {fileID: 799855737}
+  polarBearScript: {fileID: 1435443869}
   pCamera: {fileID: 394859046}
   player: {fileID: 483320099767046447}
   lookingAt: {fileID: 1551211731}
@@ -921,6 +922,7 @@ Transform:
   m_Children:
   - {fileID: 799855736}
   - {fileID: 9516461}
+  - {fileID: 1435443868}
   m_Father: {fileID: 1306556098}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1701,6 +1703,52 @@ Transform:
   m_Father: {fileID: 2546959844999698581}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1435443867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1435443868}
+  - component: {fileID: 1435443869}
+  m_Layer: 0
+  m_Name: PolarBearAbility
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1435443868
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435443867}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 573632470}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1435443869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435443867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 680b3b7d7e317c849b67e2ae6d60918a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swimPositionMarkers: []
+  player: {fileID: 483320099767046447}
+  swimming: 0
 --- !u!1 &1551211731
 GameObject:
   m_ObjectHideFlags: 0
