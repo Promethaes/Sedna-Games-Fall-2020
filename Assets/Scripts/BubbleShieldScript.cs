@@ -6,6 +6,7 @@ public class BubbleShieldScript : MonoBehaviour
 {
 
     public GameObject bubble;
+    public GameObject[] blockades;
     public float cooldown = 1.0f;
     public float duration = 1.0f;
     float _pvtDuration = 0.0f;
@@ -51,6 +52,8 @@ public class BubbleShieldScript : MonoBehaviour
 
         _casting = true;
         bubble.SetActive(true);
+        for (int i = 0;i<blockades.Length;i++)
+            if (blockades[i] != null)
+                blockades[i].SetActive(false);
     }
-
 }

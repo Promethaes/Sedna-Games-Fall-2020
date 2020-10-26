@@ -4,26 +4,70 @@ using UnityEngine;
 
 public class EnemySpawnPoint : MonoBehaviour
 {
-    public float spawnRadiusScalar = 10.0f;
 
-    // Start is called before the first frame update
+    //the particular enemy you want to spawn here
+    public GameObject enemyPrefab;
+    public List<GameObject> spawnEnemies = new List<GameObject>();
+    public float spawnRadiusScalar = 15.0f;
+    public int maxSpawn = 5;
+    bool _shouldSpawn = false;
+    public float spawnTimeInterval = 1.0f;
+    float _pvtSpawnTimeInterval = 1.0f;
     void Start()
     {
-        GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>().spawnPoints.Add(this);
+        CreatePool();
     }
 
-    // Update is called once per frame
     void Update()
     {
-
+        _pvtSpawnTimeInterval -= Time.deltaTime;
+        if (_pvtSpawnTimeInterval <= 0.0f && _shouldSpawn)
+            SpawnEnemy();
+    }
+    void CreatePool()
+    {
+        for (int i = 0; i < maxSpawn; i++)
+        {
+            spawnEnemies.Add(GameObject.Instantiate(enemyPrefab));
+            spawnEnemies[i].SetActive(false);
+        }
     }
 
-    public void spawnEnemy(GameObject enemy)
+    void SpawnEnemy()
     {
+        int spawnIndex = -1;
+
+        if (_pvtSpawnTimeInterval > 0.0f)
+            return;
+        else
+        {
+            for (int i = 0; i < spawnEnemies.Count; i++)
+            {
+                if (!spawnEnemies[i].activeSelf)
+                    spawnIndex = i;
+            }
+            if (spawnIndex == -1)
+                return;//no availible enemy spawns
+        }
+
+
         float radius = gameObject.GetComponent<SphereCollider>().radius;
 
-        enemy.transform.position = gameObject.transform.position + new Vector3(Random.Range(-radius,radius),0.0f,Random.Range(-radius,radius))*spawnRadiusScalar;
-        enemy.SetActive(true);
+        spawnEnemies[spawnIndex].transform.position = gameObject.transform.position + new Vector3(Random.Range(-radius, radius), 0.0f, Random.Range(-radius, radius)) * spawnRadiusScalar;
+        spawnEnemies[spawnIndex].SetActive(true);
+        _pvtSpawnTimeInterval = spawnTimeInterval;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<CharMenuInput>())
+            _shouldSpawn = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.GetComponent<CharMenuInput>())
+            _shouldSpawn = false;
     }
 
 }

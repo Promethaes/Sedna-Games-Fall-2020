@@ -746,7 +746,7 @@ MonoBehaviour:
       enableBigTilePrepass: 0
       isFptlEnabled: 0
   clearColorMode: 0
-  backgroundColorHDR: {r: 0.025, g: 0.07, b: 0.19, a: 0}
+  backgroundColorHDR: {r: 0.09433961, g: 0.09211462, b: 0.09211462, a: 0}
   clearDepth: 1
   volumeLayerMask:
     serializedVersion: 2
@@ -1319,6 +1319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubble: {fileID: 1049601838}
+  blockades: []
   cooldown: 1
   duration: 1
 --- !u!1 &882539084
@@ -1749,6 +1750,7 @@ MonoBehaviour:
   swimPositionMarkers: []
   player: {fileID: 483320099767046447}
   swimming: 0
+  transitionCooldown: 2
 --- !u!1 &1551211731
 GameObject:
   m_ObjectHideFlags: 0
@@ -2599,6 +2601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6e4610fde9aea14fbbee749acd4ebf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPosition: {x: -21, y: 3.5, z: 0}
   players: []
 --- !u!114 &1840724998
 MonoBehaviour:
@@ -2862,7 +2865,7 @@ GameObject:
   - component: {fileID: 483320099767046449}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
