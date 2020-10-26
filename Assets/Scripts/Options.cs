@@ -11,9 +11,6 @@ public class Options : MonoBehaviour
 
     public int numPlayers = 1;
 
-    bool enableCouchCoop = true; // @Cleanup? Editor warnings are annoying...
-    int _lastNumPlayers = 0;   // @Cleanup?
-
     void Start() {}
 
     void Update() {

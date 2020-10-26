@@ -10,8 +10,10 @@ public class SceneChanger : MonoBehaviour {
     }
 
     public void quitApp() {
-        // @Cleanup: this is here because the editor ignores application quit requests, at least with this log we know that it works
-        Debug.LogWarning("Application quit");
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
     }
 }
