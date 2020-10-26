@@ -12,6 +12,8 @@ public class CharMenuInput : MonoBehaviour
     bool _startButtonpressed = false;
 
     public List<GameObject> characterPrefabs;
+
+    // @Refactor: could probably make this an enum
     public int playerType;// 1, 2, 3, 4
     public Image confirmImage;
 
