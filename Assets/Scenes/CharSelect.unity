@@ -1319,6 +1319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubble: {fileID: 1049601838}
+  blockades: []
   cooldown: 1
   duration: 1
 --- !u!1 &882539084
@@ -1749,6 +1750,7 @@ MonoBehaviour:
   swimPositionMarkers: []
   player: {fileID: 483320099767046447}
   swimming: 0
+  transitionCooldown: 2
 --- !u!1 &1551211731
 GameObject:
   m_ObjectHideFlags: 0
@@ -2862,7 +2864,7 @@ GameObject:
   - component: {fileID: 483320099767046449}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

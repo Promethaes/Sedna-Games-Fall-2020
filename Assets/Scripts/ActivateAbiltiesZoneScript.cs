@@ -30,9 +30,13 @@ public class ActivateAbiltiesZoneScript : MonoBehaviour
         if (other.gameObject.GetComponent<CharMenuInput>())
             foreach (var p in playerManager.players)
                 if (other.gameObject == p && p.GetComponentInChildren<NPlayerInput>().playerType == zoneType)
+                {
+
                     p.GetComponentInChildren<NPlayerInput>().insideCastingZone = true;
                     p.GetComponentInChildren<NPlayerInput>().bubbleShieldScript.blockades = blockade;
+                    gameObject.GetComponentInChildren<TMPro.TextMeshPro>().text = "Press LB";
                 }
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -41,10 +45,16 @@ public class ActivateAbiltiesZoneScript : MonoBehaviour
             return;
         if (other.gameObject.GetComponent<CharMenuInput>())
             foreach (var p in playerManager.players)
+            {
                 if (other.gameObject == p && p.GetComponentInChildren<NPlayerInput>().playerType == zoneType)
+                {
                     p.GetComponentInChildren<NPlayerInput>().insideCastingZone = false;
-                    p.GetComponentInChildren<NPlayerInput>().bubbleShieldScript.blockades = new GameObject[1]{null};
+                    p.GetComponentInChildren<NPlayerInput>().bubbleShieldScript.blockades = new GameObject[1] { null };
+                    gameObject.GetComponentInChildren<TMPro.TextMeshPro>().text = "Come Closer!";
+
                 }
+            }
+
     }
 
 
