@@ -11,15 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CharSelect.unity
     guid: a037ed012b6ed674a8ba5435c0947d38
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Game Scene.unity
     guid: ed7403bafef2f944d9b5589e1f237dfe
-  - enabled: 1
-    path: Assets/Scenes/GameSceneCopyPlayerUI.unity
-    guid: f05f0d17513cc7b48bff3c15e4b1f40b
-  - enabled: 0
-    path: Assets/Scenes/GameSceneCopyGameLoopBranch.unity
-    guid: 5e1c08e8042bd134887a725ac46a6dda
   - enabled: 1
     path: Assets/Scenes/GameOverScene.unity
     guid: 6cdf64c296f5d8b4f8a11972f568d1e6
