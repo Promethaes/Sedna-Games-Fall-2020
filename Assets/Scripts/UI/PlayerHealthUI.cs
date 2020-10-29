@@ -25,7 +25,6 @@ public class PlayerHealthUI : MonoBehaviour
         if(_backend == null) Debug.LogAssertion("No backend for player health UI!");
         currentFill = maximum = _backend.hp;
         var index = _backend.gameObject.GetComponent<CharMenuInput>().playerType - 1;
-        Debug.Log(index);
         centreImage.sprite = images[index];
     }
 
@@ -34,6 +33,5 @@ public class PlayerHealthUI : MonoBehaviour
         currentFill = _backend.hp;
         fillMask.fillAmount = currentFill / maximum;
     }
-
 
 }
