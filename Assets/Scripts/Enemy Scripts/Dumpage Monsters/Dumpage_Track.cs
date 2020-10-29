@@ -19,7 +19,8 @@ public class Dumpage_Track : StateMachineBehaviour
             player = enemyData.player;
             agent = enemyData.agent;
         }
-        enemy.GetComponent<MeshRenderer>().enabled = true;
+        if (enemy.GetComponent<MeshRenderer>())
+            enemy.GetComponent<MeshRenderer>().enabled = true;
         agent.isStopped = false;
 
     }
