@@ -775,8 +775,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 824017877}
   player: {fileID: 254525003}
-<<<<<<< HEAD
-=======
 --- !u!1 &956484842
 GameObject:
   m_ObjectHideFlags: 0
@@ -914,7 +912,6 @@ Transform:
   m_Father: {fileID: 956484843}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> Enemy-Testing
 --- !u!1 &1485264836
 GameObject:
   m_ObjectHideFlags: 0
@@ -1196,7 +1193,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-<<<<<<< HEAD
 --- !u!1001 &1578950614940603378
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1266,5 +1262,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 189c9cd201dee0d42b0ee6810c19cd87, type: 3}
-=======
->>>>>>> Enemy-Testing

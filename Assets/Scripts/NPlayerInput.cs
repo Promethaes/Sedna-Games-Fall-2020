@@ -29,6 +29,7 @@ public class NPlayerInput : MonoBehaviour
     public bool insideCastingZone = false;
     public RamThroughScript ramThrough;
     public BubbleShieldScript bubbleShieldScript;
+    public PolarBearScript polarBearScript;
 
     bool _attack = false;
     float _comboDuration = 0.0f;
@@ -84,12 +85,17 @@ public class NPlayerInput : MonoBehaviour
 
     void _UseAbility()
     {
+        //activate some prompt
+
         if (!_useAbility)
             return;
+
 
         //add more...wait i dont think we need to add more than one lmaooooooooooooooooooooooooo
         if (playerType == 1)
             bubbleShieldScript.AttemptToCast();
+        else if (playerType == 3)
+            polarBearScript.Transition();
         else if (playerType == 4)
         {
             ramThrough.hasRammed = true;

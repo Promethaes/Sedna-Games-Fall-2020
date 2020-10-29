@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class MenuPlayerManager : MonoBehaviour
 {
+    public Vector3 spawnPosition = new Vector3(10.0f,2.0f,0.0f);
     public List<GameObject> players;
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,7 @@ public class MenuPlayerManager : MonoBehaviour
         {
             Object.DontDestroyOnLoad(player);
             player.GetComponent<CharMenuInput>().Cleanup();
+            player.gameObject.transform.position = spawnPosition + new Vector3(player.GetComponent<CharMenuInput>().playerType,0.0f,0.0f);
         }
 
         gameObject.GetComponent<PlayerManager>().players = players;

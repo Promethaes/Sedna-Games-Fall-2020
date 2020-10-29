@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class MainMenuInput : MonoBehaviour
 {
     Vector2 _moveInput = new Vector2();
-    float _selectionCooldown = 0.5f;
+    float _selectionCooldown = 0.25f;
+    float _maxSelectionCooldown = 0.25f;
     bool _confirm = false;
 
     int _currentSelected = 0;
@@ -56,7 +57,7 @@ public class MainMenuInput : MonoBehaviour
                 continue;
             image.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         }
-        _selectionCooldown = 0.5f;
+        _selectionCooldown = _maxSelectionCooldown;
     }
 
     void _ScrollSelectionUp()
