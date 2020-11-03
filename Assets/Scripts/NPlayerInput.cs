@@ -209,16 +209,16 @@ public class NPlayerInput : MonoBehaviour
             Vector3 vel = player.GetComponent<Rigidbody>().velocity;
             player.GetComponent<Rigidbody>().AddForce(new Vector3(vel.x * dashSpeed, 0.0f, vel.z * dashSpeed), ForceMode.Impulse);
             _dashed = true;
-            _dashDuration = 0.7f;
-            _dashCooldown = 1.0f;
+            _dashDuration = 0.35f;
+            _dashCooldown = 0.5f;
         }
         else if (_dashCooldown <= 0.0f && _dashDuration <= 0.0f && !_airDashed)
         {
             Vector3 vel = player.GetComponent<Rigidbody>().velocity;
             player.GetComponent<Rigidbody>().AddForce(new Vector3(vel.x * dashSpeed, 0.0f, vel.z * dashSpeed), ForceMode.Impulse);
             _airDashed = true;
-            _dashDuration = 0.7f;
-            _dashCooldown = 1.0f;
+            _dashDuration = 0.35f;
+            _dashCooldown = 0.5f;
         }
     }
 
