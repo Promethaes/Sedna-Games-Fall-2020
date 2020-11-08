@@ -3018,7 +3018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6e4610fde9aea14fbbee749acd4ebf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPosition: {x: -21, y: 3.5, z: 0}
+  spawnPosition: {x: 0, y: 10, z: 0}
   players: []
 --- !u!114 &1840724998
 MonoBehaviour:
