@@ -7,6 +7,11 @@ void LogCheckpointTime(float time)
 	logger.LogCheckpointTime(time);
 }
 
+void LogDeath(Death death)
+{
+	logger.LogDeath(death);
+}
+
 void WriteUserMetricsToFile()
 {
 	logger.WriteUserMetricsToFile();

@@ -1,6 +1,6 @@
 #include "CheckpointLogger.h"
 
-std::string CheckpointLogger::timesToString()
+std::string CheckpointLogger::toString()
 {
 	std::string outString = "";
 	for (int i = 0; i < checkpointTimes.size(); i++) {

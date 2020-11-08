@@ -142,12 +142,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CheckpointLogger.cpp" />
+    <ClCompile Include="DeathLogger.cpp" />
     <ClCompile Include="UserMetricsLogger.cpp" />
     <ClCompile Include="Wrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CheckpointLogger.h" />
+    <ClInclude Include="DeathLogger.h" />
+    <ClInclude Include="Logger.h" />
     <ClInclude Include="PluginSettings.h" />
+    <ClInclude Include="Structs.h" />
     <ClInclude Include="UserMetricsLogger.h" />
     <ClInclude Include="Wrapper.h" />
   </ItemGroup>

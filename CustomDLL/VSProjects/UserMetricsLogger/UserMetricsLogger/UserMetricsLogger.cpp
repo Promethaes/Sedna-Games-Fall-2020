@@ -8,21 +8,25 @@
 void UserMetricsLogger::WriteUserMetricsToFile()
 {
 	srand(time(0));
-	logData.push_back(MetricLog(rand(),cLogger.timesToString()));
+	int id = rand();
+	logData.push_back(MetricLog(id, cLogger.toString()));
+	logData.push_back(MetricLog(id, dLogger.toString()));
 	cLogger.clearCheckpointTimes();
+	dLogger.clearDeaths();
 	std::ofstream file(defaultPath + "LatestUserMetrics.txt");
 	file.clear();
 
-	for (auto x : logData) {
+	for (int i = 0; i < logData.size(); i += NUM_LOGGERS) {
 
-
-		file << "METRICS LOG ENTRY ID " + std::to_string(rand()) << "\n";
-		
-		//add more of the different loggers in here
+		file << "METRICS LOG ENTRY ID " + std::to_string(logData[i].id) << "\n";
 
 		//checkpoints
 		file << "\tCHECKPOINTS:\n";
-		file << x.data;
+		file << logData[i].data;
+
+		//deaths
+		file << "\tDEATHS:\n";
+		file << logData[(i+(size_t)1)].data;
 	}
 
 	file.close();
