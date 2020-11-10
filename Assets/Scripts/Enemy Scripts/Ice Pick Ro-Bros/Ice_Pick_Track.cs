@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Ice_Pick_Track : StateMachineBehaviour
 {
-    private GameObject player;
+    private GameObject[] players;
     private GameObject enemy;
     private EnemyData enemyData;
     private NavMeshAgent agent;
@@ -16,7 +16,7 @@ public class Ice_Pick_Track : StateMachineBehaviour
         if (enemy.GetComponent<EnemyData>())
         {
             enemyData = enemy.GetComponent<EnemyData>();
-            player = enemyData.player;
+            players = enemyData.players;
             agent = enemyData.agent;
         }
     }
@@ -24,16 +24,20 @@ public class Ice_Pick_Track : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if ((enemy.transform.position - player.transform.position).magnitude < enemyData.searchRadius + 5)
+        foreach (GameObject player in players)
         {
-            agent.SetDestination(player.transform.position);
+            if ((enemy.transform.position - player.transform.position).magnitude < enemyData.searchRadius + 5)
+            {
+                agent.SetDestination(player.transform.position);
+            }
+            else
+            {
+                agent.SetDestination(enemy.transform.position);
+                animator.SetBool("tracking", false);
+                animator.SetFloat("idleTime", 2.0f);
+            }
         }
-        else
-        {
-            agent.SetDestination(enemy.transform.position);
-            animator.SetBool("Tracking", false);
-            animator.SetFloat("IdleTime", 2.0f);
-        }
+           
         enemyData._animationDuration -= Time.deltaTime;
         Combo();
     }
@@ -67,7 +71,6 @@ public class Ice_Pick_Track : StateMachineBehaviour
             {
                 PlayerBackend foe = target.collider.GetComponentInParent<PlayerBackend>();
                 foe.hp -= enemyData._damageValues[enemyData._comboCounter];
-                Debug.Log(foe.hp);
             }
             enemyData._comboCounter++;
             if (enemyData._comboCounter > 2)

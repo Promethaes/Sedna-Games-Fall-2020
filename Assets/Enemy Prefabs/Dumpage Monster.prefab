@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 2100000, guid: 66e245b430f476646917153b0524fce4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
   currentPatrolGoal: 0
   patrol: 0
   destinations: []
-  player: {fileID: 0}
+  players: []
   agent: {fileID: 8397703989782550860}
   _health: 0
   _range:

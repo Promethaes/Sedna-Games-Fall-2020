@@ -8,7 +8,7 @@ public class Ice_Pick_Idle : StateMachineBehaviour
 {
 
     private NavMeshAgent agent;
-    private GameObject player;
+    private GameObject[] players;
     private GameObject enemy;
     private EnemyData enemyData;
 
@@ -22,7 +22,7 @@ public class Ice_Pick_Idle : StateMachineBehaviour
         if (enemy.GetComponent<EnemyData>())
         {
             enemyData = enemy.GetComponent<EnemyData>();
-            player = enemyData.player;
+            players = enemyData.players;
             agent = enemyData.agent;
         }
 
@@ -32,27 +32,40 @@ public class Ice_Pick_Idle : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (animator.GetFloat("IdleTime") > 0.0f)
-            animator.SetFloat("IdleTime", animator.GetFloat("IdleTime") - Time.deltaTime);
-        if ((enemy.transform.position - player.transform.position).magnitude < enemyData.searchRadius)
+        if (animator.GetFloat("idleTime") > 0.0f)
+            animator.SetFloat("idleTime", animator.GetFloat("idleTime") - Time.deltaTime);
+        foreach (GameObject player in players)
         {
-            animator.SetBool("Tracking", true);
-            originalSeeker = true;
-            foreach(GameObject x in EnemyData.icePickEnemies)
+            if ((enemy.transform.position - player.transform.position).magnitude < enemyData.searchRadius)
             {
-                if ((enemy.transform.position - x.transform.position).magnitude < enemyData.icePickRange)
+                agent.SetDestination(player.transform.position);
+            }
+            else
+            {
+                agent.SetDestination(enemy.transform.position);
+                animator.SetBool("tracking", false);
+            }
+            if ((enemy.transform.position - player.transform.position).magnitude < enemyData.searchRadius)
+            {
+                animator.SetBool("tracking", true);
+                originalSeeker = true;
+                foreach (GameObject x in EnemyData.icePickEnemies)
                 {
-                    if (!x.GetComponent<Animator>().GetBehaviour<Ice_Pick_Idle>().foundEnemy)
+                    if ((enemy.transform.position - x.transform.position).magnitude < enemyData.icePickRange)
                     {
-                        x.GetComponent<Animator>().SetBool("Tracking", true);
-                        if(!x.GetComponent<Animator>().GetBehaviour<Ice_Pick_Idle>().originalSeeker)
-                             x.GetComponent<Animator>().SetFloat("IdleTime", 1.0f);
-                        x.GetComponent<Animator>().GetBehaviour<Ice_Pick_Idle>().foundEnemy = true;
-                    }                    
-                    //x join the hunt
+                        if (!x.GetComponent<Animator>().GetBehaviour<Ice_Pick_Idle>().foundEnemy)
+                        {
+                            x.GetComponent<Animator>().SetBool("tracking", true);
+                            if (!x.GetComponent<Animator>().GetBehaviour<Ice_Pick_Idle>().originalSeeker)
+                                x.GetComponent<Animator>().SetFloat("idleTime", 1.0f);
+                            x.GetComponent<Animator>().GetBehaviour<Ice_Pick_Idle>().foundEnemy = true;
+                        }
+                        //x join the hunt
+                    }
                 }
             }
         }
+            
             
 
     }

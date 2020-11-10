@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class AIIdle : StateMachineBehaviour
 {
     private NavMeshAgent agent;
-    private GameObject player;
+    private GameObject[] players;
     private GameObject enemy;
     private EnemyData enemyData;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -16,7 +16,7 @@ public class AIIdle : StateMachineBehaviour
         if (enemy.GetComponent<EnemyData>())
         {
             enemyData = enemy.GetComponent<EnemyData>();
-            player = enemyData.player;
+            players = enemyData.players;
             agent = enemyData.agent;
         }
 
@@ -33,8 +33,13 @@ public class AIIdle : StateMachineBehaviour
     {
         if (animator.GetFloat("idleTime") > 0.0f)
             animator.SetFloat("idleTime",animator.GetFloat("idleTime")-Time.deltaTime);
-        if ((enemy.transform.position - player.transform.position).magnitude < enemyData.searchRadius)
-            animator.SetBool("tracking", true);
+
+        foreach (GameObject player in players)
+        {
+            if ((enemy.transform.position - player.transform.position).magnitude < enemyData.searchRadius)
+                animator.SetBool("tracking", true);
+        }
+            
 
     }
 
