@@ -33,11 +33,8 @@ std::string DeathLogger::toString()
 
 void DeathLogger::clearDeaths()
 {
-	for (auto x : deathLists) {
-		for (auto z : x) {
-			delete[] z.causeOfDeath;
-		}
+	for (auto& x : deathLists) 
 		x.clear();
-	}
+	
 	
 }

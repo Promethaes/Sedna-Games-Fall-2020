@@ -16,7 +16,7 @@ void UserMetricsLogger::WriteUserMetricsToFile()
 	std::ofstream file(defaultPath + "LatestUserMetrics.txt");
 	file.clear();
 
-	for (int i = 0; i < logData.size(); i += NUM_LOGGERS) {
+	for (size_t i = 0; i < logData.size(); i += NUM_LOGGERS) {
 
 		file << "METRICS LOG ENTRY ID " + std::to_string(logData[i].id) << "\n";
 
@@ -26,7 +26,7 @@ void UserMetricsLogger::WriteUserMetricsToFile()
 
 		//deaths
 		file << "\tDEATHS:\n";
-		file << logData[(i+(size_t)1)].data;
+		file << logData[(i+1)].data;
 	}
 
 	file.close();

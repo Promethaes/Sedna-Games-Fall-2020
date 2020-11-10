@@ -1,287 +1,187 @@
-METRICS LOG ENTRY ID 2244
+METRICS LOG ENTRY ID 13727
 	CHECKPOINTS:
-		 - Checkpoint #1:0.982876
+		 - Checkpoint #1:0.981133
 	DEATHS:
 		P1Deaths:
 			 - Death #1:
-				 - Time of Death: 0.982876
-				 - Cause of Death: 
+				 - Time of Death: 0.981133
+				 - Cause of Death: Memes
 		P2Deaths:
 			 - Death #1:
-				 - Time of Death: 0.982876
-				 - Cause of Death: 
+				 - Time of Death: 0.981133
+				 - Cause of Death: Memes
 		P3Deaths:
 			 - Death #1:
-				 - Time of Death: 0.982876
-				 - Cause of Death: 
+				 - Time of Death: 0.981133
+				 - Cause of Death: Memes
 		P4Deaths:
 			 - Death #1:
-				 - Time of Death: 0.982876
-				 - Cause of Death: 
-METRICS LOG ENTRY ID 2247
+				 - Time of Death: 0.981133
+				 - Cause of Death: Memes
+METRICS LOG ENTRY ID 13731
 	CHECKPOINTS:
-		 - Checkpoint #1:1.988188
+		 - Checkpoint #1:1.989180
 	DEATHS:
 		P1Deaths:
 			 - Death #1:
-				 - Time of Death: 0.982876
-				 - Cause of Death: Memes
-			 - Death #2:
-				 - Time of Death: 1.988188
+				 - Time of Death: 1.989180
 				 - Cause of Death: Memes
 		P2Deaths:
 			 - Death #1:
-				 - Time of Death: 0.982876
-				 - Cause of Death: Memes
-			 - Death #2:
-				 - Time of Death: 1.988188
+				 - Time of Death: 1.989180
 				 - Cause of Death: Memes
 		P3Deaths:
 			 - Death #1:
-				 - Time of Death: 0.982876
-				 - Cause of Death: Memes
-			 - Death #2:
-				 - Time of Death: 1.988188
+				 - Time of Death: 1.989180
 				 - Cause of Death: Memes
 		P4Deaths:
 			 - Death #1:
-				 - Time of Death: 0.982876
+				 - Time of Death: 1.989180
 				 - Cause of Death: Memes
-			 - Death #2:
-				 - Time of Death: 1.988188
-				 - Cause of Death: Memes
-METRICS LOG ENTRY ID 2251
+METRICS LOG ENTRY ID 13734
 	CHECKPOINTS:
-		 - Checkpoint #1:2.992950
+		 - Checkpoint #1:2.996695
 	DEATHS:
 		P1Deaths:
 			 - Death #1:
-				 - Time of Death: 0.982876
-				 - Cause of Death: Update
-			 - Death #2:
-				 - Time of Death: 1.988188
-				 - Cause of Death: Update
-			 - Death #3:
-				 - Time of Death: 2.992950
+				 - Time of Death: 2.996695
 				 - Cause of Death: Memes
 		P2Deaths:
 			 - Death #1:
-				 - Time of Death: 0.982876
-				 - Cause of Death: Update
-			 - Death #2:
-				 - Time of Death: 1.988188
-				 - Cause of Death: Update
-			 - Death #3:
-				 - Time of Death: 2.992950
+				 - Time of Death: 2.996695
 				 - Cause of Death: Memes
 		P3Deaths:
 			 - Death #1:
-				 - Time of Death: 0.982876
-				 - Cause of Death: Update
-			 - Death #2:
-				 - Time of Death: 1.988188
-				 - Cause of Death: Update
-			 - Death #3:
-				 - Time of Death: 2.992950
+				 - Time of Death: 2.996695
 				 - Cause of Death: Memes
 		P4Deaths:
 			 - Death #1:
-				 - Time of Death: 0.982876
-				 - Cause of Death: Update
-			 - Death #2:
-				 - Time of Death: 1.988188
-				 - Cause of Death: Update
-			 - Death #3:
-				 - Time of Death: 2.992950
+				 - Time of Death: 2.996695
 				 - Cause of Death: Memes
-METRICS LOG ENTRY ID 2254
+METRICS LOG ENTRY ID 13737
 	CHECKPOINTS:
-		 - Checkpoint #1:3.997481
+		 - Checkpoint #1:4.003710
 	DEATHS:
 		P1Deaths:
 			 - Death #1:
-				 - Time of Death: 0.982876
-				 - Cause of Death: OnGUI
-			 - Death #2:
-				 - Time of Death: 1.988188
-				 - Cause of Death: OnGUI
-			 - Death #3:
-				 - Time of Death: 2.992950
-				 - Cause of Death: OnGUI
-			 - Death #4:
-				 - Time of Death: 3.997481
+				 - Time of Death: 4.003710
 				 - Cause of Death: Memes
 		P2Deaths:
 			 - Death #1:
-				 - Time of Death: 0.982876
-				 - Cause of Death: OnGUI
-			 - Death #2:
-				 - Time of Death: 1.988188
-				 - Cause of Death: OnGUI
-			 - Death #3:
-				 - Time of Death: 2.992950
-				 - Cause of Death: OnGUI
-			 - Death #4:
-				 - Time of Death: 3.997481
+				 - Time of Death: 4.003710
 				 - Cause of Death: Memes
 		P3Deaths:
 			 - Death #1:
-				 - Time of Death: 0.982876
-				 - Cause of Death: OnGUI
-			 - Death #2:
-				 - Time of Death: 1.988188
-				 - Cause of Death: OnGUI
-			 - Death #3:
-				 - Time of Death: 2.992950
-				 - Cause of Death: OnGUI
-			 - Death #4:
-				 - Time of Death: 3.997481
+				 - Time of Death: 4.003710
 				 - Cause of Death: Memes
 		P4Deaths:
 			 - Death #1:
-				 - Time of Death: 0.982876
-				 - Cause of Death: OnGUI
-			 - Death #2:
-				 - Time of Death: 1.988188
-				 - Cause of Death: OnGUI
-			 - Death #3:
-				 - Time of Death: 2.992950
-				 - Cause of Death: OnGUI
-			 - Death #4:
-				 - Time of Death: 3.997481
+				 - Time of Death: 4.003710
 				 - Cause of Death: Memes
-METRICS LOG ENTRY ID 2257
+METRICS LOG ENTRY ID 13740
 	CHECKPOINTS:
-		 - Checkpoint #1:4.998330
+		 - Checkpoint #1:5.007875
 	DEATHS:
 		P1Deaths:
 			 - Death #1:
-				 - Time of Death: 0.982876
-				 - Cause of Death: OnGUI
-			 - Death #2:
-				 - Time of Death: 1.988188
-				 - Cause of Death: OnGUI
-			 - Death #3:
-				 - Time of Death: 2.992950
-				 - Cause of Death: Update
-			 - Death #4:
-				 - Time of Death: 3.997481
-				 - Cause of Death: Update
-			 - Death #5:
-				 - Time of Death: 4.998330
+				 - Time of Death: 5.007875
 				 - Cause of Death: Memes
 		P2Deaths:
 			 - Death #1:
-				 - Time of Death: 0.982876
-				 - Cause of Death: OnGUI
-			 - Death #2:
-				 - Time of Death: 1.988188
-				 - Cause of Death: OnGUI
-			 - Death #3:
-				 - Time of Death: 2.992950
-				 - Cause of Death: Update
-			 - Death #4:
-				 - Time of Death: 3.997481
-				 - Cause of Death: Update
-			 - Death #5:
-				 - Time of Death: 4.998330
+				 - Time of Death: 5.007875
 				 - Cause of Death: Memes
 		P3Deaths:
 			 - Death #1:
-				 - Time of Death: 0.982876
-				 - Cause of Death: OnGUI
-			 - Death #2:
-				 - Time of Death: 1.988188
-				 - Cause of Death: OnGUI
-			 - Death #3:
-				 - Time of Death: 2.992950
-				 - Cause of Death: Update
-			 - Death #4:
-				 - Time of Death: 3.997481
-				 - Cause of Death: Update
-			 - Death #5:
-				 - Time of Death: 4.998330
+				 - Time of Death: 5.007875
 				 - Cause of Death: Memes
 		P4Deaths:
 			 - Death #1:
-				 - Time of Death: 0.982876
-				 - Cause of Death: OnGUI
-			 - Death #2:
-				 - Time of Death: 1.988188
-				 - Cause of Death: OnGUI
-			 - Death #3:
-				 - Time of Death: 2.992950
-				 - Cause of Death: Update
-			 - Death #4:
-				 - Time of Death: 3.997481
-				 - Cause of Death: Update
-			 - Death #5:
-				 - Time of Death: 4.998330
+				 - Time of Death: 5.007875
 				 - Cause of Death: Memes
-METRICS LOG ENTRY ID 2257
+METRICS LOG ENTRY ID 13744
 	CHECKPOINTS:
+		 - Checkpoint #1:6.017347
 	DEATHS:
 		P1Deaths:
 			 - Death #1:
-				 - Time of Death: 0.982876
-				 - Cause of Death: pvnˇ
-			 - Death #2:
-				 - Time of Death: 1.988188
-				 - Cause of Death: pvnˇ
-			 - Death #3:
-				 - Time of Death: 2.992950
-				 - Cause of Death: pvnˇ
-			 - Death #4:
-				 - Time of Death: 3.997481
-				 - Cause of Death: `ùœg§
-			 - Death #5:
-				 - Time of Death: 4.998330
-				 - Cause of Death: ∏d)ˇ£
+				 - Time of Death: 6.017347
+				 - Cause of Death: Memes
 		P2Deaths:
 			 - Death #1:
-				 - Time of Death: 0.982876
-				 - Cause of Death: pvnˇ
-			 - Death #2:
-				 - Time of Death: 1.988188
-				 - Cause of Death: pvnˇ
-			 - Death #3:
-				 - Time of Death: 2.992950
-				 - Cause of Death: pvnˇ
-			 - Death #4:
-				 - Time of Death: 3.997481
-				 - Cause of Death: `ùœg§
-			 - Death #5:
-				 - Time of Death: 4.998330
-				 - Cause of Death: ∏d)ˇ£
+				 - Time of Death: 6.017347
+				 - Cause of Death: Memes
 		P3Deaths:
 			 - Death #1:
-				 - Time of Death: 0.982876
-				 - Cause of Death: pvnˇ
-			 - Death #2:
-				 - Time of Death: 1.988188
-				 - Cause of Death: pvnˇ
-			 - Death #3:
-				 - Time of Death: 2.992950
-				 - Cause of Death: pvnˇ
-			 - Death #4:
-				 - Time of Death: 3.997481
-				 - Cause of Death: `ùœg§
-			 - Death #5:
-				 - Time of Death: 4.998330
-				 - Cause of Death: ∏d)ˇ£
+				 - Time of Death: 6.017347
+				 - Cause of Death: Memes
 		P4Deaths:
 			 - Death #1:
-				 - Time of Death: 0.982876
-				 - Cause of Death: pvnˇ
-			 - Death #2:
-				 - Time of Death: 1.988188
-				 - Cause of Death: pvnˇ
-			 - Death #3:
-				 - Time of Death: 2.992950
-				 - Cause of Death: pvnˇ
-			 - Death #4:
-				 - Time of Death: 3.997481
-				 - Cause of Death: `ùœg§
-			 - Death #5:
-				 - Time of Death: 4.998330
-				 - Cause of Death: ∏d)ˇ£
+				 - Time of Death: 6.017347
+				 - Cause of Death: Memes
+METRICS LOG ENTRY ID 13747
+	CHECKPOINTS:
+		 - Checkpoint #1:7.022689
+	DEATHS:
+		P1Deaths:
+			 - Death #1:
+				 - Time of Death: 7.022689
+				 - Cause of Death: Memes
+		P2Deaths:
+			 - Death #1:
+				 - Time of Death: 7.022689
+				 - Cause of Death: Memes
+		P3Deaths:
+			 - Death #1:
+				 - Time of Death: 7.022689
+				 - Cause of Death: Memes
+		P4Deaths:
+			 - Death #1:
+				 - Time of Death: 7.022689
+				 - Cause of Death: Memes
+METRICS LOG ENTRY ID 13750
+	CHECKPOINTS:
+		 - Checkpoint #1:8.024416
+	DEATHS:
+		P1Deaths:
+			 - Death #1:
+				 - Time of Death: 8.024416
+				 - Cause of Death: Memes
+		P2Deaths:
+			 - Death #1:
+				 - Time of Death: 8.024416
+				 - Cause of Death: Memes
+		P3Deaths:
+			 - Death #1:
+				 - Time of Death: 8.024416
+				 - Cause of Death: Memes
+		P4Deaths:
+			 - Death #1:
+				 - Time of Death: 8.024416
+				 - Cause of Death: Memes
+METRICS LOG ENTRY ID 13754
+	CHECKPOINTS:
+		 - Checkpoint #1:9.026861
+	DEATHS:
+		P1Deaths:
+			 - Death #1:
+				 - Time of Death: 9.026861
+				 - Cause of Death: Memes
+		P2Deaths:
+			 - Death #1:
+				 - Time of Death: 9.026861
+				 - Cause of Death: Memes
+		P3Deaths:
+			 - Death #1:
+				 - Time of Death: 9.026861
+				 - Cause of Death: Memes
+		P4Deaths:
+			 - Death #1:
+				 - Time of Death: 9.026861
+				 - Cause of Death: Memes
+METRICS LOG ENTRY ID 13754
+	CHECKPOINTS:
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
