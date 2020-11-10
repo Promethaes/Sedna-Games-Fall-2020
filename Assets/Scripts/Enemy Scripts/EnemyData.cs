@@ -10,7 +10,7 @@ public class EnemyData : MonoBehaviour
     public int currentPatrolGoal = 0;
     public bool patrol;
     public List<Transform> destinations;
-    public GameObject player;
+    public GameObject[] players;
     public NavMeshAgent agent;
 
 
@@ -63,7 +63,7 @@ public class EnemyData : MonoBehaviour
                 break;
         }
 
-        player = GameObject.FindGameObjectWithTag("Player");
+        players = GameObject.FindGameObjectsWithTag("Player");
     }
 
     // Update is called once per frame
