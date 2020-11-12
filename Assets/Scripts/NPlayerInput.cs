@@ -30,6 +30,8 @@ public class NPlayerInput : MonoBehaviour
     bool _doubleJumped = false;
 
     bool _useAbility = false;
+    public bool _revive = false;
+    public bool _downed = false;
     public CharMenuInput charMenuInput;
     public int playerType;
     public bool insideCastingZone = false;
@@ -74,6 +76,8 @@ public class NPlayerInput : MonoBehaviour
 
         if (_attack)
             _Attack();
+        if (_downed)
+            _Revive();
     }
 
     //Physics update (FixedUpdate); updates at set intervals
@@ -255,6 +259,21 @@ public class NPlayerInput : MonoBehaviour
             _comboDuration = 2.0f;
         }
     }
+    void _Revive()
+    {
+        RaycastHit player;
+        if (Physics.SphereCast(transform.position, 5.0f, Vector3.zero, out player) && player.transform.tag == "Player")
+        {
+            NPlayerInput reviver = player.collider.GetComponent<NPlayerInput>();
+            if (reviver._revive && reviver.GetComponentInParent<PlayerBackend>().hp > 0.0f)
+            {
+                float _hpTransfer = reviver.GetComponentInParent<PlayerBackend>().hp / 2.0f;
+                reviver.GetComponentInParent<PlayerBackend>().hp /= 2.0f;
+                this.GetComponentInParent<PlayerBackend>().hp+= _hpTransfer;
+                _downed = false;
+            }
+        }
+    }
 
     public void OnMove(InputAction.CallbackContext ctx)
     {
@@ -282,6 +301,15 @@ public class NPlayerInput : MonoBehaviour
             _useAbility = true;
         else
             _useAbility = false;
+    }
+    public void OnRevive(InputAction.CallbackContext ctx)
+    {
+        float temp = ctx.ReadValue<float>();
+
+        if (temp >= 0.5f)
+            _revive = true;
+        else
+            _revive = false;
     }
 
     public void OnAttack(InputAction.CallbackContext ctx)

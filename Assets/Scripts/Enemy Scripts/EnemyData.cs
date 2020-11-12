@@ -84,13 +84,13 @@ public class EnemyData : MonoBehaviour
     public void takeDamage(float hp)
     {
         _health -= hp;
-        if (_health < 0.0f)
+        if (_health <= 0.0f)
             die();
     }
 
     protected void die()
     {
-        if (_health < 0.0f)
+        if (_health <= 0.0f)
             //TODO: Dying animation, loot drops, etc.
             gameObject.SetActive(false);
     }
