@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Ice_Pick_Track : StateMachineBehaviour
+public class monster_attack : StateMachineBehaviour
 {
     private GameObject[] players;
     private GameObject enemy;
@@ -24,26 +24,20 @@ public class Ice_Pick_Track : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        foreach (GameObject player in players)
+        //TODO: Animation; heavy sludge attacks(?)
+        RaycastHit target;
+        if (Physics.Raycast(enemy.transform.position, enemy.transform.forward, out target, enemyData._range) && target.transform.tag == "Player")
         {
-            if ((enemy.transform.position - player.transform.position).magnitude < enemyData.searchRadius + 5)
-            {
-                agent.SetDestination(player.transform.position);
-            }
-            else
-            {
-                agent.SetDestination(enemy.transform.position);
-                animator.SetBool("tracking", false);
-                animator.SetFloat("idleTime", 2.0f);
-            }
+              PlayerBackend foe = target.collider.GetComponentInParent<PlayerBackend>();
+              foe.hp -= enemyData._damageValues;
         }
-           
+        animator.SetBool("attack", false);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+       
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
@@ -57,5 +51,4 @@ public class Ice_Pick_Track : StateMachineBehaviour
     //{
     //    // Implement code that sets up animation IK (inverse kinematics)
     //}
-
 }
