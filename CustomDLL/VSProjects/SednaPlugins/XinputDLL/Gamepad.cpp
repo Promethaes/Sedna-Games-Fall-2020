@@ -2,28 +2,7 @@
 
 
 namespace SednaInput {
-	GamepadManager::GamepadManager()
-	{
-		UpdateGamepadList();
-		_gamepads.resize(4);
-		_gamepads.reserve(4);
-	}
-	void GamepadManager::UpdateGamepadList()
-	{
-		_gamepads.clear();
-
-		DWORD result;
-		for (DWORD i = 0; i < 4; i++) {
-			XINPUT_STATE state;
-			ZeroMemory(&state, sizeof(XINPUT_STATE));
-
-			result = XInputGetState(i, &state);
-
-			if (result == ERROR_SUCCESS) {
-				_gamepads.push_back(Gamepad(state));
-			}
-		}
-	}
+	
 
 	SednaInput::Gamepad::Gamepad(XINPUT_STATE& state)
 		:_state(state)
@@ -71,5 +50,31 @@ namespace SednaInput {
 			y = _state.Gamepad.sThumbLY / 32767;
 
 		return Vector2(x, y);
+	}
+	Vector2 Gamepad::getRightStickValue()
+	{
+		if (_state.Gamepad.sThumbRX <  XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE &&
+			_state.Gamepad.sThumbRX > -XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE &&
+			_state.Gamepad.sThumbRY > -XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE &&
+			_state.Gamepad.sThumbRY <  XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE
+			)
+			return Vector2(0.0f, 0.0f);
+
+		float x = 0, y = 0;
+		if (_state.Gamepad.sThumbRX < 0)
+			x = _state.Gamepad.sThumbRX / 32768;
+		else
+			x = _state.Gamepad.sThumbRX / 32767;
+
+		if (_state.Gamepad.sThumbRY < 0)
+			y = _state.Gamepad.sThumbRY / 32768;
+		else
+			y = _state.Gamepad.sThumbRY / 32767;
+
+		return Vector2(x, y);
+	}
+	Vector2::Vector2(float X, float Y)
+		: x(X),y(Y)
+	{
 	}
 }

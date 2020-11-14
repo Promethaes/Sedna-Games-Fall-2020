@@ -141,10 +141,19 @@
   <ItemGroup>
     <ClInclude Include="..\UserMetricsLogger\PluginSettings.h" />
     <ClInclude Include="Gamepad.h" />
+    <ClInclude Include="GamepadManager.h" />
+    <ClInclude Include="InputEventSystem.h" />
+    <ClInclude Include="Wrapper.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GamepadManager.cpp" />
+    <ClCompile Include="InputEventSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Gamepad.cpp" />
+    <ClCompile Include="Wrapper.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

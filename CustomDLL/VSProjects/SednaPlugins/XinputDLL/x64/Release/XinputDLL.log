@@ -1,0 +1,12 @@
+﻿  Wrapper.cpp
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\XinputDLL\Wrapper.h(13,55): warning C4190: 'GetLeftStickValue' has C-linkage specified, but returns UDT 'SednaInput::Vector2' which is incompatible with C
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\XinputDLL\Gamepad.h(10): message : see declaration of 'SednaInput::Vector2'
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\XinputDLL\Wrapper.h(14,56): warning C4190: 'GetRightStickValue' has C-linkage specified, but returns UDT 'SednaInput::Vector2' which is incompatible with C
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\XinputDLL\Gamepad.h(10): message : see declaration of 'SednaInput::Vector2'
+     Creating library D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\x64\Release\XinputDLL.lib and object D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\x64\Release\XinputDLL.exp
+  Generating code
+  334 of 344 functions (97.1%) were compiled, the rest were copied from previous compilation.
+    12 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  XinputDLL.vcxproj -> D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\x64\Release\XinputDLL.dll

@@ -63,3 +63,6 @@ crashlytics-build.properties
 *.lib
 *.tlog
 *.idb
+*.iobj
+*.ipdb
+*.hint

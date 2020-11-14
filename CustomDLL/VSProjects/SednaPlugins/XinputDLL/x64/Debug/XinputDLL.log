@@ -1,4 +1,16 @@
-﻿  main.cpp
+﻿  GamepadManager.cpp
+  InputEventSystem.cpp
+  main.cpp
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\XinputDLL\Gamepad.h(17,15): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
   Gamepad.cpp
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\XinputDLL\Gamepad.h(17,15): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\XinputDLL\Gamepad.cpp(43,32): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\XinputDLL\Gamepad.cpp(45,32): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\XinputDLL\Gamepad.cpp(48,32): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\XinputDLL\Gamepad.cpp(50,32): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\XinputDLL\Gamepad.cpp(65,32): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\XinputDLL\Gamepad.cpp(67,32): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\XinputDLL\Gamepad.cpp(70,32): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\XinputDLL\Gamepad.cpp(72,32): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Generating Code...
   XinputDLL.vcxproj -> D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\x64\Debug\XinputDLL.exe
