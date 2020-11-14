@@ -1,0 +1,34 @@
+﻿  CheckpointLogger.cpp
+  DeathLogger.cpp
+  main.cpp
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\UserMetricsLogger\UserMetricsLogger.h(24,32): warning C4251: 'UserMetricsLogger::logData': class 'std::vector<MetricLog,std::allocator<MetricLog>>' needs to have dll-interface to be used by clients of class 'UserMetricsLogger'
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\UserMetricsLogger\UserMetricsLogger.h(24): message : see declaration of 'std::vector<MetricLog,std::allocator<MetricLog>>'
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\UserMetricsLogger\UserMetricsLogger.h(25,26): warning C4251: 'UserMetricsLogger::defaultPath': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'UserMetricsLogger'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\xstring(4564): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\UserMetricsLogger\UserMetricsLogger.h(27,26): warning C4251: 'UserMetricsLogger::cLogger': class 'CheckpointLogger' needs to have dll-interface to be used by clients of class 'UserMetricsLogger'
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\UserMetricsLogger\CheckpointLogger.h(4): message : see declaration of 'CheckpointLogger'
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\UserMetricsLogger\UserMetricsLogger.h(28,21): warning C4251: 'UserMetricsLogger::dLogger': class 'DeathLogger' needs to have dll-interface to be used by clients of class 'UserMetricsLogger'
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\UserMetricsLogger\DeathLogger.h(6): message : see declaration of 'DeathLogger'
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\UserMetricsLogger\main.cpp(19,27): warning C4244: '=': conversion from 'time_t' to 'float', possible loss of data
+  UserMetricsLogger.cpp
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\UserMetricsLogger\UserMetricsLogger.h(24,32): warning C4251: 'UserMetricsLogger::logData': class 'std::vector<MetricLog,std::allocator<MetricLog>>' needs to have dll-interface to be used by clients of class 'UserMetricsLogger'
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\UserMetricsLogger\UserMetricsLogger.h(24): message : see declaration of 'std::vector<MetricLog,std::allocator<MetricLog>>'
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\UserMetricsLogger\UserMetricsLogger.h(25,26): warning C4251: 'UserMetricsLogger::defaultPath': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'UserMetricsLogger'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\xstring(4564): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\UserMetricsLogger\UserMetricsLogger.h(27,26): warning C4251: 'UserMetricsLogger::cLogger': class 'CheckpointLogger' needs to have dll-interface to be used by clients of class 'UserMetricsLogger'
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\UserMetricsLogger\CheckpointLogger.h(4): message : see declaration of 'CheckpointLogger'
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\UserMetricsLogger\UserMetricsLogger.h(28,21): warning C4251: 'UserMetricsLogger::dLogger': class 'DeathLogger' needs to have dll-interface to be used by clients of class 'UserMetricsLogger'
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\UserMetricsLogger\DeathLogger.h(6): message : see declaration of 'DeathLogger'
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\UserMetricsLogger\UserMetricsLogger.cpp(10,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Wrapper.cpp
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\UserMetricsLogger\UserMetricsLogger.h(24,32): warning C4251: 'UserMetricsLogger::logData': class 'std::vector<MetricLog,std::allocator<MetricLog>>' needs to have dll-interface to be used by clients of class 'UserMetricsLogger'
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\UserMetricsLogger\UserMetricsLogger.h(24): message : see declaration of 'std::vector<MetricLog,std::allocator<MetricLog>>'
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\UserMetricsLogger\UserMetricsLogger.h(25,26): warning C4251: 'UserMetricsLogger::defaultPath': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'UserMetricsLogger'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\xstring(4564): message : see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\UserMetricsLogger\UserMetricsLogger.h(27,26): warning C4251: 'UserMetricsLogger::cLogger': class 'CheckpointLogger' needs to have dll-interface to be used by clients of class 'UserMetricsLogger'
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\UserMetricsLogger\CheckpointLogger.h(4): message : see declaration of 'CheckpointLogger'
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\UserMetricsLogger\UserMetricsLogger.h(28,21): warning C4251: 'UserMetricsLogger::dLogger': class 'DeathLogger' needs to have dll-interface to be used by clients of class 'UserMetricsLogger'
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\UserMetricsLogger\DeathLogger.h(6): message : see declaration of 'DeathLogger'
+  Generating Code...
+     Creating library D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\UserMetricsLogger.lib and object D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\UserMetricsLogger.exp
+  UserMetricsLogger.vcxproj -> D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\UserMetricsLogger.exe
