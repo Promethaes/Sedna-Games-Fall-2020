@@ -58,6 +58,10 @@ public class EnemySpawnPoint : MonoBehaviour
         _pvtSpawnTimeInterval = spawnTimeInterval;
     }
 
+    public void setShouldSpawn(bool yn)
+    {
+        _shouldSpawn = yn;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<CharMenuInput>())
@@ -69,5 +73,4 @@ public class EnemySpawnPoint : MonoBehaviour
         if (other.gameObject.GetComponent<CharMenuInput>())
             _shouldSpawn = false;
     }
-
 }
