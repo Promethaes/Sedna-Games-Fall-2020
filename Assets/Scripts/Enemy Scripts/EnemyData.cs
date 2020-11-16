@@ -10,8 +10,8 @@ public class EnemyData : MonoBehaviour
     public int currentPatrolGoal = 0;
     public bool patrol;
     public List<Transform> destinations;
-    public GameObject[] players;
-    public NavMeshAgent agent;
+    private GameObject[] players;
+    private NavMeshAgent agent;
 
 
 
@@ -61,6 +61,7 @@ public class EnemyData : MonoBehaviour
         }
 
         players = GameObject.FindGameObjectsWithTag("Player");
+        agent = this.GetComponent<NavMeshAgent>();
     }
 
     public void setHealth(float hp)
@@ -97,5 +98,15 @@ public class EnemyData : MonoBehaviour
         //Damage values for combo hits 1/2/3, animation length for combo hits 1/2/3
         _damageValues = damage;
         _range = range;
+    }
+    
+    public NavMeshAgent getNavMeshAgent()
+    {
+        return agent;
+    }
+
+    public GameObject[] getPlayers()
+    {
+        return players;
     }
 }

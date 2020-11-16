@@ -16,8 +16,8 @@ public class Dumpage_Track : StateMachineBehaviour
         if (enemy.GetComponent<EnemyData>())
         {
             enemyData = enemy.GetComponent<EnemyData>();
-            players = enemyData.players;
-            agent = enemyData.agent;
+            players = enemyData.getPlayers();
+            agent = enemyData.getNavMeshAgent();
         }
         agent.isStopped = false;
 

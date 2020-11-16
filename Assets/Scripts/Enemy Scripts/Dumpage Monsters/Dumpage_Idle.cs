@@ -16,8 +16,8 @@ public class Dumpage_Idle : StateMachineBehaviour
         if (enemy.GetComponent<EnemyData>())
         {
             enemyData = enemy.GetComponent<EnemyData>();
-            agent = enemyData.agent;
-            players = enemyData.players;
+            agent = enemyData.getNavMeshAgent();
+            players = enemyData.getPlayers();
         }
         agent.isStopped = true;
     }
