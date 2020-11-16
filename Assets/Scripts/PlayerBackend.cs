@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PlayerBackend : MonoBehaviour
 {
-    public float hp = 3.0f;
+    public float hp = 100.0f;
+    public float maxHP = 100.0f;
+    public CheckpointManager manager;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        manager = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<CheckpointManager>();
     }
 
     // Update is called once per frame
@@ -21,8 +23,19 @@ public class PlayerBackend : MonoBehaviour
 
     public void KillPlayer()
     {
-        //not sure howe we're gonna implement this yet
-        GameObject.Find("PlayerManager").GetComponent<PlayerManager>().players = new List<GameObject>();
-        Destroy(gameObject);
+
+        int _counter = 0;
+        foreach (GameObject player in GameObject.Find("PlayerManager").GetComponent<PlayerManager>().players)
+        {
+            if (player.GetComponent<PlayerBackend>().hp <= 0.0f)
+            {
+                _counter++;
+                player.GetComponent<NPlayerInput>()._downed = true;
+            }
+        }
+        if (_counter == GameObject.Find("PlayerManager").GetComponent<PlayerManager>().players.Count)
+        {
+            manager.reset();
+        }
     }
 }

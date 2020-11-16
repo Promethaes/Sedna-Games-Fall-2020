@@ -15,7 +15,7 @@ public class EnemyData : MonoBehaviour
 
 
 
-
+    public float _maxHealth;
     public float _health;
     public float _range;
     public float _damageValues;
@@ -63,14 +63,9 @@ public class EnemyData : MonoBehaviour
         players = GameObject.FindGameObjectsWithTag("Player");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void setHealth(float hp)
     {
+        _maxHealth = hp;
         _health = hp;
     }
 
@@ -78,16 +73,20 @@ public class EnemyData : MonoBehaviour
     {
         return _health;
     }
+    public float getMaxHealth()
+    {
+        return _maxHealth;
+    }
     public void takeDamage(float hp)
     {
         _health -= hp;
-        if (_health < 0.0f)
+        if (_health <= 0.0f)
             die();
     }
 
     protected void die()
     {
-        if (_health < 0.0f)
+        if (_health <= 0.0f)
             //TODO: Dying animation, loot drops, etc.
             gameObject.SetActive(false);
     }
