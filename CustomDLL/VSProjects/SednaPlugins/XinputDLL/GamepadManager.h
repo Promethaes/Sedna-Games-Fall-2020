@@ -1,5 +1,6 @@
 #pragma once
 #include "InputEventSystem.h"
+#include "../UserMetricsLogger/PluginSettings.h"
 namespace SednaInput {
 
 	class GamepadManager {
@@ -8,8 +9,8 @@ namespace SednaInput {
 
 		void UpdateGamepadList();
 		bool GetEventValue(int playerIndex, int e);
-		Vector2 GetLeftStickValue(int playerIndex) { return _gamepads[playerIndex].GetLeftStickValue(); }
-		Vector2 GetRightStickValue(int playerIndex) { return _gamepads[playerIndex].GetRightStickValue(); }
+		Vector2 GetLeftStickValue(int playerIndex);
+		Vector2 GetRightStickValue(int playerIndex);
 	private:
 
 		std::vector<InputEventSystem> _gamepads;
