@@ -40,14 +40,14 @@ namespace SednaInput {
 
 		float x = 0, y = 0;
 		if (_state.Gamepad.sThumbLX < 0)
-			x = _state.Gamepad.sThumbLX / 32768;
+			x = _state.Gamepad.sThumbLX / 32768.f;
 		else
-			x = _state.Gamepad.sThumbLX / 32767;
+			x = _state.Gamepad.sThumbLX / 32767.f;
 
 		if(_state.Gamepad.sThumbLY < 0)
-			y = _state.Gamepad.sThumbLY / 32768;
+			y = _state.Gamepad.sThumbLY / 32768.f;
 		else
-			y = _state.Gamepad.sThumbLY / 32767;
+			y = _state.Gamepad.sThumbLY / 32767.f;
 
 		return Vector2(x, y);
 	}

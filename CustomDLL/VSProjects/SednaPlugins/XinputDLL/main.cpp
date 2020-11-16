@@ -1,16 +1,17 @@
 #include "GamepadManager.h"
 #include <iostream>
 
-//#ifdef _DEBUG
-//int main() {
-//
-//	SednaInput::GamepadManager manager{};
-//	
-//	while (1) {
-//		manager.UpdateGamepadList();
-//		std::cout << manager.GetEventValue(0, SednaInput::A);
-//	}
-//
-//	return 0;
-//}
-//#endif
+#ifdef _DEBUG
+int main() {
+
+	SednaInput::GamepadManager manager{};
+
+	while (1) {
+		manager.UpdateGamepadList();
+		auto f = manager.GetLeftStickValue(0).x;
+		std::cout << f << "\n";
+	}
+
+	return 0;
+}
+#endif
