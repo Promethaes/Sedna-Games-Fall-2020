@@ -17,11 +17,8 @@ public class EnemyData : MonoBehaviour
 
 
     public float _health;
-    public float[] _range = new float[3];
-    public float _animationDuration = 0.5f;
-    public int _comboCounter = 0;
-    public float[] _damageValues = new float[3];
-    public float[] _animationDelay = new float[3];
+    public float _range;
+    public float _damageValues;
 
     public enum enemyType
     {
@@ -44,19 +41,19 @@ public class EnemyData : MonoBehaviour
         {
             case enemyType.buckthorn:
                 setHealth(150.0f);
-                setCombo(15.0f, 15.0f, 25.0f, 0.6f, 0.6f, 1.8f, 2.5f, 2.5f, 3.5f);
+                setCombo(15.0f, 2.5f);
                 break;
             case enemyType.chaotic_Water_Spirit:
                 setHealth(80.0f);
-                setCombo(15.0f, 15.0f, 25.0f, 1.5f, 1.5f, 3.0f, 10.0f, 10.0f, 10.0f);
+                setCombo(15.0f, 10.0f);
                 break;
             case enemyType.dumpage_Monster:
                 setHealth(250.0f);
-                setCombo(20.0f, 20.0f, 35.0f, 1.5f, 1.5f, 2.7f, 0.8f, 1.1f, 1.3f);
+                setCombo(20.0f, 2.0f);
                 break;
             case enemyType.icePick:
                 setHealth(120.0f);
-                setCombo(8.0f, 12.0f, 20.0f, 0.8f, 1.2f, 1.7f, 10.9f, 11.0f,11.1f);
+                setCombo(8.0f, 10.9f);
                 icePickEnemies.Add(this.gameObject);
                 break;
             default:
@@ -96,17 +93,10 @@ public class EnemyData : MonoBehaviour
     }
 
 
-    protected void setCombo(float x, float y, float z, float u, float v, float w, float r, float s, float t)
+    protected void setCombo(float damage, float range)
     {
         //Damage values for combo hits 1/2/3, animation length for combo hits 1/2/3
-        _damageValues[0] = x;
-        _damageValues[1] = y;
-        _damageValues[2] = z;
-        _animationDelay[0] = u;
-        _animationDelay[1] = v;
-        _animationDelay[2] = w;
-        _range[0] = r;
-        _range[1] = s;
-        _range[2] = t;
+        _damageValues = damage;
+        _range = range;
     }
 }
