@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Sounds/Build.meta
 guid: c5463083e3c3cb945b63bc180c3c8f93
+=======
+guid: 9836e33991b259f4ba4f50507309d299
+>>>>>>> UserMetricsLogger:Assets/FMOD/ZooGame/Metadata.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

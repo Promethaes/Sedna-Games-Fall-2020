@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Sounds.meta
 guid: bf7728b8eaa9b354192d8a8301813872
+=======
+guid: 97ff253eabb62934382617bc7dcd5e33
+>>>>>>> UserMetricsLogger:Assets/Animation Tests/Boss.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

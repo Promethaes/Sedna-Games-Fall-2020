@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class AITrackPlayer : StateMachineBehaviour
 {
-    private GameObject player;
+    private GameObject[] players;
     private GameObject enemy;
     private EnemyData enemyData;
     private NavMeshAgent agent;
@@ -16,7 +16,7 @@ public class AITrackPlayer : StateMachineBehaviour
         if (enemy.GetComponent<EnemyData>())
         {
             enemyData = enemy.GetComponent<EnemyData>();
-            player = enemyData.player;
+            players = enemyData.players;
             agent = enemyData.agent;
         }
         agent.isStopped = false;
@@ -25,15 +25,19 @@ public class AITrackPlayer : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if ((enemy.transform.position-player.transform.position).magnitude<enemyData.searchRadius)
+        foreach (GameObject player in players)
         {
-           agent.SetDestination(player.transform.position);
+            if ((enemy.transform.position - player.transform.position).magnitude < enemyData.searchRadius)
+            {
+                agent.SetDestination(player.transform.position);
+            }
+            else
+            {
+                agent.SetDestination(enemy.transform.position);
+                animator.SetBool("tracking", false);
+            }
         }
-        else
-        {
-            agent.SetDestination(enemy.transform.position);
-            animator.SetBool("tracking",false);
-        }
+            
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

@@ -135,7 +135,7 @@ MonoBehaviour:
   currentPatrolGoal: 0
   patrol: 0
   destinations: []
-  player: {fileID: 0}
+  players: []
   agent: {fileID: 8397703989782550860}
   _health: 0
   _range:

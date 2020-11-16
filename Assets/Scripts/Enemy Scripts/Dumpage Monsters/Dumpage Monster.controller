@@ -9,7 +9,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: Tracking
+    m_ConditionEvent: tracking
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4306900139730842301}
@@ -62,13 +62,13 @@ AnimatorController:
   m_Name: Dumpage Monster
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: IdleTime
+  - m_Name: idleTime
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: Tracking
+  - m_Name: tracking
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -108,10 +108,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: IdleTime
+    m_ConditionEvent: idleTime
     m_EventTreshold: 0.1
   - m_ConditionMode: 1
-    m_ConditionEvent: Tracking
+    m_ConditionEvent: tracking
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2755076951255331003}

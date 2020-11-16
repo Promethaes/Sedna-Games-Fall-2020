@@ -59,3 +59,10 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+*.ilk
+*.lib
+*.tlog
+*.idb
+*.iobj
+*.ipdb
+*.hint
