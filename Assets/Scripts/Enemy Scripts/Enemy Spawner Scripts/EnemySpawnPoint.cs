@@ -16,6 +16,7 @@ public class EnemySpawnPoint : MonoBehaviour
     void Start()
     {
         CreatePool();
+        enemyPrefab.transform.position = gameObject.transform.position;
     }
 
     void Update()
