@@ -12,14 +12,16 @@ bool GetEventValue(int playerIndex, int e)
 	return gamepadManager.GetEventValue(playerIndex,e);
 }
 
-Vector2 GetLeftStickValue(int playerIndex)
-{
-	return gamepadManager.GetLeftStickValue(playerIndex);
+float GetLeftStickValueXORY(int playerIndex, bool xOrY) {
+	if (xOrY)
+		return gamepadManager.GetLeftStickValue(playerIndex).y;
+	else
+		return gamepadManager.GetLeftStickValue(playerIndex).x;
+
 }
-
-Vector2 GetRightStickValue(int playerIndex)
-{
-	return gamepadManager.GetRightStickValue(playerIndex);
+float GetRightStickValueXORY(int playerIndex, bool xOrY) {
+	if (xOrY)
+		return gamepadManager.GetRightStickValue(playerIndex).y;
+	else
+		return gamepadManager.GetRightStickValue(playerIndex).x;
 }
-
-

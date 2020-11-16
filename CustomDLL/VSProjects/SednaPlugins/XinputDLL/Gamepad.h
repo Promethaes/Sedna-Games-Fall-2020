@@ -6,7 +6,6 @@
 #pragma comment(lib,"Xinput.lib")
 
 
-namespace SednaInput {
 	struct Vector2 {
 		float x;
 		float y;
@@ -17,6 +16,7 @@ namespace SednaInput {
 			return sqrt((x * x) + (y * y));
 		}
 	};
+namespace SednaInput {
 	enum Button {
 		DPAD_UP = XINPUT_GAMEPAD_DPAD_UP,
 		DPAD_DOWN = XINPUT_GAMEPAD_DPAD_DOWN,

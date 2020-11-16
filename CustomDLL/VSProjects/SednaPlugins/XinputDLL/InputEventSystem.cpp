@@ -17,7 +17,7 @@ namespace SednaInput {
 		//so the whole idea is to loop through the enum, except the last 4 members
 		//don't follow the doubling pattern how you'd think, so thats why theres
 		//an if statement there
-		for (int i = 0; i < Button::Y; i += i) {
+		for (int i = 1; i < Button::Y; i += i) {
 			Button b = static_cast<Button>(i);
 
 			_events[i] = _gamepad.isButtonPressed(static_cast<Button>(b));

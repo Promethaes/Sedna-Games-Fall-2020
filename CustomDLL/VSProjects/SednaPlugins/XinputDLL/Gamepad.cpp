@@ -73,8 +73,9 @@ namespace SednaInput {
 
 		return Vector2(x, y);
 	}
-	Vector2::Vector2(float X, float Y)
-		: x(X),y(Y)
-	{
-	}
 }
+	Vector2::Vector2(float X, float Y)
+	{
+		x = X;
+		y = Y;
+	}

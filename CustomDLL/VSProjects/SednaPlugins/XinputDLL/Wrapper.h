@@ -10,8 +10,8 @@ extern "C" {
 
 	PLUGIN_API void UpdateGamepadList();
 	PLUGIN_API bool GetEventValue(int playerIndex, int e);
-	PLUGIN_API Vector2 GetLeftStickValue(int playerIndex);
-	PLUGIN_API Vector2 GetRightStickValue(int playerIndex);
+	PLUGIN_API float GetLeftStickValueXORY(int playerIndex,bool xOrY);
+	PLUGIN_API float GetRightStickValueXORY(int playerIndex, bool xOrY);
 
 #ifdef __cplusplus
 }
