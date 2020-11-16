@@ -20,6 +20,7 @@ public class MenuPlayerManager : MonoBehaviour
             Object.DontDestroyOnLoad(player);
             player.GetComponent<CharMenuInput>().Cleanup();
             player.gameObject.transform.position = spawnPosition + new Vector3(player.GetComponent<CharMenuInput>().playerType,0.0f,0.0f);
+            player.gameObject.transform.rotation = Quaternion.identity;
         }
 
         gameObject.GetComponent<PlayerManager>().players = players;

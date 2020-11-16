@@ -30,7 +30,7 @@ public class PlayerBackend : MonoBehaviour
             if (player.GetComponent<PlayerBackend>().hp <= 0.0f)
             {
                 _counter++;
-                player.GetComponent<NPlayerInput>()._downed = true;
+                player.GetComponentInChildren<NPlayerInput>()._downed = true;
             }
         }
         if (_counter == GameObject.Find("PlayerManager").GetComponent<PlayerManager>().players.Count)

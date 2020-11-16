@@ -150,7 +150,7 @@ public class NPlayerInput : MonoBehaviour
         if (_dashDuration < 0.0f)
         {
             //NOTE: Camera position affects the rotation of the player's movement, which is stored in the first value of Vector3 vel (Current: 135.0f)
-            Vector3 vel = Quaternion.AngleAxis(135.0f, Vector3.up) * ((Quaternion.AngleAxis(180, Vector3.up) * (transform.forward * _moveInput.x)) + (Quaternion.AngleAxis(90, Vector3.up) * (transform.forward * _moveInput.y)));
+            Vector3 vel = Quaternion.AngleAxis(135.0f + 90.0f, Vector3.up) * ((Quaternion.AngleAxis(180, Vector3.up) * (transform.forward * _moveInput.x)) + (Quaternion.AngleAxis(90, Vector3.up) * (transform.forward * _moveInput.y)));
             vel *= moveSpeed;
 
             float y = player.GetComponent<Rigidbody>().velocity.y;
