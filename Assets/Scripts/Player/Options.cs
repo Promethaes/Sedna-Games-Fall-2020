@@ -10,9 +10,7 @@ public class Options : MonoBehaviour
     public bool lockCursor = true;
 
     public int numPlayers = 1;
-
-    void Start() {}
-
+    
     void Update() {
         Cursor.lockState = lockCursor ? CursorLockMode.Locked : CursorLockMode.None;
     }

@@ -28,14 +28,4 @@ public class MenuPlayerManager : MonoBehaviour
         gameObject.GetComponent<PlayerInputManager>().enabled = false;
        
     }
-
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    
 }
