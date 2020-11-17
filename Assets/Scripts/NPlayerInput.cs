@@ -249,7 +249,7 @@ public class NPlayerInput : MonoBehaviour
             RaycastHit enemy;
             if (Physics.Raycast(transform.position, transform.forward, out enemy, 2.0f) && enemy.transform.tag == "Enemy")
             {
-                Enemy foe = enemy.collider.GetComponent<Enemy>();
+                EnemyData foe = enemy.collider.GetComponent<EnemyData>();
                 foe.takeDamage(_damageValues[_comboCounter]);
                 Debug.Log(foe.getHealth());
             }
