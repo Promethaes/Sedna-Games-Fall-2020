@@ -9,6 +9,11 @@ public class CheckpointManager : MonoBehaviour
     public EnemySpawnPoint[] enemySpawners;
     int counter = 0;
 
+    private void Start() 
+    {
+        playerManager = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();    
+    }
+
     private void Update() 
     {
         RaycastHit player;

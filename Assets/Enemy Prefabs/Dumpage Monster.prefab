@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8397703989782550859}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -38.5, y: 0.36, z: -77.3}
+  m_LocalPosition: {x: 929.9, y: 4.66, z: 201.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -135,23 +135,10 @@ MonoBehaviour:
   currentPatrolGoal: 0
   patrol: 0
   destinations: []
-  players: []
-  agent: {fileID: 8397703989782550860}
+  _maxHealth: 0
   _health: 0
-  _range:
-  - 0
-  - 0
-  - 0
-  _animationDuration: 0.5
-  _comboCounter: 0
-  _damageValues:
-  - 0
-  - 0
-  - 0
-  _animationDelay:
-  - 0
-  - 0
-  - 0
+  _range: 0
+  _damageValues: 0
   enemy: 0
   icePickRange: 5
 --- !u!95 &8397703989782550858

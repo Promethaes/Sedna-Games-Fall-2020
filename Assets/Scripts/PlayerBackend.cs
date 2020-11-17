@@ -8,12 +8,6 @@ public class PlayerBackend : MonoBehaviour
     public float maxHP = 100.0f;
     public CheckpointManager manager;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        manager = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<CheckpointManager>();
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -23,17 +17,18 @@ public class PlayerBackend : MonoBehaviour
 
     public void KillPlayer()
     {
-
+        manager = GameObject.FindGameObjectWithTag("CheckpointManager").GetComponent<CheckpointManager>();
         int _counter = 0;
-        foreach (GameObject player in GameObject.Find("PlayerManager").GetComponent<PlayerManager>().players)
+        for (int i = 0;i<manager.playerManager.players.Count;i++)
         {
+            GameObject player = manager.playerManager.players[i];
             if (player.GetComponent<PlayerBackend>().hp <= 0.0f)
             {
                 _counter++;
                 player.GetComponentInChildren<NPlayerInput>()._downed = true;
             }
         }
-        if (_counter == GameObject.Find("PlayerManager").GetComponent<PlayerManager>().players.Count)
+        if (_counter == manager.playerManager.players.Count)
         {
             manager.reset();
         }
