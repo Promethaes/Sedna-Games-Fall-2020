@@ -5,13 +5,13 @@ using UnityEngine;
 public class CheckpointManager : MonoBehaviour
 {
     public Transform[] spawnPoints;
-    public PlayerManager playerManager;
+    public GamePlayerManager playerManager;
     public EnemySpawnPoint[] enemySpawners;
     int counter = 0;
 
     private void Start() 
     {
-        playerManager = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();    
+        playerManager = FindObjectOfType<GamePlayerManager>();    
     }
 
     private void Update() 

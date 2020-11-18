@@ -18,7 +18,7 @@ public class UMLCheckpoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.gameObject.GetComponent<CharMenuInput>())
+        if (other.gameObject.tag != "Player")
             return;
         FindObjectOfType<UserMetricsLoggerScript>().csLogCheckpointTime(Time.time);
         gameObject.SetActive(false);

@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class ActivateAbiltiesZoneScript : MonoBehaviour
 {
-    public PlayerManager playerManager;
     public AbilityZoneManager manager;
     //zone keeps track of what player it wants. This will help with placing the activation zones.
-    public int zoneType = 1;
+    public PlayerType zoneType = PlayerType.BISON;
     public Cutscene _cutscene;
     // Start is called before the first frame update
     void Start()
     {
-        playerManager = FindObjectOfType<PlayerManager>();
         manager = FindObjectOfType<AbilityZoneManager>();
         manager.abilityZones.Add(this);
     }
@@ -24,36 +22,34 @@ public class ActivateAbiltiesZoneScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (playerManager == null)
+        var pController = other.gameObject.GetComponent<PlayerController>();
+
+        if (pController == null)
             return;
 
-        if (other.gameObject.GetComponent<CharMenuInput>())
-            foreach (var p in playerManager.players)
-                if (other.gameObject == p && p.GetComponentInChildren<NPlayerInput>().playerType == zoneType)
-                {
+        if (other.gameObject.tag == "Player" && pController.playerType == zoneType)
+        {
+            pController.insideCastingZone = true;
+            pController.bubbleShieldScript.cutscene = _cutscene;
 
-                    p.GetComponentInChildren<NPlayerInput>().insideCastingZone = true;
-                    p.GetComponentInChildren<NPlayerInput>().bubbleShieldScript.cutscene = _cutscene;
-                    gameObject.GetComponentInChildren<TMPro.TextMeshPro>().text = "Press LB";
-                }
-
+            gameObject.GetComponentInChildren<TMPro.TextMeshPro>().text = "Press LB";
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (playerManager == null)
-            return;
-        if (other.gameObject.GetComponent<CharMenuInput>())
-            foreach (var p in playerManager.players)
-            {
-                if (other.gameObject == p && p.GetComponentInChildren<NPlayerInput>().playerType == zoneType)
-                {
-                    p.GetComponentInChildren<NPlayerInput>().insideCastingZone = false;
-                    p.GetComponentInChildren<NPlayerInput>().bubbleShieldScript.cutscene = null;
-                    gameObject.GetComponentInChildren<TMPro.TextMeshPro>().text = "Come Closer!";
+         var pController = other.gameObject.GetComponent<PlayerController>();
 
-                }
-            }
+        if (pController == null)
+            return;
+
+        if (other.gameObject.tag == "Player" && pController.playerType == zoneType)
+        {
+            pController.insideCastingZone = false;
+            pController.bubbleShieldScript.cutscene = null;
+
+            gameObject.GetComponentInChildren<TMPro.TextMeshPro>().text = "Come Closer!";
+        }
 
     }
 
