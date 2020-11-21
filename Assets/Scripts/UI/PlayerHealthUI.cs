@@ -23,7 +23,7 @@ public class PlayerHealthUI : MonoBehaviour {
             return;
         }
 
-        currentFill = maximum = backend.hp;
+        currentFill = maximum = backend.maxHP;
         var index = (int)backend.gameObject.GetComponent<PlayerController>().playerType;
         centreImage.sprite = images[index];
     }
