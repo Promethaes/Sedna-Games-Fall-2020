@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5263945950987827740
+--- !u!114 &-5561370133622712738
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,10 +20,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GarbageDemon
+  m_Name: Polar Bear Cel
   m_Shader: {fileID: -6465566751694194690, guid: 9fc68457dfd9426409f607ed60047a21,
     type: 3}
-  m_ShaderKeywords: _METALLICSPECGLOSSMAP _NORMALMAP
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -33,16 +33,24 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_B71F4E72:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_E05787F1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Texture2D_FF6EAB6E:
-        m_Texture: {fileID: 2800000, guid: 5e87da5cfaad0b14c880994987ca5897, type: 3}
+        m_Texture: {fileID: 2800000, guid: 986d98d7298268c45851651a843aad8d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 5e87da5cfaad0b14c880994987ca5897, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 1fe2ff627d7afe24da6699158834f3db, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -50,11 +58,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 5e87da5cfaad0b14c880994987ca5897, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: b63c5961a29ea9b479adc2734913cd6c, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -66,10 +74,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_30A214B5: 0
-    - Vector1_456A1357: 0.89
+    - Vector1_30A214B5: 0.328
+    - Vector1_456A1357: 0.97
     - Vector1_7FF45A7D: 0
-    - Vector1_E58C147F: 0
+    - Vector1_E58C147F: 0.044
     - Vector1_EB7C4E51: -1
     - _AlphaClip: 0
     - _Blend: 0
@@ -93,9 +101,9 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_2004B0: {r: 0, g: 0, b: 0, a: 0}
+    - Color_2004B0: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 0}
     - Color_2305C0AF: {r: 0, g: 0, b: 0, a: 0}
-    - Color_F7ABCC44: {r: 0.7624609, g: 0.93333334, b: 0.08235291, a: 0}
+    - Color_F7ABCC44: {r: 0.6627451, g: 0.8032477, b: 0.99215686, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
