@@ -10,6 +10,8 @@ public class EnemyData : MonoBehaviour
     public int currentPatrolGoal = 0;
     public bool patrol;
     public List<Transform> destinations;
+
+    [SerializeField]
     private GameObject[] players;
     private NavMeshAgent agent;
 
