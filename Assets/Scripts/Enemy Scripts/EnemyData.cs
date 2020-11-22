@@ -27,7 +27,8 @@ public class EnemyData : MonoBehaviour
         dumpage_Monster,
         icePick,
         buckthorn,
-        chaotic_Water_Spirit
+        chaotic_Water_Spirit,
+        flinger,
     }
 
     public enemyType enemy = enemyType.buckthorn;
@@ -35,10 +36,19 @@ public class EnemyData : MonoBehaviour
     public float icePickRange = 5.0f;
     public static List<GameObject> icePickEnemies = new List<GameObject>();
 
-    
+    public float enemyScale = 1.0f;
+    public float lowerBoundEnemyScale = 0.5f;
+    public float upperBoundEnemyScale = 1.5f;
+
+    void DetermineEnemyScale()
+    {
+        enemyScale = Random.Range(lowerBoundEnemyScale, upperBoundEnemyScale);
+        transform.localScale = new Vector3(1.0f, 1.0f, 1.0f) * enemyScale;
+    }
 
     void Start()
     {
+        DetermineEnemyScale();
         switch (enemy)
         {
             case enemyType.buckthorn:
@@ -58,6 +68,10 @@ public class EnemyData : MonoBehaviour
                 setCombo(8.0f, 10.9f);
                 icePickEnemies.Add(this.gameObject);
                 break;
+            case enemyType.flinger:
+                setHealth(150.0f);
+                setCombo(0.0f, 10.0f);
+                break;
             default:
                 break;
         }
@@ -68,8 +82,8 @@ public class EnemyData : MonoBehaviour
 
     public void setHealth(float hp)
     {
-        _maxHealth = hp;
-        _health = hp;
+        _maxHealth = hp * enemyScale;
+        _health = hp * enemyScale;
     }
 
     public float getHealth()
@@ -98,10 +112,10 @@ public class EnemyData : MonoBehaviour
     protected void setCombo(float damage, float range)
     {
         //Damage values for combo hits 1/2/3, animation length for combo hits 1/2/3
-        _damageValues = damage;
-        _range = range;
+        _damageValues = damage * enemyScale;
+        _range = range * enemyScale;
     }
-    
+
     public NavMeshAgent getNavMeshAgent()
     {
         return agent;

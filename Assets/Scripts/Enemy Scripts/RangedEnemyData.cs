@@ -1,0 +1,59 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class RangedEnemyData : MonoBehaviour
+{
+    public EnemyData enemyData;
+    public GameObject flingable;
+
+    public Transform target;
+    public float tossAngle = 1.0f;
+    public float speed = 50.0f;
+
+    public int poolSize = 4;
+
+    List<GameObject> _flingables = new List<GameObject>();
+
+    int _key = 0;
+
+
+    void MakePool()
+    {
+        flingable.transform.localScale = (flingable.transform.localScale*enemyData.enemyScale) *0.98f;
+        for (int i = 0; i < poolSize; i++)
+        {
+            var temp = GameObject.Instantiate(flingable);
+            temp.SetActive(false);
+            temp.transform.position = gameObject.transform.position;
+            temp.GetComponent<Flingable>().damage = enemyData._damageValues;
+            _flingables.Add(temp);
+        }
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        MakePool();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+    }
+
+    public void Fling()
+    {
+        _flingables[_key].SetActive(true);
+        _flingables[_key].transform.position = gameObject.transform.position + new Vector3(0.0f, 1f, 0.0f);
+
+        //@Temp: remove after values are set in stone
+        _flingables[_key].GetComponent<Flingable>().damage = enemyData._damageValues;
+
+        _flingables[_key].GetComponent<Rigidbody>().velocity =
+         ((target.position - gameObject.transform.position).normalized + new Vector3(0.0f,tossAngle,0.0f)) * (speed * 100.0f) * Time.deltaTime;
+        _flingables[_key].transform.LookAt(target,gameObject.transform.up);
+      
+        _key = (_key + 1) % _flingables.Count;
+    }
+}
