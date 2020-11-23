@@ -47,7 +47,7 @@ public class FlingerTrack : StateMachineBehaviour
         {
             rangedEnemyData.target = closestPlayer.transform;
             enemy.transform.LookAt(closestPlayer.transform);
-            animator.SetBool("attack", true);
+            animator.SetBool("attack", rangedEnemyData.CanFling());
         }
         else
         {

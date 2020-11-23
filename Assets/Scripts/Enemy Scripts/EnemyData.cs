@@ -29,6 +29,7 @@ public class EnemyData : MonoBehaviour
         buckthorn,
         chaotic_Water_Spirit,
         flinger,
+        dumpageMiniBoss,
     }
 
     public enemyType enemy = enemyType.buckthorn;
@@ -70,7 +71,11 @@ public class EnemyData : MonoBehaviour
                 break;
             case enemyType.flinger:
                 setHealth(150.0f);
-                setCombo(0.0f, 30.0f);
+                setCombo(15.0f, 30.0f);
+                break;
+            case enemyType.dumpageMiniBoss:
+                setHealth(350.0f);
+                setCombo(20.0f, 30.0f);
                 break;
             default:
                 break;

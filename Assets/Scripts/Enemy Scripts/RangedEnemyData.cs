@@ -41,10 +41,23 @@ public class RangedEnemyData : MonoBehaviour
     {
     }
 
+    public bool CanFling()
+    {
+        bool temp = false;
+
+        foreach (var fling in _flingables)
+        {
+            if (!fling.activeSelf)
+                temp = true;
+        }
+
+        return temp;
+    }
+
     public void Fling()
     {
         _flingables[_key].SetActive(true);
-        _flingables[_key].transform.position = gameObject.transform.position + new Vector3(0.0f, 1f, 0.0f);
+        _flingables[_key].transform.position = gameObject.transform.position + new Vector3(0.0f, 1f, 0.0f) + gameObject.transform.forward;
 
         //@Temp: remove after values are set in stone
         _flingables[_key].GetComponent<Flingable>().damage = enemyData._damageValues;
@@ -52,9 +65,9 @@ public class RangedEnemyData : MonoBehaviour
         var tPos = target.position - gameObject.transform.position;
 
         _flingables[_key].GetComponent<Rigidbody>().velocity =
-         (tPos + new Vector3(0.0f,tossAngle,0.0f)).normalized * (speed * tPos.magnitude) * Time.deltaTime;
+         (tPos + new Vector3(0.0f, tossAngle, 0.0f)).normalized * (speed * tPos.magnitude);
         _flingables[_key].GetComponent<Flingable>().target = target;
-      
+
         _key = (_key + 1) % _flingables.Count;
     }
 }

@@ -848,7 +848,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  lifetime: 4
+  hasLifetime: 1
+  lifetime: 1
   target: {fileID: 0}
 --- !u!54 &2100289105360725493
 Rigidbody:
