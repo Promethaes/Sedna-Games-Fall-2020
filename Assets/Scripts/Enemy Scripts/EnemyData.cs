@@ -36,6 +36,7 @@ public class EnemyData : MonoBehaviour
     public float icePickRange = 5.0f;
     public static List<GameObject> icePickEnemies = new List<GameObject>();
 
+    public bool randomScale = true;
     public float enemyScale = 1.0f;
     public float lowerBoundEnemyScale = 0.5f;
     public float upperBoundEnemyScale = 1.5f;
@@ -46,9 +47,8 @@ public class EnemyData : MonoBehaviour
         transform.localScale = new Vector3(1.0f, 1.0f, 1.0f) * enemyScale;
     }
 
-    void Start()
+    public void Init()
     {
-        DetermineEnemyScale();
         switch (enemy)
         {
             case enemyType.buckthorn:
@@ -70,14 +70,23 @@ public class EnemyData : MonoBehaviour
                 break;
             case enemyType.flinger:
                 setHealth(150.0f);
-                setCombo(0.0f, 10.0f);
+                setCombo(0.0f, 30.0f);
                 break;
             default:
                 break;
         }
 
+        searchRadius *= enemyScale;
+
         players = GameObject.FindGameObjectsWithTag("Player");
         agent = this.GetComponent<NavMeshAgent>();
+    }
+
+    void Start()
+    {
+        if (randomScale)
+            DetermineEnemyScale();
+        Init();
     }
 
     public void setHealth(float hp)

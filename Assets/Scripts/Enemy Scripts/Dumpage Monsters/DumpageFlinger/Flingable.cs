@@ -8,6 +8,7 @@ public class Flingable : MonoBehaviour
 
     public float lifetime = 4.0f;
     float _lifetime = 4.0f;
+    public Transform target;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,9 @@ public class Flingable : MonoBehaviour
             _lifetime = lifetime;
             gameObject.SetActive(false);
         }
+
+        transform.LookAt(target);
+
     }
 
     private void OnTriggerEnter(Collider other)

@@ -20,7 +20,6 @@ public class RangedEnemyData : MonoBehaviour
 
     void MakePool()
     {
-        flingable.transform.localScale = (flingable.transform.localScale*enemyData.enemyScale) *0.98f;
         for (int i = 0; i < poolSize; i++)
         {
             var temp = GameObject.Instantiate(flingable);
@@ -50,9 +49,11 @@ public class RangedEnemyData : MonoBehaviour
         //@Temp: remove after values are set in stone
         _flingables[_key].GetComponent<Flingable>().damage = enemyData._damageValues;
 
+        var tPos = target.position - gameObject.transform.position;
+
         _flingables[_key].GetComponent<Rigidbody>().velocity =
-         ((target.position - gameObject.transform.position).normalized + new Vector3(0.0f,tossAngle,0.0f)) * (speed * 100.0f) * Time.deltaTime;
-        _flingables[_key].transform.LookAt(target,gameObject.transform.up);
+         (tPos + new Vector3(0.0f,tossAngle,0.0f)).normalized * (speed * tPos.magnitude) * Time.deltaTime;
+        _flingables[_key].GetComponent<Flingable>().target = target;
       
         _key = (_key + 1) % _flingables.Count;
     }

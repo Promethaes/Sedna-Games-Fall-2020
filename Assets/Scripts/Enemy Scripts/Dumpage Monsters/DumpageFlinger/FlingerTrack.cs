@@ -42,20 +42,17 @@ public class FlingerTrack : StateMachineBehaviour
 
 
         var mag = (enemy.transform.position - closestPlayer.transform.position).magnitude;
-        if (mag < enemyData.searchRadius + 5)
-        {
-            agent.SetDestination(closestPlayer.transform.position);
-        }
-        else
-        {
-            agent.SetDestination(enemy.transform.position);
-            animator.SetBool("tracking", false);
-            animator.SetFloat("idleTime", 2.0f);
-        }
+        agent.SetDestination(enemy.transform.position);
         if (mag <= enemyData._range)
         {
             rangedEnemyData.target = closestPlayer.transform;
+            enemy.transform.LookAt(closestPlayer.transform);
             animator.SetBool("attack", true);
+        }
+        else
+        {
+            animator.SetBool("tracking", false);
+            animator.SetFloat("idleTime", 2.0f);
         }
 
     }
