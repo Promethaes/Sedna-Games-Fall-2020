@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     // Jump stuff
     private bool _jumped = false;
     private bool _doubleJumped = false;
-    private float _jumpCooldown = 0.0f;
+    private float _jumpCooldown = 0.0f;     // @Deprecated?
 
     // Dash stuff
     private bool _dashed = false;
