@@ -14,14 +14,6 @@ public class CheckpointManager : MonoBehaviour
         playerManager = FindObjectOfType<GamePlayerManager>();    
     }
 
-    private void Update() 
-    {
-        RaycastHit player;
-        if (counter < spawnPoints.Length-1 && Physics.SphereCast(spawnPoints[counter+1].position, 10.0f, Vector3.zero, out player) && player.transform.tag == "Player")
-        {
-            newSpawn();
-        }
-    }
     public Vector3 getSpawn()
     {
         return spawnPoints[counter].position;

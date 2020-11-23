@@ -171,8 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac37fb6393a7834dbccd56bafc5aaa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerChoice: {fileID: 1860607805284674449, guid: 74d9d7f0634eac94f9602509dc4c5fbf,
-    type: 3}
   playerSetupMenu: {fileID: 7074873132206707100, guid: 2a720e15d2dbdce4cbbcf59bb5943100,
     type: 3}
   playerInput: {fileID: 2607027103860855520}

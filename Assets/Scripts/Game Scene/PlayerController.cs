@@ -8,9 +8,9 @@ public class PlayerController : MonoBehaviour
 {
 
     [Header("Player variables")]
-    [SerializeField] private float moveSpeed = 5.0f;
-    [SerializeField] private float jumpSpeed = 10.0f;
-    [SerializeField] private float dashSpeed = 2.0f;
+    [SerializeField] private float moveSpeed = 12.0f;
+    [SerializeField] private float jumpSpeed = 3.0f;
+    [SerializeField] private float dashSpeed = 2.5f;
 
     [Header("Player abilities")]
     // Default mesh is turtle, if a turtle has bison abilities, either this or the player mesh in GameInputHandler did not get set properly
@@ -82,14 +82,16 @@ public class PlayerController : MonoBehaviour
         _comboDuration -= Time.deltaTime;
         _animationDuration -= Time.deltaTime;
 
+        if (!downed)
+        {
+            if (insideCastingZone)
+                _UseAbility();
 
-        if (insideCastingZone)
-            _UseAbility();
-
-        if (attack)
-            _Attack();
-        if (downed)
-            _Revive();
+            if (attack)
+                _Attack();
+            if (revive)
+                _Revive();
+        }
     }
 
  //Physics update (FixedUpdate); updates at set intervals
@@ -99,20 +101,22 @@ public class PlayerController : MonoBehaviour
         _dashDuration -= Time.fixedDeltaTime;
         _dashCooldown -= Time.fixedDeltaTime;
 
-        //Jump Movement
-        if (isJumping == 1.0f)
-            _Jump();
+        if (!downed)
+        {
+            //Jump Movement
+            if (isJumping == 1.0f)
+                _Jump();
 
-        //Dash Movement
-        if (isDashing == 1.0f)
-            _Dash();
+            //Dash Movement
+            if (isDashing == 1.0f)
+                _Dash();
+        }
     }
 
     //Called after physics (FixedUpdate); used to prevent sliding on slopes due to high gravity
     private void LateUpdate() 
     {
         _MouseInput();
-        //TODO: Figure out why sliding happens regardless of y being updated in _Move() in LateUpdate()
         _Move();
     }
 
@@ -178,8 +182,9 @@ public class PlayerController : MonoBehaviour
                     _doubleJumped = false;
                 }
             }
-
-              _rigidbody.velocity = new Vector3(vel.x, y, vel.z);
+                if (downed)
+                    vel = Vector3.zero;
+                _rigidbody.velocity = new Vector3(vel.x, y, vel.z);
         }
     }
 
@@ -273,15 +278,16 @@ public class PlayerController : MonoBehaviour
      void _Revive()
     {
         RaycastHit player;
-        if (Physics.SphereCast(transform.position, 5.0f, Vector3.zero, out player) &&  transform.tag == "Player")
+        if (Physics.Raycast(transform.position, transform.forward, out player, 5.0f) &&  transform.tag == "Player")
         {
-            PlayerController reviver =  player.collider.gameObject.GetComponent<PlayerController>();
-            if (reviver.revive && reviver.GetComponentInParent<PlayerBackend>().hp > 0.0f)
+            PlayerController revivee =  player.collider.gameObject.GetComponent<PlayerController>();
+            if (this.GetComponentInParent<PlayerBackend>().hp > 0.0f)
             {
-                float _hpTransfer = reviver.GetComponentInParent<PlayerBackend>().hp / 2.0f;
-                reviver.GetComponentInParent<PlayerBackend>().hp /= 2.0f;
-                this.GetComponentInParent<PlayerBackend>().hp+= _hpTransfer;
-                downed = false;
+                float _hpTransfer = this.GetComponentInParent<PlayerBackend>().hp / 2.0f;
+                Debug.Log(_hpTransfer);
+                this.GetComponentInParent<PlayerBackend>().hp /= 2.0f;
+                revivee.GetComponentInParent<PlayerBackend>().hp+= _hpTransfer;
+                revivee.downed = false;
             }
         }
     }
