@@ -8,7 +8,7 @@ public class PlayerCharSelectMenu : MonoBehaviour
 
     public int charSelectIndex = 0;
 
-    [SerializeField] private List<PlayerTypeToGameObject> _characterPrefabs = null;
+     public List<PlayerTypeToGameObject> _characterPrefabs = null;
 
     [Header("Scene References")]
     [SerializeField] private GameObject _playerChoice = null;
