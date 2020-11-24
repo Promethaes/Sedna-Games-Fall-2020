@@ -2,10 +2,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public enum PlayerType {
-    BISON,
-    POLAR_BEAR,
-    RATTLESNAKE,
+    
     TURTLE,
+    RATTLESNAKE,
+    POLAR_BEAR,
+    BISON,
 }
 
 public class PlayerConfiguration {
