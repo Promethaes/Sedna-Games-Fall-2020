@@ -13,16 +13,17 @@ public class PlayerCameraAndUI : MonoBehaviour
 
     public void setCameraRect(float x0, float y0, float x1, float y1) {
         var sizeDelta = playerUIPanel.sizeDelta;
+        var invAspectRatio = (float)(Screen.height) / (float)(Screen.width);
         playerUIPanel.sizeDelta = new Vector2(Screen.width, Screen.height);
 
         mainCamera.rect = new Rect(x0, y0, x1, y1);
-        playerUIPanel.localScale = new Vector2(x1, y1);
+        playerUIPanel.localScale = new Vector2(y1, y1);
 
-        var newX = x0 * playerUIPanel.rect.width;
+        // Kinda @Cursed @Ugh
+        var newX = ((x1 != x0 ? 1 / (x1 - x0) : 0) * -0.25f + 0.5f) * (y1 > 0.5f ? 0 : 1) * Screen.width;
         var newY = y0 * playerUIPanel.rect.height;
 
         playerUIPanel.position = new Vector3(newX, newY);
         playerUIPanel.sizeDelta = sizeDelta;
-        Logger.Log("Player UI Panel position after: {0}", playerUIPanel.position);
     }
 }

@@ -10,12 +10,15 @@ public class PlayerHealthUI : MonoBehaviour {
     public Image fillMask;
     public float maximum = 100.0f;
 
-    // [Range(0.0f, 1000.0f)]
     public float currentFill = 100.0f;
 
     [Header("Centre images")]
     [SerializeField] private Image centreImage = null;
     [SerializeField] private List<Sprite> images = new List<Sprite>();
+
+    public void setCharacterImage(int character) {
+        centreImage.sprite = images[character];
+    }
 
     void Start() {
         if(backend == null) {
@@ -25,7 +28,7 @@ public class PlayerHealthUI : MonoBehaviour {
 
         currentFill = maximum = backend.maxHP;
         var index = (int)backend.gameObject.GetComponent<PlayerController>().playerType;
-        centreImage.sprite = images[index];
+        setCharacterImage(index);
     }
 
     void Update() {
