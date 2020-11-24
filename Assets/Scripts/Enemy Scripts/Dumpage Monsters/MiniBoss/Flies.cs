@@ -14,11 +14,15 @@ public class Flies : MonoBehaviour
     float _timer = 1.0f;
 
     public float damage = 10.0f;
+
+    public float lifetime = 3.0f;
+    float _lifetime = 3.0f;
     // Start is called before the first frame update
     void Start()
     {
         _rigid = gameObject.GetComponent<Rigidbody>();
         _timer = maxTime;
+        _lifetime = lifetime;
     }
 
     // Update is called once per frame
@@ -34,6 +38,14 @@ public class Flies : MonoBehaviour
             target.GetComponent<PlayerBackend>().hp -= damage;
             _timer = maxTime;
         }
+        _lifetime -= Time.deltaTime;
+
+        if(_lifetime <= 0.0f)
+        {
+            _lifetime = lifetime;
+            gameObject.SetActive(false);
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
