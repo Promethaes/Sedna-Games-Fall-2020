@@ -61,6 +61,11 @@ public class PlayerController : MonoBehaviour
     public float hopSpeed = 0.25f;
     public bool revive = false;
     public bool downed = false;
+    public SelectionWheelUI wheelUI;
+    public bool selectWheel = false;
+    bool _confirmWheel = false;
+    int _wheelSelection = 0;
+    float _wheelCooldown = 2.0f;
     float _dashDuration = 0.0f;
     float _jumpAnimDuration = 0.0f;
 
@@ -100,6 +105,7 @@ public class PlayerController : MonoBehaviour
         _jumpAnimDuration -= Time.fixedDeltaTime;
         _dashDuration -= Time.fixedDeltaTime;
         _dashCooldown -= Time.fixedDeltaTime;
+        _wheelCooldown -= Time.fixedDeltaTime;
 
         if (!downed)
         {
@@ -116,7 +122,14 @@ public class PlayerController : MonoBehaviour
     //Called after physics (FixedUpdate); used to prevent sliding on slopes due to high gravity
     private void LateUpdate() 
     {
-        _MouseInput();
+        if (selectWheel && _wheelCooldown <= 0.0f)
+            _SelectionWheel();
+        else
+            _MouseInput();
+
+        if (!selectWheel && _confirmWheel)
+            _ConfirmWheel();
+
         _Move();
     }
 
@@ -154,6 +167,59 @@ public class PlayerController : MonoBehaviour
 
         //lock on to target
         playerCamera.transform.LookAt(lookingAt.transform);
+    }
+
+    void _SelectionWheel()
+    {
+        _confirmWheel = true;
+        float absX = Mathf.Abs(mouseInput.x);
+        float absY = Mathf.Abs(mouseInput.y);
+        //NOTE: Sets _wheelSelection to the appropriate animal and highlights their part of the selection wheel
+        if (absX > absY)
+        {
+            if (mouseInput.x > 0.0f)
+            {
+                //set 1, rattlesnake
+                _wheelSelection = 1;
+            }
+            else
+            {
+                //set 3, bison
+                _wheelSelection = 3;
+            }
+        }
+        else if (absY > absX)
+        {
+            if (mouseInput.y > 0.0f)
+            {
+                //set 0, turtle
+                _wheelSelection = 0;
+            }
+            else
+            {
+                //set 2, polar bear
+                _wheelSelection = 2;
+            }
+        }
+        if (absY != absX)
+            wheelUI.highlightWheelUI(_wheelSelection);
+        else
+        {
+            //Turn off highlights
+            _confirmWheel = false;
+            wheelUI.normalizeWheelUI();
+        }
+    }
+
+    void _ConfirmWheel()
+    {
+        wheelUI.hideWheelUI();
+        _confirmWheel = false;
+        if (_wheelSelection != playerType.GetHashCode())
+        {
+        _wheelCooldown = 2.0f;
+        GetComponentInParent<GameInputHandler>().swapPlayer(_wheelSelection);
+        }
     }
 
     void _Move()
