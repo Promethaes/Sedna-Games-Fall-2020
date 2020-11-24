@@ -61,6 +61,11 @@ public class PlayerController : MonoBehaviour
     public float hopSpeed = 0.25f;
     public bool revive = false;
     public bool downed = false;
+    SelectionWheelUI _wheelUI;
+    public bool selectWheel = false;
+    bool _confirmWheel = false;
+    int _wheelSelection = 0;
+    float _wheelCooldown = 2.0f;
     float _dashDuration = 0.0f;
     float _jumpAnimDuration = 0.0f;
 
@@ -73,7 +78,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        _rigidbody =  GetComponent<Rigidbody>();
+        _rigidbody = GetComponent<Rigidbody>();
         _setCombo(10.0f, 15.0f, 20.0f, 0.35f, 0.75f, 1.10f);
     }
 
@@ -94,12 +99,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
- //Physics update (FixedUpdate); updates at set intervals
-    private void FixedUpdate() 
+    //Physics update (FixedUpdate); updates at set intervals
+    private void FixedUpdate()
     {
         _jumpAnimDuration -= Time.fixedDeltaTime;
         _dashDuration -= Time.fixedDeltaTime;
         _dashCooldown -= Time.fixedDeltaTime;
+        _wheelCooldown -= Time.fixedDeltaTime;
 
         if (!downed)
         {
@@ -114,9 +120,24 @@ public class PlayerController : MonoBehaviour
     }
 
     //Called after physics (FixedUpdate); used to prevent sliding on slopes due to high gravity
-    private void LateUpdate() 
+    private void LateUpdate()
     {
-        _MouseInput();
+        if (_wheelUI == null)
+        {
+            _wheelUI = GameObject.Find("SelectionWheel").GetComponent<SelectionWheelUI>();
+            _wheelUI.hideWheelUI();
+        }
+        if (selectWheel && _wheelCooldown <= 0.0f)
+            _SelectionWheel();
+        else
+        {
+            _MouseInput();
+            _wheelUI.hideWheelUI();
+        }
+
+        if (!selectWheel && _confirmWheel)
+            _ConfirmWheel();
+
         _Move();
     }
 
@@ -136,14 +157,14 @@ public class PlayerController : MonoBehaviour
 
     void _MouseInput()
     {
-         if (rotationSpeedInverse < 1.0f)
+        if (rotationSpeedInverse < 1.0f)
             rotationSpeedInverse = 1.0f;
 
         //rotate camera on x z plane
-         transform.rotation = Quaternion.AngleAxis( mouseInput.x / rotationSpeedInverse * _mouseSpeed, Vector3.up) *  transform.rotation;
+        transform.rotation = Quaternion.AngleAxis(mouseInput.x / rotationSpeedInverse * _mouseSpeed, Vector3.up) * transform.rotation;
 
         //increase/decrease height of camera target
-        lookingAt.transform.position = lookingAt.transform.position + new Vector3(0.0f,  mouseInput.y / (rotationSpeedInverse * 10.0f), 0.0f);
+        lookingAt.transform.position = lookingAt.transform.position + new Vector3(0.0f, mouseInput.y / (rotationSpeedInverse * 10.0f), 0.0f);
 
 
         //clamp y position
@@ -156,6 +177,62 @@ public class PlayerController : MonoBehaviour
         playerCamera.transform.LookAt(lookingAt.transform);
     }
 
+    void _SelectionWheel()
+    {
+        _confirmWheel = true;
+        float absX = Mathf.Abs(mouseInput.x);
+        float absY = Mathf.Abs(mouseInput.y);
+        //NOTE: Sets _wheelSelection to the appropriate animal and highlights their part of the selection wheel
+        if (absY > 0.25f || absX > 0.25f)
+        {
+            if (absX >= absY)
+            {
+                if (mouseInput.x > 0.0f)
+                {
+                    //set 1, rattlesnake
+                    _wheelSelection = 1;
+                }
+                else
+                {
+                    //set 3, bison
+                    _wheelSelection = 3;
+                }
+            }
+            else
+            {
+                if (mouseInput.y > 0.0f)
+                {
+                    //set 0, turtle
+                    _wheelSelection = 0;
+                }
+                else
+                {
+                    //set 2, polar bear
+                    _wheelSelection = 2;
+                }
+            }
+            _wheelUI.normalizeWheelUI();
+            _wheelUI.highlightWheelUI(_wheelSelection);
+        }
+        else
+        {
+            //Turn off highlights
+            _confirmWheel = false;
+            _wheelUI.normalizeWheelUI();
+        }
+    }
+
+    void _ConfirmWheel()
+    {
+        _wheelUI.hideWheelUI();
+        _confirmWheel = false;
+        if (_wheelSelection != (int)playerType)
+        {
+            _wheelCooldown = 2.0f;
+            GetComponentInParent<GameInputHandler>().swapPlayer(_wheelSelection);
+        }
+    }
+
     void _Move()
     {
         if (_dashDuration < 0.0f)
@@ -164,7 +241,7 @@ public class PlayerController : MonoBehaviour
             Vector3 vel = Quaternion.AngleAxis(270.0f, Vector3.up) * ((Quaternion.AngleAxis(180, Vector3.up) * (transform.forward * moveInput.x)) + (Quaternion.AngleAxis(90, Vector3.up) * (transform.forward * moveInput.y)));
             vel *= moveSpeed;
 
-            float y =   _rigidbody.velocity.y;
+            float y = _rigidbody.velocity.y;
             //NOTE: Checks for _isGrounded to reduce the effects of gravity such that the player doesn't slide off slopes
             //TODO: Adjust raycast for actual models' radii
             //NOTE: Raycasts downwards for terrain collision, checking at a distance of 0.6f (0.5f radius, 0.1f actual check)
@@ -182,33 +259,33 @@ public class PlayerController : MonoBehaviour
                     _doubleJumped = false;
                 }
             }
-                if (downed)
-                    vel = Vector3.zero;
-                _rigidbody.velocity = new Vector3(vel.x, y, vel.z);
+            if (downed)
+                vel = Vector3.zero;
+            _rigidbody.velocity = new Vector3(vel.x, y, vel.z);
         }
     }
 
     void _Jump()
     {
         //NOTE: Resets the button so that the player doesn't accidentally double jump
-         isJumping = 0.0f;
+        isJumping = 0.0f;
         //NOTE: Jumping adds a slight boost to the x/z direction you move in to simulate push back against the ground
         //NOTE: Gravity is set to -24.525f. To change it: Edit -> Project Settings -> Physics -> y = newGravityValue
         float jump = Mathf.Sqrt(jumpSpeed * -2.0f * -24.525f);
-        
+
         if (_jumpAnimDuration <= 0.0f && _isGrounded && !_jumped)
         {
-            Vector3 vel =  _rigidbody.velocity;
-             _rigidbody.AddForce(new Vector3(vel.x * hopSpeed, jump, vel.z * hopSpeed), ForceMode.Impulse);
+            Vector3 vel = _rigidbody.velocity;
+            _rigidbody.AddForce(new Vector3(vel.x * hopSpeed, jump, vel.z * hopSpeed), ForceMode.Impulse);
             _jumped = true;
             _jumpAnimDuration = 0.3f;
         }
         else if (_jumpAnimDuration <= 0.0f && !_doubleJumped)
         {
-            Vector3 vel =  _rigidbody.velocity;
+            Vector3 vel = _rigidbody.velocity;
             //NOTE: Adjusts double jump to give full jump height rather than being affected by gravity. Remove if necessary
-             _rigidbody.velocity = new Vector3(vel.x, 0.0f, vel.z);
-             _rigidbody.AddForce(new Vector3(vel.x * hopSpeed, jump, vel.z * hopSpeed), ForceMode.Impulse);
+            _rigidbody.velocity = new Vector3(vel.x, 0.0f, vel.z);
+            _rigidbody.AddForce(new Vector3(vel.x * hopSpeed, jump, vel.z * hopSpeed), ForceMode.Impulse);
             _doubleJumped = true;
             _jumpAnimDuration = 0.3f;
         }
@@ -216,22 +293,22 @@ public class PlayerController : MonoBehaviour
 
     void _Dash()
     {
-       //NOTE: Resets the button so that the player doesn't accidentally dash + air dash while holding the button
-         isDashing = 0.0f;
+        //NOTE: Resets the button so that the player doesn't accidentally dash + air dash while holding the button
+        isDashing = 0.0f;
 
         //NOTE: _dashCooldown stops dash chaining that would lead to acceleration
         if (_dashCooldown <= 0.0f && _dashDuration <= 0.0f && !_dashed && _isGrounded)
         {
-            Vector3 vel =  _rigidbody.velocity;
-             _rigidbody.AddForce(new Vector3(vel.x * dashSpeed, 0.0f, vel.z * dashSpeed), ForceMode.Impulse);
+            Vector3 vel = _rigidbody.velocity;
+            _rigidbody.AddForce(new Vector3(vel.x * dashSpeed, 0.0f, vel.z * dashSpeed), ForceMode.Impulse);
             _dashed = true;
             _dashDuration = 0.35f;
             _dashCooldown = 0.5f;
         }
         else if (_dashCooldown <= 0.0f && _dashDuration <= 0.0f && !_airDashed)
         {
-            Vector3 vel =  _rigidbody.velocity;
-             _rigidbody.AddForce(new Vector3(vel.x * dashSpeed, 0.0f, vel.z * dashSpeed), ForceMode.Impulse);
+            Vector3 vel = _rigidbody.velocity;
+            _rigidbody.AddForce(new Vector3(vel.x * dashSpeed, 0.0f, vel.z * dashSpeed), ForceMode.Impulse);
             _airDashed = true;
             _dashDuration = 0.35f;
             _dashCooldown = 0.5f;
@@ -275,18 +352,18 @@ public class PlayerController : MonoBehaviour
         _comboDuration = 2.0f;
     }
 
-     void _Revive()
+    void _Revive()
     {
         RaycastHit player;
-        if (Physics.Raycast(transform.position, transform.forward, out player, 5.0f) &&  transform.tag == "Player")
+        if (Physics.Raycast(transform.position, transform.forward, out player, 5.0f) && transform.tag == "Player")
         {
-            PlayerController revivee =  player.collider.gameObject.GetComponent<PlayerController>();
+            PlayerController revivee = player.collider.gameObject.GetComponent<PlayerController>();
             if (this.GetComponentInParent<PlayerBackend>().hp > 0.0f)
             {
                 float _hpTransfer = this.GetComponentInParent<PlayerBackend>().hp / 2.0f;
                 Debug.Log(_hpTransfer);
                 this.GetComponentInParent<PlayerBackend>().hp /= 2.0f;
-                revivee.GetComponentInParent<PlayerBackend>().hp+= _hpTransfer;
+                revivee.GetComponentInParent<PlayerBackend>().hp += _hpTransfer;
                 revivee.downed = false;
             }
         }
