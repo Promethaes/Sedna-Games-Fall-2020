@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: event:/SoundTest
   guid: 1f16dac872ffec44ba1c64e14be473f3
   Banks:
-  - {fileID: 2541666453576649646}
+  - {fileID: 5558505265601413098}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -75,12 +75,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: -7318821536559481687}
-  - {fileID: 2541666453576649646}
+  - {fileID: 5558505265601413098}
   EditorEvents:
   - {fileID: -8081507151482533053}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 2541666453576649646}
+  - {fileID: 5558505265601413098}
   StringsBanks:
   - {fileID: -7318821536559481687}
   stringsBankWriteTime: 637414876498693091
@@ -118,6 +118,24 @@ MonoBehaviour:
   Path: Assets/Sounds/Primordial/Build/Desktop/Master.bank
   SubDir: 
   lastModified: 637412295756051856
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &5558505265601413098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Sounds/Primordial/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637414876498673141
   LoadResult: 0
   FileSizes: []
   Exists: 1
