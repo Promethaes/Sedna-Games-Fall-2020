@@ -1,0 +1,340 @@
+*   [33m5d13d07 [32m9 minutes ago [mMerge pull request #6 from Promethaes/Wetlands-Branch (HEAD -> Test-Message, origin/master, origin/HEAD, master) [36m[Anthony Smiderle]
+[31m|[m[32m\[m  
+[31m|[m * [33m21ba8cd [32m9 minutes ago [m[Fix] Materials [36m[Anthony]
+[31m|[m *   [33m7102af9 [32m22 minutes ago [mMerge branch 'master' into Wetlands-Branch [36m[Anthony Smiderle]
+[31m|[m [33m|[m[31m\[m  
+[31m|[m [33m|[m[31m/[m  
+[31m|[m[31m/[m[33m|[m   
+* [33m|[m   [33m3ed4ae4 [32m24 minutes ago [mMerge pull request #7 from Promethaes/Merge-Pull-Request-5 [36m[Anthony Smiderle]
+[35m|[m[36m\[m [33m\[m  
+[35m|[m * [33m|[m [33mde5b44c [32m42 minutes ago [m[Fix] Player UI image (origin/Merge-Pull-Request-5) [36m[Daniel Presas]
+[35m|[m * [33m|[m [33m61ac3fc [32m59 minutes ago [m[Fix] Player UI changes [36m[Daniel Presas]
+[35m|[m * [33m|[m [33m9566423 [32m64 minutes ago [m[Fix] Player downed bug [36m[Daniel Presas]
+[35m|[m * [33m|[m [33mac46b4a [32m67 minutes ago [m[Merge] Pull request [36m[Daniel Presas]
+[35m|[m[35m/[m [33m/[m  
+* [33m|[m   [33mb4d96b2 [32m2 hours ago [mMerge pull request #3 from Promethaes/Selection-Wheel [36m[Anthony Smiderle]
+[1;31m|[m[1;32m\[m [33m\[m  
+[1;31m|[m * [33m|[m [33m6398906 [32m2 hours ago [mUpdate PlayerController.cs [36m[Anthony]
+[1;31m|[m * [33m|[m   [33m01cffac [32m2 hours ago [mMerge branch 'master' into Selection-Wheel [36m[Anthony Smiderle]
+[1;31m|[m [1;33m|[m[1;31m\[m [33m\[m  
+[1;31m|[m [1;33m|[m[1;31m/[m [33m/[m  
+[1;31m|[m[1;31m/[m[1;33m|[m [33m|[m   
+* [1;33m|[m [33m|[m   [33m13398fe [32m2 hours ago [mMerge pull request #4 from Promethaes/Enemy-Variants [36m[Synral]
+[1;35m|[m[1;36m\[m [1;33m\[m [33m\[m  
+[1;35m|[m * [1;33m|[m [33m|[m [33mcb9f2c2 [32m2 hours ago [mUpdate Flies.cs [36m[Anthony]
+[1;35m|[m * [1;33m|[m [33m|[m [33mc6cfa09 [32m2 hours ago [m[Add] Flies [36m[Anthony]
+* [1;36m|[m [1;33m|[m [33m|[m [33m3704f7a [32mMon 19:27 [mMerge pull request #1 from Promethaes/Enemy-Variants [36m[Anthony Smiderle]
+[31m|[m[1;36m\[m[1;36m|[m [1;33m|[m [33m|[m 
+[31m|[m * [1;33m|[m [33m|[m   [33m866a734 [32mMon 19:22 [mMerge branch 'master' into Enemy-Variants (origin/Enemy-Variants) [36m[Anthony Smiderle]
+[31m|[m [33m|[m[31m\[m [1;33m\[m [33m\[m  
+[31m|[m [33m|[m[31m/[m [1;33m/[m [33m/[m  
+[31m|[m[31m/[m[33m|[m [1;33m|[m [33m|[m   
+[31m|[m * [1;33m|[m [33m|[m [33md2e077b [32mMon 16:36 [m[Wip] Mini boss [36m[Anthony]
+[31m|[m * [1;33m|[m [33m|[m [33m9a307b4 [32mSun 22:29 [m[Add] Splitter, improved flinger [36m[Anthony]
+[31m|[m * [1;33m|[m [33m|[m [33mcb30b05 [32mSun 17:28 [m[Add] Flingers [36m[Anthony]
+[31m|[m [34m|[m * [33m|[m [33mc186783 [32m2 hours ago [m[Update] Checkpoint Locations [36m[Synral]
+[31m|[m [34m|[m * [33m|[m [33mdd3b39b [32m4 hours ago [m[Update] Wheel UI [36m[Synral]
+[31m|[m [34m|[m * [33m|[m [33m14c8ee2 [32m17 hours ago [m[Add] Character Swapping [36m[Synral]
+[31m|[m [34m|[m[31m/[m [33m/[m  
+[31m|[m[31m/[m[34m|[m [33m|[m   
+[31m|[m [34m|[m * [33m7315a20 [32m89 minutes ago [mShit ton of changes to make things look better (origin/Wetlands-Branch) [36m[hamraj15]
+[31m|[m [34m|[m * [33m32b0dea [32mMon 00:18 [mWater Shader donezo [36m[hamraj15]
+[31m|[m [34m|[m *   [33maac589f [32mSun 21:45 [mMerge branch 'master' into Wetlands-Branch [36m[hamraj15]
+[31m|[m [34m|[m [35m|[m[31m\[m  
+[31m|[m [34m|[m[31m_[m[35m|[m[31m/[m  
+[31m|[m[31m/[m[34m|[m [35m|[m   
+* [34m|[m [35m|[m [33mb3766f9 [32mSun 17:41 [m[Add] meta files [36m[Anthony]
+* [34m|[m [35m|[m [33m13907c1 [32mSun 17:07 [mMerge remote-tracking branch 'origin/master' [36m[Jeremy]
+[1;31m|[m[34m\[m[34m|[m [35m|[m 
+[1;31m|[m * [35m|[m [33mfbe3196 [32mSat 00:08 [m[Merge] Cel Shading on Entities [36m[Anthony]
+[1;31m|[m * [35m|[m   [33m7131a45 [32mFri 23:29 [mMerge branch 'Cel-Shading-' [36m[Anthony]
+[1;31m|[m [1;33m|[m[1;34m\[m [35m\[m  
+[1;31m|[m [1;33m|[m * [35m|[m [33mc0236ae [32mFri 23:27 [m[Add] Edge detection shadow (origin/Cel-Shading-) [36m[Anthony]
+[1;31m|[m [1;33m|[m * [35m|[m [33m807390d [32mFri 21:42 [mOutline stuff (Broken) [36m[hamraj15]
+[1;31m|[m [1;33m|[m * [35m|[m [33mbceafdb [32mFri 01:09 [mCel Shader - No Outlines [36m[hamraj15]
+[1;31m|[m * [1;34m|[m [35m|[m [33mbcf19e7 [32mFri 19:09 [m[Update] Bug fixes, Ability/Cutscene Locations (origin/Level-Implementation) [36m[Synral]
+[1;31m|[m [1;34m|[m[1;34m/[m [35m/[m  
+* [1;34m|[m [35m|[m [33mbf7c924 [32mSun 17:06 [m[Add] Robo Boi [36m[Jeremy]
+[1;34m|[m [1;34m|[m * [33ma72f206 [32mSun 21:45 [mWater Shader [36m[hamraj15]
+[1;34m|[m [1;34m|[m * [33m30b7a9d [32mThu Nov 19 18:04 [mTerrain Object & Textures [36m[hamraj15]
+[1;34m|[m [1;34m|[m[1;34m/[m  
+[1;34m|[m * [33ma12add4 [32mTue Nov 17 19:59 [m[Merge] (origin/Enemy-Testing-3) [36m[Anthony]
+[1;34m|[m * [33mc9cbdd5 [32mTue Nov 17 19:56 [mMerge branch 'PlayerUI' into SAFETY-BRANCH-2 (origin/SAFETY-BRANCH-2) [36m[Anthony]
+[1;34m|[m * [33mb217f60 [32mTue Nov 17 17:40 [mUpdate .gitignore [36m[Anthony]
+[1;34m|[m * [33mfb66c1d [32mTue Nov 17 17:39 [m[Pre-merge] [36m[Anthony]
+[1;34m|[m *   [33m1f83a4f [32mTue Nov 17 15:32 [mMerge remote-tracking branch 'origin/FMOD-Integration' [36m[Anthony]
+[1;34m|[m [1;35m|[m[1;36m\[m  
+[1;34m|[m [1;35m|[m * [33m8f5e246 [32mTue Nov 10 13:10 [m[Update] gitignore (origin/FMOD-Integration) [36m[Daniel Presas]
+[1;34m|[m [1;35m|[m * [33m37b6167 [32mTue Nov 10 12:11 [m[Add] FMOD Integration (test in Start Menu) [36m[Daniel Presas]
+[1;34m|[m [1;35m|[m *   [33m35b5304 [32mTue Nov 10 10:15 [mMerge branch 'fmod-banks' into FMOD-Integration [36m[Daniel Presas]
+[1;34m|[m [1;35m|[m [31m|[m[32m\[m  
+[1;34m|[m [1;35m|[m [31m|[m * [33mcd3d0e8 [32mTue Oct 27 16:19 [m[add] ZooGame FMOD project (origin/fmod-banks) [36m[Carter Menary]
+[1;34m|[m [1;35m|[m [31m|[m * [33m6455784 [32mTue Oct 27 14:12 [m[add] Primordial .fspro as a placeholder [36m[Carter Menary]
+[1;34m|[m [1;35m|[m [31m|[m * [33m824100b [32mMon Oct 26 21:22 [m[add] Primordial Banks to test stuff out [36m[Carter Menary]
+[1;34m|[m * [31m|[m [32m|[m [33m304d8d8 [32mTue Nov 17 15:27 [m[Update] Assets [36m[Anthony]
+[1;34m|[m * [31m|[m [32m|[m [33m3e8ea68 [32mTue Nov 17 15:22 [m[Merge] [36m[Anthony]
+[1;34m|[m[1;34m/[m [31m/[m [32m/[m  
+* [31m|[m [32m|[m [33me7dfebd [32mTue Nov 17 15:19 [m[Add] Polar Bear and Turtle [36m[Jeremy]
+* [31m|[m [32m|[m [33m043f8a9 [32mTue Nov 17 15:18 [m[Add] Thing [36m[Jeremy]
+* [31m|[m [32m|[m [33m936ff4d [32mTue Nov 17 15:09 [mUpdate TerrainData_6e519ee8-596d-489d-87a4-a356cde88834.asset [36m[Anthony]
+* [31m|[m [32m|[m [33md214ea7 [32mTue Nov 17 15:07 [m[Update] Reorganize Project [36m[Anthony]
+* [31m|[m [32m|[m [33me9f0498 [32mMon Nov 16 20:56 [m[Update] Cleanup (origin/Xinput-DLL, origin/UserMetricsLogger, origin/Cleanup) [36m[Synral]
+* [31m|[m [32m|[m [33m294f3ab [32mMon Nov 16 19:33 [m[Update] Cutscenes (origin/Gameplay, origin/Backup) [36m[Synral]
+* [31m|[m [32m|[m [33m62e2e7d [32mMon Nov 16 19:15 [m[Update] Attacking [36m[Synral]
+* [31m|[m [32m|[m   [33maeb6695 [32mMon Nov 16 19:13 [mMerge branch 'master' into Gameplay [36m[Synral]
+[33m|[m[34m\[m [31m\[m [32m\[m  
+[33m|[m * [31m|[m [32m|[m [33mb7a4749 [32mMon Nov 16 18:47 [m[Add] Enemy Prefab [36m[Anthony]
+* [34m|[m [31m|[m [32m|[m [33ma87a6ff [32mMon Nov 16 19:13 [m[Update] Reviving, Camera angle [36m[Synral]
+[34m|[m[34m/[m [31m/[m [32m/[m  
+* [31m|[m [32m|[m   [33m5501633 [32mMon Nov 16 18:25 [m[Merge[ [36m[Anthony]
+[35m|[m[36m\[m [31m\[m [32m\[m  
+[35m|[m * [31m|[m [32m|[m [33m7efd7a0 [32mMon Nov 16 01:37 [mAsset Branch Merge For Skybox (origin/Wetlands-Level-Stuff) [36m[hamraj15]
+[35m|[m * [31m|[m [32m|[m   [33m7d1bcaa [32mMon Nov 16 01:25 [mMerge remote-tracking branch 'origin/Assets' into Wetlands-Level-Stuff [36m[hamraj15]
+[35m|[m [1;31m|[m[1;32m\[m [31m\[m [32m\[m  
+[35m|[m [1;31m|[m * [31m|[m [32m|[m [33mabbf1a1 [32mSat Nov 14 00:06 [m[add] skybox [36m[Carter Menary]
+[35m|[m * [1;32m|[m [31m|[m [32m|[m [33m85b653d [32mMon Nov 16 01:22 [mLevel Shite [36m[hamraj15]
+* [1;32m|[m [1;32m|[m [31m|[m [32m|[m   [33m1bf9bac [32mMon Nov 16 17:24 [mMerge remote-tracking branch 'origin/enemy-testing-2' [36m[Anthony]
+[1;33m|[m[1;34m\[m [1;32m\[m [1;32m\[m [31m\[m [32m\[m  
+[1;33m|[m * [1;32m|[m [1;32m|[m [31m|[m [32m|[m [33m18435da [32mMon Nov 16 17:21 [mSome fixes [36m[Evyn Brouwer]
+* [1;34m|[m [1;32m|[m [1;32m|[m [31m|[m [32m|[m [33m5dcdb1d [32mMon Nov 16 17:22 [m[Update] Xinput Manager [36m[Anthony]
+* [1;34m|[m [1;32m|[m [1;32m|[m [31m|[m [32m|[m   [33m6aa6954 [32mMon Nov 16 14:04 [mMerge branch 'Xinput-DLL' into UserMetricsLogger [36m[Anthony]
+[1;35m|[m[1;36m\[m [1;34m\[m [1;32m\[m [1;32m\[m [31m\[m [32m\[m  
+[1;35m|[m * [1;34m|[m [1;32m|[m [1;32m|[m [31m|[m [32m|[m [33m3f3c589 [32mSun Nov 15 23:00 [m[Wip] Xinput DLL, works in untiy, needs refining [36m[Anthony]
+* [1;36m|[m [1;34m|[m [1;32m|[m [1;32m|[m [31m|[m [32m|[m   [33m4967080 [32mSun Nov 15 23:47 [mMerge remote-tracking branch 'origin/Checkpoints' [36m[Anthony]
+[31m|[m[32m\[m [1;36m\[m [1;34m\[m [1;32m\[m [1;32m\[m [31m\[m [32m\[m  
+[31m|[m * [1;36m|[m [1;34m|[m [1;32m|[m [1;32m|[m [31m|[m [32m|[m [33ma8fc0b1 [32mSun Nov 15 15:32 [m[Add] Checkpoints (origin/Checkpoints) [36m[Synral]
+[31m|[m * [1;36m|[m [1;34m|[m [1;32m|[m [1;32m|[m [31m|[m [32m|[m [33mf27b514 [32mThu Nov 12 15:53 [m[Add] Revival System (origin/Revival-System) [36m[Synral]
+[31m|[m [1;32m|[m [1;36m|[m[1;32m_[m[1;34m|[m[1;32m/[m [1;32m/[m [31m/[m [32m/[m  
+[31m|[m [1;32m|[m[1;32m/[m[1;36m|[m [1;34m|[m [1;32m|[m [31m|[m [32m|[m   
+* [1;32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [31m|[m [32m|[m [33m66e698d [32mSun Nov 15 23:47 [mUpdate EnemyTestScene.unity [36m[Anthony]
+* [1;32m|[m [1;36m|[m [1;34m|[m [1;32m|[m [31m|[m [32m|[m   [33me7bdfbf [32mSun Nov 15 23:41 [mMerge remote-tracking branch 'origin/enemy-testing-2' [36m[Anthony]
+[33m|[m[1;34m\[m [1;32m\[m [1;36m\[m [1;34m\[m [1;32m\[m [31m\[m [32m\[m  
+[33m|[m [1;34m|[m [1;32m|[m[1;34m_[m[1;36m|[m[1;34m/[m [1;32m/[m [31m/[m [32m/[m  
+[33m|[m [1;34m|[m[1;34m/[m[1;32m|[m [1;36m|[m [1;32m|[m [31m|[m [32m|[m   
+[33m|[m * [1;32m|[m [1;36m|[m [1;32m|[m [31m|[m [32m|[m [33m62e3b9f [32mSun Nov 15 22:39 [mReeing (origin/enemy-testing-2) [36m[Evyn Brouwer]
+[33m|[m * [1;32m|[m [1;36m|[m [1;32m|[m [31m|[m [32m|[m [33md0d84e4 [32mThu Nov 12 17:41 [mSome animations [36m[Evyn Brouwer]
+[33m|[m * [1;32m|[m [1;36m|[m [1;32m|[m [31m|[m [32m|[m [33m2f0788d [32mWed Nov 11 19:18 [mCreate Garbage Demon Animated.blend.meta [36m[Evyn Brouwer]
+[33m|[m * [1;32m|[m [1;36m|[m [1;32m|[m [31m|[m [32m|[m   [33m5a87918 [32mWed Nov 11 15:13 [mMerge branch 'Assets' into enemy-testing-2 [36m[Evyn Brouwer]
+[33m|[m [35m|[m[1;32m\[m [1;32m\[m [1;36m\[m [1;32m\[m [31m\[m [32m\[m  
+[33m|[m [35m|[m [1;32m|[m [1;32m|[m[1;32m_[m[1;36m|[m[1;32m/[m [31m/[m [32m/[m  
+[33m|[m [35m|[m [1;32m|[m[1;32m/[m[1;32m|[m [1;36m|[m [31m|[m [32m|[m   
+[33m|[m [35m|[m * [1;32m|[m [1;36m|[m [31m|[m [32m|[m [33m5e1f35d [32mWed Nov 11 14:39 [m[Add] Garbage Demon Animations [36m[Jeremy]
+[33m|[m * [36m|[m [1;32m|[m [1;36m|[m [31m|[m [32m|[m [33mbc0338a [32mWed Nov 11 15:12 [mMore Asset Merges [36m[Evyn Brouwer]
+[33m|[m * [36m|[m [1;32m|[m [1;36m|[m [31m|[m [32m|[m [33mdab101a [32mTue Nov 10 15:53 [mMerge branch 'Assets' into enemy-testing-2 [36m[Evyn Brouwer]
+[33m|[m [1;31m|[m[36m\[m[36m|[m [1;32m|[m [1;36m|[m [31m|[m [32m|[m 
+[33m|[m [1;31m|[m * [1;32m|[m [1;36m|[m [31m|[m [32m|[m [33m4742eca [32mTue Nov 10 15:49 [m[Add] Garbage Demon [36m[Jeremy]
+* [1;31m|[m [1;32m|[m [1;32m|[m [1;36m|[m [31m|[m [32m|[m [33md56582d [32mSun Nov 15 23:40 [m... [36m[Anthony]
+* [1;31m|[m [1;32m|[m [1;32m|[m [1;36m|[m [31m|[m [32m|[m [33ma0a47c5 [32mSun Nov 15 23:30 [m... [36m[Anthony]
+* [1;31m|[m [1;32m|[m [1;32m|[m [1;36m|[m [31m|[m [32m|[m   [33mea5693e [32mSun Nov 15 23:30 [mMerge branch 'UserMetricsLogger' [36m[Anthony]
+[1;33m|[m[1;34m\[m [1;31m\[m [1;32m\[m [1;32m\[m [1;36m\[m [31m\[m [32m\[m  
+[1;33m|[m * [1;31m|[m [1;32m|[m [1;32m|[m [1;36m|[m [31m|[m [32m|[m [33m92186b0 [32mSun Nov 15 23:09 [m[Wip] Xinput DLL, works in untiy, needs refining [36m[Anthony]
+[1;33m|[m [1;36m|[m [1;31m|[m[1;36m_[m[1;32m|[m[1;36m_[m[1;32m|[m[1;36m/[m [31m/[m [32m/[m  
+[1;33m|[m [1;36m|[m[1;36m/[m[1;31m|[m [1;32m|[m [1;32m|[m [31m|[m [32m|[m   
+[1;33m|[m * [1;31m|[m [1;32m|[m [1;32m|[m [31m|[m [32m|[m [33m97d19a9 [32mSat Nov 14 06:39 [m[Add] C++ Xinput DLL finished, now to work on the C# side [36m[Anthony]
+[1;33m|[m * [1;31m|[m [1;32m|[m [1;32m|[m [31m|[m [32m|[m [33m5384f38 [32mSat Nov 14 02:25 [mUpdate Gamepad.cpp [36m[Anthony]
+[1;33m|[m * [1;31m|[m [1;32m|[m [1;32m|[m [31m|[m [32m|[m [33m92a3fd0 [32mSat Nov 14 02:22 [m[Wip] Xinput [36m[Anthony]
+[1;33m|[m * [1;31m|[m [1;32m|[m [1;32m|[m [31m|[m [32m|[m [33m704950b [32mFri Nov 13 21:48 [m[Update] Moving around some files, update gitignore [36m[Anthony]
+[1;33m|[m * [1;31m|[m [1;32m|[m [1;32m|[m [31m|[m [32m|[m [33m65c27cd [32mFri Nov 13 21:34 [m[Fix] Small scene issues [36m[Anthony]
+[1;33m|[m * [1;31m|[m [1;32m|[m [1;32m|[m [31m|[m [32m|[m   [33m46b5ae5 [32mTue Nov 10 16:26 [mMerge branch 'master' into UserMetricsLogger [36m[Anthony]
+[1;33m|[m [1;35m|[m[1;32m\[m [1;31m\[m [1;32m\[m [1;32m\[m [31m\[m [32m\[m  
+[1;33m|[m [1;35m|[m [1;32m|[m [1;31m|[m[1;32m_[m[1;32m|[m[1;32m/[m [31m/[m [32m/[m  
+[1;33m|[m [1;35m|[m [1;32m|[m[1;32m/[m[1;31m|[m [1;32m|[m [31m|[m [32m|[m   
+[1;33m|[m [1;35m|[m * [1;31m|[m [1;32m|[m [31m|[m [32m|[m [33m77da229 [32mTue Nov 10 16:25 [m[Merge] [36m[Anthony]
+[1;33m|[m [1;35m|[m * [1;31m|[m [1;32m|[m [31m|[m [32m|[m [33mbd2760c [32mTue Nov 10 16:17 [mMerge remote-tracking branch 'origin/enemy-testing-2' [36m[Anthony]
+[1;33m|[m [1;35m|[m [31m|[m[1;31m\[m[1;31m|[m [1;32m|[m [31m|[m [32m|[m 
+[1;33m|[m [1;35m|[m [31m|[m * [1;32m|[m [31m|[m [32m|[m [33m07b582d [32mTue Nov 10 15:49 [mMultiple Player Support for AI [36m[Evyn Brouwer]
+[1;33m|[m [1;35m|[m [31m|[m * [1;32m|[m [31m|[m [32m|[m [33md5066dc [32mTue Nov 10 14:22 [mMerge number 1 [36m[Evyn Brouwer]
+[1;33m|[m [1;35m|[m [31m|[m * [1;32m|[m [31m|[m [32m|[m [33m1ce3dee [32mThu Oct 29 18:15 [mMerge branch 'Assets' into enemy-testing-2 [36m[Evyn Brouwer]
+[1;33m|[m [1;35m|[m [31m|[m [33m|[m[1;32m\[m[1;32m|[m [31m|[m [32m|[m 
+[1;33m|[m [1;35m|[m [31m|[m * [1;32m|[m [31m|[m [32m|[m [33mc79e236 [32mThu Oct 29 18:08 [mSome Animation Stuff [36m[Evyn Brouwer]
+[1;33m|[m [1;35m|[m [31m|[m * [1;32m|[m [31m|[m [32m|[m [33ma09b3a7 [32mSun Oct 25 12:56 [mPrefab [36m[Evyn Brouwer]
+[1;33m|[m [1;35m|[m * [34m|[m [1;32m|[m [31m|[m [32m|[m   [33mea2b09e [32mTue Nov 10 16:14 [mMerge remote-tracking branch 'origin/Cutscenes-Functionality' [36m[Anthony]
+[1;33m|[m [1;35m|[m [35m|[m[36m\[m [34m\[m [1;32m\[m [31m\[m [32m\[m  
+[1;33m|[m [1;35m|[m [35m|[m * [34m|[m [1;32m|[m [31m|[m [32m|[m [33m7f20339 [32mTue Nov 10 15:08 [m[Add] Cutscene Functionality (origin/Cutscenes-Functionality) [36m[Synral]
+[1;33m|[m [1;35m|[m * [36m|[m [34m|[m [1;32m|[m [31m|[m [32m|[m [33m5921407 [32mTue Nov 10 16:13 [m... [36m[Anthony]
+[1;33m|[m * [36m|[m [36m|[m [34m|[m [1;32m|[m [31m|[m [32m|[m [33mf998267 [32mTue Nov 10 16:08 [m[Update] UML [36m[Anthony]
+[1;33m|[m * [36m|[m [36m|[m [34m|[m [1;32m|[m [31m|[m [32m|[m [33mc68700d [32mSun Nov 8 04:11 [m[Wip] Death tracker [36m[Anthony]
+[1;33m|[m * [36m|[m [36m|[m [34m|[m [1;32m|[m [31m|[m [32m|[m [33m846b03c [32mSat Nov 7 20:44 [m[Wip] User Metrics Logger [36m[Anthony]
+[1;33m|[m * [36m|[m [36m|[m [34m|[m [1;32m|[m [31m|[m [32m|[m [33me0ac4df [32mSat Nov 7 19:41 [m[Wip] Metrics Logger [36m[Anthony]
+[1;33m|[m [31m|[m [36m|[m[31m_[m[36m|[m[31m_[m[34m|[m[31m_[m[1;32m|[m[31m/[m [32m/[m  
+[1;33m|[m [31m|[m[31m/[m[36m|[m [36m|[m [34m|[m [1;32m|[m [32m|[m   
+* [31m|[m [36m|[m [36m|[m [34m|[m [1;32m|[m [32m|[m   [33m7dffc5d [32mThu Nov 12 19:20 [m[Add] the game back to the repo [36m[Anthony]
+[1;31m|[m[36m\[m [31m\[m [36m\[m [36m\[m [34m\[m [1;32m\[m [32m\[m  
+[1;31m|[m [36m|[m [31m|[m[36m/[m [36m/[m [34m/[m [1;32m/[m [32m/[m  
+[1;31m|[m [36m|[m[36m/[m[31m|[m [36m|[m [34m|[m [1;32m|[m [32m|[m   
+[1;31m|[m * [31m|[m [36m|[m [34m|[m [1;32m|[m [32m|[m [33mad7b069 [32mMon Nov 9 20:22 [mHDRP Go Bye Bye [36m[hamraj15]
+[1;31m|[m * [31m|[m [36m|[m [34m|[m [1;32m|[m [32m|[m   [33mcbbced2 [32mSun Nov 8 16:03 [mMerge remote-tracking branch 'origin/Assets' into Wetlands-Level-Stuff [36m[Anthony]
+[1;31m|[m [1;33m|[m[1;32m\[m [31m\[m [36m\[m [34m\[m [1;32m\[m [32m\[m  
+[1;31m|[m [1;33m|[m [1;32m|[m [31m|[m[1;32m_[m[36m|[m[1;32m_[m[34m|[m[1;32m/[m [32m/[m  
+[1;31m|[m [1;33m|[m [1;32m|[m[1;32m/[m[31m|[m [36m|[m [34m|[m [32m|[m   
+[1;31m|[m [1;33m|[m * [31m|[m [36m|[m [34m|[m [32m|[m [33m409eda3 [32mThu Oct 29 17:42 [m[Add] Base Polar bear animations [36m[Jeremy]
+[1;31m|[m [1;33m|[m * [31m|[m [36m|[m [34m|[m [32m|[m [33m8422aab [32mMon Oct 26 17:52 [m[Add] Polar bear model [36m[Jeremy]
+[1;31m|[m * [1;34m|[m [31m|[m [36m|[m [34m|[m [32m|[m [33mf3b6638 [32mWed Nov 4 00:52 [mMore URP Shiz (origin/URP-Change) [36m[hamraj15]
+[1;31m|[m * [1;34m|[m [31m|[m [36m|[m [34m|[m [32m|[m   [33m271cba1 [32mTue Nov 3 20:37 [mMerge remote-tracking branch 'origin/environment-assets' into URP-Change [36m[hamraj15]
+[1;31m|[m [1;35m|[m[1;36m\[m [1;34m\[m [31m\[m [36m\[m [34m\[m [32m\[m  
+[1;31m|[m [1;35m|[m * [1;34m|[m [31m|[m [36m|[m [34m|[m [32m|[m [33m1137973 [32mTue Nov 3 20:24 [m[fix] Fixed Dead Tree UV, Updated textures for everything [36m[Carter Menary]
+[1;31m|[m * [1;36m|[m [1;34m|[m [31m|[m [36m|[m [34m|[m [32m|[m [33mb9c5289 [32mTue Nov 3 20:34 [mURP Changes [36m[hamraj15]
+[1;31m|[m [36m|[m [1;36m|[m[36m_[m[1;34m|[m[36m_[m[31m|[m[36m/[m [34m/[m [32m/[m  
+[1;31m|[m [36m|[m[36m/[m[1;36m|[m [1;34m|[m [31m|[m [34m|[m [32m|[m   
+[1;31m|[m * [1;36m|[m [1;34m|[m [31m|[m [34m|[m [32m|[m [33m60ca2c4 [32mTue Nov 3 16:46 [m[Update] Spawn Location (origin/Movement-Refinement) [36m[Synral]
+[1;31m|[m * [1;36m|[m [1;34m|[m [31m|[m [34m|[m [32m|[m   [33m555d4f4 [32mTue Nov 3 16:24 [mMerge branch 'Wetlands-Level-Stuff' into Movement-Refinement [36m[Anthony]
+[1;31m|[m [31m|[m[32m\[m [1;36m\[m [1;34m\[m [31m\[m [34m\[m [32m\[m  
+[1;31m|[m [31m|[m * [1;36m|[m [1;34m|[m [31m|[m [34m|[m [32m|[m [33m6be76a4 [32mFri Oct 30 14:47 [mMany More Environment Changes [36m[hamraj15]
+[1;31m|[m [31m|[m * [1;36m|[m [1;34m|[m [31m|[m [34m|[m [32m|[m [33m4076249 [32mFri Oct 30 00:49 [mAbsolute Shit Ton of Environment Changes [36m[hamraj15]
+[1;31m|[m [31m|[m * [1;36m|[m [1;34m|[m [31m|[m [34m|[m [32m|[m [33m0bc0050 [32mWed Oct 28 20:42 [mObject2Terrain Script Added [36m[hamraj15]
+[1;31m|[m * [32m|[m [1;36m|[m [1;34m|[m [31m|[m [34m|[m [32m|[m [33m05a172f [32mTue Nov 3 15:05 [m[Update] Dash Duration Reduction [36m[Synral]
+[1;31m|[m * [32m|[m [1;36m|[m [1;34m|[m [31m|[m [34m|[m [32m|[m [33mcc95246 [32mTue Nov 3 12:50 [m[Update] Movement System & Camera System [36m[Synral]
+[1;31m|[m [31m|[m [32m|[m[31m_[m[1;36m|[m[31m_[m[1;34m|[m[31m/[m [34m/[m [32m/[m  
+[1;31m|[m [31m|[m[31m/[m[32m|[m [1;36m|[m [1;34m|[m [34m|[m [32m|[m   
+[1;31m|[m * [32m|[m [1;36m|[m [1;34m|[m [34m|[m [32m|[m   [33m02ea768 [32mThu Oct 29 13:56 [m[Fix] Cleanup again (origin/music-wetlands) [36m[Daniel Presas]
+[1;31m|[m [32m|[m[34m\[m [32m\[m [1;36m\[m [1;34m\[m [34m\[m [32m\[m  
+[1;31m|[m [32m|[m [34m|[m[32m/[m [1;36m/[m [1;34m/[m [34m/[m [32m/[m  
+[1;31m|[m [32m|[m[32m/[m[34m|[m [1;36m|[m [1;34m|[m [34m|[m [32m|[m   
+[1;31m|[m * [34m|[m [1;36m|[m [1;34m|[m [34m|[m [32m|[m [33m01ad81b [32mTue Oct 27 01:52 [m... [36m[Anthony]
+[1;31m|[m * [34m|[m [1;36m|[m [1;34m|[m [34m|[m [32m|[m [33m533b4d4 [32mTue Oct 27 01:51 [m[Add] Fmod and change camera angle [36m[Anthony]
+[1;31m|[m [32m|[m [34m|[m[32m_[m[1;36m|[m[32m_[m[1;34m|[m[32m_[m[34m|[m[32m/[m  
+[1;31m|[m [32m|[m[32m/[m[34m|[m [1;36m|[m [1;34m|[m [34m|[m   
+[1;31m|[m * [34m|[m [1;36m|[m [1;34m|[m [34m|[m [33mf1c54b3 [32mMon Oct 26 19:26 [m[Fix] Multiple players [36m[Anthony]
+[1;31m|[m * [34m|[m [1;36m|[m [1;34m|[m [34m|[m [33mdad878b [32mMon Oct 26 18:24 [m[Add] make level look cool and death plane [36m[Anthony]
+[1;31m|[m * [34m|[m [1;36m|[m [1;34m|[m [34m|[m   [33m8f17828 [32mMon Oct 26 17:50 [mMerge remote-tracking branch 'origin/environment-assets' [36m[Anthony]
+[1;31m|[m [35m|[m[1;36m\[m [34m\[m [1;36m\[m [1;34m\[m [34m\[m  
+[1;31m|[m [35m|[m [1;36m|[m [34m|[m[1;36m/[m [1;34m/[m [34m/[m  
+[1;31m|[m [35m|[m [1;36m|[m[1;36m/[m[34m|[m [1;34m|[m [34m|[m   
+[1;31m|[m [35m|[m * [34m|[m [1;34m|[m [34m|[m [33mf036737 [32mMon Oct 26 17:30 [m[fix] HDRP compatible mats [36m[Carter Menary]
+[1;31m|[m * [36m|[m [34m|[m [1;34m|[m [34m|[m [33mc9d5319 [32mMon Oct 26 17:50 [m[Merge] [36m[Anthony]
+[1;31m|[m * [36m|[m [34m|[m [1;34m|[m [34m|[m   [33mb4cd155 [32mMon Oct 26 17:27 [mMerge remote-tracking branch 'origin/PlayerUI' [36m[Anthony]
+[1;31m|[m [1;31m|[m[1;32m\[m [36m\[m [34m\[m [1;34m\[m [34m\[m  
+[1;31m|[m * [1;32m\[m [36m\[m [34m\[m [1;34m\[m [34m\[m   [33mbb01bd2 [32mMon Oct 26 17:25 [mMerge branch 'Wetlands-Level-Stuff' [36m[Anthony]
+[1;31m|[m [1;34m|[m[1;34m\[m [1;32m\[m [36m\[m [34m\[m [1;34m\[m [34m\[m  
+[1;31m|[m [1;34m|[m [1;34m|[m[1;34m_[m[1;32m|[m[1;34m_[m[36m|[m[1;34m_[m[34m|[m[1;34m/[m [34m/[m  
+[1;31m|[m [1;34m|[m[1;34m/[m[1;34m|[m [1;32m|[m [36m|[m [34m|[m [34m|[m   
+[1;31m|[m [1;34m|[m * [1;32m|[m [36m|[m [34m|[m [34m|[m [33mede7f56 [32mMon Oct 26 16:32 [mMats & Texture Updates [36m[hamraj15]
+[1;31m|[m * [1;34m|[m [1;32m|[m [36m|[m [34m|[m [34m|[m [33mc9e9249 [32mMon Oct 26 15:35 [m[Add] Props to level [36m[Anthony]
+[1;31m|[m [1;34m|[m[1;34m/[m [1;32m/[m [36m/[m [34m/[m [34m/[m  
+[1;31m|[m * [1;32m|[m [36m|[m [34m|[m [34m|[m [33m8844766 [32mMon Oct 26 02:14 [mLevel Textures & Materials, Correct Levels, Likkle Platforming [36m[hamraj15]
+[1;31m|[m * [1;32m|[m [36m|[m [34m|[m [34m|[m   [33m9941ddb [32mMon Oct 26 01:38 [mMerge branch 'master' into Wetlands-Level-Stuff [36m[hamraj15]
+[1;31m|[m [1;35m|[m[1;36m\[m [1;32m\[m [36m\[m [34m\[m [34m\[m  
+[1;31m|[m * [1;36m|[m [1;32m|[m [36m|[m [34m|[m [34m|[m [33m5588b3b [32mSun Oct 25 20:55 [mUpdate Wetlands_LT_low.obj [36m[hamraj15]
+* [1;36m|[m [1;36m|[m [1;32m|[m [36m|[m [34m|[m [34m|[m [33m2e31d86 [32mTue Oct 27 01:52 [m... [36m[Anthony]
+* [1;36m|[m [1;36m|[m [1;32m|[m [36m|[m [34m|[m [34m|[m [33m4299458 [32mTue Oct 27 01:51 [m[Add] Fmod and change camera angle [36m[Anthony]
+* [1;36m|[m [1;36m|[m [1;32m|[m [36m|[m [34m|[m [34m|[m [33mb169fa5 [32mMon Oct 26 19:26 [m[Fix] Multiple players [36m[Anthony]
+* [1;36m|[m [1;36m|[m [1;32m|[m [36m|[m [34m|[m [34m|[m [33me22de6b [32mMon Oct 26 18:24 [m[Add] make level look cool and death plane [36m[Anthony]
+* [1;36m|[m [1;36m|[m [1;32m|[m [36m|[m [34m|[m [34m|[m [33m117342e [32mMon Oct 26 17:30 [m[fix] HDRP compatible mats [36m[Carter Menary]
+* [1;36m|[m [1;36m|[m [1;32m|[m [36m|[m [34m|[m [34m|[m [33m8c2d546 [32mMon Oct 26 17:50 [m[Merge] [36m[Anthony]
+* [1;36m|[m [1;36m|[m [1;32m|[m [36m|[m [34m|[m [34m|[m [33m73466ed [32mMon Oct 26 16:32 [mMats & Texture Updates [36m[hamraj15]
+* [1;36m|[m [1;36m|[m [1;32m|[m [36m|[m [34m|[m [34m|[m [33m2b747ed [32mMon Oct 26 15:35 [m[Add] Props to level [36m[Anthony]
+* [1;36m|[m [1;36m|[m [1;32m|[m [36m|[m [34m|[m [34m|[m [33mae52f10 [32mMon Oct 26 02:14 [mLevel Textures & Materials, Correct Levels, Likkle Platforming [36m[hamraj15]
+[34m|[m [1;36m|[m[34m_[m[1;36m|[m[34m_[m[1;32m|[m[34m_[m[36m|[m[34m/[m [34m/[m  
+[34m|[m[34m/[m[1;36m|[m [1;36m|[m [1;32m|[m [36m|[m [34m|[m   
+* [1;36m|[m [1;36m|[m [1;32m|[m [36m|[m [34m|[m [33mde25fd8 [32mThu Oct 29 13:35 [m[Mod] Cleanup [36m[Daniel Presas]
+[1;32m|[m [1;36m|[m[1;32m_[m[1;36m|[m[1;32m/[m [36m/[m [34m/[m  
+[1;32m|[m[1;32m/[m[1;36m|[m [1;36m|[m [36m|[m [34m|[m   
+* [1;36m|[m [1;36m|[m [36m|[m [34m|[m [33mc76cbaa [32mMon Oct 26 16:12 [m[Add] Placeholder images for health bars [36m[Daniel Presas]
+* [1;36m|[m [1;36m|[m [36m|[m [34m|[m [33mecf1a02 [32mMon Oct 26 14:52 [m[Add] Player health UI, only reports self [36m[Daniel Presas]
+[1;36m|[m [1;36m|[m[1;36m/[m [36m/[m [34m/[m  
+[1;36m|[m[1;36m/[m[1;36m|[m [36m|[m [34m|[m   
+* [1;36m|[m [36m|[m [34m|[m [33m80242e3 [32mSun Oct 25 22:00 [m[Add] Turtle blockade [36m[Anthony]
+* [1;36m|[m [36m|[m [34m|[m [33m67e19b5 [32mSun Oct 25 21:23 [m[Add] More level stuff [36m[Anthony]
+* [1;36m|[m [36m|[m [34m|[m [33m21e49d8 [32mSun Oct 25 21:01 [mMerge remote-tracking branch 'origin/Wetlands-Level-Stuff' [36m[Anthony]
+* [1;36m|[m [36m|[m [34m|[m [33mb88518d [32mSun Oct 25 21:00 [m[Add] Shiz [36m[Anthony]
+* [1;36m|[m [36m|[m [34m|[m [33mffe4e5f [32mSun Oct 25 20:30 [mMerge remote-tracking branch 'origin/Wetlands-Level-Stuff' [36m[Anthony]
+[31m|[m[1;36m\[m[1;36m|[m [36m|[m [34m|[m 
+[31m|[m * [36m|[m [34m|[m [33mfd4c608 [32mSun Oct 25 19:10 [mUV Maps Corrected [36m[hamraj15]
+[31m|[m * [36m|[m [34m|[m [33m95acb10 [32mSun Oct 25 17:07 [mLevel Origins Updated [36m[hamraj15]
+[31m|[m * [36m|[m [34m|[m [33mff9395f [32mSun Oct 25 16:54 [mPrettier Level Stuff [36m[hamraj15]
+* [32m|[m [36m|[m [34m|[m [33m17dcfaf [32mSun Oct 25 18:31 [mMerge branch 'Turtle-Blocks' [36m[Anthony]
+* [32m|[m [36m|[m [34m|[m [33m4ebd707 [32mSun Oct 25 18:18 [m... [36m[Anthony]
+* [32m|[m [36m|[m [34m|[m [33mb801df1 [32mSun Oct 25 18:14 [m[Add] Base Stuff [36m[Anthony]
+* [32m|[m [36m|[m [34m|[m [33mfc946d4 [32mSun Oct 25 16:51 [mMerge remote-tracking branch 'origin/enemy-testing-2' [36m[Anthony]
+[32m|[m[32m/[m [36m/[m [34m/[m  
+* [36m|[m [34m|[m [33m8bfe00e [32mSun Oct 25 16:25 [mMerge remote-tracking branch 'origin/environment-assets' [36m[Anthony]
+[33m|[m[36m\[m[36m|[m [34m|[m 
+[33m|[m * [34m|[m [33mcb54a8f [32mSun Oct 25 01:17 [m[add] A few environment asset prefabs [36m[Carter Menary]
+* [34m|[m [34m|[m [33mde3b394 [32mSun Oct 25 01:15 [m[Add] Polar Bear Swim Trigger, updated ability zones (origin/Polar-Bear-and-Spawner) [36m[Anthony]
+* [34m|[m [34m|[m [33mb2111aa [32mSat Oct 24 21:13 [m[Add] Enemy Spawner [36m[Anthony]
+* [34m|[m [34m|[m   [33m2f5f002 [32mSat Oct 24 18:24 [mMerge remote-tracking branch 'origin/Wetlands-Level-Stuff' into Polar-Bear-and-Spawner [36m[Anthony]
+[35m|[m[36m\[m [34m\[m [34m\[m  
+[35m|[m * [34m|[m [34m|[m [33md7c8611 [32mTue Oct 20 23:06 [mWetlands Rough Level [36m[hamraj15]
+[35m|[m [34m|[m[34m/[m [34m/[m  
+* [34m|[m [34m/[m [33mf138c73 [32mFri Oct 23 11:38 [m[Fix] Merge conflict memes on AttackScene [36m[Daniel Presas]
+[34m|[m [34m|[m[34m/[m  
+[34m|[m[34m/[m[34m|[m   
+* [34m|[m [33m17d03b9 [32mThu Oct 22 20:11 [mMerge branch 'Enemy-Testing' [36m[Anthony]
+* [34m|[m [33m31c59b5 [32mThu Oct 22 19:34 [m... [36m[Anthony]
+* [34m|[m [33ma613f74 [32mThu Oct 22 19:33 [mMerge remote-tracking branch 'origin/Game-Loop-Menus' [36m[Anthony]
+* [34m|[m [33m76931f1 [32mThu Oct 22 17:55 [m[Merge] Attack into Abilities [36m[Anthony]
+* [34m|[m   [33mb04e2f1 [32mThu Oct 22 00:05 [mMerge branch 'Abilities' [36m[Anthony]
+[34m|[m[1;32m\[m [34m\[m  
+[34m|[m [1;32m|[m[34m/[m  
+[34m|[m[34m/[m[1;32m|[m   
+[34m|[m * [33m5cb2e8b [32mThu Oct 22 00:05 [m... [36m[Anthony]
+[34m|[m * [33m9f8bd92 [32mThu Oct 22 00:05 [m[Fix] Input stuff [36m[Anthony]
+* [1;32m|[m   [33m1430a14 [32mTue Oct 20 15:33 [mMerge branch 'Enemy-Testing' [36m[Anthony]
+[1;32m|[m[1;34m\[m [1;32m\[m  
+[1;32m|[m [1;34m|[m[1;32m/[m  
+[1;32m|[m[1;32m/[m[1;34m|[m   
+[1;32m|[m * [33m42af5e7 [32mTue Oct 20 15:28 [mMore AI Stuff [36m[Evyn Brouwer]
+[1;32m|[m * [33m817b0e6 [32mMon Oct 19 20:09 [mIce Pick [36m[Evyn Brouwer]
+[1;32m|[m * [33m43b0e1d [32mTue Oct 13 15:36 [mAI State Machine Stuff [36m[Evyn Brouwer]
+* [1;34m|[m [33mb8ee884 [32mTue Oct 20 15:28 [m[Add] more ability stuff [36m[Anthony]
+* [1;34m|[m [33m5907406 [32mFri Oct 16 18:58 [m[Add] Polar bear can "swim" [36m[Anthony]
+* [1;34m|[m [33m6e1f06d [32mFri Oct 16 16:41 [m[Add] Bubble shield [36m[Anthony]
+* [1;34m|[m [33m7de03d2 [32mWed Oct 14 20:26 [m[Wip] Bubble shield [36m[Anthony]
+* [1;34m|[m   [33m0976e88 [32mWed Oct 14 15:46 [mMerge branch 'CharSelect' [36m[Anthony]
+[1;35m|[m[1;36m\[m [1;34m\[m  
+[1;35m|[m * [1;34m|[m [33mb12cfd1 [32mMon Oct 12 21:42 [m[Add] Character select...? [36m[Anthony]
+[1;35m|[m * [1;34m|[m [33mabef1fe [32mMon Oct 12 02:24 [m[Wip] create players in menu scene, transfer to game scene [36m[Anthony]
+* [1;36m|[m [1;34m|[m [33m1cacc4b [32mSun Oct 11 21:10 [mMerge branch 'CharSelect' [36m[Anthony]
+[31m|[m[1;36m\[m[1;36m|[m [1;34m|[m 
+[31m|[m * [1;34m|[m [33mc210d14 [32mSun Oct 11 21:08 [m[Wip] Char select menu [36m[Anthony]
+[31m|[m * [1;34m|[m [33m466450f [32mSun Oct 11 19:59 [m[Add] Char select menu [36m[Anthony]
+[31m|[m * [1;34m|[m [33m85c0996 [32mTue Oct 6 18:35 [m[Add] ... [36m[Anthony]
+[31m|[m * [1;34m|[m [33m0087b67 [32mTue Oct 6 18:23 [m[Add] Couch Co-Op [36m[Anthony]
+[31m|[m * [1;34m|[m [33m6d86b6b [32mTue Oct 6 14:34 [m[Wip] Safety commit [36m[Anthony]
+[31m|[m * [1;34m|[m [33m612108c [32mTue Oct 6 14:01 [m[Wip] Safety Commit [36m[Anthony]
+[31m|[m * [1;34m|[m [33m36ba6a5 [32mSun Oct 4 17:47 [m[Add] Viewport Stuff up to Standards [36m[Anthony]
+[31m|[m * [1;34m|[m [33m4235545 [32mTue Sep 29 23:54 [m[WIP] Couch Coop [36m[Anthony]
+* [32m|[m [1;34m|[m [33m9b29e00 [32mTue Oct 6 18:44 [m[Fix] Render pipeline memes [36m[Daniel Presas]
+* [32m|[m [1;34m|[m [33m9096f87 [32mMon Oct 5 14:54 [mDLL stuff works...see comment in RandomPluginScript [36m[Daniel Presas]
+* [32m|[m [1;34m|[m [33me65a371 [32mTue Sep 29 17:14 [mPlugins get loaded in now...Working on getting good return values [36m[Daniel Presas]
+* [32m|[m [1;34m|[m [33m34297d9 [32mTue Sep 29 00:03 [mManualPluginImporter no worky...no idea why yet [36m[Daniel Presas]
+* [32m|[m [1;34m|[m [33m8bc46a1 [32mSun Sep 27 23:37 [mUpdate materials for HDRP...not sure if it was necessary [36m[Daniel Presas]
+* [32m|[m [1;34m|[m [33m66ae3f7 [32mSun Sep 27 23:35 [mManagedPluginImporter.cs...not tested yet [36m[Daniel Presas]
+* [32m|[m [1;34m|[m [33m44f7c90 [32mFri Sep 25 00:32 [mDLL stuff is working...Cleanup test stuff later [36m[Daniel Presas]
+* [32m|[m [1;34m|[m [33m27c6af5 [32mThu Sep 24 19:05 [mUpdate to Render Pipeline but for real this time [36m[Daniel Presas]
+[32m|[m[32m/[m [1;34m/[m  
+* [1;34m|[m [33m2e1c828 [32mMon Sep 28 14:50 [m[Add] AI to main scene [36m[Anthony]
+* [1;34m|[m [33m1551f39 [32mMon Sep 28 14:38 [mMerge branch 'Enemy-Testing' [36m[Anthony]
+[33m|[m[1;34m\[m[1;34m|[m 
+[33m|[m * [33m70f41f8 [32mSun Sep 27 20:51 [mEnemy follows a path [36m[Evyn Brouwer]
+[33m|[m *   [33m697b50f [32mThu Sep 24 19:06 [mMerge branch 'master' into Enemy-Testing [36m[Evyn Brouwer]
+[33m|[m [35m|[m[36m\[m  
+[33m|[m * [36m|[m [33m1118b78 [32mThu Sep 24 18:48 [mTesting stuff for navmesh [36m[Evyn Brouwer]
+* [36m|[m [36m|[m [33m43c661e [32mMon Sep 28 00:06 [m[Fix] some broken code [36m[Anthony]
+* [36m|[m [36m|[m   [33mcd28d53 [32mMon Sep 28 00:04 [mMerge branch 'Movement-System' [36m[Anthony]
+[1;31m|[m[1;32m\[m [36m\[m [36m\[m  
+[1;31m|[m * [36m|[m [36m|[m [33m71b9255 [32mMon Sep 28 00:02 [m[Fix] Camera now works right when jumping [36m[Anthony]
+[1;31m|[m * [36m|[m [36m|[m [33m6e63c39 [32mSun Sep 27 19:31 [m[Update] Movement System [36m[Synral]
+[1;31m|[m * [36m|[m [36m|[m [33mee959cf [32mSat Sep 26 09:41 [m[WIP] Movement System [36m[Synral]
+* [1;32m|[m [36m|[m [36m|[m   [33m5e48acb [32mSun Sep 27 23:50 [mMerge branch 'CameraBoundsChange' [36m[Anthony]
+[1;33m|[m[1;34m\[m [1;32m\[m [36m\[m [36m\[m  
+[1;33m|[m * [1;32m|[m [36m|[m [36m|[m [33mf9322bc [32mThu Sep 24 21:25 [mCamera Bound Changes [36m[hamraj15]
+[1;33m|[m [36m|[m [1;32m|[m[36m_[m[36m|[m[36m/[m  
+[1;33m|[m [36m|[m[36m/[m[1;32m|[m [36m|[m   
+* [36m/[m [1;32m|[m [36m|[m [33m5ae8963 [32mThu Sep 24 21:47 [mTest [36m[Anthony]
+[36m|[m[36m/[m [1;32m/[m [36m/[m  
+* [1;32m|[m [36m|[m [33m1c54f3a [32mThu Sep 24 18:46 [m[Update] Add new level [36m[Anthony]
+* [1;32m|[m [36m|[m [33m3bf8ec5 [32mThu Sep 24 17:58 [m[Add] Movement Test Level [36m[Carter Menary]
+[1;32m|[m[1;32m/[m [36m/[m  
+* [36m|[m [33m506121b [32mThu Sep 24 01:32 [m[Update] Camera Clamping Settings [36m[Anthony]
+* [36m|[m [33m3aa2658 [32mWed Sep 23 13:49 [m[Remove] Old Scene [36m[Anthony]
+* [36m|[m [33mb3b4a8b [32mWed Sep 23 13:47 [m[Update] Add HDRP, some test assets [36m[Anthony]
+[36m|[m[36m/[m  
+* [33mce4af82 [32mTue Sep 22 17:51 [m[Add] Third Person Camera [36m[Anthony]
+* [33m0c1b505 [32mMon Sep 21 23:12 [m[Wip] Camera [36m[Anthony]
+* [33m8320f17 [32mMon Sep 21 21:43 [m[Update] Unity editor version [36m[Anthony]
+* [33m10c90ed [32mSun Sep 20 18:06 [m[WIP] Rotating/following camera [36m[Anthony]
+* [33m3443a55 [32mSun Sep 20 00:58 [mRevert "[Fix] Wrong unity version, oops" [36m[Anthony]
+* [33m7bca250 [32mSun Sep 20 00:44 [m[Fix] Wrong unity version, oops [36m[Anthony]
+* [33ma644900 [32mWed Sep 16 12:45 [mInit Commit [36m[Anthony]
+* [33m6fcb234 [32mWed Sep 16 12:25 [mInitial commit [36m[Anthony Smiderle]
