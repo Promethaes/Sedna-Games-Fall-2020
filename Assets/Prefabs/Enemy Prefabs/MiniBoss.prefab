@@ -893,6 +893,7 @@ GameObject:
   - component: {fileID: 9145494780735996667}
   - component: {fileID: 9145494780735996664}
   - component: {fileID: 1937662721376738147}
+  - component: {fileID: 2746547740495317389}
   m_Layer: 0
   m_Name: MiniBoss
   m_TagString: Enemy
@@ -1019,6 +1020,21 @@ MonoBehaviour:
   tossAngle: 4.27
   speed: 1.41
   poolSize: 10
+--- !u!114 &2746547740495317389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8226452393176891317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d5c55dc2f877544932c6fe44c8d3a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData: {fileID: 9145494780735996667}
+  prefab: {fileID: 8727932547203495207, guid: c9258adff64cc624cb3a0119f16e85ef, type: 3}
+  poolSize: 4
 --- !u!1 &8687395245718933670
 GameObject:
   m_ObjectHideFlags: 0
