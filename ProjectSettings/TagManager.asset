@@ -8,6 +8,7 @@ TagManager:
   - Terrain
   - PlayerManager
   - CheckpointManager
+  - UI
   layers:
   - Default
   - TransparentFX

@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
     public float hopSpeed = 0.25f;
     public bool revive = false;
     public bool downed = false;
-    public SelectionWheelUI wheelUI;
+    SelectionWheelUI _wheelUI;
     public bool selectWheel = false;
     bool _confirmWheel = false;
     int _wheelSelection = 0;
@@ -122,6 +122,11 @@ public class PlayerController : MonoBehaviour
     //Called after physics (FixedUpdate); used to prevent sliding on slopes due to high gravity
     private void LateUpdate() 
     {
+        if (_wheelUI == null)
+        {
+            _wheelUI = GameObject.Find("SelectionWheel").GetComponent<SelectionWheelUI>();
+            _wheelUI.hideWheelUI();
+        }
         if (selectWheel && _wheelCooldown <= 0.0f)
             _SelectionWheel();
         else
@@ -175,47 +180,50 @@ public class PlayerController : MonoBehaviour
         float absX = Mathf.Abs(mouseInput.x);
         float absY = Mathf.Abs(mouseInput.y);
         //NOTE: Sets _wheelSelection to the appropriate animal and highlights their part of the selection wheel
-        if (absX > absY)
+        if (absY > 0.25f || absX > 0.25f)
         {
-            if (mouseInput.x > 0.0f)
+            if (absX >= absY)
             {
-                //set 1, rattlesnake
-                _wheelSelection = 1;
+                if (mouseInput.x > 0.0f)
+                {
+                    //set 1, rattlesnake
+                    _wheelSelection = 1;
+                }
+                else
+                {
+                    //set 3, bison
+                    _wheelSelection = 3;
+                }
             }
             else
             {
-                //set 3, bison
-                _wheelSelection = 3;
+                if (mouseInput.y > 0.0f)
+                {
+                    //set 0, turtle
+                    _wheelSelection = 0;
+                }
+                else
+                {
+                    //set 2, polar bear
+                    _wheelSelection = 2;
+                }
             }
+            _wheelUI.normalizeWheelUI();
+            _wheelUI.highlightWheelUI(_wheelSelection);
         }
-        else if (absY > absX)
-        {
-            if (mouseInput.y > 0.0f)
-            {
-                //set 0, turtle
-                _wheelSelection = 0;
-            }
-            else
-            {
-                //set 2, polar bear
-                _wheelSelection = 2;
-            }
-        }
-        if (absY != absX)
-            wheelUI.highlightWheelUI(_wheelSelection);
         else
         {
             //Turn off highlights
             _confirmWheel = false;
-            wheelUI.normalizeWheelUI();
+            _wheelUI.normalizeWheelUI();
         }
     }
 
     void _ConfirmWheel()
     {
-        wheelUI.hideWheelUI();
+        _wheelUI.hideWheelUI();
         _confirmWheel = false;
-        if (_wheelSelection != playerType.GetHashCode())
+        if (_wheelSelection != (int)playerType)
         {
         _wheelCooldown = 2.0f;
         GetComponentInParent<GameInputHandler>().swapPlayer(_wheelSelection);

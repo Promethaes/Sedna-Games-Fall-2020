@@ -5,38 +5,35 @@ using UnityEngine.UI;
 
 public class SelectionWheelUI : MonoBehaviour
 {
-    public Image[] normalWheel = new Image[4];
-    public Image[] highlightWheel = new Image[4];
+    public Sprite[] normalWheel = new Sprite[4];
+    public Sprite[] highlightWheel = new Sprite[4];
+    public Image[] display = new Image[4];
 
     private void Awake() 
     {
         for (int i=0;i<normalWheel.Length;i++)
         {
-            normalWheel[i].gameObject.SetActive(false);
-            highlightWheel[i].gameObject.SetActive(false);
+           display[i].sprite = normalWheel[i];
         }
     }
 
     public void highlightWheelUI(int index)
     {
-        normalWheel[index].gameObject.SetActive(false);
-        highlightWheel[index].gameObject.SetActive(true);
+        gameObject.SetActive(true);
+        display[index].sprite = highlightWheel[index];
     }
 
     public void normalizeWheelUI()
     {
+        gameObject.SetActive(true);
         for (int i=0;i<normalWheel.Length;i++)
         {
-            normalWheel[i].gameObject.SetActive(true);
-            highlightWheel[i].gameObject.SetActive(false);
+           display[i].sprite = normalWheel[i];
         }
     }
     public void hideWheelUI()
     {
-        for (int i=0;i<normalWheel.Length;i++)
-        {
-            normalWheel[i].gameObject.SetActive(false);
-            highlightWheel[i].gameObject.SetActive(false);
-        }
+        normalizeWheelUI();
+        gameObject.SetActive(false);
     }
 }
