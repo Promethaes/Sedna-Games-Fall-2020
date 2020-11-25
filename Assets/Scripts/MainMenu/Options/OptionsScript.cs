@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class OptionsScript : MonoBehaviour
 {
-    public List<GameObject> options = new List<GameObject>();
+    public List<GameObject> listOfOptions = new List<GameObject>();
+    public Dictionary<string, GameObject> options = new Dictionary<string, GameObject>();
     // Start is called before the first frame update
     void Start()
     {
-
+        foreach (var option in listOfOptions)
+        {
+            options[option.name] = option;
+        }
     }
 
     // Update is called once per frame
@@ -21,7 +25,7 @@ public class OptionsScript : MonoBehaviour
     {
         foreach (var option in options)
         {
-            option.SetActive(!toggle);
+            option.Value.SetActive(!toggle);
         }
         toggle = !toggle;
     }

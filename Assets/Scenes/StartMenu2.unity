@@ -384,7 +384,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07373c891ca55b64d8b67b1e05e44d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  options: []
 --- !u!114 &370965364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1349,8 +1348,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 509083535}
-        m_MethodName: changeScene
-        m_Mode: 3
+        m_MethodName: onStartButtonPressed
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
