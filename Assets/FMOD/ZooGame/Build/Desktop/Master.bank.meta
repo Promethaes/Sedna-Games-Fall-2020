@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/FMOD/ZooGame/Build/Desktop/Master.bank.meta
 guid: 782d394a56c4cfc459f930607cb1eaf8
+=======
+guid: 2ee30fd05f1a8d94fb3d01da843a5b5f
+>>>>>>> PlayerUI:Assets/UpdatedStuff/Scenes/GameScene2.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

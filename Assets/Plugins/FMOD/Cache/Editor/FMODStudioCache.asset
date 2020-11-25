@@ -1,49 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8081507151482533053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SoundTest
-  m_EditorClassIdentifier: 
-  Path: event:/SoundTest
-  guid: 1f16dac872ffec44ba1c64e14be473f3
-  Banks:
-  - {fileID: -5602949212454867980}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 6739
---- !u!114 &-7318821536559481687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/Sounds/Primordial/Build/Desktop/Master.strings.bank
-  SubDir: 
-  lastModified: 637406070179193637
-  LoadResult: 0
-  FileSizes:
-  - Name: Desktop
-    Value: 734
-  Exists: 1
---- !u!114 &-5602949212454867980
+--- !u!114 &-2547295248666374419
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,7 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Assets/Sounds/Primordial/Build/Desktop/Master.bank
   SubDir: 
-  lastModified: 637406070179153921
+  lastModified: 637418439228626346
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
+--- !u!114 &-58970640020640113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Sounds/Primordial/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637418383750296885
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -74,18 +49,18 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -7318821536559481687}
-  - {fileID: -5602949212454867980}
+  - {fileID: 3779607882232162307}
+  - {fileID: -58970640020640113}
   EditorEvents:
-  - {fileID: -8081507151482533053}
+  - {fileID: 7595009117666780731}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -5602949212454867980}
+  - {fileID: -58970640020640113}
   StringsBanks:
-  - {fileID: -7318821536559481687}
-  stringsBankWriteTime: 637406070179193637
+  - {fileID: 3779607882232162307}
+  stringsBankWriteTime: 637418383750416557
   cacheVersion: 3
---- !u!114 &6066425406736186884
+--- !u!114 &920623935157420612
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,11 +74,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Assets/Sounds/Primordial/Build/Desktop/Master.bank
   SubDir: 
-  lastModified: 637406069185199273
+  lastModified: 637414222879952016
   LoadResult: 0
   FileSizes: []
-  Exists: 0
---- !u!114 &8419050300562961690
+  Exists: 1
+--- !u!114 &1694166413745879314
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,7 +92,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Assets/Sounds/Primordial/Build/Desktop/Master.bank
   SubDir: 
-  lastModified: 637406069960252221
+  lastModified: 637414876498673141
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &3779607882232162307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Sounds/Primordial/Build/Desktop/Master.strings.bank
+  SubDir: 
+  lastModified: 637418383750416557
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 734
+  Exists: 1
+--- !u!114 &7595009117666780731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SoundTest
+  m_EditorClassIdentifier: 
+  Path: event:/SoundTest
+  guid: 1f16dac872ffec44ba1c64e14be473f3
+  Banks:
+  - {fileID: -58970640020640113}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 6739

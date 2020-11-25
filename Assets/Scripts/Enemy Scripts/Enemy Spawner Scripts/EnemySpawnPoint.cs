@@ -65,13 +65,13 @@ public class EnemySpawnPoint : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<CharMenuInput>())
+        if (other.gameObject.tag == "Player")
             _shouldSpawn = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.GetComponent<CharMenuInput>())
+        if (other.gameObject.tag == "Player")
             _shouldSpawn = false;
     }
 }

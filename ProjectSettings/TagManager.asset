@@ -8,6 +8,7 @@ TagManager:
   - Terrain
   - PlayerManager
   - CheckpointManager
+  - UI
   layers:
   - Default
   - TransparentFX
@@ -19,11 +20,11 @@ TagManager:
   - 
   - Bubblelayer
   - BubbleBlockLayer
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player1
+  - Player2
+  - Player3
+  - Player4
+  - Outlines
   - 
   - 
   - 
