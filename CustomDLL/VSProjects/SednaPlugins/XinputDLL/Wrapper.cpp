@@ -25,3 +25,8 @@ float GetRightStickValueXORY(int playerIndex, bool xOrY) {
 	else
 		return gamepadManager.GetRightStickValue(playerIndex).x;
 }
+
+int GetNumGamepads()
+{
+	return gamepadManager.GetNumGamepads();
+}

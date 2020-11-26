@@ -1,4 +1,5 @@
 ﻿  GamepadManager.cpp
+D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\XinputDLL\GamepadManager.cpp(51,26): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
   InputEventSystem.cpp
   main.cpp
   Gamepad.cpp
@@ -11,6 +12,6 @@ D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\Xinput
      Creating library D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\x64\Release\XinputDLL.lib and object D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\x64\Release\XinputDLL.exp
   Generating code
   Previous IPDB not found, fall back to full compilation.
-  All 343 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  All 345 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   XinputDLL.vcxproj -> D:\Projects\Repos\Sedna-Games-Fall-2020\CustomDLL\VSProjects\SednaPlugins\x64\Release\XinputDLL.dll
