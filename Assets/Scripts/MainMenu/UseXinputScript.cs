@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UseXinputScript : MonoBehaviour
 {
-    public bool use = false;
+    static public bool use = false;
 
 
     public void setInUse(bool b)

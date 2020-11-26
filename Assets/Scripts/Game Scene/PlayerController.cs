@@ -229,7 +229,10 @@ public class PlayerController : MonoBehaviour
         if (_wheelSelection != (int)playerType)
         {
             _wheelCooldown = 2.0f;
-            GetComponentInParent<GameInputHandler>().swapPlayer(_wheelSelection);
+            if (UseXinputScript.use)
+                GetComponentInParent<GameXinputHandler>().swapPlayer(_wheelSelection);
+            else
+                GetComponentInParent<GameInputHandler>().swapPlayer(_wheelSelection);
         }
     }
 
@@ -328,6 +331,7 @@ public class PlayerController : MonoBehaviour
             case PlayerType.POLAR_BEAR: polarBearScript.Transition(); break;
             case PlayerType.BISON: ramThrough.hasRammed = true; break;
         }
+        useAbility = false;
     }
 
     void _Attack()
@@ -350,6 +354,8 @@ public class PlayerController : MonoBehaviour
         _comboCounter++;
         if (_comboCounter > 2) _comboCounter = 0;
         _comboDuration = 2.0f;
+
+        attack = false;
     }
 
     void _Revive()
@@ -367,6 +373,7 @@ public class PlayerController : MonoBehaviour
                 revivee.downed = false;
             }
         }
+        revive = false;
     }
 
 }

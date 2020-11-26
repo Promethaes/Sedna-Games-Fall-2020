@@ -7,6 +7,9 @@ public class XinputGamepad : MonoBehaviour
     public Dictionary<Button, XinputManager.Callback> callbackList = new Dictionary<Button, XinputManager.Callback>();
 
     public int index = 0;
+
+    public Vector2 leftStick = new Vector2();
+    public Vector2 rightStick = new Vector2();
     // Start is called before the first frame update
     void Start()
     {

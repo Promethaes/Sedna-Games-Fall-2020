@@ -20,7 +20,7 @@ public class SceneChanger : MonoBehaviour
     public void onStartButtonPressed()
     {
         var optionsScript = FindObjectOfType<OptionsScript>();
-        if (optionsScript.options["UseXinput"].GetComponent<UseXinputScript>().use)
+        if (UseXinputScript.use)
             changeScene(3);
         else
             changeScene(1);

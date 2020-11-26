@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5369776141784647950}
   - component: {fileID: 5369776141784647949}
   - component: {fileID: 2988710915060079784}
+  - component: {fileID: -4897981257991798859}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -104,6 +105,7 @@ MonoBehaviour:
   hopSpeed: 0.25
   revive: 0
   downed: 0
+  selectWheel: 0
 --- !u!114 &407760201645271284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +162,18 @@ MonoBehaviour:
   player: {fileID: 5369776141784647952}
   UIPrefab: {fileID: 2890009050298546576, guid: fbf0f9d1648c0ef48964ac7f90ec6904,
     type: 3}
+--- !u!114 &-4897981257991798859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5369776141784647952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c711531489917c54480128dd125d7a30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5489993372373712657
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,12 +9,10 @@ public class PlayerConfigurationManager : MonoBehaviour
     [SerializeField] private SceneChanger _sceneChanger = null;
 
     private PlayerInputManager _manager = null;
-    private XinputPlayerManager _xinputManager = null;
     private List<PlayerConfiguration> _playerConfigs = null;
     public List<PlayerConfiguration> playerConfigurations { get { return _playerConfigs; } }
 
     public static PlayerConfigurationManager get { get; private set; }
-    public static bool usingXinput = false;
 
     private void Awake()
     {
@@ -27,10 +25,7 @@ public class PlayerConfigurationManager : MonoBehaviour
         get = this;
         DontDestroyOnLoad(get);
 
-        if (!usingXinput)
-            _manager = GetComponent<PlayerInputManager>();
-        else
-            _xinputManager = GetComponent<XinputPlayerManager>();
+        _manager = GetComponent<PlayerInputManager>();
 
         _playerConfigs = new List<PlayerConfiguration>();
     }

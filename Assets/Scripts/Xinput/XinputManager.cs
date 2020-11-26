@@ -44,13 +44,13 @@ public class XinputManager : MonoBehaviour
     private static extern void UpdateGamepadList();
 
     [DllImport(DllName)]
-    private static extern bool GetEventValue(int playerIndex, int e);
+    public static extern bool GetEventValue(int playerIndex, int e);
 
     [DllImport(DllName)]
-    private static extern float GetLeftStickValueXORY(int playerIndex, bool xOrY);
+    public static extern float GetLeftStickValueXORY(int playerIndex, bool xOrY);
 
     [DllImport(DllName)]
-    private static extern float GetRightStickValueXORY(int playerIndex, bool xOrY);
+    public static extern float GetRightStickValueXORY(int playerIndex, bool xOrY);
     [DllImport(DllName)]
     private static extern int GetNumGamepads();
     // Start is called before the first frame update
@@ -111,6 +111,19 @@ public class XinputManager : MonoBehaviour
     void Update()
     {
         UpdateGamepadList();
+
+        foreach (var gamepad in gamepads)
+        {
+            gamepad.leftStick = new Vector2(
+            GetLeftStickValueXORY(gamepad.index, false),
+            GetLeftStickValueXORY(gamepad.index, true));
+
+            gamepad.rightStick = new Vector2(
+            GetRightStickValueXORY(gamepad.index, false),
+            GetRightStickValueXORY(gamepad.index, true));
+
+        }
+
         CallTheCallbacks();
     }
 }

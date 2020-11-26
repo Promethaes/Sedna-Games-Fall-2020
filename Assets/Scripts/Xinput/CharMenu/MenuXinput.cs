@@ -16,11 +16,13 @@ public class MenuXinput : MonoBehaviour
 
     float buttonPressCooldown = 0.5f;
 
-    private PlayerCharSelectMenu playerCharSelectMenu;
+    public PlayerCharSelectMenu playerCharSelectMenu;
 
     public Transform JoinPosition;
 
     public SceneChanger sceneChanger;
+
+    public PlayerConfiguration configuration;
 
     public void SetMenuCallbacks()
     {
@@ -39,6 +41,8 @@ public class MenuXinput : MonoBehaviour
         playerManager = FindObjectOfType<XinputPlayerManager>();
 
         SetMenuCallbacks();
+    
+        configuration = new PlayerConfiguration(_gamepad,gameObject);
     }
 
     // Update is called once per frame
@@ -58,7 +62,7 @@ public class MenuXinput : MonoBehaviour
     {
         if (joined || buttonPressCooldown > 0.0f)
             return;
-        playerManager.players.Add(gameObject);
+        playerManager.players.Add(configuration);
         playerIndex = _gamepad.index;
         joined = true;
         gameObject.transform.position = JoinPosition.position;
@@ -71,7 +75,7 @@ public class MenuXinput : MonoBehaviour
     {
         if (!joined || buttonPressCooldown > 0.0f)
             return;
-        playerManager.players.Remove(gameObject);
+        playerManager.players.Remove(configuration);
         joined = false;
         gameObject.transform.position = new Vector3(999.0f, 0.0f, 0.0f);
         _gamepad.SetEventCallback(Button.A, Join);
@@ -85,6 +89,7 @@ public class MenuXinput : MonoBehaviour
             return;
         ready = true;
         _gamepad.SetEventCallback(Button.B, Unready);
+        configuration.character = playerCharSelectMenu._characterPrefabs[playerCharSelectMenu.charSelectIndex];
         resetPressCooldown();
     }
 
@@ -107,6 +112,7 @@ public class MenuXinput : MonoBehaviour
         else if (values.leftStick.x < -0.5f)
             playerCharSelectMenu.scrollSelectionBackward();
 
+
         resetPressCooldown();
     }
 
@@ -119,11 +125,11 @@ public class MenuXinput : MonoBehaviour
         bool readyToStart = true;
         foreach (var player in playerManager.players)
         {
-            if (!player.GetComponent<MenuXinput>().ready)
+            if (!player.gameObject.GetComponent<MenuXinput>().ready)
                 readyToStart = false;
         }
 
-        if (readyToStart && playerIndex == 0)
+        if (readyToStart && playerIndex == 0 && playerManager.players.Count != 0)
             sceneChanger.changeScene(2);
     }
 
