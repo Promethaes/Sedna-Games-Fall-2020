@@ -9,14 +9,14 @@ public class GameXinputHandler : MonoBehaviour
     private PlayerController _playerController = null;
     private XinputGamepad _gamepad = null;
 
+    public List<GameObject> prefabs = new List<GameObject>();
 
     public void swapPlayer(int config)
     {
-        var reference = _playerConfig.gameObject.GetComponentInChildren<MakePlayerCharSelectMenu>().playerSetupMenu.GetComponent<PlayerCharSelectMenu>()._characterPrefabs[config];
-        _playerMesh.GetComponentInChildren<MeshFilter>().mesh = reference.prefab.GetComponentInChildren<MeshFilter>().sharedMesh;
-        _playerMesh.GetComponentInChildren<MeshRenderer>().material = reference.prefab.GetComponentInChildren<MeshRenderer>().sharedMaterial;
-        _playerConfig.character.type = reference.type;
-        _playerController.playerType = reference.type;
+        var reference = prefabs[config];
+        _playerMesh.GetComponentInChildren<MeshFilter>().mesh = reference.GetComponentInChildren<MeshFilter>().sharedMesh;
+        _playerMesh.GetComponentInChildren<MeshRenderer>().material = reference.GetComponentInChildren<MeshRenderer>().sharedMaterial;
+        _playerController.playerType = (PlayerType)config;
 
         // Set UI image
         GameObject.Find("PlayerUIPanel(Clone)").GetComponent<PlayerHealthUI>().setCharacterImage(config);
