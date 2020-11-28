@@ -53,10 +53,10 @@ namespace SednaInput {
 	}
 	Vector2 Gamepad::getRightStickValue()
 	{
-		if (_state.Gamepad.sThumbRX < XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE &&
-			_state.Gamepad.sThumbRX > -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE &&
-			_state.Gamepad.sThumbRY > -XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE &&
-			_state.Gamepad.sThumbRY < XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE
+		if (_state.Gamepad.sThumbRX <	 8600 &&
+			_state.Gamepad.sThumbRX >	-8600 &&
+			_state.Gamepad.sThumbRY >	-8600 &&
+			_state.Gamepad.sThumbRY <	 8600
 			)
 			return Vector2(0.0f, 0.0f);
 
