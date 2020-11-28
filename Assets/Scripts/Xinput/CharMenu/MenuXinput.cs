@@ -23,6 +23,10 @@ public class MenuXinput : MonoBehaviour
 
     public PlayerConfiguration configuration;
 
+    public GameObject menuUI;
+
+    public UnityEngine.UI.Image readyButton;
+
     public void SetMenuCallbacks()
     {
         _gamepad.SetEventCallback(Button.A, Join);
@@ -40,8 +44,10 @@ public class MenuXinput : MonoBehaviour
         
 
         SetMenuCallbacks();
-    
+        
         configuration = new PlayerConfiguration(_gamepad,gameObject);
+        menuUI.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -65,7 +71,8 @@ public class MenuXinput : MonoBehaviour
         playerIndex = _gamepad.index;
         joined = true;
         gameObject.transform.position = JoinPosition.position;
-        gameObject.transform.position = gameObject.transform.position - gameObject.transform.right * (playerIndex * 2.0f);
+        gameObject.transform.position = gameObject.transform.position - gameObject.transform.right * (playerIndex*0.15f);
+        menuUI.SetActive(true);
         _gamepad.SetEventCallback(Button.A, ReadyUp);
         resetPressCooldown();
     }
@@ -77,6 +84,7 @@ public class MenuXinput : MonoBehaviour
         XinputPlayerManager.get.players.Remove(configuration);
         joined = false;
         gameObject.transform.position = new Vector3(999.0f, 0.0f, 0.0f);
+        menuUI.SetActive(false);
         _gamepad.SetEventCallback(Button.A, Join);
         resetPressCooldown();
 
@@ -89,6 +97,7 @@ public class MenuXinput : MonoBehaviour
         ready = true;
         _gamepad.SetEventCallback(Button.B, Unready);
         configuration.character = playerCharSelectMenu._characterPrefabs[playerCharSelectMenu.charSelectIndex];
+        readyButton.color = Color.green;
         resetPressCooldown();
     }
 
@@ -98,6 +107,7 @@ public class MenuXinput : MonoBehaviour
             return;
         ready = false;
         _gamepad.SetEventCallback(Button.B, Leave);
+        readyButton.color = Color.white;
         resetPressCooldown();
     }
 

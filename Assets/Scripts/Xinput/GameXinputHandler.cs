@@ -39,6 +39,7 @@ public class GameXinputHandler : MonoBehaviour
         _gamepad.SetEventCallback(Button.B, OnDash);
         _gamepad.SetEventCallback(Button.X, OnAttacc);
         _gamepad.SetEventCallback(Button.SHOULDER_LEFT, OnAbility);
+        _gamepad.SetEventCallback(Button.SHOULDER_RIGHT, OnRevive);
     }
     private void Awake()
     {
