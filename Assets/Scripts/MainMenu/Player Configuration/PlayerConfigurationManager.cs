@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(PlayerInputManager))]
-public class PlayerConfigurationManager : MonoBehaviour {
+public class PlayerConfigurationManager : MonoBehaviour
+{
 
     [SerializeField] private SceneChanger _sceneChanger = null;
 
@@ -14,8 +14,10 @@ public class PlayerConfigurationManager : MonoBehaviour {
 
     public static PlayerConfigurationManager get { get; private set; }
 
-    private void Awake() {
-        if(get != null) {
+    private void Awake()
+    {
+        if (get != null)
+        {
             Logger.Error("Attempted to create new instance of PlayerConfigurationManager when one already exists!");
             return;
         }
@@ -24,37 +26,47 @@ public class PlayerConfigurationManager : MonoBehaviour {
         DontDestroyOnLoad(get);
 
         _manager = GetComponent<PlayerInputManager>();
+
         _playerConfigs = new List<PlayerConfiguration>();
     }
 
-    public void setPlayerCharacter(int index, PlayerTypeToGameObject character) {
+    public void setPlayerCharacter(int index, PlayerTypeToGameObject character)
+    {
         _playerConfigs[index].character = character;
     }
 
-    public void readyPlayer(int index) {
+    public void readyPlayer(int index)
+    {
         _playerConfigs[index].isReady = true;
     }
 
-    public void unreadyPlayer(int index) {
+    public void unreadyPlayer(int index)
+    {
         _playerConfigs[index].isReady = false;
     }
 
-    public void handlePlayerJoined(PlayerInput playerInput) {
-        if(!_playerConfigs.Any(p => p.index == playerInput.playerIndex)) {
+    public void handlePlayerJoined(PlayerInput playerInput)
+    {
+        if (!_playerConfigs.Any(p => p.index == playerInput.playerIndex))
+        {
             Logger.Log("Player {0} joined", playerInput.playerIndex);
             playerInput.transform.parent = transform;
             _playerConfigs.Add(new PlayerConfiguration(playerInput));
         }
     }
 
-    public void handlePlayerLeft(PlayerInput playerInput) {
-        if(_playerConfigs.Any(p => p.index == playerInput.playerIndex)) {
+    public void handlePlayerLeft(PlayerInput playerInput)
+    {
+        if (_playerConfigs.Any(p => p.index == playerInput.playerIndex))
+        {
             Logger.Log("Player {0} left", playerInput.playerIndex);
         }
     }
 
-    public void allPlayersReady() {
-        if(_playerConfigs.Count <= _manager.maxPlayerCount && _playerConfigs.All(p => p.isReady)) {
+    public void allPlayersReady()
+    {
+        if (_playerConfigs.Count <= _manager.maxPlayerCount && _playerConfigs.All(p => p.isReady))
+        {
             _sceneChanger.changeScene(2); // This should be the game scene
         }
     }

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/Xinput/CharMenu.meta
+guid: 53dd342796c765f44b335e074c31e88a
+=======
 guid: 9c16042e29a9fed41ad8fd1e9bb068b4
+>>>>>>> master:Assets/FMOD/ZooGame/Assets/snd/attack.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

@@ -12,6 +12,7 @@ extern "C" {
 	PLUGIN_API bool GetEventValue(int playerIndex, int e);
 	PLUGIN_API float GetLeftStickValueXORY(int playerIndex,bool xOrY);
 	PLUGIN_API float GetRightStickValueXORY(int playerIndex, bool xOrY);
+	PLUGIN_API int GetNumGamepads();
 
 #ifdef __cplusplus
 }
