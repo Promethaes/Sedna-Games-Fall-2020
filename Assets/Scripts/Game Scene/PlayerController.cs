@@ -71,41 +71,72 @@ public class PlayerController : MonoBehaviour
 
     //NOTE: _mouseSpeed changes mouse sensitivity. Implement into options in the future
     float _mouseSpeed = 1.2f;
-
+    PlayerBackend backend;
 
 
     // -------------------------------------------------------------------------
 
     private void Awake()
     {
-        _rigidbody =  GetComponent<Rigidbody>();
+        _rigidbody = GetComponent<Rigidbody>();
+        backend = this.GetComponentInParent<PlayerBackend>();
         switch (playerType)
         {
             case PlayerType.BISON:
                 _setCombo(20.0f, 30.0f, 50.0f, 0.7f, 1.0f, 1.10f);
-                this.GetComponentInParent<PlayerBackend>().maxHP = 200;
-                this.GetComponentInParent<PlayerBackend>().hp = this.GetComponentInParent<PlayerBackend>().maxHP;
+                backend.maxHP = 200;
                 break;
             case PlayerType.POLAR_BEAR:
                 _setCombo(15.0f, 15.0f, 50.0f, 0.35f, 0.5f, 1.5f);
-                this.GetComponentInParent<PlayerBackend>().maxHP = 150;
-                this.GetComponentInParent<PlayerBackend>().hp = this.GetComponentInParent<PlayerBackend>().maxHP;
+                backend.maxHP = 150;
                 break;
             case PlayerType.RATTLESNAKE:
                 _setCombo(10.0f, 15.0f, 20.0f, 0.35f, 0.75f, 1.10f);
-                this.GetComponentInParent<PlayerBackend>().maxHP = 100;
-                this.GetComponentInParent<PlayerBackend>().hp = this.GetComponentInParent<PlayerBackend>().maxHP;
+                backend.maxHP = 100;
                 break;
             case PlayerType.TURTLE:
                 _setCombo(10.0f, 15.0f, 20.0f, 0.35f, 0.75f, 1.10f);
-                this.GetComponentInParent<PlayerBackend>().maxHP = 125;
-                this.GetComponentInParent<PlayerBackend>().hp = this.GetComponentInParent<PlayerBackend>().maxHP;
+                backend.maxHP = 125;
                 break;
             default:
                 _setCombo(15.0f, 20.0f, 25.0f, 0.45f, 0.95f, 1.25f);
                 break;
         }
+        backend.hp = backend.maxHP;
 
+    }
+
+    void setupPlayer()
+    {
+        float percentage = backend.hp / backend.maxHP;
+
+        switch (playerType)
+        {
+            case PlayerType.BISON:
+                _setCombo(20.0f, 30.0f, 50.0f, 0.7f, 1.0f, 1.10f);
+                backend.maxHP = 200;
+
+                break;
+            case PlayerType.POLAR_BEAR:
+                _setCombo(15.0f, 15.0f, 50.0f, 0.35f, 0.5f, 1.5f);
+                backend.maxHP = 150;
+
+                break;
+            case PlayerType.RATTLESNAKE:
+                _setCombo(10.0f, 15.0f, 20.0f, 0.35f, 0.75f, 1.10f);
+                backend.maxHP = 100;
+
+                break;
+            case PlayerType.TURTLE:
+                _setCombo(10.0f, 15.0f, 20.0f, 0.35f, 0.75f, 1.10f);
+                backend.maxHP = 125;
+
+                break;
+            default:
+                _setCombo(15.0f, 20.0f, 25.0f, 0.45f, 0.95f, 1.25f);
+                break;
+        }
+        backend.hp = backend.maxHP * percentage;
 
     }
 
@@ -260,6 +291,8 @@ public class PlayerController : MonoBehaviour
                 GetComponentInParent<GameXinputHandler>().swapPlayer(_wheelSelection);
             else
                 GetComponentInParent<GameInputHandler>().swapPlayer(_wheelSelection);
+
+            setupPlayer();
         }
     }
 
@@ -388,14 +421,14 @@ public class PlayerController : MonoBehaviour
     void _Revive()
     {
         RaycastHit player;
-        if (Physics.Raycast(transform.position, transform.forward, out player, 5.0f) && transform.tag == "Player")
+        if (Physics.Raycast(transform.position, transform.forward, out player, 5.0f) && player.transform.tag == "Player")
         {
             PlayerController revivee = player.collider.gameObject.GetComponent<PlayerController>();
-            if (this.GetComponentInParent<PlayerBackend>().hp > 0.0f)
+            if (backend.hp > 0.0f)
             {
-                float _hpTransfer = this.GetComponentInParent<PlayerBackend>().hp / 2.0f;
+                float _hpTransfer = backend.hp / 2.0f;
                 Debug.Log(_hpTransfer);
-                this.GetComponentInParent<PlayerBackend>().hp /= 2.0f;
+                backend.hp /= 2.0f;
                 revivee.GetComponentInParent<PlayerBackend>().hp += _hpTransfer;
                 revivee.downed = false;
             }
