@@ -18,8 +18,28 @@
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
 [LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
+[LOG] SoundI::release                          :  (0000028FB58197B8)
+[LOG] SoundI::release                          :     snd_attack_1 (0000029071CCDEB8)
+[LOG] SoundI::release                          :  (0000028FE266DD58)
+[LOG] SoundI::release                          :     snd_attack_2 (0000029071CCD838)
+[LOG] SoundI::release                          :  (0000028FE266DBE8)
+[LOG] SoundI::release                          :     snd_attack_3 (0000029071CCAAB8)
+[LOG] SoundI::release                          :  (0000028FB5819928)
+[LOG] SoundI::release                          :     snd_attack_4 (0000029071CCD698)
+[LOG] SoundI::release                          :  (0000028FB5819A98)
+[LOG] SoundI::release                          :     snd_attack_5 (0000029071CCBFD8)
+[LOG] SoundI::release                          :  (0000028FB581B308)
+[LOG] SoundI::release                          :     snd_attack_6 (0000029071CCE398)
+[LOG] Thread::callback                         : FMOD Studio update thread finished.
+[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] SystemI::close                           : Closed.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 
