@@ -364,15 +364,16 @@ MonoBehaviour:
     prefab: {fileID: 3759433490961893299, guid: 27470a5f13f0edd4ca6adc13a56fe7dd,
       type: 3}
   - type: 2
-    prefab: {fileID: 2163458001001960197, guid: 622fdbc1053ecee4e839964387494fb3,
+    prefab: {fileID: 5599863337556979104, guid: 622fdbc1053ecee4e839964387494fb3,
       type: 3}
   - type: 3
-    prefab: {fileID: 3451378738124136222, guid: 90ea45edd14ec0d4caf268078a995d9e,
+    prefab: {fileID: 5198594359940231113, guid: a7830bd555028984f92877dffa6d2d8d,
       type: 3}
   _playerChoice: {fileID: 3837460393587565686}
   _confirmButton: {fileID: 0}
   _playerIndexText: {fileID: 0}
   _playerReadyText: {fileID: 0}
+  _playerPrefabs: []
 --- !u!1 &8255697882147034811
 GameObject:
   m_ObjectHideFlags: 0
