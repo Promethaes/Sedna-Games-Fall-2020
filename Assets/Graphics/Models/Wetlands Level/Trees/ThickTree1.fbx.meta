@@ -7,7 +7,7 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Leavfes
+      name: Material.008
     second: {fileID: 2100000, guid: 2aef516397bb0b3459fe04bc8eebdadf, type: 2}
   - first:
       type: UnityEngine:Material
