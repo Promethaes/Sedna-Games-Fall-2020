@@ -16,6 +16,7 @@ public class PlayerCharSelectMenu : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _playerIndexText = null;
     [SerializeField] private TextMeshProUGUI _playerReadyText = null;
 
+    public List<GameObject> _playerPrefabs = new List<GameObject>();
     public GameObject characterSelection
     {
         get
@@ -24,8 +25,8 @@ public class PlayerCharSelectMenu : MonoBehaviour
         }
         private set
         {
-            _playerChoice.GetComponent<MeshFilter>().mesh = value.GetComponentInChildren<MeshFilter>().sharedMesh;
-            _playerChoice.GetComponent<MeshRenderer>().material = value.GetComponentInChildren<MeshRenderer>().sharedMaterial;
+
+            _playerChoice = value;
         }
     }
 
@@ -69,9 +70,11 @@ public class PlayerCharSelectMenu : MonoBehaviour
     {
         if (_allowScrolling)
         {
+            _playerPrefabs[charSelectIndex].SetActive(false);
             ++charSelectIndex;
             if (charSelectIndex >= _characterPrefabs.Count) charSelectIndex = 0;
-            characterSelection = _characterPrefabs[charSelectIndex].prefab;
+            characterSelection = _playerPrefabs[charSelectIndex];
+            characterSelection.SetActive(true);
         }
     }
 
@@ -79,9 +82,12 @@ public class PlayerCharSelectMenu : MonoBehaviour
     {
         if (_allowScrolling)
         {
+            _playerPrefabs[charSelectIndex].SetActive(false);
             --charSelectIndex;
             if (charSelectIndex < 0) charSelectIndex = _characterPrefabs.Count - 1;
-            characterSelection = _characterPrefabs[charSelectIndex].prefab;
+            characterSelection = _playerPrefabs[charSelectIndex];
+            characterSelection.SetActive(true);
+
         }
     }
 
@@ -99,8 +105,16 @@ public class PlayerCharSelectMenu : MonoBehaviour
             return;
         }
 
-        characterSelection = _characterPrefabs[charSelectIndex].prefab;
-        characterSelection.transform.rotation = Quaternion.AngleAxis(180.0f, Vector3.up) * characterSelection.transform.rotation;
+        foreach (var p in _characterPrefabs)
+        {
+            var temp = GameObject.Instantiate(p.prefab,_playerChoice.transform);
+            temp.transform.rotation = Quaternion.AngleAxis(180.0f, Vector3.up)*temp.transform.rotation;
+            _playerPrefabs.Add(temp);
+            _playerPrefabs[_playerPrefabs.Count - 1].SetActive(false);
+        }
+        _playerPrefabs[0].SetActive(true);
+        characterSelection = _playerPrefabs[0];
+
     }
     void Update()
     {
