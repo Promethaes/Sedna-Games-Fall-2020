@@ -74,7 +74,34 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _rigidbody =  GetComponent<Rigidbody>();
-        _setCombo(10.0f, 15.0f, 20.0f, 0.35f, 0.75f, 1.10f);
+        switch (playerType)
+        {
+            case PlayerType.BISON:
+                _setCombo(20.0f, 30.0f, 50.0f, 0.7f, 1.0f, 1.10f);
+                this.GetComponentInParent<PlayerBackend>().maxHP = 200;
+                this.GetComponentInParent<PlayerBackend>().hp = this.GetComponentInParent<PlayerBackend>().maxHP;
+                break;
+            case PlayerType.POLAR_BEAR:
+                _setCombo(15.0f, 15.0f, 50.0f, 0.35f, 0.5f, 1.5f);
+                this.GetComponentInParent<PlayerBackend>().maxHP = 150;
+                this.GetComponentInParent<PlayerBackend>().hp = this.GetComponentInParent<PlayerBackend>().maxHP;
+                break;
+            case PlayerType.RATTLESNAKE:
+                _setCombo(10.0f, 15.0f, 20.0f, 0.35f, 0.75f, 1.10f);
+                this.GetComponentInParent<PlayerBackend>().maxHP = 100;
+                this.GetComponentInParent<PlayerBackend>().hp = this.GetComponentInParent<PlayerBackend>().maxHP;
+                break;
+            case PlayerType.TURTLE:
+                _setCombo(10.0f, 15.0f, 20.0f, 0.35f, 0.75f, 1.10f);
+                this.GetComponentInParent<PlayerBackend>().maxHP = 125;
+                this.GetComponentInParent<PlayerBackend>().hp = this.GetComponentInParent<PlayerBackend>().maxHP;
+                break;
+            default:
+                _setCombo(15.0f, 20.0f, 25.0f, 0.45f, 0.95f, 1.25f);
+                break;
+        }
+            
+        
     }
 
     void Update()
