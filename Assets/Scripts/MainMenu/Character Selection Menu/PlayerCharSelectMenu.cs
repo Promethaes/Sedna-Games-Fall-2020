@@ -16,7 +16,7 @@ public class PlayerCharSelectMenu : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _playerIndexText = null;
     [SerializeField] private TextMeshProUGUI _playerReadyText = null;
 
-    private List<GameObject> _playerPrefabs = new List<GameObject>();
+    public List<GameObject> _playerPrefabs = new List<GameObject>();
     public GameObject characterSelection
     {
         get

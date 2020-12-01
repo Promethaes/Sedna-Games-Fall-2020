@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfd3bef7b7ef02743a2a86c3fcde3833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerPrefabs: []
 --- !u!114 &5369776141784647950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,11 +175,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c711531489917c54480128dd125d7a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabs:
-  - {fileID: 6136010692545304303, guid: fc23b360f92b0684985c513c5eef336f, type: 3}
-  - {fileID: 3759433490961893299, guid: 27470a5f13f0edd4ca6adc13a56fe7dd, type: 3}
-  - {fileID: 2163458001001960197, guid: 622fdbc1053ecee4e839964387494fb3, type: 3}
-  - {fileID: 3451378738124136222, guid: 90ea45edd14ec0d4caf268078a995d9e, type: 3}
+  playerPrefabs:
+  - type: 0
+    prefab: {fileID: 6136010692545304303, guid: fc23b360f92b0684985c513c5eef336f,
+      type: 3}
+  - type: 1
+    prefab: {fileID: 3759433490961893299, guid: 27470a5f13f0edd4ca6adc13a56fe7dd,
+      type: 3}
+  - type: 2
+    prefab: {fileID: 5599863337556979104, guid: 622fdbc1053ecee4e839964387494fb3,
+      type: 3}
+  - type: 3
+    prefab: {fileID: 5198594359940231113, guid: a7830bd555028984f92877dffa6d2d8d,
+      type: 3}
 --- !u!1 &5489993372373712657
 GameObject:
   m_ObjectHideFlags: 0
