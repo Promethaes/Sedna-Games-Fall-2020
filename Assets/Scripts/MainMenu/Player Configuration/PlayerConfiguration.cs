@@ -2,10 +2,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public enum PlayerType {
-    BISON,
-    POLAR_BEAR,
-    RATTLESNAKE,
+    
     TURTLE,
+    RATTLESNAKE,
+    POLAR_BEAR,
+    BISON,
 }
 
 public class PlayerConfiguration {
@@ -13,9 +14,18 @@ public class PlayerConfiguration {
     public PlayerTypeToGameObject character;
     public int index;
     public bool isReady;
+    public XinputGamepad gamepad;
+    public GameObject gameObject;
+    
 
     public PlayerConfiguration(PlayerInput playerInput) {
         input = playerInput;
         index = playerInput.playerIndex;
+    }
+
+    public PlayerConfiguration(XinputGamepad pad, GameObject go){
+        gamepad = pad;
+        index = gamepad.index;
+        gameObject = go;
     }
 }

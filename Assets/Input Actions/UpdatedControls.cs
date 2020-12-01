@@ -73,6 +73,14 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""f5fafdd6-9530-4af6-8bad-9a931db42fb3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -260,6 +268,17 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Revive"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bd596748-fffd-41b2-b0ad-6ec4fb512868"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -732,6 +751,7 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
         m_Game_MouseInput = m_Game.FindAction("MouseInput", throwIfNotFound: true);
         m_Game_Move = m_Game.FindAction("Move", throwIfNotFound: true);
         m_Game_Revive = m_Game.FindAction("Revive", throwIfNotFound: true);
+        m_Game_Select = m_Game.FindAction("Select", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Move = m_UI.FindAction("Move", throwIfNotFound: true);
@@ -798,6 +818,7 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Game_MouseInput;
     private readonly InputAction m_Game_Move;
     private readonly InputAction m_Game_Revive;
+    private readonly InputAction m_Game_Select;
     public struct GameActions
     {
         private @UpdatedControls m_Wrapper;
@@ -809,6 +830,7 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
         public InputAction @MouseInput => m_Wrapper.m_Game_MouseInput;
         public InputAction @Move => m_Wrapper.m_Game_Move;
         public InputAction @Revive => m_Wrapper.m_Game_Revive;
+        public InputAction @Select => m_Wrapper.m_Game_Select;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -839,6 +861,9 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
                 @Revive.started -= m_Wrapper.m_GameActionsCallbackInterface.OnRevive;
                 @Revive.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnRevive;
                 @Revive.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnRevive;
+                @Select.started -= m_Wrapper.m_GameActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnSelect;
             }
             m_Wrapper.m_GameActionsCallbackInterface = instance;
             if (instance != null)
@@ -864,6 +889,9 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
                 @Revive.started += instance.OnRevive;
                 @Revive.performed += instance.OnRevive;
                 @Revive.canceled += instance.OnRevive;
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
             }
         }
     }
@@ -993,6 +1021,7 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
         void OnMouseInput(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnRevive(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

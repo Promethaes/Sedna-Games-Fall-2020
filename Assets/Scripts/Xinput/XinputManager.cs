@@ -8,6 +8,10 @@ public enum Button
     DPAD_UP = 1,
     DPAD_DOWN = 2,
     DPAD_LEFT = 4,
+
+    LEFT_TRIGGER = 5,
+    RIGHT_TRIGGER = 6,
+
     DPAD_RIGHT = 8,
 
     START = 16,
@@ -34,31 +38,31 @@ public struct ControllerStickValues
 public class XinputManager : MonoBehaviour
 {
     const string DllName = "XinputDLL";
-    private Dictionary<Button, Callback> callbackList = new Dictionary<Button, Callback>();
+    public List<XinputGamepad> gamepads;
 
     [DllImport(DllName)]
     private static extern void UpdateGamepadList();
 
     [DllImport(DllName)]
-    private static extern bool GetEventValue(int playerIndex, int e);
+    public static extern bool GetEventValue(int playerIndex, int e);
 
     [DllImport(DllName)]
-    private static extern float GetLeftStickValueXORY(int playerIndex,bool xOrY);
+    public static extern float GetLeftStickValueXORY(int playerIndex, bool xOrY);
 
     [DllImport(DllName)]
-    private static extern float GetRightStickValueXORY(int playerIndex, bool xOrY);
+    public static extern float GetRightStickValueXORY(int playerIndex, bool xOrY);
+    [DllImport(DllName)]
+    private static extern int GetNumGamepads();
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
     }
 
     public delegate void Callback(ControllerStickValues values);
     public delegate void StickCallback(ControllerStickValues values);
 
-    public void SetEventCallback(Button button, Callback callback)
-    {
-        callbackList[button] = callback;
-    }
+
 
     StickCallback _leftStickCallback;
     StickCallback _rightStickCallback;
@@ -75,26 +79,26 @@ public class XinputManager : MonoBehaviour
 
     private void CallTheCallbacks()
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < GetNumGamepads(); i++)
         {
             ControllerStickValues values = new ControllerStickValues();
-          
-            values.leftStick.x = GetLeftStickValueXORY(i,false);
-            values.leftStick.y = GetLeftStickValueXORY(i,true);
-            values.rightStick.x = GetRightStickValueXORY(i,false);
-            values.rightStick.y = GetRightStickValueXORY(i,true);
 
-            if (values.leftStick.magnitude > 0.0 && _leftStickCallback != null)
-                _leftStickCallback.Invoke(values);
-            if (values.rightStick.magnitude > 0.0 && _rightStickCallback != null)
-                _rightStickCallback.Invoke(values);
+            values.leftStick.x = GetLeftStickValueXORY(i, false);
+            values.leftStick.y = GetLeftStickValueXORY(i, true);
+            values.rightStick.x = GetRightStickValueXORY(i, false);
+            values.rightStick.y = GetRightStickValueXORY(i, true);
+
+            if (values.leftStick.magnitude > 0.0 && gamepads[i]._leftStickCallback != null)
+                gamepads[i]._leftStickCallback.Invoke(values);
+            if (values.rightStick.magnitude > 0.0 && gamepads[i]._rightStickCallback != null)
+                gamepads[i]._rightStickCallback.Invoke(values);
 
             for (int j = 1; j < (int)Button.Y; j += j)
             {
                 Button b = (Button)j;
 
-                if (GetEventValue(i, (int)b) && callbackList.ContainsKey(b))
-                    callbackList[b].Invoke(values);
+                if (GetEventValue(i, (int)b) && gamepads[i].callbackList.ContainsKey(b))
+                    gamepads[i].callbackList[b].Invoke(values);
 
                 if (i == 512)
                     i = 2048;
@@ -107,6 +111,19 @@ public class XinputManager : MonoBehaviour
     void Update()
     {
         UpdateGamepadList();
+
+        foreach (var gamepad in gamepads)
+        {
+            gamepad.leftStick = new Vector2(
+            GetLeftStickValueXORY(gamepad.index, false),
+            GetLeftStickValueXORY(gamepad.index, true));
+
+            gamepad.rightStick = new Vector2(
+            GetRightStickValueXORY(gamepad.index, false),
+            GetRightStickValueXORY(gamepad.index, true));
+
+        }
+
         CallTheCallbacks();
     }
 }

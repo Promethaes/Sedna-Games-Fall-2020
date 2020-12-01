@@ -12,6 +12,11 @@ public class GameInputHandler : MonoBehaviour
 
     private void Awake()
     {
+        if (UseXinputScript.use){
+            this.enabled = false;
+            return;
+        }
+
         _playerController = gameObject.GetComponent<PlayerController>();
         _controls = new UpdatedControls();
     }
@@ -26,6 +31,18 @@ public class GameInputHandler : MonoBehaviour
         _playerConfig.input.onActionTriggered += onActionTriggered;
     }
 
+    public void swapPlayer(int config)
+    {
+        var reference = GameObject.Find("PlayerConfig(Clone)").GetComponentInChildren<MakePlayerCharSelectMenu>().playerSetupMenu.GetComponent<PlayerCharSelectMenu>()._characterPrefabs[config];
+        _playerMesh.GetComponentInChildren<MeshFilter>().mesh = reference.prefab.GetComponentInChildren<MeshFilter>().sharedMesh;
+        _playerMesh.GetComponentInChildren<MeshRenderer>().material = reference.prefab.GetComponentInChildren<MeshRenderer>().sharedMaterial;
+        _playerConfig.character.type = reference.type;
+        _playerController.playerType = reference.type;
+
+        // Set UI image
+        GameObject.Find("PlayerUIPanel(Clone)").GetComponent<PlayerHealthUI>().setCharacterImage(config);
+    }
+
     public void onActionTriggered(CallbackContext ctx)
     {
         if (ctx.action.name == _controls.Game.Move.name) OnMove(ctx);
@@ -35,7 +52,8 @@ public class GameInputHandler : MonoBehaviour
         if (ctx.action.name == _controls.Game.Ability.name) OnAbility(ctx);
         if (ctx.action.name == _controls.Game.Attack.name) OnAttack(ctx);
         if (ctx.action.name == _controls.Game.Revive.name) OnRevive(ctx);
-        
+        if (ctx.action.name == _controls.Game.Select.name) OnSelect(ctx);
+
     }
 
     public void OnMove(CallbackContext ctx)
@@ -84,6 +102,16 @@ public class GameInputHandler : MonoBehaviour
         else
             _playerController.attack = false;
 
+    }
+
+    public void OnSelect(CallbackContext ctx)
+    {
+        float temp = ctx.ReadValue<float>();
+
+        if (temp >= 0.5f)
+            _playerController.selectWheel = true;
+        else
+            _playerController.selectWheel = false;
     }
 
 }

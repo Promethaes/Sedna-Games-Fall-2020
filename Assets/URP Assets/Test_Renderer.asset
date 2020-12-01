@@ -1,20 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5517434067402652713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4f778ac9207b2447988db06c0dc1cb9, type: 3}
-  m_Name: OutlineFeature
-  m_EditorClassIdentifier: 
-  m_Active: 1
-  settings:
-    outlineMaterial: {fileID: 2100000, guid: d797843e3a93b684b910348a4c087d66, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_RendererFeatures:
   - {fileID: 2854839730351888437}
-  - {fileID: -5517434067402652713}
-  m_RendererFeatureMap: 35d84bf29b6d9e27d783d3c4f2226eb3
+  m_RendererFeatureMap: 35d84bf29b6d9e27
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   shaders:
     blitPS: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
