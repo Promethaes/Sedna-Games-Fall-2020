@@ -68,10 +68,10 @@ public class PlayerController : MonoBehaviour
     float _wheelCooldown = 2.0f;
     float _dashDuration = 0.0f;
     float _jumpAnimDuration = 0.0f;
-
+    public bool outOfCombat = true;
+    float _regenTicks = 0.0f;
     //NOTE: _mouseSpeed changes mouse sensitivity. Implement into options in the future
     float _mouseSpeed = 1.2f;
-
 
 
     // -------------------------------------------------------------------------
@@ -106,6 +106,7 @@ public class PlayerController : MonoBehaviour
         _dashDuration -= Time.fixedDeltaTime;
         _dashCooldown -= Time.fixedDeltaTime;
         _wheelCooldown -= Time.fixedDeltaTime;
+        _regenTicks -= Time.fixedDeltaTime;
 
         if (!downed)
         {
@@ -116,6 +117,13 @@ public class PlayerController : MonoBehaviour
             //Dash Movement
             if (isDashing == 1.0f)
                 _Dash();
+            
+            //Regen
+            if (this.GetComponentInParent<PlayerBackend>().hp < this.GetComponentInParent<PlayerBackend>().maxHP && outOfCombat && _regenTicks < 0.0f)
+            {
+                _Regen();
+                _regenTicks = 2.0f;
+            }
         }
     }
 
@@ -348,7 +356,6 @@ public class PlayerController : MonoBehaviour
         {
             EnemyData foe = enemy.collider.GetComponent<EnemyData>();
             foe.takeDamage(_damageValues[_comboCounter]);
-            Debug.Log(foe.getHealth());
         }
 
         _comboCounter++;
@@ -367,7 +374,6 @@ public class PlayerController : MonoBehaviour
             if (this.GetComponentInParent<PlayerBackend>().hp > 0.0f)
             {
                 float _hpTransfer = this.GetComponentInParent<PlayerBackend>().hp / 2.0f;
-                Debug.Log(_hpTransfer);
                 this.GetComponentInParent<PlayerBackend>().hp /= 2.0f;
                 revivee.GetComponentInParent<PlayerBackend>().hp += _hpTransfer;
                 revivee.downed = false;
@@ -376,4 +382,8 @@ public class PlayerController : MonoBehaviour
         revive = false;
     }
 
+    void _Regen()
+    {
+        this.GetComponentInParent<PlayerBackend>().hp+= 10.0f;
+    }
 }
