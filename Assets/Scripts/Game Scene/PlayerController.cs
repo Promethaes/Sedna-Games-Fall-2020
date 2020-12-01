@@ -367,7 +367,7 @@ public class PlayerController : MonoBehaviour
             if (this.GetComponentInParent<PlayerBackend>().hp > 0.0f)
             {
                 float _hpTransfer = this.GetComponentInParent<PlayerBackend>().hp / 2.0f;
-                Debug.Log(_hpTransfer);
+                Logger.Log(_hpTransfer);
                 this.GetComponentInParent<PlayerBackend>().hp /= 2.0f;
                 revivee.GetComponentInParent<PlayerBackend>().hp += _hpTransfer;
                 revivee.downed = false;
