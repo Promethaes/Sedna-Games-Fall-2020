@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8176159062642150932}
   - component: {fileID: 5212232980034356492}
   - component: {fileID: 1746861057179443172}
+  - component: {fileID: 1560217320987964800}
   m_Layer: 0
   m_Name: PolarBearMesh
   m_TagString: Untagged
@@ -94,3 +95,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4236417598775008537, guid: c702fcbbe0164c84c9bd658010911ea8, type: 3}
+--- !u!95 &1560217320987964800
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4308310533752518105}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5ce30633a1be76d409d47bdfdabf5e58, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{52bdd85f-9345-4d97-9e84-fd27db77419b}">
+		<property name="assetPath">
+			<value>snd/impact/snd_impact_2.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.34383219954648525</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{39c0caf8-5a14-42a1-8a64-ee0b7161b105}</destination>
+		</relationship>
+	</object>
+</objects>

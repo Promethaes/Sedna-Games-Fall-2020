@@ -46,4 +46,8 @@ namespace SednaInput {
 			return Vector2(0.0f, 0.0f);
 		return _gamepads[playerIndex].GetRightStickValue();
 	}
+	int GamepadManager::GetNumGamepads()
+	{
+		return _gamepads.size();
+	}
 }

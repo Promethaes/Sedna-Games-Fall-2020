@@ -11,6 +11,7 @@ namespace SednaInput {
 		bool GetEventValue(int playerIndex, int e);
 		Vector2 GetLeftStickValue(int playerIndex);
 		Vector2 GetRightStickValue(int playerIndex);
+		int GetNumGamepads();
 	private:
 
 		std::vector<InputEventSystem> _gamepads;
