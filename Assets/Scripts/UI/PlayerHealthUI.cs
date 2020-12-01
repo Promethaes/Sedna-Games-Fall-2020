@@ -33,6 +33,7 @@ public class PlayerHealthUI : MonoBehaviour {
 
     void Update() {
         currentFill = backend.hp;
+        maximum = backend.maxHP;
         fillMask.fillAmount = currentFill / maximum;
     }
 
