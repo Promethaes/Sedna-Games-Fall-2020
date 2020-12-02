@@ -11,6 +11,7 @@ public class EnemySpawnPoint : MonoBehaviour
     public float spawnRadiusScalar = 15.0f;
     public int maxSpawn = 5;
     bool _shouldSpawn = false;
+    bool _activeEnemies = false;
     public float spawnTimeInterval = 1.0f;
     float _pvtSpawnTimeInterval = 1.0f;
     void Start()
@@ -24,6 +25,16 @@ public class EnemySpawnPoint : MonoBehaviour
         _pvtSpawnTimeInterval -= Time.deltaTime;
         if (_pvtSpawnTimeInterval <= 0.0f && _shouldSpawn)
             SpawnEnemy();
+        if (!_shouldSpawn)
+        {
+            CheckEnemy();
+            if (!_activeEnemies)
+            {
+                var temp = spawnEnemies[0].GetComponentInChildren<EnemyData>().getPlayers();
+                for (int i=0;i<temp.Length;i++)
+                    temp[i].GetComponentInChildren<PlayerController>().outOfCombat = true;
+            }
+        }
     }
     void CreatePool()
     {
@@ -34,6 +45,18 @@ public class EnemySpawnPoint : MonoBehaviour
         }
     }
 
+    void CheckEnemy()
+    {
+        _activeEnemies = false;
+        for (int i=0;i<spawnEnemies.Count;i++)
+        {
+            if (spawnEnemies[i].activeSelf)
+            {
+                _activeEnemies = true;
+                break;
+            }
+        }
+    }
     void SpawnEnemy()
     {
         int spawnIndex = -1;
@@ -56,6 +79,9 @@ public class EnemySpawnPoint : MonoBehaviour
 
         spawnEnemies[spawnIndex].transform.position = gameObject.transform.position + new Vector3(Random.Range(-radius, radius), 0.0f, Random.Range(-radius, radius)) * spawnRadiusScalar;
         spawnEnemies[spawnIndex].SetActive(true);
+        var enemy = spawnEnemies[spawnIndex].GetComponentInChildren<EnemyData>();
+        enemy._health = enemy._maxHealth;
+        enemy._healthBar.sizeDelta = new Vector2(enemy.getMaxHealth()/2.0f, enemy._healthBar.sizeDelta.y);
         _pvtSpawnTimeInterval = spawnTimeInterval;
     }
 
@@ -66,7 +92,10 @@ public class EnemySpawnPoint : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
+        {
             _shouldSpawn = true;
+            other.gameObject.GetComponentInChildren<PlayerController>().outOfCombat = false;
+        }
     }
 
     private void OnTriggerExit(Collider other)

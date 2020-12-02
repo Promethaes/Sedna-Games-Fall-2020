@@ -13,6 +13,8 @@ public class PlayerBackend : MonoBehaviour
     {
         if (hp <= 0.0f)
             KillPlayer();
+        if (hp > maxHP)
+            hp = maxHP;
     }
 
     public void KillPlayer()

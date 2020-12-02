@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class EnemyData : MonoBehaviour
 {
-    // Start is called before the first frame update
     public float searchRadius = 0;
     public int currentPatrolGoal = 0;
     public bool patrol;
@@ -16,7 +15,8 @@ public class EnemyData : MonoBehaviour
     private NavMeshAgent agent;
 
 
-
+    public RectTransform _healthBar;
+    public RectTransform _healthBarBackground;
     public float _maxHealth;
     public float _health;
     public float _range;
@@ -83,6 +83,8 @@ public class EnemyData : MonoBehaviour
 
         searchRadius *= enemyScale;
 
+        _healthBarBackground.sizeDelta = new Vector2(_maxHealth/2.0f, _healthBar.sizeDelta.y);
+        _healthBar.sizeDelta = new Vector2(_maxHealth/2.0f, _healthBar.sizeDelta.y);
         players = GameObject.FindGameObjectsWithTag("Player");
         agent = this.GetComponent<NavMeshAgent>();
     }
@@ -111,6 +113,7 @@ public class EnemyData : MonoBehaviour
     public void takeDamage(float hp)
     {
         _health -= hp;
+        _healthBar.sizeDelta = new Vector2(_health/_maxHealth*_maxHealth/2.0f, _healthBar.sizeDelta.y);
         if (_health <= 0.0f)
             die();
     }
@@ -119,6 +122,8 @@ public class EnemyData : MonoBehaviour
     {
         if (_health <= 0.0f)
             //TODO: Dying animation, loot drops, etc.
+            if (Random.Range(0.0f, 1.0f) < 0.2f)
+                HealthOrbManager.GetHealthOrbManager().getOrb(transform.position);
             gameObject.SetActive(false);
     }
 
