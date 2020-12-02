@@ -9,23 +9,34 @@ public class GameXinputHandler : MonoBehaviour
     private PlayerController _playerController = null;
     private XinputGamepad _gamepad = null;
 
-    public List<GameObject> prefabs = new List<GameObject>();
+    public List<PlayerTypeToGameObject> playerPrefabs = new List<PlayerTypeToGameObject>();
+    private List<GameObject> _playerPrefabs = new List<GameObject>();
+
 
     public void swapPlayer(int config)
     {
-        var reference = prefabs[config];
-        _playerMesh.GetComponentInChildren<MeshFilter>().mesh = reference.GetComponentInChildren<MeshFilter>().sharedMesh;
-        _playerMesh.GetComponentInChildren<MeshRenderer>().material = reference.GetComponentInChildren<MeshRenderer>().sharedMaterial;
-        _playerController.playerType = (PlayerType)config;
-
+        _playerMesh.SetActive(false);
+        _playerMesh = _playerPrefabs[config];
+        _playerMesh.SetActive(true);
+        _playerConfig.character.type = playerPrefabs[config].type;
+        _playerController.playerType = playerPrefabs[config].type;
         // Set UI image
         GameObject.Find("PlayerUIPanel(Clone)").GetComponent<PlayerHealthUI>().setCharacterImage(config);
     }
 
     public void initPlayer(PlayerConfiguration config)
     {
+        foreach (var p in playerPrefabs)
+        {
+            var temp = GameObject.Instantiate(p.prefab, gameObject.transform);
+            temp.SetActive(false);
+            _playerPrefabs.Add(temp);
+        }
+
         _playerConfig = config;
-        _playerMesh = Instantiate(config.character.prefab, gameObject.transform);
+        _playerMesh = _playerPrefabs[config.index];
+        _playerMesh.SetActive(true);
+        _playerConfig.character.type = playerPrefabs[config.index].type;
         _playerController.playerType = config.character.type;
 
         _gamepad = _playerConfig.gamepad;
@@ -49,6 +60,9 @@ public class GameXinputHandler : MonoBehaviour
             return;
         }
         _playerController = gameObject.GetComponent<PlayerController>();
+
+
+
     }
 
     void OnMove(ControllerStickValues value)
