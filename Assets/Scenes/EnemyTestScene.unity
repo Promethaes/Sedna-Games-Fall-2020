@@ -569,6 +569,10 @@ MonoBehaviour:
   _damageValues: 0
   enemy: 1
   icePickRange: 5
+  randomScale: 1
+  enemyScale: 1
+  lowerBoundEnemyScale: 0.5
+  upperBoundEnemyScale: 1.5
 --- !u!195 &151928568
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -975,6 +979,10 @@ MonoBehaviour:
   _damageValues: 0
   enemy: 1
   icePickRange: 5
+  randomScale: 1
+  enemyScale: 1
+  lowerBoundEnemyScale: 0.5
+  upperBoundEnemyScale: 1.5
 --- !u!195 &314946583
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1732,6 +1740,10 @@ MonoBehaviour:
   _damageValues: 0
   enemy: 1
   icePickRange: 5
+  randomScale: 1
+  enemyScale: 1
+  lowerBoundEnemyScale: 0.5
+  upperBoundEnemyScale: 1.5
 --- !u!195 &677188300
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1994,6 +2006,10 @@ MonoBehaviour:
   _damageValues: 0
   enemy: 2
   icePickRange: 5
+  randomScale: 1
+  enemyScale: 1
+  lowerBoundEnemyScale: 0.5
+  upperBoundEnemyScale: 1.5
 --- !u!1 &868790843
 GameObject:
   m_ObjectHideFlags: 0
@@ -2326,6 +2342,10 @@ MonoBehaviour:
   _damageValues: 0
   enemy: 1
   icePickRange: 5
+  randomScale: 1
+  enemyScale: 1
+  lowerBoundEnemyScale: 0.5
+  upperBoundEnemyScale: 1.5
 --- !u!195 &1253379362
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2863,6 +2883,10 @@ MonoBehaviour:
   _damageValues: 0
   enemy: 1
   icePickRange: 5
+  randomScale: 1
+  enemyScale: 1
+  lowerBoundEnemyScale: 0.5
+  upperBoundEnemyScale: 1.5
 --- !u!195 &1692896424
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3166,6 +3190,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Polar_Bear_Animation
       objectReference: {fileID: 0}
+    - target: {fileID: 5467912486616002230, guid: 485e87dae39976640a220ca54b270dca,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1ceff11f63f22854681e4397cc5b58a3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 485e87dae39976640a220ca54b270dca, type: 3}
 --- !u!1 &1836852001 stripped
@@ -3193,6 +3222,27 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &1836852003 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -6830461876973360997, guid: 485e87dae39976640a220ca54b270dca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1836852000}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1836852004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836852003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dab6ca8ee0bfc6a489cf85c496ac774f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _red: {fileID: 2100000, guid: ff4dfcc2506552749b5fc6c6f0834b96, type: 2}
+  _original: {fileID: 2100000, guid: 1ceff11f63f22854681e4397cc5b58a3, type: 2}
+  _renderer: {fileID: 0}
 --- !u!1 &1911021218
 GameObject:
   m_ObjectHideFlags: 0
