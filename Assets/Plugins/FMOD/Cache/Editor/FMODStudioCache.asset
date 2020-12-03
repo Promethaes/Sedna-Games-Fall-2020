@@ -1,207 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8933062642559863508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/snd/jump
-  m_EditorClassIdentifier: 
-  Path: event:/snd/jump
-  guid: 15872730c08650408218aa13f2294ea5
-  Banks:
-  - {fileID: 3419815656082862356}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 288
---- !u!114 &-8901722333888644274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/ui.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/FMOD/ZooGame/Build/Desktop/ui.bank
-  Name: ui
-  StudioPath: bank:/ui
-  lastModified: 637423695141884106
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
---- !u!114 &-8771503558425845535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/snd/splash
-  m_EditorClassIdentifier: 
-  Path: event:/snd/splash
-  guid: 49ec35e4b428d9439d39071bb3052680
-  Banks:
-  - {fileID: 3419815656082862356}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1469
---- !u!114 &-6129621059391061249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/FMOD/ZooGame/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 637423695141844105
-  LoadResult: 0
-  FileSizes:
-  - Name: Desktop
-    Value: 1284
-  Exists: 1
---- !u!114 &-5961903296027705545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/snd/land
-  m_EditorClassIdentifier: 
-  Path: event:/snd/land
-  guid: d98d845650013543acac9f7fff9f284a
-  Banks:
-  - {fileID: 3419815656082862356}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 982
---- !u!114 &-5346367977691011822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/snd/res
-  m_EditorClassIdentifier: 
-  Path: event:/snd/res
-  guid: 69cbdd1dc6029043b4f5fe22d0b4421d
-  Banks:
-  - {fileID: 3419815656082862356}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 100
---- !u!114 &-4749304888060087618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/ui/activate
-  m_EditorClassIdentifier: 
-  Path: event:/ui/activate
-  guid: 8bee09c321fbe34e962d7c95ac21387f
-  Banks:
-  - {fileID: -8901722333888644274}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 50
---- !u!114 &-2340033042101659988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/snd/attack
-  m_EditorClassIdentifier: 
-  Path: event:/snd/attack
-  guid: 86fd80066fdaa54396b29d154fe3133f
-  Banks:
-  - {fileID: 3419815656082862356}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 279
---- !u!114 &-1560675577366660722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/snd/impact
-  m_EditorClassIdentifier: 
-  Path: event:/snd/impact
-  guid: 850af85de45d544f9fa3982dbd3219d0
-  Banks:
-  - {fileID: 3419815656082862356}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 343
---- !u!114 &-437384814844854591
+--- !u!114 &-8576987099443823106
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -216,7 +15,7 @@ MonoBehaviour:
   Path: event:/snd/movement
   guid: 69dd5c9b301d0c4c8248f89c816963c4
   Banks:
-  - {fileID: 3419815656082862356}
+  - {fileID: 8598792863351057410}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -224,7 +23,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 385
---- !u!114 &-394097290923367470
+--- !u!114 &-7733790564058030059
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -234,76 +33,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/ui/checkpoint
+  m_Name: event:/snd/splash
   m_EditorClassIdentifier: 
-  Path: event:/ui/checkpoint
-  guid: 45c6742f3ac11149a98f06c12ae2686b
+  Path: event:/snd/splash
+  guid: 49ec35e4b428d9439d39071bb3052680
   Banks:
-  - {fileID: -8901722333888644274}
+  - {fileID: 8598792863351057410}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 220
---- !u!114 &-274785005366060034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/FMOD/ZooGame/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 637423695141824093
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
-  m_Name: FMODStudioCache
-  m_EditorClassIdentifier: 
-  EditorBanks:
-  - {fileID: -6129621059391061249}
-  - {fileID: -274785005366060034}
-  - {fileID: 3419815656082862356}
-  - {fileID: -8901722333888644274}
-  EditorEvents:
-  - {fileID: -8933062642559863508}
-  - {fileID: -8771503558425845535}
-  - {fileID: -5346367977691011822}
-  - {fileID: -437384814844854591}
-  - {fileID: -1560675577366660722}
-  - {fileID: -2340033042101659988}
-  - {fileID: -5961903296027705545}
-  - {fileID: 5467284485255157932}
-  - {fileID: -394097290923367470}
-  - {fileID: 3468903169598505564}
-  - {fileID: -4749304888060087618}
-  - {fileID: 2882973759646839872}
-  EditorParameters: []
-  MasterBanks:
-  - {fileID: -274785005366060034}
-  StringsBanks:
-  - {fileID: -6129621059391061249}
-  stringsBankWriteTime: 637423695141844105
-  cacheVersion: 6
---- !u!114 &2882973759646839872
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1469
+--- !u!114 &-7025128917440431959
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -318,7 +61,7 @@ MonoBehaviour:
   Path: event:/ui/hover
   guid: edaf5f0c3a9a1c488a3b9f5e42f0dd27
   Banks:
-  - {fileID: -8901722333888644274}
+  - {fileID: 8769079742864331771}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -326,26 +69,7 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 50
---- !u!114 &3419815656082862356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/snd.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/FMOD/ZooGame/Build/Desktop/snd.bank
-  Name: snd
-  StudioPath: bank:/snd
-  lastModified: 637423695141864102
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
---- !u!114 &3468903169598505564
+--- !u!114 &-6534178269924426549
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -355,20 +79,43 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/ui/charswap
+  m_Name: event:/snd/land
   m_EditorClassIdentifier: 
-  Path: event:/ui/charswap
-  guid: 7e766c874e92a14a8d52ff872c8f094e
+  Path: event:/snd/land
+  guid: d98d845650013543acac9f7fff9f284a
   Banks:
-  - {fileID: -8901722333888644274}
+  - {fileID: 8598792863351057410}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 982
+--- !u!114 &-6228105221599623128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/snd/res
+  m_EditorClassIdentifier: 
+  Path: event:/snd/res
+  guid: 69cbdd1dc6029043b4f5fe22d0b4421d
+  Banks:
+  - {fileID: 8598792863351057410}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
   Length: 100
---- !u!114 &5467284485255157932
+--- !u!114 &-5898905573230133391
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -383,7 +130,7 @@ MonoBehaviour:
   Path: event:/ui/select
   guid: 04e5c7900f811f4f8b4879396e9536fb
   Banks:
-  - {fileID: -8901722333888644274}
+  - {fileID: 8769079742864331771}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -391,3 +138,256 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 50
+--- !u!114 &-5098500307684798788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ui/activate
+  m_EditorClassIdentifier: 
+  Path: event:/ui/activate
+  guid: 8bee09c321fbe34e962d7c95ac21387f
+  Banks:
+  - {fileID: 8769079742864331771}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 50
+--- !u!114 &-4683942814869505673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/FMOD/ZooGame/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 637424402213528054
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-2171863833921094617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ui/charswap
+  m_EditorClassIdentifier: 
+  Path: event:/ui/charswap
+  guid: 7e766c874e92a14a8d52ff872c8f094e
+  Banks:
+  - {fileID: 8769079742864331771}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 100
+--- !u!114 &-1573992640903001312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/snd/jump
+  m_EditorClassIdentifier: 
+  Path: event:/snd/jump
+  guid: 15872730c08650408218aa13f2294ea5
+  Banks:
+  - {fileID: 8598792863351057410}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 288
+--- !u!114 &-178428086483652818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/snd/attack
+  m_EditorClassIdentifier: 
+  Path: event:/snd/attack
+  guid: 86fd80066fdaa54396b29d154fe3133f
+  Banks:
+  - {fileID: 8598792863351057410}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 279
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: 1854043059096309896}
+  - {fileID: -4683942814869505673}
+  - {fileID: 8598792863351057410}
+  - {fileID: 8769079742864331771}
+  EditorEvents:
+  - {fileID: -1573992640903001312}
+  - {fileID: -7733790564058030059}
+  - {fileID: -6228105221599623128}
+  - {fileID: -8576987099443823106}
+  - {fileID: 7897719948072310735}
+  - {fileID: -178428086483652818}
+  - {fileID: -6534178269924426549}
+  - {fileID: -5898905573230133391}
+  - {fileID: 8458080644061382011}
+  - {fileID: -2171863833921094617}
+  - {fileID: -5098500307684798788}
+  - {fileID: -7025128917440431959}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: -4683942814869505673}
+  StringsBanks:
+  - {fileID: 1854043059096309896}
+  stringsBankWriteTime: 637424402213577919
+  cacheVersion: 6
+--- !u!114 &1854043059096309896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/FMOD/ZooGame/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 637424402213577919
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 1284
+  Exists: 1
+--- !u!114 &7897719948072310735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/snd/impact
+  m_EditorClassIdentifier: 
+  Path: event:/snd/impact
+  guid: 850af85de45d544f9fa3982dbd3219d0
+  Banks:
+  - {fileID: 8598792863351057410}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 343
+--- !u!114 &8458080644061382011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ui/checkpoint
+  m_EditorClassIdentifier: 
+  Path: event:/ui/checkpoint
+  guid: 45c6742f3ac11149a98f06c12ae2686b
+  Banks:
+  - {fileID: 8769079742864331771}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 220
+--- !u!114 &8598792863351057410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/snd.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/FMOD/ZooGame/Build/Desktop/snd.bank
+  Name: snd
+  StudioPath: bank:/snd
+  lastModified: 637424402213642815
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &8769079742864331771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/ui.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/FMOD/ZooGame/Build/Desktop/ui.bank
+  Name: ui
+  StudioPath: bank:/ui
+  lastModified: 637424402213702661
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
