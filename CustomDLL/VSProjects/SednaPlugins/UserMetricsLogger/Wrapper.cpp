@@ -21,3 +21,13 @@ void SetDefaultWritePath(String str)
 {
 	logger.SetDefaultWritePath(str);
 }
+
+void ClearUserMetricsLogger()
+{
+	logger.ClearUserMetricsLogger();
+}
+
+void ClearUserMetricsLoggerFileOnly()
+{
+	logger.ClearUserMetricsLoggerFileOnly();
+}
