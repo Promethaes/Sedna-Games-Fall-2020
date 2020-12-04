@@ -384,13 +384,37 @@ public class PlayerController : MonoBehaviour {
     }
 
     void _Attack() {
+        if (_animationDuration >= 0.0f)
+        {
+            if (_animator)
+            {
+                _animator.SetBool("attack1", false);
+                _animator.SetBool("attack2", false);
+                _animator.SetBool("attack3", false);
+                _animator.SetBool("attacking", false);
+            }
+            return;
+        }
         if (_animator)
         {
-            _animator.SetBool("attack1", true);
             _animator.SetBool("attacking", true);
-        }
+            switch (_comboCounter)
+            {
+                case 0:
+                    _animator.SetBool("attack1", true);
+                    break;
+                case 1:
+                    _animator.SetBool("attack2", true);
+                    break;
+                case 2:
+                    _animator.SetBool("attack3", true);
+                    break;
+                default:
+                    _animator.SetBool("attack1", true);
+                    break;
+            }
             
-        if (_animationDuration >= 0.0f) return;
+        }
 
         _animationDuration = _animationDelay[_comboCounter];
         if(_comboDuration < 0.0f) _comboCounter = 0;
