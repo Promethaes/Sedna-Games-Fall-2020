@@ -7,7 +7,7 @@
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x8000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 0000017BF177F8B8 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 0000024DEEE71DE8 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -15,24 +15,415 @@
 [LOG] Thread::initThread                       : Init FMOD Studio bank load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] Manager::init                            : done.
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
+[LOG] Manager::finishLoadBank                  : Bank with guid {6a673df8-38ef-4034-ac90-2ff9a707df33} has already been loaded
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
+[LOG] Manager::finishLoadBank                  : Bank with guid {130731ed-5c12-4228-a876-47833743521a} has already been loaded
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 460000
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 22464
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000CBC53FEF78
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFA7F1A7E30
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFA7F1A7E00
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFA7F1A7F00
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFA7F1A7FC0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000024DE7FC5788
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='snd_splash_1', format=5, channels=1, frequency=48000, lengthbytes=13120, lengthpcm=70546, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=1.103920.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 460000
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 22464
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000CBC53FEF78
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFA7F1A7E30
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFA7F1A7E00
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFA7F1A7F00
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFA7F1A7FC0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000024DE7FC5788
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='snd_splash_5', format=5, channels=1, frequency=48000, lengthbytes=9664, lengthpcm=53750, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.479857.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 460000
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 22464
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000CBC53FEF78
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFA7F1A7E30
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFA7F1A7E00
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFA7F1A7F00
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFA7F1A7FC0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000024DE7FC5788
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Bluezone_BC0256_water_splash_impact_003', format=5, channels=2, frequency=48000, lengthbytes=46976, lengthpcm=136881, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.972747.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 460000
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 22464
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000CBC53FEF78
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFA7F1A7E30
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFA7F1A7E00
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFA7F1A7F00
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFA7F1A7FC0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000024DE7FC5788
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Bluezone_BC0256_water_splash_impact_006', format=5, channels=2, frequency=48000, lengthbytes=37024, lengthpcm=117760, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.972747.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 460000
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 22464
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000CBC53FEF78
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFA7F1A7E30
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFA7F1A7E00
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFA7F1A7F00
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFA7F1A7FC0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000024DE7FC5788
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Bluezone_BC0256_water_splash_impact_004', format=5, channels=2, frequency=48000, lengthbytes=31648, lengthpcm=103359, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.972747.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 460000
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 22464
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000CBC53FEF78
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFA7F1A7E30
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFA7F1A7E00
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFA7F1A7F00
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFA7F1A7FC0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000024DE7FC5788
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Bluezone_BC0256_water_splash_impact_002', format=5, channels=2, frequency=48000, lengthbytes=50688, lengthpcm=170950, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.972747.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 460000
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 22464
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000CBC53FEF78
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFA7F1A7E30
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFA7F1A7E00
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFA7F1A7F00
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFA7F1A7FC0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000024DE7FC5788
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Bluezone_BC0256_water_splash_029', format=5, channels=2, frequency=48000, lengthbytes=51552, lengthpcm=170448, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.972747.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 460000
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 22464
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000CBC53FEF78
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFA7F1A7E30
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFA7F1A7E00
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFA7F1A7F00
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFA7F1A7FC0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000024DE7FC5788
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Bluezone_BC0256_water_splash_028', format=5, channels=2, frequency=48000, lengthbytes=37824, lengthpcm=126684, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.972747.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 460000
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 22464
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000CBC53FEF78
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFA7F1A7E30
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFA7F1A7E00
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFA7F1A7F00
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFA7F1A7FC0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000024DE7FC5788
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='snd_splash_4', format=5, channels=1, frequency=48000, lengthbytes=8768, lengthpcm=47031, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.833038.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 460000
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 22464
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000CBC53FEF78
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFA7F1A7E30
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFA7F1A7E00
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFA7F1A7F00
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFA7F1A7FC0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000024DE7FC5788
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Bluezone_BC0256_water_splash_impact_008', format=5, channels=2, frequency=48000, lengthbytes=37888, lengthpcm=128064, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.972747.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 460000
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 22464
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000CBC53FEF78
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFA7F1A7E30
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFA7F1A7E00
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFA7F1A7F00
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFA7F1A7FC0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000024DE7FC5788
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Bluezone_BC0256_water_splash_impact_001', format=5, channels=2, frequency=48000, lengthbytes=24224, lengthpcm=86162, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.972747.
+[LOG] SoundI::release                          :  (0000024DE8042E58)
+[LOG] SoundI::release                          :     snd_splash_1 (0000024D5D58E448)
+[LOG] SoundI::release                          :  (0000024DEE9A47B8)
+[LOG] SoundI::release                          :     snd_splash_4 (0000024D5D592F08)
+[LOG] SoundI::release                          :  (0000024DE8042FC8)
+[LOG] SoundI::release                          :     snd_splash_5 (0000024D5D58E788)
+[LOG] SoundI::release                          :  (0000024DEE9A4928)
+[LOG] SoundI::release                          :     Bluezone_BC0256_water_splash_028 (0000024D5D593A68)
+[LOG] SoundI::release                          :  (0000024DEE9A4648)
+[LOG] SoundI::release                          :     Bluezone_BC0256_water_splash_029 (0000024D5D598BA8)
+[LOG] SoundI::release                          :  (0000024D864817D8)
+[LOG] SoundI::release                          :     Bluezone_BC0256_water_splash_impact_001 (0000024D5D599BE8)
+[LOG] SoundI::release                          :  (0000024DE8043588)
+[LOG] SoundI::release                          :     Bluezone_BC0256_water_splash_impact_002 (0000024D5D58F628)
+[LOG] SoundI::release                          :  (0000024DE8043138)
+[LOG] SoundI::release                          :     Bluezone_BC0256_water_splash_impact_003 (0000024D5D58EE08)
+[LOG] SoundI::release                          :  (0000024DE8043418)
+[LOG] SoundI::release                          :     Bluezone_BC0256_water_splash_impact_004 (0000024D5D592548)
+[LOG] SoundI::release                          :  (0000024DE80432A8)
+[LOG] SoundI::release                          :     Bluezone_BC0256_water_splash_impact_006 (0000024D5D590188)
+[LOG] SoundI::release                          :  (0000024D86481218)
+[LOG] SoundI::release                          :     Bluezone_BC0256_water_splash_impact_008 (0000024D5D59AC28)
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
 [LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
+[LOG] Manager::finishLoadBank                  : Bank with guid {6a673df8-38ef-4034-ac90-2ff9a707df33} has already been loaded
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
+[LOG] Manager::finishLoadBank                  : Bank with guid {130731ed-5c12-4228-a876-47833743521a} has already been loaded
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 460000
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 22464
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000CBC53FEF78
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFA7F1A7E30
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFA7F1A7E00
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFA7F1A7F00
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFA7F1A7FC0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000024DE7FC5FC8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='snd_splash_1', format=5, channels=1, frequency=48000, lengthbytes=13120, lengthpcm=70546, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=1.103920.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 460000
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 22464
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000CBC53FEF78
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFA7F1A7E30
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFA7F1A7E00
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFA7F1A7F00
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFA7F1A7FC0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000024DE7FC5FC8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='snd_splash_5', format=5, channels=1, frequency=48000, lengthbytes=9664, lengthpcm=53750, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.479857.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 460000
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 22464
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000CBC53FEF78
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFA7F1A7E30
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFA7F1A7E00
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFA7F1A7F00
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFA7F1A7FC0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000024DE7FC5FC8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Bluezone_BC0256_water_splash_impact_003', format=5, channels=2, frequency=48000, lengthbytes=46976, lengthpcm=136881, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.972747.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 460000
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 22464
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000CBC53FEF78
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFA7F1A7E30
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFA7F1A7E00
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFA7F1A7F00
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFA7F1A7FC0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000024DE7FC5FC8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Bluezone_BC0256_water_splash_impact_006', format=5, channels=2, frequency=48000, lengthbytes=37024, lengthpcm=117760, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.972747.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 460000
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 22464
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000CBC53FEF78
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFA7F1A7E30
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFA7F1A7E00
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFA7F1A7F00
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFA7F1A7FC0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000024DE7FC5FC8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Bluezone_BC0256_water_splash_impact_004', format=5, channels=2, frequency=48000, lengthbytes=31648, lengthpcm=103359, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.972747.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 460000
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 22464
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000CBC53FEF78
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFA7F1A7E30
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFA7F1A7E00
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFA7F1A7F00
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFA7F1A7FC0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000024DE7FC5FC8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Bluezone_BC0256_water_splash_impact_002', format=5, channels=2, frequency=48000, lengthbytes=50688, lengthpcm=170950, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.972747.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 460000
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 22464
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000CBC53FEF78
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFA7F1A7E30
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFA7F1A7E00
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFA7F1A7F00
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFA7F1A7FC0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000024DE7FC5FC8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Bluezone_BC0256_water_splash_029', format=5, channels=2, frequency=48000, lengthbytes=51552, lengthpcm=170448, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.972747.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 460000
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 22464
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000CBC53FEF78
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFA7F1A7E30
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFA7F1A7E00
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFA7F1A7F00
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFA7F1A7FC0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000024DE7FC5FC8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Bluezone_BC0256_water_splash_028', format=5, channels=2, frequency=48000, lengthbytes=37824, lengthpcm=126684, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.972747.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 460000
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 22464
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000CBC53FEF78
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFA7F1A7E30
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFA7F1A7E00
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFA7F1A7F00
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFA7F1A7FC0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000024DE7FC5FC8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='snd_splash_4', format=5, channels=1, frequency=48000, lengthbytes=8768, lengthpcm=47031, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.833038.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 460000
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 22464
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000CBC53FEF78
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFA7F1A7E30
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFA7F1A7E00
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFA7F1A7F00
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFA7F1A7FC0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000024DE7FC5FC8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Bluezone_BC0256_water_splash_impact_008', format=5, channels=2, frequency=48000, lengthbytes=37888, lengthpcm=128064, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.972747.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 460000
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 22464
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000CBC53FEF78
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFA7F1A7E30
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFA7F1A7E00
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFA7F1A7F00
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFA7F1A7FC0
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000024DE7FC5FC8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Bluezone_BC0256_water_splash_impact_001', format=5, channels=2, frequency=48000, lengthbytes=24224, lengthpcm=86162, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.972747.
+[LOG] SoundI::release                          :  (0000024DE8042FC8)
+[LOG] SoundI::release                          :     snd_splash_1 (0000024D5D982658)
+[LOG] SoundI::release                          :  (0000024DEE9A4928)
+[LOG] SoundI::release                          :     snd_splash_4 (0000024D5D9728D8)
+[LOG] SoundI::release                          :  (0000024DE8042E58)
+[LOG] SoundI::release                          :     snd_splash_5 (0000024D5D981AF8)
+[LOG] SoundI::release                          :  (0000024DEE9A47B8)
+[LOG] SoundI::release                          :     Bluezone_BC0256_water_splash_028 (0000024D5D978F38)
+[LOG] SoundI::release                          :  (0000024DEE9A4648)
+[LOG] SoundI::release                          :     Bluezone_BC0256_water_splash_029 (0000024D5D977EF8)
+[LOG] SoundI::release                          :  (0000024D86481D98)
+[LOG] SoundI::release                          :     Bluezone_BC0256_water_splash_impact_001 (0000024D5D973918)
+[LOG] SoundI::release                          :  (0000024DE8043588)
+[LOG] SoundI::release                          :     Bluezone_BC0256_water_splash_impact_002 (0000024D5D978D98)
+[LOG] SoundI::release                          :  (0000024DE80432A8)
+[LOG] SoundI::release                          :     Bluezone_BC0256_water_splash_impact_003 (0000024D5D980778)
+[LOG] SoundI::release                          :  (0000024DE8043418)
+[LOG] SoundI::release                          :     Bluezone_BC0256_water_splash_impact_004 (0000024D5D981E38)
+[LOG] SoundI::release                          :  (0000024DE8043138)
+[LOG] SoundI::release                          :     Bluezone_BC0256_water_splash_impact_006 (0000024D5D9817B8)
+[LOG] SoundI::release                          :  (0000024D86481C28)
+[LOG] SoundI::release                          :     Bluezone_BC0256_water_splash_impact_008 (0000024D5D976EB8)
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 

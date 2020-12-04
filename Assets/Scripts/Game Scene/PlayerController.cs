@@ -73,6 +73,7 @@ public class PlayerController : MonoBehaviour {
     float _mouseSpeed = 1.2f;
     PlayerBackend backend;
 
+
     // -------------------------------------------------------------------------
 
     private void Awake() {
@@ -291,6 +292,7 @@ public class PlayerController : MonoBehaviour {
             //NOTE: Raycasts downwards for terrain collision, checking at a distance of 0.6f (0.5f radius, 0.1f actual check)
             _isGrounded = Physics.Raycast(transform.position, -transform.up, out terrain, 0.6f);
             if(_isGrounded && terrain.transform.tag == "Terrain") {
+
                 y = -1.0f;
 
                 //NOTE: Updates the state of dashes and jumps
