@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour {
     private float[] _damageValues = new float[3];
     private float[] _animationDelay = new float[3];
 
-    bool _isGrounded = true;
+    public bool _isGrounded = true;
     RaycastHit terrain;
     public float hopSpeed = 0.25f;
     public bool revive = false;

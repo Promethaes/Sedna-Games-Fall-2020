@@ -1,30 +1,102 @@
-METRICS LOG ENTRY ID 11399
+METRICS LOG ENTRY ID 20099
 	CHECKPOINTS:
-		 - Checkpoint #1:6.200000
+		 - Checkpoint #1:16.779999
 	DEATHS:
 		P1Deaths:
 		P2Deaths:
 		P3Deaths:
 		P4Deaths:
-METRICS LOG ENTRY ID 12879
+METRICS LOG ENTRY ID 21399
+	CHECKPOINTS:
+		 - Checkpoint #1:3.020000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 21898
+	CHECKPOINTS:
+		 - Checkpoint #1:2.920000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 22013
+	CHECKPOINTS:
+		 - Checkpoint #1:4.720000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 25654
+	CHECKPOINTS:
+		 - Checkpoint #1:6.740000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 28456
+	CHECKPOINTS:
+		 - Checkpoint #1:4.720000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 30634
+	CHECKPOINTS:
+		 - Checkpoint #1:1.900000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 30784
+	CHECKPOINTS:
+		 - Checkpoint #1:4.220000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 31009
+	CHECKPOINTS:
+		 - Checkpoint #1:3.860000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 31088
+	CHECKPOINTS:
+		 - Checkpoint #1:3.000000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 31186
+	CHECKPOINTS:
+		 - Checkpoint #1:2.360000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 31502
+	CHECKPOINTS:
+		 - Checkpoint #1:2.100000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 31737
 	CHECKPOINTS:
 		 - Checkpoint #1:2.440000
-	DEATHS:
-		P1Deaths:
-		P2Deaths:
-		P3Deaths:
-		P4Deaths:
-METRICS LOG ENTRY ID 13022
-	CHECKPOINTS:
-		 - Checkpoint #1:2.660000
-	DEATHS:
-		P1Deaths:
-		P2Deaths:
-		P3Deaths:
-		P4Deaths:
-METRICS LOG ENTRY ID 13222
-	CHECKPOINTS:
-		 - Checkpoint #1:3.580000
 	DEATHS:
 		P1Deaths:
 		P2Deaths:
