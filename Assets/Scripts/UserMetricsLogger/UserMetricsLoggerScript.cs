@@ -19,7 +19,7 @@ public class UserMetricsLoggerScript : MonoBehaviour
         }
     }
 
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct Death
     {
         public float timeOfDeath;
@@ -36,15 +36,17 @@ public class UserMetricsLoggerScript : MonoBehaviour
     }
 
     [DllImport(dllName)]
-    public static extern void LogCheckpointTime(float time);
-
+    private static extern void LogCheckpointTime(float time);
+    [DllImport(dllName, CharSet = CharSet.Ansi)]
+    private static extern void LogDeath(Death death);
     [DllImport(dllName)]
-    public static extern void LogDeath(Death death);
-
+    private static extern void WriteUserMetricsToFile();
     [DllImport(dllName)]
-    public static extern void WriteUserMetricsToFile();
+    private static extern void SetDefaultWritePath(String str);
     [DllImport(dllName)]
-    public static extern void SetDefaultWritePath(String str);
+    private static extern void ClearUserMetricsLogger();
+    [DllImport(dllName)]
+    private static extern void ClearUserMetricsLoggerFileOnly();
 
     public void csLogCheckpointTime(float time)
     {
@@ -58,25 +60,37 @@ public class UserMetricsLoggerScript : MonoBehaviour
     {
         WriteUserMetricsToFile();
     }
+    public void csClearUserMetricsLogger()
+    {
+        ClearUserMetricsLogger();
+    }
     #endregion
 
     // Start is called before the first frame update
     void Start()
     {
         SetDefaultWritePath(new String("./Assets/Plugins/"));
-
     }
-
-    float timer = 1.0f;
-    // Update is called once per frame
+    //@Temp: remove later
+    public bool writeToFile = false;
+    public bool clearData = false;
+    public bool clearFile = false;
     void Update()
     {
-        timer -= Time.deltaTime;
-        if(timer <= 0.0f){
-            timer = 1.0f;
-            csLogCheckpointTime(Time.time);
-            csLogDeath(new Death("Memes",Time.time,1));
-            csWriteUserMetricsToFile();
+        if (clearData)
+        {
+            clearData = false;
+            ClearUserMetricsLogger();
+        }
+        if (clearFile)
+        {
+            clearFile = false;
+            ClearUserMetricsLoggerFileOnly();
+        }
+        if (writeToFile)
+        {
+            writeToFile = false;
+            WriteUserMetricsToFile();
         }
     }
     private void OnDestroy()

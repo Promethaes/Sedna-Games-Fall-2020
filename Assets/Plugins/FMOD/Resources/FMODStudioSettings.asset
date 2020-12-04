@@ -454,10 +454,10 @@ MonoBehaviour:
   m_Name: FMODStudioSettings
   m_EditorClassIdentifier: 
   SwitchSettingsMigration: 1
-  HasSourceProject: 1
-  HasPlatforms: 1
+  HasSourceProject: 0
+  HasPlatforms: 0
   sourceProjectPath: Assets/FMOD/ZooGame/ZooGame.fspro
-  sourceBankPath: Assets\FMOD\ZooGame\Build
+  sourceBankPath: Assets/FMOD
   SourceBankPathUnformatted: 
   AutomaticEventLoading: 1
   BankLoadType: 0
@@ -478,9 +478,20 @@ MonoBehaviour:
   Plugins: []
   MasterBanks:
   - Master
+  - Banks/Master
   Banks:
-  - snd
+  - _test
+  - Banks/_test
+  - Banks/Dumpage Monster
+  - Banks/General Sounds
+  - Banks/OST
+  - Banks/ui
+  - Banks/Wetlands
+  - Dumpage Monster
+  - General Sounds
+  - OST
   - ui
+  - Wetlands
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0

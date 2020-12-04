@@ -13,10 +13,7 @@ int main() {
 
 		logger.LogCheckpointTime(69);
 
-		Death death;
-		death.causeOfDeath = "Big dead disease";
-		death.playerNum = 1;
-		death.timeOfDeath = time(0);
+		Death death = Death("ah",2.0f,1);
 
 		logger.LogDeath(death);
 		logger.WriteUserMetricsToFile();
