@@ -432,6 +432,7 @@ public class PlayerController : MonoBehaviour {
         _comboDuration = 2.0f;
 
         attack = false;
+        _animator.SetBool("attacking", false);
     }
 
     void _Revive() {
