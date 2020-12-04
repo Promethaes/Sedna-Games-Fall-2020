@@ -56,8 +56,9 @@ public class SoundController : MonoBehaviour
             jumpSound.Play();
         }
 
-        if(!_playerController.selectWheel && _playerController._confirmWheel)
-        charSwapSound.Play();
+        if (!_playerController.selectWheel && _playerController._confirmWheel)
+            charSwapSound.Play();
+            
     }
 
 }
