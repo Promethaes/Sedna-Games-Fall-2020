@@ -72,6 +72,7 @@ public class PlayerController : MonoBehaviour {
     //NOTE: _mouseSpeed changes mouse sensitivity. Implement into options in the future
     float _mouseSpeed = 1.2f;
     PlayerBackend backend;
+    private Animator _animator;
 
     // -------------------------------------------------------------------------
 
@@ -270,16 +271,26 @@ public class PlayerController : MonoBehaviour {
         _confirmWheel = false;
         if(_wheelSelection != (int)playerType) {
             _wheelCooldown = 2.0f;
-            if(UseXinputScript.use)
+            if (UseXinputScript.use)
+            {
                 GetComponentInParent<GameXinputHandler>().swapPlayer(_wheelSelection);
+                _animator = GetComponentInParent<GameXinputHandler>()._animator;
+            }
             else
+            {
                 GetComponentInParent<GameInputHandler>().swapPlayer(_wheelSelection);
+                _animator = GetComponentInParent<GameXinputHandler>()._animator;
+            }
+                
 
             setupPlayer();
         }
     }
 
     void _Move() {
+        if (_animator)
+            _animator.SetBool("walking",true);
+        
         if(_dashDuration < 0.0f) {
             //NOTE: Camera position affects the rotation of the player's movement, which is stored in the first value of Vector3 vel (Current: 135.0f)
             Vector3 vel = Quaternion.AngleAxis(270.0f, Vector3.up) * ((Quaternion.AngleAxis(180, Vector3.up) * (transform.forward * moveInput.x)) + (Quaternion.AngleAxis(90, Vector3.up) * (transform.forward * moveInput.y)));
@@ -354,10 +365,17 @@ public class PlayerController : MonoBehaviour {
     void _UseAbility() {
         // @Todo: activate some prompt
 
-        if(!useAbility) return;
+        if (!useAbility)
+        {
+            if (_animator)
+                _animator.SetBool("ability", false);
+            return;
+        }
+        if (_animator)
+            _animator.SetBool("ability", true);
 
         //add more...wait i dont think we need to add more than one lmaooooooooooooooooooooooooo
-        switch(playerType) {
+        switch (playerType) {
             case PlayerType.TURTLE: bubbleShieldScript.AttemptToCast(); break;
             case PlayerType.POLAR_BEAR: polarBearScript.Transition(); break;
             case PlayerType.BISON: ramThrough.hasRammed = true; break;
@@ -366,7 +384,13 @@ public class PlayerController : MonoBehaviour {
     }
 
     void _Attack() {
-        if(_animationDuration >= 0.0f) return;
+        if (_animator)
+        {
+            _animator.SetBool("attack1", true);
+            _animator.SetBool("attacking", true);
+        }
+            
+        if (_animationDuration >= 0.0f) return;
 
         _animationDuration = _animationDelay[_comboCounter];
         if(_comboDuration < 0.0f) _comboCounter = 0;
