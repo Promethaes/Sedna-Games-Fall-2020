@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour {
     public bool downed = false;
     SelectionWheelUI _wheelUI;
     public bool selectWheel = false;
-    bool _confirmWheel = false;
+    public bool _confirmWheel = false;
     int _wheelSelection = 0;
     float _wheelCooldown = 2.0f;
     float _dashDuration = 0.0f;
