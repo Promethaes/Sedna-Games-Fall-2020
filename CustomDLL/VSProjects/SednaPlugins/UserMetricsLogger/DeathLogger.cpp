@@ -1,17 +1,8 @@
 #include "DeathLogger.h"
 
-void DeathLogger::addDeath(Death death)
+void DeathLogger::addDeath(CDeath death)
 {
-	switch (death.playerNum) {
-	case 1:
-		deathLists[0].push_back(death);
-	case 2:
-		deathLists[1].push_back(death);
-	case 3:
-		deathLists[2].push_back(death);
-	case 4:
-		deathLists[3].push_back(death);
-	}
+	deathLists[death.playerNum - 1].push_back(death);
 }
 
 std::string DeathLogger::toString()
@@ -23,7 +14,7 @@ std::string DeathLogger::toString()
 		for (int i = 0; i < deathLists[j].size(); i++) {
 			std::string temp = "\t\t\t - Death #" + std::to_string(i + 1) + ":\n";
 			temp += "\t\t\t\t - Time of Death: " + std::to_string(deathLists[j][i].timeOfDeath) + "\n";
-			temp += "\t\t\t\t - Cause of Death: " + std::string(deathLists[j][i].causeOfDeath) + "\n";
+			temp += "\t\t\t\t - Cause of Death: " + deathLists[j][i].causeOfDeath + "\n";
 			outString += temp;
 		}
 	}
@@ -33,8 +24,13 @@ std::string DeathLogger::toString()
 
 void DeathLogger::clearDeaths()
 {
-	for (auto& x : deathLists) 
+	for (auto& x : deathLists)
 		x.clear();
-	
-	
+
+
+}
+
+CDeath::CDeath(Death& death) :playerNum(death.playerNum),timeOfDeath(death.timeOfDeath)
+{
+	causeOfDeath = std::string(death.causeOfDeath);
 }

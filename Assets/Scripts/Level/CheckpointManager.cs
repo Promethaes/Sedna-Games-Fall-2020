@@ -7,6 +7,7 @@ public class CheckpointManager : MonoBehaviour {
     public GamePlayerManager playerManager;
     public EnemySpawnPoint[] enemySpawners;
     int counter = 0;
+    public UserMetricsLoggerScript uml;
 
     private void Start() {
         playerManager = FindObjectOfType<GamePlayerManager>();
@@ -24,7 +25,7 @@ public class CheckpointManager : MonoBehaviour {
         foreach(EnemySpawnPoint spawner in enemySpawners) {
             foreach(GameObject enemy in spawner.spawnEnemies) {
                 enemy.SetActive(false);
-                enemy.GetComponent<EnemyData>().setHealth(enemy.GetComponent<EnemyData>().getMaxHealth());
+                enemy.GetComponent<EnemyData>()._health = enemy.GetComponent<EnemyData>().getMaxHealth();
             }
             spawner.setShouldSpawn(false);
         }

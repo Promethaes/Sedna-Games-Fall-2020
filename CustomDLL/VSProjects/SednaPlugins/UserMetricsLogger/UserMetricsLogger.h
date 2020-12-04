@@ -13,10 +13,11 @@ public:
 
 	void LogCheckpointTime(float time) { cLogger.addTime(time); }
 
-	void LogDeath(Death death) { dLogger.addDeath(death); }//so much death
+	void LogDeath(Death death);//so much death
 
 	void WriteUserMetricsToFile();
-	void ClearUserMetricsFile(String str);
+	void ClearUserMetricsLogger();
+	void ClearUserMetricsLoggerFileOnly();
 
 	void SetDefaultWritePath(String str) {defaultPath = str.data;}
 private:

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2163458001001960197
+--- !u!1 &5599863337556979104
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,7 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4965767725953624483}
+  - component: {fileID: 4058250380284505627}
   m_Layer: 0
   m_Name: PolarBearPrefab
   m_TagString: Untagged
@@ -16,27 +16,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4965767725953624483
+--- !u!4 &4058250380284505627
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2163458001001960197}
+  m_GameObject: {fileID: 5599863337556979104}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 3713260044143675035}
+  - {fileID: 9131805044541662986}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &3747732848558776688
+--- !u!1001 &8732489793205420257
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 4965767725953624483}
+    m_TransformParent: {fileID: 4058250380284505627}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 485e87dae39976640a220ca54b270dca,
         type: 3}
@@ -93,21 +93,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 485e87dae39976640a220ca54b270dca,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 150569f5829509c4bb822968be1fbe3c, type: 2}
     - target: {fileID: 919132149155446097, guid: 485e87dae39976640a220ca54b270dca,
         type: 3}
       propertyPath: m_Name
       value: Polar_Bear_Animation
       objectReference: {fileID: 0}
+    - target: {fileID: 5467912486616002230, guid: 485e87dae39976640a220ca54b270dca,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 150569f5829509c4bb822968be1fbe3c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 485e87dae39976640a220ca54b270dca, type: 3}
---- !u!4 &3713260044143675035 stripped
+--- !u!4 &9131805044541662986 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 485e87dae39976640a220ca54b270dca,
     type: 3}
-  m_PrefabInstance: {fileID: 3747732848558776688}
+  m_PrefabInstance: {fileID: 8732489793205420257}
   m_PrefabAsset: {fileID: 0}

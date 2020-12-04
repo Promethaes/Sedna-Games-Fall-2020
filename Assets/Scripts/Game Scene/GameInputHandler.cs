@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
 
@@ -10,21 +11,37 @@ public class GameInputHandler : MonoBehaviour
     private PlayerController _playerController = null;
     private UpdatedControls _controls = null;
 
+    public List<PlayerTypeToGameObject> _playerPrefabs = null;
+
     private void Awake()
     {
-        if (UseXinputScript.use){
+        if (UseXinputScript.use)
+        {
             this.enabled = false;
             return;
         }
 
         _playerController = gameObject.GetComponent<PlayerController>();
         _controls = new UpdatedControls();
+
+        var reference = GameObject.Find("PlayerConfig(Clone)").GetComponentInChildren<MakePlayerCharSelectMenu>().playerSetupMenu.GetComponent<PlayerCharSelectMenu>()._characterPrefabs;
+
+        foreach (var p in reference)
+        {
+            var temp = GameObject.Instantiate(p.prefab, gameObject.transform);
+            temp.SetActive(false);
+            var pType = new PlayerTypeToGameObject();
+            pType.prefab = temp;
+            pType.type = p.type;
+            _playerPrefabs.Add(pType);
+        }
     }
 
     public void initPlayer(PlayerConfiguration config)
     {
         _playerConfig = config;
-        _playerMesh = Instantiate(config.character.prefab, gameObject.transform);
+        _playerMesh = _playerPrefabs[config.index].prefab;
+        _playerMesh.SetActive(true);
         _playerController.playerType = config.character.type;
 
         _playerConfig.input.SwitchCurrentActionMap("Game");
@@ -33,11 +50,11 @@ public class GameInputHandler : MonoBehaviour
 
     public void swapPlayer(int config)
     {
-        var reference = GameObject.Find("PlayerConfig(Clone)").GetComponentInChildren<MakePlayerCharSelectMenu>().playerSetupMenu.GetComponent<PlayerCharSelectMenu>()._characterPrefabs[config];
-        _playerMesh.GetComponentInChildren<MeshFilter>().mesh = reference.prefab.GetComponentInChildren<MeshFilter>().sharedMesh;
-        _playerMesh.GetComponentInChildren<MeshRenderer>().material = reference.prefab.GetComponentInChildren<MeshRenderer>().sharedMaterial;
-        _playerConfig.character.type = reference.type;
-        _playerController.playerType = reference.type;
+        _playerMesh.SetActive(false);
+        _playerMesh = _playerPrefabs[config].prefab;
+        _playerMesh.SetActive(true);
+        _playerConfig.character.type = _playerPrefabs[config].type;
+        _playerController.playerType = _playerPrefabs[config].type;
 
         // Set UI image
         GameObject.Find("PlayerUIPanel(Clone)").GetComponent<PlayerHealthUI>().setCharacterImage(config);
