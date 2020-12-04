@@ -176,7 +176,7 @@ MonoBehaviour:
   Path: Assets/FMOD/ZooGame/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637423733049390787
+  lastModified: 637423590035202653
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -284,7 +284,7 @@ MonoBehaviour:
   - {fileID: -4683942814869505673}
   StringsBanks:
   - {fileID: 1854043059096309896}
-  stringsBankWriteTime: 637423733049390787
+  stringsBankWriteTime: 637423590036309692
   cacheVersion: 6
 --- !u!114 &1854043059096309896
 MonoBehaviour:
@@ -301,7 +301,7 @@ MonoBehaviour:
   Path: Assets/FMOD/ZooGame/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637423733049390787
+  lastModified: 637423590036309692
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -368,7 +368,7 @@ MonoBehaviour:
   Path: Assets/FMOD/ZooGame/Build/Desktop/snd.bank
   Name: snd
   StudioPath: bank:/snd
-  lastModified: 637423733049400797
+  lastModified: 637423590036319662
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -387,7 +387,7 @@ MonoBehaviour:
   Path: Assets/FMOD/ZooGame/Build/Desktop/ui.bank
   Name: ui
   StudioPath: bank:/ui
-  lastModified: 637423733049400797
+  lastModified: 637423590036329642
   LoadResult: 0
   FileSizes: []
   Exists: 1
