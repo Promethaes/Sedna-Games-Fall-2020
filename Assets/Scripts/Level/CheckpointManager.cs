@@ -7,6 +7,7 @@ public class CheckpointManager : MonoBehaviour {
     public GamePlayerManager playerManager;
     public EnemySpawnPoint[] enemySpawners;
     int counter = 0;
+    public UserMetricsLoggerScript uml;
 
     private void Start() {
         playerManager = FindObjectOfType<GamePlayerManager>();
