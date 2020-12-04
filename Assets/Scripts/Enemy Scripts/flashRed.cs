@@ -8,6 +8,8 @@ public class flashRed : MonoBehaviour
     private Material _red;
     [SerializeField]
     private Material _original;
+    [SerializeField]
+    private float _flashTime = 0.1f;
     private SkinnedMeshRenderer _renderer;
 
     private float _changeTime = 0.0f;
@@ -34,7 +36,7 @@ public class flashRed : MonoBehaviour
         if (_renderer)
         {
             _renderer.material = _red;
-            _changeTime = 0.1f;
+            _changeTime = _flashTime;
         }
     }
 }
