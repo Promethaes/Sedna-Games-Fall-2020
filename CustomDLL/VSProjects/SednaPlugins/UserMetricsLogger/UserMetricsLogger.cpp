@@ -3,7 +3,10 @@
 #include <cstdlib>
 #include <time.h>
 
-
+void UserMetricsLogger::LogDeath(Death death)
+{
+	dLogger.addDeath(CDeath(death));
+}
 
 void UserMetricsLogger::WriteUserMetricsToFile()
 {
@@ -32,9 +35,15 @@ void UserMetricsLogger::WriteUserMetricsToFile()
 	file.close();
 }
 
-void UserMetricsLogger::ClearUserMetricsFile(String str)
+void UserMetricsLogger::ClearUserMetricsLogger()
 {
-	std::ofstream file(str.data);
+	ClearUserMetricsLoggerFileOnly();
+	logData.clear();
+}
+
+void UserMetricsLogger::ClearUserMetricsLoggerFileOnly()
+{
+	std::ofstream file(defaultPath + "LatestUserMetrics.txt");
 	file.clear();
 	file.close();
 }
