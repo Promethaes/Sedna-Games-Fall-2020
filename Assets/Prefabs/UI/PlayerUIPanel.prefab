@@ -277,10 +277,10 @@ MonoBehaviour:
   currentFill: 1000
   centreImage: {fileID: 2890009050391494638}
   images:
-  - {fileID: 21300000, guid: d51bac646ab6bd3408341df6be0fafc1, type: 3}
-  - {fileID: 21300000, guid: 89d331a54aed705469a793998534cf7a, type: 3}
-  - {fileID: 21300000, guid: 17ac5ede561bbad48aaa26a30a34cd64, type: 3}
-  - {fileID: 21300000, guid: a226a46a5bed9d14584cfdb4243f6f23, type: 3}
+  - {fileID: 21300000, guid: a5aa780964a1011468f6edd1c8644e43, type: 3}
+  - {fileID: 21300000, guid: 5b9ec2415ef305749a6de08ab2fe77ff, type: 3}
+  - {fileID: 21300000, guid: 1ebf93446de4a1044aaf3c870ba81f14, type: 3}
+  - {fileID: 21300000, guid: fc1fd5b87294e1745ba187aadc424edb, type: 3}
 --- !u!1 &2890009050391494624
 GameObject:
   m_ObjectHideFlags: 0
