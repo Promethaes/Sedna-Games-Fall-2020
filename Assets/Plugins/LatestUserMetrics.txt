@@ -1,6 +1,25 @@
-METRICS LOG ENTRY ID 19482
+METRICS LOG ENTRY ID 527
 	CHECKPOINTS:
-		 - Checkpoint #1:2.320000
+		 - Checkpoint #1:4.220000
+	DEATHS:
+		P1Deaths:
+			 - Death #1:
+				 - Time of Death: 87.747192
+				 - Cause of Death: temp
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 1363
+	CHECKPOINTS:
+		 - Checkpoint #1:6.740000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 1487
+	CHECKPOINTS:
+		 - Checkpoint #1:6.360000
 	DEATHS:
 		P1Deaths:
 		P2Deaths:

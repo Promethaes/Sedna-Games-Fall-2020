@@ -279,7 +279,7 @@ public class PlayerController : MonoBehaviour {
             else
             {
                 GetComponentInParent<GameInputHandler>().swapPlayer(_wheelSelection);
-                _animator = GetComponentInParent<GameXinputHandler>()._animator;
+                _animator = GetComponentInParent<GameInputHandler>()._animator;
             }
                 
 

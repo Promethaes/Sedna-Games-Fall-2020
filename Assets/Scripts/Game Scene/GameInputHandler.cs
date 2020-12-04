@@ -12,6 +12,7 @@ public class GameInputHandler : MonoBehaviour
     private UpdatedControls _controls = null;
 
     public List<PlayerTypeToGameObject> _playerPrefabs = null;
+    public Animator _animator;
 
     private void Awake()
     {
@@ -43,6 +44,7 @@ public class GameInputHandler : MonoBehaviour
         _playerMesh = _playerPrefabs[config.index].prefab;
         _playerMesh.SetActive(true);
         _playerController.playerType = config.character.type;
+        _animator = _playerMesh.GetComponentInChildren<Animator>();
 
         _playerConfig.input.SwitchCurrentActionMap("Game");
         _playerConfig.input.onActionTriggered += onActionTriggered;
@@ -55,6 +57,7 @@ public class GameInputHandler : MonoBehaviour
         _playerMesh.SetActive(true);
         _playerConfig.character.type = _playerPrefabs[config].type;
         _playerController.playerType = _playerPrefabs[config].type;
+        _animator = _playerMesh.GetComponentInChildren<Animator>();
 
         // Set UI image
         GameObject.Find("PlayerUIPanel(Clone)").GetComponent<PlayerHealthUI>().setCharacterImage(config);
