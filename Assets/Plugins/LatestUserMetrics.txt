@@ -1,6 +1,6 @@
-METRICS LOG ENTRY ID 30736
+METRICS LOG ENTRY ID 19482
 	CHECKPOINTS:
-		 - Checkpoint #1:2.260000
+		 - Checkpoint #1:2.320000
 	DEATHS:
 		P1Deaths:
 		P2Deaths:
