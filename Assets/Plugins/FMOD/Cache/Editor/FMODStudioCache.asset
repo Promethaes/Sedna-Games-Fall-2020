@@ -1,6 +1,98 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2547295248666374419
+--- !u!114 &-7817439220355354658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/snd/movement
+  m_EditorClassIdentifier: 
+  Path: event:/snd/movement
+  guid: 69dd5c9b301d0c4c8248f89c816963c4
+  Banks:
+  - {fileID: -1093105747100554856}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 385
+--- !u!114 &-6438590009681559464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ui/activate
+  m_EditorClassIdentifier: 
+  Path: event:/ui/activate
+  guid: 8bee09c321fbe34e962d7c95ac21387f
+  Banks:
+  - {fileID: -333131770431676038}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 50
+--- !u!114 &-5713767538805695884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ui/select
+  m_EditorClassIdentifier: 
+  Path: event:/ui/select
+  guid: 04e5c7900f811f4f8b4879396e9536fb
+  Banks:
+  - {fileID: -333131770431676038}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 50
+--- !u!114 &-5651741516285794415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/snd/impact
+  m_EditorClassIdentifier: 
+  Path: event:/snd/impact
+  guid: 850af85de45d544f9fa3982dbd3219d0
+  Banks:
+  - {fileID: -1093105747100554856}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 343
+--- !u!114 &-1093105747100554856
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,15 +102,58 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
+  m_Name: bank:/snd.bank
   m_EditorClassIdentifier: 
-  Path: Assets/Sounds/Primordial/Build/Desktop/Master.bank
-  SubDir: 
-  lastModified: 637418439228626346
+  Path: Assets/FMOD/ZooGame/Build/Desktop/snd.bank
+  Name: snd
+  StudioPath: bank:/snd
+  lastModified: 637424402213642815
   LoadResult: 0
   FileSizes: []
-  Exists: 0
---- !u!114 &-58970640020640113
+  Exists: 1
+--- !u!114 &-908096056256978196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ui/checkpoint
+  m_EditorClassIdentifier: 
+  Path: event:/ui/checkpoint
+  guid: 45c6742f3ac11149a98f06c12ae2686b
+  Banks:
+  - {fileID: -333131770431676038}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 220
+--- !u!114 &-333131770431676038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/ui.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/FMOD/ZooGame/Build/Desktop/ui.bank
+  Name: ui
+  StudioPath: bank:/ui
+  lastModified: 637424402213702661
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-35230512544575165
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -30,9 +165,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/Master.bank
   m_EditorClassIdentifier: 
-  Path: Assets/Sounds/Primordial/Build/Desktop/Master.bank
-  SubDir: 
-  lastModified: 637418383750296885
+  Path: Assets/FMOD/ZooGame/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 637424402213528054
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -49,18 +185,31 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 3779607882232162307}
-  - {fileID: -58970640020640113}
+  - {fileID: 6369579761752856522}
+  - {fileID: -35230512544575165}
+  - {fileID: -1093105747100554856}
+  - {fileID: -333131770431676038}
   EditorEvents:
-  - {fileID: 7595009117666780731}
+  - {fileID: 876781027523791419}
+  - {fileID: 5579249196351325416}
+  - {fileID: 3071550581540387645}
+  - {fileID: -7817439220355354658}
+  - {fileID: -5651741516285794415}
+  - {fileID: 3958514006918034749}
+  - {fileID: 4873317612355926553}
+  - {fileID: -5713767538805695884}
+  - {fileID: -908096056256978196}
+  - {fileID: 8686876398710825105}
+  - {fileID: -6438590009681559464}
+  - {fileID: 7971977465983352903}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -58970640020640113}
+  - {fileID: -35230512544575165}
   StringsBanks:
-  - {fileID: 3779607882232162307}
-  stringsBankWriteTime: 637418383750416557
-  cacheVersion: 3
---- !u!114 &920623935157420612
+  - {fileID: 6369579761752856522}
+  stringsBankWriteTime: 637424402213577919
+  cacheVersion: 6
+--- !u!114 &876781027523791419
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -69,16 +218,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/snd/jump
   m_EditorClassIdentifier: 
-  Path: Assets/Sounds/Primordial/Build/Desktop/Master.bank
-  SubDir: 
-  lastModified: 637414222879952016
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
---- !u!114 &1694166413745879314
+  Path: event:/snd/jump
+  guid: 15872730c08650408218aa13f2294ea5
+  Banks:
+  - {fileID: -1093105747100554856}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 288
+--- !u!114 &3071550581540387645
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,16 +241,90 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/snd/res
   m_EditorClassIdentifier: 
-  Path: Assets/Sounds/Primordial/Build/Desktop/Master.bank
-  SubDir: 
-  lastModified: 637414876498673141
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &3779607882232162307
+  Path: event:/snd/res
+  guid: 69cbdd1dc6029043b4f5fe22d0b4421d
+  Banks:
+  - {fileID: -1093105747100554856}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 100
+--- !u!114 &3958514006918034749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/snd/attack
+  m_EditorClassIdentifier: 
+  Path: event:/snd/attack
+  guid: 86fd80066fdaa54396b29d154fe3133f
+  Banks:
+  - {fileID: -1093105747100554856}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 279
+--- !u!114 &4873317612355926553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/snd/land
+  m_EditorClassIdentifier: 
+  Path: event:/snd/land
+  guid: d98d845650013543acac9f7fff9f284a
+  Banks:
+  - {fileID: -1093105747100554856}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 982
+--- !u!114 &5579249196351325416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/snd/splash
+  m_EditorClassIdentifier: 
+  Path: event:/snd/splash
+  guid: 49ec35e4b428d9439d39071bb3052680
+  Banks:
+  - {fileID: -1093105747100554856}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1469
+--- !u!114 &6369579761752856522
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,15 +336,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/Master.strings.bank
   m_EditorClassIdentifier: 
-  Path: Assets/Sounds/Primordial/Build/Desktop/Master.strings.bank
-  SubDir: 
-  lastModified: 637418383750416557
+  Path: Assets/FMOD/ZooGame/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 637424402213577919
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 734
+    Value: 1284
   Exists: 1
---- !u!114 &7595009117666780731
+--- !u!114 &7971977465983352903
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,16 +355,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SoundTest
+  m_Name: event:/ui/hover
   m_EditorClassIdentifier: 
-  Path: event:/SoundTest
-  guid: 1f16dac872ffec44ba1c64e14be473f3
+  Path: event:/ui/hover
+  guid: edaf5f0c3a9a1c488a3b9f5e42f0dd27
   Banks:
-  - {fileID: -58970640020640113}
+  - {fileID: -333131770431676038}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 6739
+  Length: 50
+--- !u!114 &8686876398710825105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ui/charswap
+  m_EditorClassIdentifier: 
+  Path: event:/ui/charswap
+  guid: 7e766c874e92a14a8d52ff872c8f094e
+  Banks:
+  - {fileID: -333131770431676038}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 100

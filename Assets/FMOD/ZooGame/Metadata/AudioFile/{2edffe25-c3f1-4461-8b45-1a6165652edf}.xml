@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{2edffe25-c3f1-4461-8b45-1a6165652edf}">
+		<property name="assetPath">
+			<value>snd/jump/snd_jump_3.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.19498866213151927</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{39c0caf8-5a14-42a1-8a64-ee0b7161b105}</destination>
+		</relationship>
+	</object>
+</objects>
