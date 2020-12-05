@@ -213,7 +213,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   emitter: {fileID: 2301399512434728333}
-  timer: 0.5
 --- !u!1 &4347776517780915312
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,12 +372,13 @@ MonoBehaviour:
   insideCastingZone: 0
   useAbility: 0
   attack: 0
+  _isGrounded: 1
   hopSpeed: 0.25
   revive: 0
   downed: 0
   selectWheel: 0
+  _confirmWheel: 0
   outOfCombat: 1
-  soundController: {fileID: -8836583346135462517}
 --- !u!114 &407760201645271284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,7 +448,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c711531489917c54480128dd125d7a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefabs: []
+  playerPrefabs:
+  - type: 0
+    prefab: {fileID: 6136010692545304303, guid: fc23b360f92b0684985c513c5eef336f,
+      type: 3}
+  - type: 1
+    prefab: {fileID: 3759433490961893299, guid: 27470a5f13f0edd4ca6adc13a56fe7dd,
+      type: 3}
+  - type: 2
+    prefab: {fileID: 5599863337556979104, guid: 622fdbc1053ecee4e839964387494fb3,
+      type: 3}
+  - type: 3
+    prefab: {fileID: 5198594359940231113, guid: a7830bd555028984f92877dffa6d2d8d,
+      type: 3}
 --- !u!114 &8452957873613565362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,6 +494,7 @@ MonoBehaviour:
   movementSound: {fileID: 2301399512434728333}
   charSwapSound: {fileID: 3853408945611242619}
   selectSound: {fileID: 2695779503254730636}
+  timer: 0.5
 --- !u!1 &5489993372373712657
 GameObject:
   m_ObjectHideFlags: 0
