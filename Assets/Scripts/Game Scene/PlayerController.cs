@@ -55,14 +55,14 @@ public class PlayerController : MonoBehaviour {
     private float[] _damageValues = new float[3];
     private float[] _animationDelay = new float[3];
 
-    bool _isGrounded = true;
+    public bool _isGrounded = true;
     RaycastHit terrain;
     public float hopSpeed = 0.25f;
     public bool revive = false;
     public bool downed = false;
     SelectionWheelUI _wheelUI;
     public bool selectWheel = false;
-    bool _confirmWheel = false;
+    public bool _confirmWheel = false;
     int _wheelSelection = 0;
     float _wheelCooldown = 2.0f;
     float _dashDuration = 0.0f;
@@ -72,6 +72,7 @@ public class PlayerController : MonoBehaviour {
     //NOTE: _mouseSpeed changes mouse sensitivity. Implement into options in the future
     float _mouseSpeed = 1.2f;
     PlayerBackend backend;
+
 
     // -------------------------------------------------------------------------
 
@@ -291,6 +292,7 @@ public class PlayerController : MonoBehaviour {
             //NOTE: Raycasts downwards for terrain collision, checking at a distance of 0.6f (0.5f radius, 0.1f actual check)
             _isGrounded = Physics.Raycast(transform.position, -transform.up, out terrain, 0.6f);
             if(_isGrounded && terrain.transform.tag == "Terrain") {
+
                 y = -1.0f;
 
                 //NOTE: Updates the state of dashes and jumps
