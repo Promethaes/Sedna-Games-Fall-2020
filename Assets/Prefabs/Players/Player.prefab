@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/snd/movement_water
+  Event: event:/snd/splash
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/snd/movement_water
+  Event: event:/ui/select
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/snd/movement_water
+  Event: event:/ui/charswap
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -160,8 +160,8 @@ MonoBehaviour:
   Preload: 0
   Params: []
   OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
 --- !u!1 &4105422303138828336
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,7 +171,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2953963184998645964}
-  - component: {fileID: 1572596449386092609}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -200,19 +199,6 @@ Transform:
   m_Father: {fileID: 8027879222947004586}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1572596449386092609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4105422303138828336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65cd25de75a05eb499f5487f63301c44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  emitter: {fileID: 2301399512434728333}
 --- !u!1 &4347776517780915312
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,7 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/snd/movement_water
+  Event: event:/snd/jump
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -378,7 +364,9 @@ MonoBehaviour:
   downed: 0
   selectWheel: 0
   _confirmWheel: 0
+  _wheelSelection: 0
   outOfCombat: 1
+  hitEnemy: 0
 --- !u!114 &407760201645271284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -949,7 +937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/snd/movement_water
+  Event: event:/snd/attack
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -1057,7 +1045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/snd/movement_water
+  Event: event:/snd/impact
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1

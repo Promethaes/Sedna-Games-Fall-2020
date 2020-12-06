@@ -2,7 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+enum EnemySoundIndex
+{
+    Spawn,
+    Attack,
+    Pain,
+    Die
+}
 public class EnemyData : MonoBehaviour
 {
     public float searchRadius = 0;
@@ -13,6 +19,7 @@ public class EnemyData : MonoBehaviour
     [SerializeField]
     private GameObject[] players;
     private NavMeshAgent agent;
+    public List<FMODUnity.StudioEventEmitter> enemySounds = new List<FMODUnity.StudioEventEmitter>();
 
 
     public RectTransform _healthBar;
@@ -46,6 +53,11 @@ public class EnemyData : MonoBehaviour
     {
         enemyScale = Random.Range(lowerBoundEnemyScale, upperBoundEnemyScale);
         transform.localScale = new Vector3(1.0f, 1.0f, 1.0f) * enemyScale;
+        searchRadius *= enemyScale;
+        foreach (var sound in enemySounds)
+        {
+            sound.SetParameter("size", enemyScale / upperBoundEnemyScale);
+        }
     }
 
     public void Init()
@@ -81,10 +93,10 @@ public class EnemyData : MonoBehaviour
                 break;
         }
 
-        searchRadius *= enemyScale;
 
-        _healthBarBackground.sizeDelta = new Vector2(_maxHealth/2.0f, _healthBar.sizeDelta.y);
-        _healthBar.sizeDelta = new Vector2(_maxHealth/2.0f, _healthBar.sizeDelta.y);
+
+        _healthBarBackground.sizeDelta = new Vector2(_maxHealth / 2.0f, _healthBar.sizeDelta.y);
+        _healthBar.sizeDelta = new Vector2(_maxHealth / 2.0f, _healthBar.sizeDelta.y);
         players = GameObject.FindGameObjectsWithTag("Player");
         agent = this.GetComponent<NavMeshAgent>();
     }
@@ -113,7 +125,8 @@ public class EnemyData : MonoBehaviour
     public void takeDamage(float hp)
     {
         _health -= hp;
-        _healthBar.sizeDelta = new Vector2(_health/_maxHealth*_maxHealth/2.0f, _healthBar.sizeDelta.y);
+        _healthBar.sizeDelta = new Vector2(_health / _maxHealth * _maxHealth / 2.0f, _healthBar.sizeDelta.y);
+        enemySounds[(int)EnemySoundIndex.Pain].Play();
         if (_health <= 0.0f)
             die();
     }
@@ -121,10 +134,13 @@ public class EnemyData : MonoBehaviour
     protected void die()
     {
         if (_health <= 0.0f)
+        {
+            enemySounds[(int)EnemySoundIndex.Die].Play();
             //TODO: Dying animation, loot drops, etc.
             if (Random.Range(0.0f, 1.0f) < 0.2f)
                 HealthOrbManager.GetHealthOrbManager().getOrb(transform.position);
-            gameObject.SetActive(false);
+        }
+        gameObject.SetActive(false);
     }
 
 

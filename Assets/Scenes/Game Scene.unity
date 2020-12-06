@@ -170,6 +170,8 @@ GameObject:
   - component: {fileID: 15892191}
   - component: {fileID: 15892193}
   - component: {fileID: 15892192}
+  - component: {fileID: 15892194}
+  - component: {fileID: 15892195}
   m_Layer: 0
   m_Name: CP6
   m_TagString: Untagged
@@ -216,6 +218,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d037054629d3b44988f746656b59105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &15892194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15892190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: Player
+  Emitters:
+  - Target: {fileID: 614233166}
+    Params:
+    - Name: Progress
+      Value: 6
+  TriggerEvent: 3
+--- !u!114 &15892195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15892190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/ui/checkpoint
+  PlayEvent: 3
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
 --- !u!1 &27548081
 GameObject:
   m_ObjectHideFlags: 0
@@ -1986,6 +2030,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Log
       objectReference: {fileID: 0}
+    - target: {fileID: 1150312713079450596, guid: 02532802a17ee1e43912c07906bfc91e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02532802a17ee1e43912c07906bfc91e, type: 3}
 --- !u!4 &223955379 stripped
@@ -3487,6 +3536,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnPoint (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4198796643681508975, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: m_TagString
+      value: EnemySpawnPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 5060433708512069856, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
       propertyPath: enemyPrefab
@@ -4292,6 +4346,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Log (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1150312713079450596, guid: 02532802a17ee1e43912c07906bfc91e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Terrain
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02532802a17ee1e43912c07906bfc91e, type: 3}
@@ -5511,6 +5570,8 @@ GameObject:
   - component: {fileID: 525868674}
   - component: {fileID: 525868676}
   - component: {fileID: 525868675}
+  - component: {fileID: 525868677}
+  - component: {fileID: 525868678}
   m_Layer: 0
   m_Name: CP5
   m_TagString: Untagged
@@ -5557,6 +5618,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d037054629d3b44988f746656b59105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &525868677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525868673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: Player
+  Emitters:
+  - Target: {fileID: 614233166}
+    Params:
+    - Name: Progress
+      Value: 5
+  TriggerEvent: 3
+--- !u!114 &525868678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525868673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/ui/checkpoint
+  PlayEvent: 3
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
 --- !u!1 &544878914
 GameObject:
   m_ObjectHideFlags: 0
@@ -6046,6 +6149,48 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 586659239}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &586659244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586659243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Emitters:
+  - Target: {fileID: 586659245}
+    Params:
+    - Name: clearedObstacle
+      Value: 1
+  TriggerEvent: 12
+--- !u!114 &586659245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586659243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/amb/river
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
 --- !u!1 &596093703
 GameObject:
   m_ObjectHideFlags: 0
@@ -6313,6 +6458,87 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 612547211}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &614233165
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6174366017726327341, guid: e3ffa79d0c6ea2247b864cef3549893c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 719.7262
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174366017726327341, guid: e3ffa79d0c6ea2247b864cef3549893c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.6790466
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174366017726327341, guid: e3ffa79d0c6ea2247b864cef3549893c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 221.09306
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174366017726327341, guid: e3ffa79d0c6ea2247b864cef3549893c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174366017726327341, guid: e3ffa79d0c6ea2247b864cef3549893c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174366017726327341, guid: e3ffa79d0c6ea2247b864cef3549893c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174366017726327341, guid: e3ffa79d0c6ea2247b864cef3549893c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174366017726327341, guid: e3ffa79d0c6ea2247b864cef3549893c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174366017726327341, guid: e3ffa79d0c6ea2247b864cef3549893c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174366017726327341, guid: e3ffa79d0c6ea2247b864cef3549893c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174366017726327341, guid: e3ffa79d0c6ea2247b864cef3549893c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174366017726327343, guid: e3ffa79d0c6ea2247b864cef3549893c,
+        type: 3}
+      propertyPath: m_Name
+      value: Music
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e3ffa79d0c6ea2247b864cef3549893c, type: 3}
+--- !u!114 &614233166 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6174366017726327340, guid: e3ffa79d0c6ea2247b864cef3549893c,
+    type: 3}
+  m_PrefabInstance: {fileID: 614233165}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &634942523
 GameObject:
   m_ObjectHideFlags: 0
@@ -6589,6 +6815,8 @@ GameObject:
   - component: {fileID: 676892568}
   - component: {fileID: 676892570}
   - component: {fileID: 676892569}
+  - component: {fileID: 676892571}
+  - component: {fileID: 676892572}
   m_Layer: 0
   m_Name: CP3
   m_TagString: Untagged
@@ -6604,8 +6832,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676892567}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 279.3, y: -21.92, z: 186.3}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 281.65, y: -21.92, z: 185.62}
+  m_LocalScale: {x: 22.905132, y: 22.905132, z: 22.905132}
   m_Children: []
   m_Father: {fileID: 1939483335}
   m_RootOrder: 2
@@ -6635,6 +6863,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d037054629d3b44988f746656b59105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &676892571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676892567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: Player
+  Emitters:
+  - Target: {fileID: 614233166}
+    Params:
+    - Name: Progress
+      Value: 3
+  TriggerEvent: 3
+--- !u!114 &676892572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676892567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/ui/checkpoint
+  PlayEvent: 3
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
 --- !u!1 &705038048
 GameObject:
   m_ObjectHideFlags: 0
@@ -8450,6 +8720,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnPoint (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4198796643681508975, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: m_TagString
+      value: EnemySpawnPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 5060433708512069856, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
       propertyPath: enemyPrefab
@@ -8562,6 +8837,60 @@ Transform:
   m_Father: {fileID: 455243218}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 33.157, z: 0}
+--- !u!1 &911368892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 911368894}
+  - component: {fileID: 911368893}
+  m_Layer: 0
+  m_Name: Ambient
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &911368893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911368892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/amb/wet_amb
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
+--- !u!4 &911368894
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911368892}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 981.41547, y: 6.301941, z: 201.191}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &912219835
 GameObject:
   m_ObjectHideFlags: 0
@@ -9214,6 +9543,48 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 986057621}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &986057626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986057625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Emitters:
+  - Target: {fileID: 986057627}
+    Params:
+    - Name: clearedObstacle
+      Value: 1
+  TriggerEvent: 12
+--- !u!114 &986057627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986057625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/amb/river
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &1006188272
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9770,6 +10141,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnPoint (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 4198796643681508975, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: m_TagString
+      value: EnemySpawnPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 5060433708512069856, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
       propertyPath: enemyPrefab
@@ -9870,6 +10246,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Log (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1150312713079450596, guid: 02532802a17ee1e43912c07906bfc91e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Terrain
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02532802a17ee1e43912c07906bfc91e, type: 3}
@@ -10429,6 +10810,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnPoint (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4198796643681508975, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: m_TagString
+      value: EnemySpawnPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 5060433708512069856, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
       propertyPath: enemyPrefab
@@ -10459,6 +10845,8 @@ GameObject:
   - component: {fileID: 1115828917}
   - component: {fileID: 1115828919}
   - component: {fileID: 1115828918}
+  - component: {fileID: 1115828920}
+  - component: {fileID: 1115828921}
   m_Layer: 0
   m_Name: CP4
   m_TagString: Untagged
@@ -10505,6 +10893,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d037054629d3b44988f746656b59105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1115828920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115828916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: Player
+  Emitters:
+  - Target: {fileID: 614233166}
+    Params:
+    - Name: Progress
+      Value: 4
+  TriggerEvent: 3
+--- !u!114 &1115828921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115828916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/ui/checkpoint
+  PlayEvent: 3
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
 --- !u!1 &1129172178
 GameObject:
   m_ObjectHideFlags: 0
@@ -10516,6 +10946,8 @@ GameObject:
   - component: {fileID: 1129172179}
   - component: {fileID: 1129172181}
   - component: {fileID: 1129172180}
+  - component: {fileID: 1129172182}
+  - component: {fileID: 1129172183}
   m_Layer: 0
   m_Name: CP2
   m_TagString: Untagged
@@ -10562,6 +10994,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d037054629d3b44988f746656b59105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1129172182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129172178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: Player
+  Emitters:
+  - Target: {fileID: 614233166}
+    Params:
+    - Name: Progress
+      Value: 2
+  TriggerEvent: 3
+--- !u!114 &1129172183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129172178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/ui/checkpoint
+  PlayEvent: 3
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
 --- !u!1 &1134643653
 GameObject:
   m_ObjectHideFlags: 0
@@ -10573,6 +11047,8 @@ GameObject:
   - component: {fileID: 1134643654}
   - component: {fileID: 1134643656}
   - component: {fileID: 1134643655}
+  - component: {fileID: 1134643657}
+  - component: {fileID: 1134643658}
   m_Layer: 0
   m_Name: CP1
   m_TagString: Untagged
@@ -10619,6 +11095,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d037054629d3b44988f746656b59105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1134643657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134643653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: Player
+  Emitters:
+  - Target: {fileID: 614233166}
+    Params:
+    - Name: Progress
+      Value: 1
+  TriggerEvent: 3
+--- !u!114 &1134643658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134643653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/ui/checkpoint
+  PlayEvent: 3
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
 --- !u!1 &1141694336
 GameObject:
   m_ObjectHideFlags: 0
@@ -11258,6 +11776,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Log (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1150312713079450596, guid: 02532802a17ee1e43912c07906bfc91e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Terrain
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02532802a17ee1e43912c07906bfc91e, type: 3}
@@ -12798,6 +13321,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnPoint (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 4198796643681508975, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: m_TagString
+      value: EnemySpawnPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 5060433708512069856, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
       propertyPath: enemyPrefab
@@ -13009,6 +13537,48 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1367637380}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1367637385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367637384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/amb/river
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &1367637386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367637384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Emitters:
+  - Target: {fileID: 1367637385}
+    Params:
+    - Name: clearedObstacle
+      Value: 1
+  TriggerEvent: 12
 --- !u!1 &1385767548
 GameObject:
   m_ObjectHideFlags: 0
@@ -13259,6 +13829,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Log (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1150312713079450596, guid: 02532802a17ee1e43912c07906bfc91e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Terrain
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02532802a17ee1e43912c07906bfc91e, type: 3}
@@ -14116,6 +14691,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Log (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1150312713079450596, guid: 02532802a17ee1e43912c07906bfc91e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02532802a17ee1e43912c07906bfc91e, type: 3}
 --- !u!4 &1530883819 stripped
@@ -14856,6 +15436,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SpawnPoint (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4198796643681508975, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: m_TagString
+      value: EnemySpawnPoint
       objectReference: {fileID: 0}
     - target: {fileID: 5060433708512069856, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
@@ -17616,6 +18201,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Log (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1150312713079450596, guid: 02532802a17ee1e43912c07906bfc91e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02532802a17ee1e43912c07906bfc91e, type: 3}
 --- !u!4 &1841334700 stripped
@@ -19400,6 +19990,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnPoint (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4198796643681508975, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: m_TagString
+      value: EnemySpawnPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 5060433708512069856, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
       propertyPath: enemyPrefab
@@ -19786,6 +20381,48 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2029821537}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2029821542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029821541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Emitters:
+  - Target: {fileID: 2029821543}
+    Params:
+    - Name: clearedObstacle
+      Value: 1
+  TriggerEvent: 12
+--- !u!114 &2029821543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029821541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/amb/river
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &2034077182
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19909,6 +20546,48 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2034077182}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2034077187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034077186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Emitters:
+  - Target: {fileID: 2034077188}
+    Params:
+    - Name: clearedObstacle
+      Value: 1
+  TriggerEvent: 12
+--- !u!114 &2034077188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034077186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/amb/river
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &2042048808
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20295,6 +20974,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Log (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1150312713079450596, guid: 02532802a17ee1e43912c07906bfc91e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Terrain
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02532802a17ee1e43912c07906bfc91e, type: 3}
@@ -20919,3 +21603,92 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b22d9bed9e991cb48bd8b879939ff82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &6235789854458429781
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1603258345111328008, guid: ddfdc93fffc54c244a81da8269294991,
+        type: 3}
+      propertyPath: Emitters.Array.data[0].Target
+      value: 
+      objectReference: {fileID: 614233166}
+    - target: {fileID: 1603258345111328008, guid: ddfdc93fffc54c244a81da8269294991,
+        type: 3}
+      propertyPath: CollisionTag
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1603258345111328011, guid: ddfdc93fffc54c244a81da8269294991,
+        type: 3}
+      propertyPath: Emitters.Array.data[0].Target
+      value: 
+      objectReference: {fileID: 614233166}
+    - target: {fileID: 1603258345111328011, guid: ddfdc93fffc54c244a81da8269294991,
+        type: 3}
+      propertyPath: CollisionTag
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1603258345111328013, guid: ddfdc93fffc54c244a81da8269294991,
+        type: 3}
+      propertyPath: m_Name
+      value: TriggerCombatMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 1603258345111328054, guid: ddfdc93fffc54c244a81da8269294991,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1603258345111328054, guid: ddfdc93fffc54c244a81da8269294991,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1603258345111328054, guid: ddfdc93fffc54c244a81da8269294991,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1603258345111328054, guid: ddfdc93fffc54c244a81da8269294991,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1603258345111328054, guid: ddfdc93fffc54c244a81da8269294991,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1603258345111328054, guid: ddfdc93fffc54c244a81da8269294991,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1603258345111328054, guid: ddfdc93fffc54c244a81da8269294991,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1603258345111328054, guid: ddfdc93fffc54c244a81da8269294991,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1603258345111328054, guid: ddfdc93fffc54c244a81da8269294991,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1603258345111328054, guid: ddfdc93fffc54c244a81da8269294991,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1603258345111328054, guid: ddfdc93fffc54c244a81da8269294991,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ddfdc93fffc54c244a81da8269294991, type: 3}
