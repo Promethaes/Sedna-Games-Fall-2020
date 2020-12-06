@@ -57,7 +57,6 @@ public class GameXinputHandler : MonoBehaviour
         if (!UseXinputScript.use)
         {
             this.enabled = false;
-            gameObject.GetComponent<XinputGamepad>().enabled = false;
             return;
         }
         _playerController = gameObject.GetComponent<PlayerController>();

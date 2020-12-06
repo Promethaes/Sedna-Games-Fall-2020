@@ -31,9 +31,11 @@ public class FlingerAttack : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //TODO: Animation; heavy sludge attacks(?)
-        if (stateInfo.normalizedTime >= 0.5f && _shouldFling){
+        if (stateInfo.normalizedTime >= 0.5f && _shouldFling)
+        {
             rangedEnemyData.Fling();
             _shouldFling = false;
+            enemyData.enemySounds[(int)EnemySoundIndex.Attack].Play();
         }
 
         animator.SetBool("attack", false);

@@ -27,6 +27,7 @@ public class SoundController : MonoBehaviour
     public float timer = 0.5f;
     float _timer = 0.5f;
     bool landed = false;
+    int _lastWheel = -1;
     // Update is called once per frame
     void Update()
     {
@@ -51,14 +52,29 @@ public class SoundController : MonoBehaviour
             landed = false;
 
         _lastPosition = gameObject.transform.position;
+
         if (_playerController.isJumping == 1.0f)
-        {
             jumpSound.Play();
+
+        if (_playerController.selectWheel && _playerController._wheelSelection != _lastWheel)
+        {
+            charSwapSound.Play();
+            _lastWheel = _playerController._wheelSelection;
         }
 
         if (!_playerController.selectWheel && _playerController._confirmWheel)
-            charSwapSound.Play();
-            
+            selectSound.Play();
+
+        if (_playerController.playAttackSound)
+        {
+            attackSound.Play();
+            _playerController.playAttackSound = false;
+        }
+        if (_playerController.hitEnemy)
+        {
+            _playerController.hitEnemy = false;
+            impactSound.Play();
+        }
     }
 
 }

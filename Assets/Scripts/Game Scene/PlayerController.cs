@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour {
     SelectionWheelUI _wheelUI;
     public bool selectWheel = false;
     public bool _confirmWheel = false;
-    int _wheelSelection = 0;
+    public int _wheelSelection = 0;
     float _wheelCooldown = 2.0f;
     float _dashDuration = 0.0f;
     float _jumpAnimDuration = 0.0f;
@@ -72,6 +72,8 @@ public class PlayerController : MonoBehaviour {
     //NOTE: _mouseSpeed changes mouse sensitivity. Implement into options in the future
     float _mouseSpeed = 1.2f;
     PlayerBackend backend;
+    public bool hitEnemy = false;
+    public bool playAttackSound = false;
 
 
     // -------------------------------------------------------------------------
@@ -379,6 +381,7 @@ public class PlayerController : MonoBehaviour {
         if(Physics.Raycast(transform.position, transform.forward, out enemy, 2.0f) && enemy.transform.tag == "Enemy") {
             EnemyData foe = enemy.collider.GetComponent<EnemyData>();
             foe.takeDamage(_damageValues[_comboCounter]);
+            hitEnemy = true;
         }
 
         _comboCounter++;
@@ -386,6 +389,7 @@ public class PlayerController : MonoBehaviour {
         _comboDuration = 2.0f;
 
         attack = false;
+        playAttackSound = true;
     }
 
     void _Revive() {
