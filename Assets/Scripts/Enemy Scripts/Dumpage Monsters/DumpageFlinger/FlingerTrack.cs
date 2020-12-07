@@ -22,6 +22,8 @@ public class FlingerTrack : StateMachineBehaviour
             rangedEnemyData = enemy.GetComponent<RangedEnemyData>();
         }
         agent.isStopped = false;
+        enemyData.enemySounds[(int)EnemySoundIndex.Spawn].Play();
+
 
     }
 

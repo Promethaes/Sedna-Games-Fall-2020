@@ -53,7 +53,9 @@ public class GameInputHandler : MonoBehaviour
     public void swapPlayer(int config)
     {
         _playerMesh.SetActive(false);
+        var temp = _playerMesh.transform.rotation;
         _playerMesh = _playerPrefabs[config].prefab;
+        _playerMesh.transform.rotation = temp;
         _playerMesh.SetActive(true);
         _playerConfig.character.type = _playerPrefabs[config].type;
         _playerController.playerType = _playerPrefabs[config].type;

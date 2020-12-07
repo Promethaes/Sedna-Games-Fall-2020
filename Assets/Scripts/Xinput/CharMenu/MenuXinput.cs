@@ -47,7 +47,7 @@ public class MenuXinput : MonoBehaviour
         
         configuration = new PlayerConfiguration(_gamepad,gameObject);
         menuUI.SetActive(false);
-
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
@@ -138,8 +138,10 @@ public class MenuXinput : MonoBehaviour
                 readyToStart = false;
         }
 
-        if (readyToStart && playerIndex == 0 && XinputPlayerManager.get.players.Count != 0)
+        if (readyToStart && playerIndex == 0 && XinputPlayerManager.get.players.Count != 0){
             sceneChanger.changeScene(2);
+            gameObject.SetActive(false);
+        }
     }
 
 

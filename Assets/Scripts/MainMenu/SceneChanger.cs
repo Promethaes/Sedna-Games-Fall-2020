@@ -12,11 +12,6 @@ public class SceneChanger : MonoBehaviour
         SceneManager.LoadScene(index);
     }
 
-    private void Update()
-    {
-
-    }
-
     public void onStartButtonPressed()
     {
         var optionsScript = FindObjectOfType<OptionsScript>();
