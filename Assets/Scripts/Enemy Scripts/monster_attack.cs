@@ -19,6 +19,8 @@ public class monster_attack : StateMachineBehaviour
             players = enemyData.getPlayers();
             agent = enemyData.getNavMeshAgent();
         }
+        enemyData.enemySounds[(int)EnemySoundIndex.Attack].Play();
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

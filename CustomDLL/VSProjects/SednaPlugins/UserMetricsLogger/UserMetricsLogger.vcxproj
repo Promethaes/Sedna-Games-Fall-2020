@@ -123,6 +123,9 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>for /f "usebackq tokens=*" %%f in (`dir /s /b /a-d "VSProjects" ^| findstr /i /l /e ".dll"`) do xcopy "%%f" %~dp0..\Assets\Plugins\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -139,11 +142,15 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>for /f "usebackq tokens=*" %%f in (`dir /s /b /a-d "VSProjects" ^| findstr /i /l /e ".dll"`) do xcopy "%%f" %~dp0..\Assets\Plugins\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CheckpointLogger.cpp" />
     <ClCompile Include="DeathLogger.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Structs.cpp" />
     <ClCompile Include="UserMetricsLogger.cpp" />
     <ClCompile Include="Wrapper.cpp" />
   </ItemGroup>

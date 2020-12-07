@@ -9,6 +9,7 @@ TagManager:
   - PlayerManager
   - CheckpointManager
   - UI
+  - EnemySpawnPoint
   layers:
   - Default
   - TransparentFX

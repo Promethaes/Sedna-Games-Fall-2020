@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+enum EnemySoundIndex
+{
+    Spawn,
+    Attack,
+    Pain,
+    Die
+}
 public class EnemyData : MonoBehaviour
 {
-    // Start is called before the first frame update
     public float searchRadius = 0;
     public int currentPatrolGoal = 0;
     public bool patrol;
@@ -14,9 +19,13 @@ public class EnemyData : MonoBehaviour
     [SerializeField]
     private GameObject[] players;
     private NavMeshAgent agent;
+    public List<FMODUnity.StudioEventEmitter> enemySounds = new List<FMODUnity.StudioEventEmitter>();
 
 
-
+    public Billboard _billboard;
+    public RectTransform _healthBar;
+    public RectTransform _healthBarBackground;
+    public float _healthBarSize = 90.0f;
     public float _maxHealth;
     public float _health;
     public float _range;
@@ -38,14 +47,19 @@ public class EnemyData : MonoBehaviour
     public static List<GameObject> icePickEnemies = new List<GameObject>();
 
     public bool randomScale = true;
-    public float enemyScale = 1.0f;
-    public float lowerBoundEnemyScale = 0.5f;
-    public float upperBoundEnemyScale = 1.5f;
+    public float enemyScale = 1.5f;
+    public float lowerBoundEnemyScale = 1.0f;
+    public float upperBoundEnemyScale = 2.0f;
 
     void DetermineEnemyScale()
     {
         enemyScale = Random.Range(lowerBoundEnemyScale, upperBoundEnemyScale);
         transform.localScale = new Vector3(1.0f, 1.0f, 1.0f) * enemyScale;
+        searchRadius *= enemyScale;
+        foreach (var sound in enemySounds)
+        {
+            sound.SetParameter("size", enemyScale / upperBoundEnemyScale);
+        }
     }
 
     public void Init()
@@ -81,8 +95,10 @@ public class EnemyData : MonoBehaviour
                 break;
         }
 
-        searchRadius *= enemyScale;
 
+
+        _healthBarBackground.sizeDelta = new Vector2(_health/_maxHealth*_healthBarSize, _healthBar.sizeDelta.y);
+        _healthBar.sizeDelta = new Vector2(_health/_maxHealth*_healthBarSize, _healthBar.sizeDelta.y);
         players = GameObject.FindGameObjectsWithTag("Player");
         agent = this.GetComponent<NavMeshAgent>();
     }
@@ -111,6 +127,9 @@ public class EnemyData : MonoBehaviour
     public void takeDamage(float hp)
     {
         _health -= hp;
+        _healthBar.sizeDelta = new Vector2(_health/_maxHealth*_healthBarSize, _healthBar.sizeDelta.y);
+        _billboard.healthChanged();
+        enemySounds[(int)EnemySoundIndex.Pain].Play();
         if (_health <= 0.0f)
             die();
     }
@@ -118,8 +137,13 @@ public class EnemyData : MonoBehaviour
     protected void die()
     {
         if (_health <= 0.0f)
+        {
+            enemySounds[(int)EnemySoundIndex.Die].Play();
             //TODO: Dying animation, loot drops, etc.
-            gameObject.SetActive(false);
+            if (Random.Range(0.0f, 1.0f) < 0.2f)
+                HealthOrbManager.GetHealthOrbManager().getOrb(transform.position);
+        }
+        gameObject.SetActive(false);
     }
 
 

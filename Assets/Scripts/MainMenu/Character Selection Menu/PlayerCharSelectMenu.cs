@@ -7,6 +7,7 @@ public class PlayerCharSelectMenu : MonoBehaviour
 {
 
     public int charSelectIndex = 0;
+    public FMODUnity.StudioEventEmitter charSwapSound;
 
     public List<PlayerTypeToGameObject> _characterPrefabs = null;
 
@@ -59,7 +60,6 @@ public class PlayerCharSelectMenu : MonoBehaviour
         _confirmButton.color = new Color(1.0f, 1.0f, 1.0f);
         _allowScrolling = true;
     }
-
     public void startGame()
     {
         if (!_inputEnabled) return;
@@ -75,6 +75,7 @@ public class PlayerCharSelectMenu : MonoBehaviour
             if (charSelectIndex >= _characterPrefabs.Count) charSelectIndex = 0;
             characterSelection = _playerPrefabs[charSelectIndex];
             characterSelection.SetActive(true);
+            charSwapSound.Play();
         }
     }
 
@@ -87,7 +88,7 @@ public class PlayerCharSelectMenu : MonoBehaviour
             if (charSelectIndex < 0) charSelectIndex = _characterPrefabs.Count - 1;
             characterSelection = _playerPrefabs[charSelectIndex];
             characterSelection.SetActive(true);
-
+            charSwapSound.Play();
         }
     }
 

@@ -20,6 +20,7 @@ public class Dumpage_Track : StateMachineBehaviour
             agent = enemyData.getNavMeshAgent();
         }
         agent.isStopped = false;
+        enemyData.enemySounds[(int)EnemySoundIndex.Spawn].Play();
 
     }
 
@@ -40,16 +41,16 @@ public class Dumpage_Track : StateMachineBehaviour
             }
             if ((enemy.transform.position - player.transform.position).magnitude < 3)
             {
-                animator.SetBool("attack",true);
+                animator.SetBool("attack", true);
             }
         }
-            
+
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

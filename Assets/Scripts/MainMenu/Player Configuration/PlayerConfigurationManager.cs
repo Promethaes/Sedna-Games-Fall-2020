@@ -13,7 +13,6 @@ public class PlayerConfigurationManager : MonoBehaviour
     public List<PlayerConfiguration> playerConfigurations { get { return _playerConfigs; } }
 
     public static PlayerConfigurationManager get { get; private set; }
-
     private void Awake()
     {
         if (get != null)
@@ -21,7 +20,6 @@ public class PlayerConfigurationManager : MonoBehaviour
             Logger.Error("Attempted to create new instance of PlayerConfigurationManager when one already exists!");
             return;
         }
-
         get = this;
         DontDestroyOnLoad(get);
 
