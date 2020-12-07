@@ -22,8 +22,8 @@ public class PlayerController : MonoBehaviour {
     // [SerializeField] private GameObject player = null;  // @Cleanup? This shouldn't be needed since this gets attached to the player object itself and not a child
     [SerializeField] private GameObject playerCamera = null;
     [SerializeField] private GameObject lookingAt = null;
-    [SerializeField] private float yUpperBound = 2.22f;
-    [SerializeField] private float yLowerBound = 1.11f;
+    [SerializeField] private float yUpperBound = 4.0f;
+    [SerializeField] private float yLowerBound = -1.0f;
     [SerializeField] private float rotationSpeedInverse = 1.0f;
 
     // -------------------------------------------------------------------------
@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour {
     [HideInInspector] public bool attack = false;
 
     private Rigidbody _rigidbody = null;
+    private GameObject _playerMesh = null;
 
     // Jump stuff
     private bool _jumped = false;
@@ -70,11 +71,11 @@ public class PlayerController : MonoBehaviour {
     public bool outOfCombat = true;
     float _regenTicks = 0.0f;
     //NOTE: _mouseSpeed changes mouse sensitivity. Implement into options in the future
-    float _mouseSpeed = 1.2f;
+    float _mouseSpeed = 1.75f;
     PlayerBackend backend;
     public bool hitEnemy = false;
     public bool playAttackSound = false;
-
+    private float turnSpeed;
 
     // -------------------------------------------------------------------------
 
@@ -103,6 +104,10 @@ public class PlayerController : MonoBehaviour {
                 break;
         }
         backend.hp = backend.maxHP;
+        if(UseXinputScript.use)
+            _playerMesh = GetComponentInParent<GameXinputHandler>().playerPrefabs[(int)playerType].prefab;
+        else
+            _playerMesh = GetComponentInParent<GameInputHandler>()._playerPrefabs[(int)playerType].prefab;
 
     }
 
@@ -113,7 +118,6 @@ public class PlayerController : MonoBehaviour {
             case PlayerType.BISON:
                 _setCombo(20.0f, 30.0f, 50.0f, 0.7f, 1.0f, 1.10f);
                 backend.maxHP = 200;
-
                 break;
             case PlayerType.POLAR_BEAR:
                 _setCombo(15.0f, 15.0f, 50.0f, 0.35f, 0.5f, 1.5f);
@@ -134,6 +138,10 @@ public class PlayerController : MonoBehaviour {
                 _setCombo(15.0f, 20.0f, 25.0f, 0.45f, 0.95f, 1.25f);
                 break;
         }
+        if(UseXinputScript.use)
+            _playerMesh = GetComponentInParent<GameXinputHandler>().playerPrefabs[(int)playerType].prefab;
+        else
+            _playerMesh = GetComponentInParent<GameInputHandler>()._playerPrefabs[(int)playerType].prefab;
         backend.hp = backend.maxHP * percentage;
 
     }
@@ -216,8 +224,7 @@ public class PlayerController : MonoBehaviour {
             rotationSpeedInverse = 1.0f;
 
         //rotate camera on x z plane
-        transform.rotation = Quaternion.AngleAxis(mouseInput.x / rotationSpeedInverse * _mouseSpeed, Vector3.up) * transform.rotation;
-
+        playerCamera.transform.RotateAround(transform.position, Vector3.up, mouseInput.x / rotationSpeedInverse * _mouseSpeed);
         //increase/decrease height of camera target
         lookingAt.transform.position = lookingAt.transform.position + new Vector3(0.0f, mouseInput.y / (rotationSpeedInverse * 10.0f), 0.0f);
 
@@ -285,9 +292,12 @@ public class PlayerController : MonoBehaviour {
     void _Move() {
         if(_dashDuration < 0.0f) {
             //NOTE: Camera position affects the rotation of the player's movement, which is stored in the first value of Vector3 vel (Current: 135.0f)
-            Vector3 vel = Quaternion.AngleAxis(270.0f, Vector3.up) * ((Quaternion.AngleAxis(180, Vector3.up) * (transform.forward * moveInput.x)) + (Quaternion.AngleAxis(90, Vector3.up) * (transform.forward * moveInput.y)));
+            Vector3 vel = playerCamera.transform.right*moveInput.x + playerCamera.transform.forward * moveInput.y;
             vel *= moveSpeed;
-
+            if (vel.magnitude >= 0.1f)
+            {
+                _playerMesh.transform.rotation = Quaternion.Euler(0.0f,Mathf.SmoothDampAngle(_playerMesh.transform.eulerAngles.y,playerCamera.transform.eulerAngles.y,ref turnSpeed,0.25f),0.0f);
+            }
             float y = _rigidbody.velocity.y;
             //NOTE: Checks for _isGrounded to reduce the effects of gravity such that the player doesn't slide off slopes
             //TODO: Adjust raycast for actual models' radii
@@ -378,7 +388,7 @@ public class PlayerController : MonoBehaviour {
         // TODO: Animation
 
         RaycastHit enemy;
-        if(Physics.Raycast(transform.position, transform.forward, out enemy, 2.0f) && enemy.transform.tag == "Enemy") {
+        if(Physics.Raycast(transform.position, _playerMesh.transform.forward, out enemy, 2.0f) && enemy.transform.tag == "Enemy") {
             EnemyData foe = enemy.collider.GetComponent<EnemyData>();
             foe.takeDamage(_damageValues[_comboCounter]);
             hitEnemy = true;

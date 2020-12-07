@@ -60,7 +60,6 @@ public class PlayerCharSelectMenu : MonoBehaviour
         _confirmButton.color = new Color(1.0f, 1.0f, 1.0f);
         _allowScrolling = true;
     }
-
     public void startGame()
     {
         if (!_inputEnabled) return;

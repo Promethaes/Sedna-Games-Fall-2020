@@ -172,6 +172,7 @@ GameObject:
   - component: {fileID: 15892192}
   - component: {fileID: 15892194}
   - component: {fileID: 15892195}
+  - component: {fileID: 15892196}
   m_Layer: 0
   m_Name: CP6
   m_TagString: Untagged
@@ -188,7 +189,7 @@ Transform:
   m_GameObject: {fileID: 15892190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -36.4, y: -21.92, z: 372.4}
-  m_LocalScale: {x: 46.56886, y: 46.56886, z: 46.56886}
+  m_LocalScale: {x: 59.542942, y: 59.542942, z: 59.542942}
   m_Children: []
   m_Father: {fileID: 1939483335}
   m_RootOrder: 5
@@ -260,6 +261,19 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 0
   OverrideMaxDistance: 0
+--- !u!114 &15892196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15892190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99dd5c8b24d397a469f4db67c974fc06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 1939483334}
 --- !u!1 &27548081
 GameObject:
   m_ObjectHideFlags: 0
@@ -5572,6 +5586,7 @@ GameObject:
   - component: {fileID: 525868675}
   - component: {fileID: 525868677}
   - component: {fileID: 525868678}
+  - component: {fileID: 525868679}
   m_Layer: 0
   m_Name: CP5
   m_TagString: Untagged
@@ -5588,7 +5603,7 @@ Transform:
   m_GameObject: {fileID: 525868673}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 188.8, y: -21.92, z: 438.2}
-  m_LocalScale: {x: 65.91402, y: 65.91402, z: 65.91402}
+  m_LocalScale: {x: 83.36804, y: 83.36804, z: 83.36804}
   m_Children: []
   m_Father: {fileID: 1939483335}
   m_RootOrder: 4
@@ -5660,6 +5675,19 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 0
   OverrideMaxDistance: 0
+--- !u!114 &525868679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525868673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99dd5c8b24d397a469f4db67c974fc06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 1939483334}
 --- !u!1 &544878914
 GameObject:
   m_ObjectHideFlags: 0
@@ -6817,6 +6845,7 @@ GameObject:
   - component: {fileID: 676892569}
   - component: {fileID: 676892571}
   - component: {fileID: 676892572}
+  - component: {fileID: 676892573}
   m_Layer: 0
   m_Name: CP3
   m_TagString: Untagged
@@ -6905,6 +6934,19 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 0
   OverrideMaxDistance: 0
+--- !u!114 &676892573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676892567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99dd5c8b24d397a469f4db67c974fc06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 1939483334}
 --- !u!1 &705038048
 GameObject:
   m_ObjectHideFlags: 0
@@ -10701,7 +10743,7 @@ PrefabInstance:
         type: 3}
       propertyPath: enemyPrefab
       value: 
-      objectReference: {fileID: 4338570631340935602, guid: e09a2e292f5eff048bde20382d1f5038,
+      objectReference: {fileID: 2881626038973140391, guid: 6b881362035b9b04684f72da79b33dc2,
         type: 3}
     - target: {fileID: 5060433708512069856, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
@@ -10847,6 +10889,7 @@ GameObject:
   - component: {fileID: 1115828918}
   - component: {fileID: 1115828920}
   - component: {fileID: 1115828921}
+  - component: {fileID: 1115828922}
   m_Layer: 0
   m_Name: CP4
   m_TagString: Untagged
@@ -10935,6 +10978,19 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 0
   OverrideMaxDistance: 0
+--- !u!114 &1115828922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115828916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99dd5c8b24d397a469f4db67c974fc06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 1939483334}
 --- !u!1 &1129172178
 GameObject:
   m_ObjectHideFlags: 0
@@ -10948,6 +11004,7 @@ GameObject:
   - component: {fileID: 1129172180}
   - component: {fileID: 1129172182}
   - component: {fileID: 1129172183}
+  - component: {fileID: 1129172184}
   m_Layer: 0
   m_Name: CP2
   m_TagString: Untagged
@@ -11036,6 +11093,19 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 0
   OverrideMaxDistance: 0
+--- !u!114 &1129172184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129172178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99dd5c8b24d397a469f4db67c974fc06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 1939483334}
 --- !u!1 &1134643653
 GameObject:
   m_ObjectHideFlags: 0
@@ -11049,6 +11119,7 @@ GameObject:
   - component: {fileID: 1134643655}
   - component: {fileID: 1134643657}
   - component: {fileID: 1134643658}
+  - component: {fileID: 1134643659}
   m_Layer: 0
   m_Name: CP1
   m_TagString: Untagged
@@ -11137,6 +11208,19 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 0
   OverrideMaxDistance: 0
+--- !u!114 &1134643659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134643653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99dd5c8b24d397a469f4db67c974fc06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 1939483334}
 --- !u!1 &1141694336
 GameObject:
   m_ObjectHideFlags: 0
@@ -19301,9 +19385,10 @@ MonoBehaviour:
   - {fileID: 1115828917}
   - {fileID: 525868674}
   - {fileID: 15892191}
-  playerManager: {fileID: 0}
+  playerManager: {fileID: 649088052}
   enemySpawners:
   - {fileID: 1099069087}
+  counter: 0
   uml: {fileID: 1939483336}
 --- !u!4 &1939483335
 Transform:
