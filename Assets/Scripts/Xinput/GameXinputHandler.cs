@@ -12,11 +12,13 @@ public class GameXinputHandler : MonoBehaviour
     public List<PlayerTypeToGameObject> playerPrefabs = new List<PlayerTypeToGameObject>();
     private List<GameObject> _playerPrefabs = new List<GameObject>();
 
+    public Animator _animator;
 
     public void swapPlayer(int config)
     {
         _playerMesh.SetActive(false);
         _playerMesh = _playerPrefabs[config];
+        _animator = _playerMesh.GetComponentInChildren<Animator>();
         _playerMesh.SetActive(true);
         _playerConfig.character.type = playerPrefabs[config].type;
         _playerController.playerType = playerPrefabs[config].type;
