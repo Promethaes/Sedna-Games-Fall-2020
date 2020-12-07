@@ -1,42 +1,14 @@
-METRICS LOG ENTRY ID 10916
+METRICS LOG ENTRY ID 28902
 	CHECKPOINTS:
-		 - Checkpoint #1:27.699999
+		 - Checkpoint #1:4.040000
 	DEATHS:
 		P1Deaths:
 		P2Deaths:
 		P3Deaths:
 		P4Deaths:
-METRICS LOG ENTRY ID 11314
+METRICS LOG ENTRY ID 29725
 	CHECKPOINTS:
-		 - Checkpoint #1:4.140000
-	DEATHS:
-		P1Deaths:
-			 - Death #1:
-				 - Time of Death: 32.806980
-				 - Cause of Death: temp
-		P2Deaths:
-		P3Deaths:
-		P4Deaths:
-METRICS LOG ENTRY ID 11435
-	CHECKPOINTS:
-		 - Checkpoint #1:2.560000
-	DEATHS:
-		P1Deaths:
-		P2Deaths:
-		P3Deaths:
-		P4Deaths:
-METRICS LOG ENTRY ID 12509
-	CHECKPOINTS:
-		 - Checkpoint #1:4.940000
-	DEATHS:
-		P1Deaths:
-		P2Deaths:
-		P3Deaths:
-		P4Deaths:
-METRICS LOG ENTRY ID 13897
-	CHECKPOINTS:
-		 - Checkpoint #1:8.620000
-		 - Checkpoint #2:160.199997
+		 - Checkpoint #1:2.080000
 	DEATHS:
 		P1Deaths:
 		P2Deaths:
