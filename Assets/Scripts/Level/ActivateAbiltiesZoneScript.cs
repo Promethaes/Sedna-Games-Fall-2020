@@ -15,10 +15,6 @@ public class ActivateAbiltiesZoneScript : MonoBehaviour
         manager.abilityZones.Add(this);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
 
     private void OnTriggerEnter(Collider other)
     {

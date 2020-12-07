@@ -8,6 +8,7 @@ public class Cutscene : MonoBehaviour
     public Camera cam;
     float _fadeTime=0.5f;
     Color _color;
+    public bool cutsceneComplete = false;
 
     public void startCutscene()
     {
@@ -38,6 +39,7 @@ public class Cutscene : MonoBehaviour
         yield return new WaitForSecondsRealtime(2.0f);
         cam.gameObject.SetActive(false);
         GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Camera>(true).gameObject.SetActive(true);
+        cutsceneComplete = true;
         //Destroy(this);
     }
 }
