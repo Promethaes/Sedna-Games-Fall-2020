@@ -10,10 +10,8 @@ namespace SednaFmod
 
         [FMODUnity.EventRef]
         public string eventRef;
-        [SerializeField][Range(1,7)]
-        int progress;
         [SerializeField][Range(0.0f,1.0f)]
-        float combat;
+        float clearObstacle;
         // Start is called before the first frame update
         void Start()
         {
@@ -24,8 +22,7 @@ namespace SednaFmod
         // Update is called once per frame
         void Update()
         {
-            instance.setParameterByName("Progress",progress);
-            instance.setParameterByName("In Combat",combat);
+            instance.setParameterByName("clearObstacle",clearObstacle);
         }
     }
 
