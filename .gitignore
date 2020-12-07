@@ -68,3 +68,4 @@ crashlytics-build.properties
 *.ipdb
 *.hint
 *.log
+Assets/Plugins/LatestUserMetrics.txt

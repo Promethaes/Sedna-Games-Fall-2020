@@ -22,8 +22,10 @@ public class EnemyData : MonoBehaviour
     public List<FMODUnity.StudioEventEmitter> enemySounds = new List<FMODUnity.StudioEventEmitter>();
 
 
+    public Billboard _billboard;
     public RectTransform _healthBar;
     public RectTransform _healthBarBackground;
+    public float _healthBarSize = 90.0f;
     public float _maxHealth;
     public float _health;
     public float _range;
@@ -45,9 +47,9 @@ public class EnemyData : MonoBehaviour
     public static List<GameObject> icePickEnemies = new List<GameObject>();
 
     public bool randomScale = true;
-    public float enemyScale = 1.0f;
-    public float lowerBoundEnemyScale = 0.5f;
-    public float upperBoundEnemyScale = 1.5f;
+    public float enemyScale = 1.5f;
+    public float lowerBoundEnemyScale = 1.0f;
+    public float upperBoundEnemyScale = 2.0f;
 
     void DetermineEnemyScale()
     {
@@ -95,8 +97,8 @@ public class EnemyData : MonoBehaviour
 
 
 
-        _healthBarBackground.sizeDelta = new Vector2(_maxHealth / 2.0f, _healthBar.sizeDelta.y);
-        _healthBar.sizeDelta = new Vector2(_maxHealth / 2.0f, _healthBar.sizeDelta.y);
+        _healthBarBackground.sizeDelta = new Vector2(_health/_maxHealth*_healthBarSize, _healthBar.sizeDelta.y);
+        _healthBar.sizeDelta = new Vector2(_health/_maxHealth*_healthBarSize, _healthBar.sizeDelta.y);
         players = GameObject.FindGameObjectsWithTag("Player");
         agent = this.GetComponent<NavMeshAgent>();
     }
@@ -125,7 +127,8 @@ public class EnemyData : MonoBehaviour
     public void takeDamage(float hp)
     {
         _health -= hp;
-        _healthBar.sizeDelta = new Vector2(_health / _maxHealth * _maxHealth / 2.0f, _healthBar.sizeDelta.y);
+        _healthBar.sizeDelta = new Vector2(_health/_maxHealth*_healthBarSize, _healthBar.sizeDelta.y);
+        _billboard.healthChanged();
         enemySounds[(int)EnemySoundIndex.Pain].Play();
         if (_health <= 0.0f)
             die();

@@ -6,11 +6,11 @@ using UnityEngine;
 public class Checkpoints : MonoBehaviour
 {
     public CheckpointManager manager;
-
-    private void Start() {
-        manager = FindObjectOfType<CheckpointManager>();
-    }
     private void OnTriggerEnter(Collider other) {
-        manager.newSpawn();
+        if (other.tag == "Player")
+        {
+            if (manager.checkSpawn() != transform)
+                manager.newSpawn();
+        }
     }
 }

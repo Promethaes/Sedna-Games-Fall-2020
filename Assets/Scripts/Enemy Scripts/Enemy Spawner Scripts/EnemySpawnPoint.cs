@@ -10,6 +10,7 @@ public class EnemySpawnPoint : MonoBehaviour
     public List<GameObject> spawnEnemies = new List<GameObject>();
     public float spawnRadiusScalar = 15.0f;
     public int maxSpawn = 5;
+    public bool oneTimeSpawn = false;
     bool _shouldSpawn = false;
     bool _activeEnemies = false;
     public float spawnTimeInterval = 1.0f;
@@ -18,20 +19,36 @@ public class EnemySpawnPoint : MonoBehaviour
     {
         CreatePool();
         enemyPrefab.transform.position = gameObject.transform.position;
+        if (oneTimeSpawn)
+        {
+            _pvtSpawnTimeInterval = 0.0f;
+            spawnTimeInterval = 0.0f;
+            for (int i = 0; i < spawnEnemies.Count; i++)
+                SpawnEnemy();
+        }
     }
 
     void Update()
     {
+        if (oneTimeSpawn)
+        {
+            if (!CheckEnemy())
+            {
+                var temp = spawnEnemies[0].GetComponentInChildren<EnemyData>().getPlayers();
+                for (int i = 0; i < temp.Length; i++)
+                    temp[i].GetComponentInChildren<PlayerController>().outOfCombat = true;
+            }
+            return;
+        }
         _pvtSpawnTimeInterval -= Time.deltaTime;
         if (_pvtSpawnTimeInterval <= 0.0f && _shouldSpawn)
             SpawnEnemy();
         if (!_shouldSpawn)
         {
-            CheckEnemy();
-            if (!_activeEnemies)
+            if (!CheckEnemy())
             {
                 var temp = spawnEnemies[0].GetComponentInChildren<EnemyData>().getPlayers();
-                for (int i=0;i<temp.Length;i++)
+                for (int i = 0; i < temp.Length; i++)
                     temp[i].GetComponentInChildren<PlayerController>().outOfCombat = true;
             }
         }
@@ -45,17 +62,17 @@ public class EnemySpawnPoint : MonoBehaviour
         }
     }
 
-    void CheckEnemy()
+    bool CheckEnemy()
     {
         _activeEnemies = false;
-        for (int i=0;i<spawnEnemies.Count;i++)
+        for (int i = 0; i < spawnEnemies.Count; i++)
         {
             if (spawnEnemies[i].activeSelf)
             {
-                _activeEnemies = true;
-                break;
+                return true;
             }
         }
+        return false;
     }
     void SpawnEnemy()
     {
@@ -81,7 +98,7 @@ public class EnemySpawnPoint : MonoBehaviour
         spawnEnemies[spawnIndex].SetActive(true);
         var enemy = spawnEnemies[spawnIndex].GetComponentInChildren<EnemyData>();
         enemy._health = enemy._maxHealth;
-        enemy._healthBar.sizeDelta = new Vector2(enemy.getMaxHealth()/2.0f, enemy._healthBar.sizeDelta.y);
+        enemy._healthBar.sizeDelta = new Vector2(enemy.getHealth() / enemy.getMaxHealth() * 90.0f, enemy._healthBar.sizeDelta.y);
         _pvtSpawnTimeInterval = spawnTimeInterval;
     }
 
