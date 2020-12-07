@@ -15,6 +15,7 @@ public class EnemySpawnPoint : MonoBehaviour
     bool _activeEnemies = false;
     public float spawnTimeInterval = 1.0f;
     float _pvtSpawnTimeInterval = 1.0f;
+
     void Start()
     {
         CreatePool();
@@ -32,7 +33,7 @@ public class EnemySpawnPoint : MonoBehaviour
     {
         if (oneTimeSpawn)
         {
-            if (!CheckEnemy())
+            if (!AnyEnemiesActive())
             {
                 var temp = spawnEnemies[0].GetComponentInChildren<EnemyData>().getPlayers();
                 for (int i = 0; i < temp.Length; i++)
@@ -45,7 +46,7 @@ public class EnemySpawnPoint : MonoBehaviour
             SpawnEnemy();
         if (!_shouldSpawn)
         {
-            if (!CheckEnemy())
+            if (!AnyEnemiesActive())
             {
                 var temp = spawnEnemies[0].GetComponentInChildren<EnemyData>().getPlayers();
                 for (int i = 0; i < temp.Length; i++)
@@ -62,7 +63,7 @@ public class EnemySpawnPoint : MonoBehaviour
         }
     }
 
-    bool CheckEnemy()
+    public bool AnyEnemiesActive()
     {
         _activeEnemies = false;
         for (int i = 0; i < spawnEnemies.Count; i++)

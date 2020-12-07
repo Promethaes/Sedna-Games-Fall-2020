@@ -100,26 +100,26 @@ public class PlayerController : MonoBehaviour
         {
 
             case PlayerType.BISON:
-                _setCombo(20.0f, 30.0f, 50.0f, 0.7f, 1.0f, 1.10f);
-                backend.maxHP = 200;
+                _setCombo(1.0f, 999999.0f, 50.0f, 0.7f, 1.0f, 1.10f);
+                backend.maxHP = 1000;
                 break;
             case PlayerType.POLAR_BEAR:
-                _setCombo(15.0f, 15.0f, 50.0f, 0.8f / 1.21f, 1.0f / 1.45f, 1.2f / 0.56f);
-                backend.maxHP = 150;
+                _setCombo(1.0f, 999999.0f, 50.0f, 0.8f / 1.21f, 1.0f / 1.45f, 1.2f / 0.56f);
+                backend.maxHP = 1000;
 
                 break;
             case PlayerType.RATTLESNAKE:
-                _setCombo(10.0f, 15.0f, 20.0f, 0.35f, 0.75f, 1.10f);
-                backend.maxHP = 100;
+                _setCombo(1.0f, 999999.0f, 20.0f, 0.35f, 0.75f, 1.10f);
+                backend.maxHP = 1000;
 
                 break;
             case PlayerType.TURTLE:
-                _setCombo(10.0f, 15.0f, 20.0f, 0.35f, 0.75f, 1.10f);
-                backend.maxHP = 125;
+                _setCombo(1.0f, 999999.0f, 20.0f, 0.35f, 0.75f, 1.10f);
+                backend.maxHP = 1000;
 
                 break;
             default:
-                _setCombo(15.0f, 20.0f, 25.0f, 0.45f, 0.95f, 1.25f);
+                _setCombo(1.0f, 999999.0f, 25.0f, 0.45f, 0.95f, 1.25f);
                 break;
         }
         if(UseXinputScript.use)
