@@ -336,7 +336,7 @@ MonoBehaviour:
     max: 200
   blueOutBlueIn:
     m_OverrideState: 1
-    m_Value: 100
+    m_Value: -73
     min: -200
     max: 200
 --- !u!114 &-7019793997259506779
