@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour {
 
                 break;
             case PlayerType.POLAR_BEAR:
-                _setCombo(15.0f, 15.0f, 50.0f, 0.35f, 0.5f, 1.5f);
+                _setCombo(15.0f, 15.0f, 50.0f, 0.2f, 0.2f, 0.5f);
                 backend.maxHP = 150;
 
                 break;
@@ -386,31 +386,23 @@ public class PlayerController : MonoBehaviour {
     void _Attack() {
         if (_animationDuration >= 0.0f)
         {
-            if (_animator)
-            {
-                _animator.SetBool("attack1", false);
-                _animator.SetBool("attack2", false);
-                _animator.SetBool("attack3", false);
-                _animator.SetBool("attacking", false);
-            }
             return;
         }
         if (_animator)
         {
-            _animator.SetBool("attacking", true);
             switch (_comboCounter)
             {
                 case 0:
-                    _animator.SetBool("attack1", true);
+                    _animator.SetTrigger("attack1");
                     break;
                 case 1:
-                    _animator.SetBool("attack2", true);
+                    _animator.SetTrigger("attack2");
                     break;
                 case 2:
-                    _animator.SetBool("attack3", true);
+                    _animator.SetTrigger("attack3");
                     break;
                 default:
-                    _animator.SetBool("attack1", true);
+                    _animator.SetTrigger("attack1");
                     break;
             }
             
@@ -432,7 +424,6 @@ public class PlayerController : MonoBehaviour {
         _comboDuration = 2.0f;
 
         attack = false;
-        _animator.SetBool("attacking", false);
     }
 
     void _Revive() {
