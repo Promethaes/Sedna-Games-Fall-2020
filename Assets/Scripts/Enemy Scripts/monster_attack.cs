@@ -19,6 +19,7 @@ public class monster_attack : StateMachineBehaviour
             players = enemyData.getPlayers();
             agent = enemyData.getNavMeshAgent();
         }
+        enemyData.hitbox.SetActive(true);
         enemyData.enemySounds[(int)EnemySoundIndex.Attack].Play();
 
     }
@@ -27,19 +28,13 @@ public class monster_attack : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //TODO: Animation; heavy sludge attacks(?)
-        RaycastHit target;
-        if (Physics.Raycast(enemy.transform.position, enemy.transform.forward, out target, enemyData._range) && target.transform.tag == "Player")
-        {
-              PlayerBackend foe = target.collider.GetComponentInParent<PlayerBackend>();
-              foe.hp -= enemyData._damageValues;
-        }
         animator.SetBool("attack", false);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-       
+        enemyData.hitbox.SetActive(false);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

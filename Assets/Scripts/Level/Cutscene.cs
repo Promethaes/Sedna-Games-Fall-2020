@@ -6,7 +6,7 @@ public class Cutscene : MonoBehaviour
 {
     public GameObject[] blocks;
     public Camera cam;
-    float _fadeTime=0.5f;
+    float _fadeTime=2.5f;
     Color _color;
     public bool cutsceneComplete = false;
 
@@ -36,7 +36,7 @@ public class Cutscene : MonoBehaviour
             blocks[b].GetComponent<MeshRenderer>().material.SetColor("Base_Color", _color);
         }
 
-        yield return new WaitForSecondsRealtime(2.0f);
+        yield return new WaitForSecondsRealtime(1.5f);
         cam.gameObject.SetActive(false);
         GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Camera>(true).gameObject.SetActive(true);
         cutsceneComplete = true;

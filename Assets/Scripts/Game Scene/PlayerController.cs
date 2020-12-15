@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 12.0f;
     [SerializeField] private float jumpSpeed = 3.0f;
     [SerializeField] private float dashSpeed = 2.5f;
+    [SerializeField] private float attackDistance = 8.0f;
 
     [Header("Player abilities")]
     // Default mesh is turtle, if a turtle has bison abilities, either this or the player mesh in GameInputHandler did not get set properly
@@ -104,7 +105,7 @@ public class PlayerController : MonoBehaviour
                 backend.maxHP = 1000;
                 break;
             case PlayerType.POLAR_BEAR:
-                _setCombo(1.0f, 999999.0f, 50.0f, 0.8f / 1.21f, 1.0f / 1.45f, 1.2f / 0.56f);
+                _setCombo(1.0f, 999999.0f, 50.0f, 0.90f / 1.21f, 1.20f / 1.45f, 0.80f / 0.56f);
                 backend.maxHP = 1000;
 
                 break;
@@ -156,7 +157,7 @@ public class PlayerController : MonoBehaviour
         _wheelCooldown -= Time.fixedDeltaTime;
         _regenTicks -= Time.fixedDeltaTime;
 
-        if (!downed)
+        if (!downed && _animationDuration <= 0.0f)
         {
             //Jump Movement
             if (isJumping == 1.0f)
@@ -305,7 +306,7 @@ public class PlayerController : MonoBehaviour
         if (_animator)
             _animator.SetBool("walking", true);
 
-        if (_dashDuration < 0.0f)
+        if (_dashDuration < 0.0f && _animationDuration < 0.0f)
         {
             //NOTE: Camera position affects the rotation of the player's movement, which is stored in the first value of Vector3 vel (Current: 135.0f)
             Vector3 vel = playerCamera.transform.right*moveInput.x + playerCamera.transform.forward * moveInput.y;
@@ -440,7 +441,8 @@ public class PlayerController : MonoBehaviour
             }
 
         }
-
+        _rigidbody.velocity = Vector3.zero;
+        _rigidbody.AddForce(_playerMesh.transform.forward*attackDistance, ForceMode.Impulse);
         RaycastHit enemy;
         if(Physics.Raycast(transform.position, _playerMesh.transform.forward, out enemy, 2.0f) && enemy.transform.tag == "Enemy") {
             EnemyData foe = enemy.collider.GetComponent<EnemyData>();
@@ -459,7 +461,7 @@ public class PlayerController : MonoBehaviour
     void _Revive()
     {
         RaycastHit player;
-        if (Physics.Raycast(transform.position, transform.forward, out player, 5.0f) && player.transform.tag == "Player")
+        if (Physics.Raycast(_playerMesh.transform.position, transform.forward, out player, 5.0f) && player.transform.tag == "Player")
         {
             PlayerController revivee = player.collider.gameObject.GetComponent<PlayerController>();
             if (backend.hp > 0.0f)
