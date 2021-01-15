@@ -15,6 +15,7 @@ public class EnemySpawnPoint : MonoBehaviour
     bool _activeEnemies = false;
     public float spawnTimeInterval = 1.0f;
     float _pvtSpawnTimeInterval = 1.0f;
+    public Barriers _barriers;
 
     void Start()
     {
@@ -35,6 +36,7 @@ public class EnemySpawnPoint : MonoBehaviour
         {
             if (!AnyEnemiesActive())
             {
+                _barriers.barrierDown();
                 var temp = spawnEnemies[0].GetComponentInChildren<EnemyData>().getPlayers();
                 for (int i = 0; i < temp.Length; i++)
                     temp[i].GetComponentInChildren<PlayerController>().outOfCombat = true;
@@ -48,6 +50,7 @@ public class EnemySpawnPoint : MonoBehaviour
         {
             if (!AnyEnemiesActive())
             {
+                _barriers.barrierDown();
                 var temp = spawnEnemies[0].GetComponentInChildren<EnemyData>().getPlayers();
                 for (int i = 0; i < temp.Length; i++)
                     temp[i].GetComponentInChildren<PlayerController>().outOfCombat = true;
@@ -113,6 +116,7 @@ public class EnemySpawnPoint : MonoBehaviour
         {
             _shouldSpawn = true;
             other.gameObject.GetComponentInChildren<PlayerController>().outOfCombat = false;
+            _barriers.barrierUp();
         }
     }
 
