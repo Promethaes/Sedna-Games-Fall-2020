@@ -1,14 +1,8 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Graphics/Textures/Turtle Textures/Shield.meta
-guid: af153d42f60723d488445c6775ddff47
+guid: f26e93b39dab1f74988b11c1c57616e5
 folderAsset: yes
 DefaultImporter:
-=======
-guid: 0c02b511b2ee37b408f7c9360f3e6e4e
-NativeFormatImporter:
->>>>>>> Barriers:Assets/Graphics/Materials/Barrier.mat.meta
   externalObjects: {}
-  mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
