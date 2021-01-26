@@ -12340,6 +12340,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 5060433708512069856, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 2881626038973140391, guid: 6b881362035b9b04684f72da79b33dc2,
+        type: 3}
+    - target: {fileID: 5060433708512069856, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: maxSpawn
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060433708512069856, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: oneTimeSpawn
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a6aa22063edefc4a875949879326c1b, type: 3}
 --- !u!114 &1099069087 stripped

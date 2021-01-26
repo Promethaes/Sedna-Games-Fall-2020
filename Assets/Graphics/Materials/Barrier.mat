@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Barrier
-  m_Shader: {fileID: -6465566751694194690, guid: 2da119bee3ddae44b9851f8bf8961b55,
+  m_Shader: {fileID: -6465566751694194690, guid: aa033a548acf1c7459a2f10e7044fe12,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -21,15 +21,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_20D4654F:
-        m_Texture: {fileID: 2800000, guid: 2b2c0391a0c76974eb547416b4d75fc2, type: 3}
+        m_Texture: {fileID: 2800000, guid: e7cf603378febb24fb0f39bdd83c154f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_98D85C8:
-        m_Texture: {fileID: 2800000, guid: 3aa58a88cf646974597dc98b1a4af8bd, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3ee95709519c60745baafd5c036f3695, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_DA877B62:
-        m_Texture: {fileID: 2800000, guid: d3b55687d803142419da5f8a59f3be31, type: 3}
+        m_Texture: {fileID: 2800000, guid: 676fca4a357d80647b05d8a3e64b755e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -86,7 +86,9 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_C6928259: {r: 0.0006887913, g: 0.454, b: 0, a: 0}
+    - Vector2_81A22D0: {r: 0, g: 1, b: 0, a: 0}
     - Vector2_8A1377D8: {r: 0, g: 0.5, b: 0, a: 0}
+    - Vector2_B710233F: {r: 1, g: 1, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

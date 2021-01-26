@@ -101,8 +101,8 @@ public class EnemySpawnPoint : MonoBehaviour
         spawnEnemies[spawnIndex].transform.position = gameObject.transform.position + new Vector3(Random.Range(-radius, radius), 0.0f, Random.Range(-radius, radius)) * spawnRadiusScalar;
         spawnEnemies[spawnIndex].SetActive(true);
         var enemy = spawnEnemies[spawnIndex].GetComponentInChildren<EnemyData>();
-        enemy._health = enemy._maxHealth;
-        enemy._healthBar.sizeDelta = new Vector2(enemy.getHealth() / enemy.getMaxHealth() * 90.0f, enemy._healthBar.sizeDelta.y);
+        enemy.health = enemy.maxHealth;
+        enemy.healthBar.sizeDelta = new Vector2(enemy.getHealth() / enemy.getMaxHealth() * 90.0f, enemy.healthBar.sizeDelta.y);
         _pvtSpawnTimeInterval = spawnTimeInterval;
     }
 

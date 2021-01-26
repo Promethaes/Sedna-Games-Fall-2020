@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 12.0f;
     [SerializeField] private float jumpSpeed = 3.0f;
     [SerializeField] private float dashSpeed = 2.5f;
+    [SerializeField] private float attackDistance = 8.0f;
 
     [Header("Player abilities")]
     // Default mesh is turtle, if a turtle has bison abilities, either this or the player mesh in GameInputHandler did not get set properly
@@ -53,9 +54,10 @@ public class PlayerController : MonoBehaviour
     // Attack stuff
     private float _comboDuration = 0.0f;
     private float _animationDuration = 0.5f;
-    private int _comboCounter = 0;
-    private float[] _damageValues = new float[3];
-    private float[] _animationDelay = new float[3];
+    public int comboCounter = 0;
+    public float[] damageValues = new float[3];
+    public float[] _animationDelay = new float[3];
+    public AttackHitbox[] hitboxes;
 
     public bool _isGrounded = true;
     RaycastHit terrain;
@@ -104,7 +106,7 @@ public class PlayerController : MonoBehaviour
                 backend.maxHP = 1000;
                 break;
             case PlayerType.POLAR_BEAR:
-                _setCombo(1.0f, 999999.0f, 50.0f, 0.8f / 1.21f, 1.0f / 1.45f, 1.2f / 0.56f);
+                _setCombo(1.0f, 999999.0f, 50.0f, 0.90f / 1.21f, 1.20f / 1.45f, 0.80f / 0.56f);
                 backend.maxHP = 1000;
 
                 break;
@@ -127,7 +129,8 @@ public class PlayerController : MonoBehaviour
         else
             _playerMesh = GetComponentInParent<GameInputHandler>()._playerPrefabs[(int)playerType].prefab;
         backend.hp = backend.maxHP * percentage;
-
+        hitboxes = _playerMesh.GetComponentsInChildren<AttackHitbox>(true);
+        Debug.Log(hitboxes.Length);
     }
 
     void Update()
@@ -156,7 +159,7 @@ public class PlayerController : MonoBehaviour
         _wheelCooldown -= Time.fixedDeltaTime;
         _regenTicks -= Time.fixedDeltaTime;
 
-        if (!downed)
+        if (!downed && _animationDuration <= 0.0f)
         {
             //Jump Movement
             if (isJumping == 1.0f)
@@ -203,9 +206,9 @@ public class PlayerController : MonoBehaviour
     private void _setCombo(float x, float y, float z, float u, float v, float w)
     {
         //Damage values for combo hits 1/2/3, animation length for combo hits 1/2/3
-        _damageValues[0] = x;
-        _damageValues[1] = y;
-        _damageValues[2] = z;
+        damageValues[0] = x;
+        damageValues[1] = y;
+        damageValues[2] = z;
         _animationDelay[0] = u;
         _animationDelay[1] = v;
         _animationDelay[2] = w;
@@ -305,7 +308,7 @@ public class PlayerController : MonoBehaviour
         if (_animator)
             _animator.SetBool("walking", true);
 
-        if (_dashDuration < 0.0f)
+        if (_dashDuration < 0.0f && _animationDuration < 0.0f)
         {
             //NOTE: Camera position affects the rotation of the player's movement, which is stored in the first value of Vector3 vel (Current: 135.0f)
             Vector3 vel = playerCamera.transform.right*moveInput.x + playerCamera.transform.forward * moveInput.y;
@@ -417,13 +420,13 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        if (_comboDuration < 0.0f) _comboCounter = 0;
-        _animationDuration = _animationDelay[_comboCounter];
+        if (_comboDuration < 0.0f) comboCounter = 0;
+        _animationDuration = _animationDelay[comboCounter];
 
         if (_animator)
         {
 
-            switch (_comboCounter)
+            switch (comboCounter)
             {
                 case 0:
                     _animator.SetTrigger("attack1");
@@ -440,16 +443,18 @@ public class PlayerController : MonoBehaviour
             }
 
         }
-
+        _rigidbody.velocity = Vector3.zero;
+        _rigidbody.AddForce(_playerMesh.transform.forward*attackDistance, ForceMode.Impulse);
+        /*
         RaycastHit enemy;
         if(Physics.Raycast(transform.position, _playerMesh.transform.forward, out enemy, 2.0f) && enemy.transform.tag == "Enemy") {
             EnemyData foe = enemy.collider.GetComponent<EnemyData>();
-            foe.takeDamage(_damageValues[_comboCounter]);
+            foe.takeDamage(damageValues[comboCounter]);
             hitEnemy = true;
         }
-
-        _comboCounter++;
-        if (_comboCounter > 2) _comboCounter = 0;
+*/
+        comboCounter++;
+        if (comboCounter > 2) comboCounter = 0;
         _comboDuration = 2.0f;
 
         attack = false;
@@ -459,7 +464,7 @@ public class PlayerController : MonoBehaviour
     void _Revive()
     {
         RaycastHit player;
-        if (Physics.Raycast(transform.position, transform.forward, out player, 5.0f) && player.transform.tag == "Player")
+        if (Physics.Raycast(_playerMesh.transform.position, transform.forward, out player, 5.0f) && player.transform.tag == "Player")
         {
             PlayerController revivee = player.collider.gameObject.GetComponent<PlayerController>();
             if (backend.hp > 0.0f)
