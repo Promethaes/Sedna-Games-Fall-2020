@@ -710,6 +710,33 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""ChatApp"",
+            ""id"": ""cbb2bd43-eb15-4f6b-9ac1-567434693cfd"",
+            ""actions"": [
+                {
+                    ""name"": ""SendMessage"",
+                    ""type"": ""Button"",
+                    ""id"": ""02f3d444-3c1d-4207-a6c0-f4e6904ed896"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""2829d588-0edc-414b-b434-0b1af875dc2f"",
+                    ""path"": ""*/{Menu}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SendMessage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -762,6 +789,9 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
         m_CharSelect_Confirm = m_CharSelect.FindAction("Confirm", throwIfNotFound: true);
         m_CharSelect_Unconfirm = m_CharSelect.FindAction("Unconfirm", throwIfNotFound: true);
         m_CharSelect_StartGame = m_CharSelect.FindAction("StartGame", throwIfNotFound: true);
+        // ChatApp
+        m_ChatApp = asset.FindActionMap("ChatApp", throwIfNotFound: true);
+        m_ChatApp_SendMessage = m_ChatApp.FindAction("SendMessage", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -994,6 +1024,39 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
         }
     }
     public CharSelectActions @CharSelect => new CharSelectActions(this);
+
+    // ChatApp
+    private readonly InputActionMap m_ChatApp;
+    private IChatAppActions m_ChatAppActionsCallbackInterface;
+    private readonly InputAction m_ChatApp_SendMessage;
+    public struct ChatAppActions
+    {
+        private @UpdatedControls m_Wrapper;
+        public ChatAppActions(@UpdatedControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @SendMessage => m_Wrapper.m_ChatApp_SendMessage;
+        public InputActionMap Get() { return m_Wrapper.m_ChatApp; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ChatAppActions set) { return set.Get(); }
+        public void SetCallbacks(IChatAppActions instance)
+        {
+            if (m_Wrapper.m_ChatAppActionsCallbackInterface != null)
+            {
+                @SendMessage.started -= m_Wrapper.m_ChatAppActionsCallbackInterface.OnSendMessage;
+                @SendMessage.performed -= m_Wrapper.m_ChatAppActionsCallbackInterface.OnSendMessage;
+                @SendMessage.canceled -= m_Wrapper.m_ChatAppActionsCallbackInterface.OnSendMessage;
+            }
+            m_Wrapper.m_ChatAppActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @SendMessage.started += instance.OnSendMessage;
+                @SendMessage.performed += instance.OnSendMessage;
+                @SendMessage.canceled += instance.OnSendMessage;
+            }
+        }
+    }
+    public ChatAppActions @ChatApp => new ChatAppActions(this);
     private int m_GamepadSchemeIndex = -1;
     public InputControlScheme GamepadScheme
     {
@@ -1034,5 +1097,9 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
         void OnConfirm(InputAction.CallbackContext context);
         void OnUnconfirm(InputAction.CallbackContext context);
         void OnStartGame(InputAction.CallbackContext context);
+    }
+    public interface IChatAppActions
+    {
+        void OnSendMessage(InputAction.CallbackContext context);
     }
 }

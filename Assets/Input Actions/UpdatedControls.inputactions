@@ -697,6 +697,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "ChatApp",
+            "id": "cbb2bd43-eb15-4f6b-9ac1-567434693cfd",
+            "actions": [
+                {
+                    "name": "SendMessage",
+                    "type": "Button",
+                    "id": "02f3d444-3c1d-4207-a6c0-f4e6904ed896",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2829d588-0edc-414b-b434-0b1af875dc2f",
+                    "path": "*/{Menu}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "SendMessage",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
