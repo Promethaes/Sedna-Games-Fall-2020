@@ -23,21 +23,16 @@ public class UDPClient : MonoBehaviour
         sendbuf = Encoding.ASCII.GetBytes("didnt work lol");
     }
 
-    public void SetMessage(string msg)
+    public void Send(string msg)
     {
-        message = msg;
         sendbuf = Encoding.ASCII.GetBytes(msg);
+        socket.SendTo(sendbuf, ep);
     }
 
     // Update is called once per frame
     void Update()
     {
-        sendbuf = Encoding.ASCII.GetBytes(message);
-        socket.SendTo(sendbuf, ep);
     }
 
-    public void OnSendMessage(InputAction.CallbackContext ctx)
-    {
-        //socket.SendTo(sendbuf, ep);
-    }
+    
 }

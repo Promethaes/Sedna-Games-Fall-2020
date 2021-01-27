@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using TMPro;
 
 public class TextToNetwork : MonoBehaviour
@@ -16,6 +17,10 @@ public class TextToNetwork : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        client.SetMessage(field.text);
+        
+    }
+    public void OnSubmit(InputAction.CallbackContext ctx)
+    {
+        client.Send(field.text);
     }
 }
