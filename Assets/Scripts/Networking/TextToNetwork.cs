@@ -11,7 +11,6 @@ public class TextToNetwork : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -22,5 +21,6 @@ public class TextToNetwork : MonoBehaviour
     public void OnSubmit(InputAction.CallbackContext ctx)
     {
         client.Send(field.text);
+        field.text = "";
     }
 }
