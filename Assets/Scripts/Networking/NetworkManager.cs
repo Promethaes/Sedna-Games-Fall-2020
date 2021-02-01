@@ -5,74 +5,210 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-public class NetworkManagerUDPListener
+using System;
+public class StateObject
 {
-    Thread listenThread = null;
-    EventWaitHandle listenThreadWait = new EventWaitHandle(true, EventResetMode.ManualReset);
-    EventWaitHandle mainThreadWait = new EventWaitHandle(true, EventResetMode.ManualReset);
-    int port = -1;
-    UdpClient listener;
-    IPEndPoint groupEP;
-    public NetworkManagerUDPListener(int port,IPAddress address)
+    public Socket workSocket = null;
+    public const int BufferSize = 1024;
+    public byte[] buffer = new byte[BufferSize];
+    public string finalString = "";
+    public int index = -1;
+}
+class Client
+{
+    public Socket clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+    EventWaitHandle connectWaitHandle = new EventWaitHandle(true, EventResetMode.ManualReset);
+    EventWaitHandle sendDone = new EventWaitHandle(true, EventResetMode.ManualReset);
+    EventWaitHandle receiveDone = new EventWaitHandle(true, EventResetMode.ManualReset);
+    public List<string> backlog = new List<string>();
+    public Client()
     {
-        listener = new UdpClient(port);
-        groupEP = new IPEndPoint(address, port);
-        listenThread = new Thread(ListenThreadLoop);
-        listenThread.Start();
+        IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
+        IPAddress ipAddress = IPAddress.Parse("192.168.0.46");
+        IPEndPoint endPoint = new IPEndPoint(ipAddress, 5000);
+
+
+        clientSocket.BeginConnect(endPoint, new AsyncCallback(ConnectionCallback), clientSocket);
+
+        connectWaitHandle.WaitOne();
     }
-    void ListenThreadLoop()
+
+    public void Close()
     {
+        clientSocket.Close();
+    }
 
-        while (true)
+    void ConnectionCallback(IAsyncResult ar)
+    {
+        try
         {
-            listenThreadWait.Reset();
+            Socket client = (Socket)ar.AsyncState;
 
-            try
-            {
-                byte[] bytes = listener.Receive(ref groupEP);
 
-                Debug.Log($" {Encoding.ASCII.GetString(bytes, 0, bytes.Length)}");
-            }
-            catch (SocketException e)
-            {
-                Debug.Log(e);
-            }
-            finally
-            {
+            Console.WriteLine("Socket Connected to {0}", client.RemoteEndPoint.ToString());
 
-            }
 
-            WaitHandle.SignalAndWait(mainThreadWait, listenThreadWait);
+
+            connectWaitHandle.Set();
+        }
+        catch (Exception e)
+        {
+            Console.Write("Exception Caught: {0}", e);
         }
     }
 
-    void UpdateListener()
+    public void Send(string message)
     {
-        listenThreadWait.Set();
+        byte[] sendBuffer = Encoding.ASCII.GetBytes(message);
+
+        clientSocket.BeginSend(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, new AsyncCallback(SendCallback), clientSocket);
+    }
+
+    void SendCallback(IAsyncResult ar)
+    {
+        try
+        {
+            Socket client = (Socket)ar.AsyncState;
+
+            int length = client.EndSend(ar);
+
+            sendDone.Set();
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
+
+    public void Receive()
+    {
+        try
+        {
+            StateObject state = new StateObject();
+            state.workSocket = clientSocket;
+
+            clientSocket.BeginReceive(state.buffer, 0, StateObject.BufferSize, SocketFlags.None, new AsyncCallback(RecieveCallback), state);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
+
+    void RecieveCallback(IAsyncResult ar)
+    {
+        try
+        {
+            StateObject state = (StateObject)ar.AsyncState;
+            Socket client = state.workSocket;
+
+            int length = client.EndReceive(ar);
+
+            state.finalString = Encoding.ASCII.GetString(state.buffer, 0, length);
+            Console.WriteLine(state.finalString);
+            backlog.Add(state.finalString);
+
+            client.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(RecieveCallback), state);
+            receiveDone.Set();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
     }
 }
-
-public class NetworkManagerUDPClient{
-    
-}
-
 public class NetworkManager : MonoBehaviour
 {
-    //Using UDP, at the moment
-    // Start is called before the first frame update
-    NetworkManagerUDPListener listener;
-    public string ip = "0.0.0.0.0";
+    Client client;
+    Thread recThread;
 
-    public int port = 11000;
+    public GameObject player;
 
+    public int clientNum = -1;
     void Start()
     {
-        listener = new NetworkManagerUDPListener(port,IPAddress.Parse(ip));
+        client = new Client();
+        recThread = new Thread(client.Receive);
+        //listener = new NetworkManagerUDPListener(port,IPAddress.Parse(ip));
     }
 
-    // Update is called once per frame
+    public void Send(string message)
+    {
+        if (client.clientSocket.Connected)
+            client.Send(message);
+    }
+
+    private void OnDestroy()
+    {
+        client.Close();
+    }
+
     void Update()
     {
-
+        if (client.clientSocket.Connected && recThread.ThreadState == ThreadState.Unstarted)
+            recThread.Start();
+        SortRecievedMessages();
     }
+
+    void SortRecievedMessages()
+    {
+        for (int i = 0; i < client.backlog.Count; i++)
+        {
+            if (client.backlog[i].Length >= 40)
+            {
+                client.backlog.RemoveAt(i);
+                i--;
+            }
+            if (client.backlog[i].Contains("cli") && clientNum == -1)
+            {
+                var parts = client.backlog[i].Split(' ');
+                clientNum = int.Parse(parts[1]);
+                client.backlog.RemoveAt(i);
+                i--;
+                Debug.Log(clientNum);
+                continue;
+            }
+
+            string comp = "cli" + " " + clientNum.ToString();
+
+            if (client.backlog[i].Contains(comp) && RunCommand(client.backlog[i]))
+            {
+                client.backlog.RemoveAt(i);
+                i--;
+            }
+        }
+    }
+
+
+    bool RunCommand(string command)
+    {
+        if (command.Contains("plr"))
+        {
+            var parts = command.Split(' ');
+            Vector3 v = new Vector3(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6]));
+
+            if (command.Contains("pos"))
+            {
+                player.transform.position = v;
+                return true;
+            }
+            else if (command.Contains("scl"))
+            {
+                player.transform.localScale = v;
+                return true;
+            }
+            else if (command.Contains("vel"))
+            {
+                var r = player.GetComponent<Rigidbody>();
+                r.velocity = r.velocity + v;
+                return true;
+            }
+        }
+
+        Debug.Log("Invalid Command: " + command);
+        return false;
+    }
+
+
 }
