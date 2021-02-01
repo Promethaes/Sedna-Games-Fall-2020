@@ -160,7 +160,7 @@ public class NetworkManager : MonoBehaviour
                 client.backlog.RemoveAt(i);
                 i--;
             }
-            if (client.backlog[i].Contains("cli") && clientNum == -1)
+            if (client.backlog[i].Contains("clin") && clientNum == -1)
             {
                 var parts = client.backlog[i].Split(' ');
                 clientNum = int.Parse(parts[1]);
