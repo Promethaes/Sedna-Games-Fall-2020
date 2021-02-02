@@ -22,8 +22,8 @@ public class NetworkingMovementScript : MonoBehaviour
     void Update()
     {
     }
-    float timer = 0.33f;
-    float mTimer = 0.33f;
+    float timer = 0.033f;
+    float mTimer = 0.033f;
     private void FixedUpdate()
     {
         rigidbody.velocity = rigidbody.velocity + new Vector3(moveVec.x, 0, moveVec.y);

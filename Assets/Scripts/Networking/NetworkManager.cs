@@ -159,6 +159,7 @@ public class NetworkManager : MonoBehaviour
             {
                 client.backlog.RemoveAt(i);
                 i--;
+                continue;
             }
             if (client.backlog[i].Contains("clin") && clientNum == -1)
             {
