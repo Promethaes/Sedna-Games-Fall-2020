@@ -36,7 +36,7 @@ public class Flingable : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<PlayerBackend>().hp -= damage;
+            other.gameObject.GetComponent<PlayerBackend>().takeDamage(damage);
             gameObject.SetActive(false);
         }
     }

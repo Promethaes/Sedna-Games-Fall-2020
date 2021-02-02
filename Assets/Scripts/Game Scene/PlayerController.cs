@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using Unity;
 
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public float isDashing = 0.0f;
     [HideInInspector] public bool insideCastingZone = false;
     [HideInInspector] public bool useAbility = false;
+    [HideInInspector] public bool useCombatAbility = false;
     [HideInInspector] public bool attack = false;
 
     private Rigidbody _rigidbody = null;
@@ -82,6 +84,13 @@ public class PlayerController : MonoBehaviour
     public bool hitEnemy = false;
     public bool playAttackSound = false;
     private float turnSpeed;
+
+    private float _abilityCD = 10.0f;
+    private float _abilityDuration = 7.5f;
+    private float _chargeDuration;
+    private bool _charging = false;
+    private float _chargeMultiplier = 3.5f;
+    public ChargeHitbox abilityHitbox;
 
 
     // -------------------------------------------------------------------------
@@ -130,6 +139,8 @@ public class PlayerController : MonoBehaviour
             _playerMesh = GetComponentInParent<GameInputHandler>()._playerPrefabs[(int)playerType].prefab;
         backend.hp = backend.maxHP * percentage;
         hitboxes = _playerMesh.GetComponentsInChildren<AttackHitbox>(true);
+        if (playerType == PlayerType.BISON)
+            abilityHitbox = GetComponentInChildren<ChargeHitbox>(true);
         Debug.Log(hitboxes.Length);
     }
 
@@ -158,6 +169,7 @@ public class PlayerController : MonoBehaviour
         _dashCooldown -= Time.fixedDeltaTime;
         _wheelCooldown -= Time.fixedDeltaTime;
         _regenTicks -= Time.fixedDeltaTime;
+        _abilityCD -= Time.fixedDeltaTime;
 
         if (!downed && _animationDuration <= 0.0f)
         {
@@ -175,6 +187,10 @@ public class PlayerController : MonoBehaviour
                 _Regen();
                 _regenTicks = 2.0f;
             }
+
+            //Combat Ability
+            if (useCombatAbility)
+                _useCombatAbility();
         }
     }
 
@@ -308,7 +324,7 @@ public class PlayerController : MonoBehaviour
         if (_animator)
             _animator.SetBool("walking", true);
 
-        if (_dashDuration < 0.0f && _animationDuration < 0.0f)
+        if (_dashDuration < 0.0f && _animationDuration < 0.0f && !_charging)
         {
             //NOTE: Camera position affects the rotation of the player's movement, which is stored in the first value of Vector3 vel (Current: 135.0f)
             Vector3 vel = playerCamera.transform.right*moveInput.x + playerCamera.transform.forward * moveInput.y;
@@ -412,6 +428,79 @@ public class PlayerController : MonoBehaviour
             case PlayerType.BISON: ramThrough.hasRammed = true; break;
         }
         useAbility = false;
+    }
+
+    void _useCombatAbility()
+    {
+        if (_abilityCD > 0.0f)
+            return;
+    Debug.Log(playerType);
+        switch (playerType)
+        {
+            case PlayerType.TURTLE: StartCoroutine(Buff()); break;
+            case PlayerType.POLAR_BEAR: StartCoroutine(Roar()); break;
+            case PlayerType.RATTLESNAKE: StartCoroutine(Fear()); break;
+            case PlayerType.BISON: StartCoroutine(Charge()); break;
+        }
+    }
+    IEnumerator Buff()
+    {
+        Debug.Log("Start Buff");
+        _abilityCD = 10.0f;
+        var damage = damageValues;
+        for (int i=0;i<damageValues.Length;i++)
+            damageValues[i] *= 1.1f;
+        var speed = moveSpeed;
+        moveSpeed *= 1.1f;
+        Debug.Log(speed);
+        Debug.Log(moveSpeed);
+        // Implement debuff cleansing once debuffs are in
+        GetComponent<PlayerBackend>().turtleBuff = true;
+        // Waits for _abilityDuration
+        yield return new WaitForSeconds(_abilityDuration);
+
+        // Resets values
+        damageValues = damage;
+        moveSpeed = speed;
+        Debug.Log("End Buff");
+        Debug.Log(speed);
+        Debug.Log(moveSpeed);
+
+    }
+    IEnumerator Roar()
+    {
+        _abilityCD = 10.0f;
+        yield return new WaitForSeconds(_abilityDuration);
+    }
+    IEnumerator Fear()
+    {
+        _abilityCD = 10.0f;
+        yield return new WaitForSeconds(_abilityDuration);
+    }
+    IEnumerator Charge()
+    {
+        Debug.Log("Start Charge");
+        _abilityCD = 10.0f;
+        _chargeDuration = _abilityDuration;
+        _dashCooldown = _abilityDuration;
+        _jumpCooldown = _abilityDuration;
+        _charging = true;
+        var turn = turnSpeed;
+        turnSpeed *=_chargeMultiplier;
+        GetComponent<PlayerBackend>().invuln = true;
+        abilityHitbox.gameObject.SetActive(true);
+        while (_chargeDuration > 0.0f)
+        {
+            _chargeDuration -= Time.deltaTime;
+            _rigidbody.velocity = new Vector3(playerCamera.transform.forward.x*moveSpeed*_chargeMultiplier, -1.0f, playerCamera.transform.forward.z*moveSpeed*_chargeMultiplier);
+            _playerMesh.transform.rotation = Quaternion.Euler(0.0f,Mathf.SmoothDampAngle(_playerMesh.transform.eulerAngles.y,playerCamera.transform.eulerAngles.y,ref turnSpeed,0.05f),0.0f);
+            yield return null;
+        }
+        _charging = false;
+        GetComponent<PlayerBackend>().invuln = false;
+        turnSpeed = turn;
+        abilityHitbox.gameObject.SetActive(false);
+        Debug.Log("End Charge");
     }
 
     void _Attack()

@@ -81,6 +81,14 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""CombatAbility"",
+                    ""type"": ""Button"",
+                    ""id"": ""49fa762c-2d26-4072-be9e-c6f94b0aa8c6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -279,6 +287,17 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0823805e-1631-4ef3-8d6b-ece912945be0"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CombatAbility"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -752,6 +771,7 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
         m_Game_Move = m_Game.FindAction("Move", throwIfNotFound: true);
         m_Game_Revive = m_Game.FindAction("Revive", throwIfNotFound: true);
         m_Game_Select = m_Game.FindAction("Select", throwIfNotFound: true);
+        m_Game_CombatAbility = m_Game.FindAction("CombatAbility", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Move = m_UI.FindAction("Move", throwIfNotFound: true);
@@ -819,6 +839,7 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Game_Move;
     private readonly InputAction m_Game_Revive;
     private readonly InputAction m_Game_Select;
+    private readonly InputAction m_Game_CombatAbility;
     public struct GameActions
     {
         private @UpdatedControls m_Wrapper;
@@ -831,6 +852,7 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_Game_Move;
         public InputAction @Revive => m_Wrapper.m_Game_Revive;
         public InputAction @Select => m_Wrapper.m_Game_Select;
+        public InputAction @CombatAbility => m_Wrapper.m_Game_CombatAbility;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -864,6 +886,9 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
                 @Select.started -= m_Wrapper.m_GameActionsCallbackInterface.OnSelect;
                 @Select.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnSelect;
                 @Select.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnSelect;
+                @CombatAbility.started -= m_Wrapper.m_GameActionsCallbackInterface.OnCombatAbility;
+                @CombatAbility.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnCombatAbility;
+                @CombatAbility.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnCombatAbility;
             }
             m_Wrapper.m_GameActionsCallbackInterface = instance;
             if (instance != null)
@@ -892,6 +917,9 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
                 @Select.started += instance.OnSelect;
                 @Select.performed += instance.OnSelect;
                 @Select.canceled += instance.OnSelect;
+                @CombatAbility.started += instance.OnCombatAbility;
+                @CombatAbility.performed += instance.OnCombatAbility;
+                @CombatAbility.canceled += instance.OnCombatAbility;
             }
         }
     }
@@ -1022,6 +1050,7 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnRevive(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
+        void OnCombatAbility(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
