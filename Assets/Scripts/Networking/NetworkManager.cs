@@ -8,60 +8,35 @@ using System.Threading;
 using System;
 public class StateObject
 {
-    public Socket workSocket = null;
     public const int BufferSize = 1024;
     public byte[] buffer = new byte[BufferSize];
     public string finalString = "";
     public int index = -1;
+    public EndPoint remoteClient;
 }
 class Client
 {
-    public Socket clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+    public Socket clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
     EventWaitHandle connectWaitHandle = new EventWaitHandle(true, EventResetMode.ManualReset);
     EventWaitHandle sendDone = new EventWaitHandle(true, EventResetMode.ManualReset);
     EventWaitHandle receiveDone = new EventWaitHandle(true, EventResetMode.ManualReset);
-    public List<string> backlog = new List<string>();
+    IPEndPoint endPoint;
+    public List<String> backlog = new List<string>();
     public Client()
     {
         IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
         IPAddress ipAddress = IPAddress.Parse("192.168.0.46");
-        IPEndPoint endPoint = new IPEndPoint(ipAddress, 5000);
+        endPoint = new IPEndPoint(ipAddress, 5000);
 
-
-        clientSocket.BeginConnect(endPoint, new AsyncCallback(ConnectionCallback), clientSocket);
 
         connectWaitHandle.WaitOne();
-    }
-
-    public void Close()
-    {
-        clientSocket.Close();
-    }
-
-    void ConnectionCallback(IAsyncResult ar)
-    {
-        try
-        {
-            Socket client = (Socket)ar.AsyncState;
-
-
-            Console.WriteLine("Socket Connected to {0}", client.RemoteEndPoint.ToString());
-
-
-
-            connectWaitHandle.Set();
-        }
-        catch (Exception e)
-        {
-            Console.Write("Exception Caught: {0}", e);
-        }
     }
 
     public void Send(string message)
     {
         byte[] sendBuffer = Encoding.ASCII.GetBytes(message);
 
-        clientSocket.BeginSend(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, new AsyncCallback(SendCallback), clientSocket);
+        clientSocket.BeginSendTo(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, endPoint, new AsyncCallback(SendCallback), clientSocket);
     }
 
     void SendCallback(IAsyncResult ar)
@@ -70,7 +45,7 @@ class Client
         {
             Socket client = (Socket)ar.AsyncState;
 
-            int length = client.EndSend(ar);
+            int length = client.EndSendTo(ar);
 
             sendDone.Set();
 
@@ -86,9 +61,9 @@ class Client
         try
         {
             StateObject state = new StateObject();
-            state.workSocket = clientSocket;
+            state.remoteClient = (EndPoint)endPoint;
 
-            clientSocket.BeginReceive(state.buffer, 0, StateObject.BufferSize, SocketFlags.None, new AsyncCallback(RecieveCallback), state);
+            clientSocket.BeginReceiveFrom(state.buffer, 0, StateObject.BufferSize, SocketFlags.None, ref state.remoteClient, new AsyncCallback(RecieveCallback), state);
         }
         catch (Exception e)
         {
@@ -101,15 +76,13 @@ class Client
         try
         {
             StateObject state = (StateObject)ar.AsyncState;
-            Socket client = state.workSocket;
 
-            int length = client.EndReceive(ar);
+            int length = clientSocket.EndReceiveFrom(ar, ref state.remoteClient);
 
             state.finalString = Encoding.ASCII.GetString(state.buffer, 0, length);
-            Console.WriteLine(state.finalString);
             backlog.Add(state.finalString);
 
-            client.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(RecieveCallback), state);
+            clientSocket.BeginReceiveFrom(state.buffer, 0, StateObject.BufferSize, SocketFlags.None, ref state.remoteClient, new AsyncCallback(RecieveCallback), state);
             receiveDone.Set();
         }
         catch (Exception e)
@@ -118,6 +91,7 @@ class Client
         }
     }
 }
+
 public class NetworkManager : MonoBehaviour
 {
     Client client;
@@ -135,13 +109,12 @@ public class NetworkManager : MonoBehaviour
 
     public void Send(string message)
     {
-        if (client.clientSocket.Connected)
-            client.Send(message);
+        client.Send(message);
     }
 
     private void OnDestroy()
     {
-        client.Close();
+        // client.Close();
     }
 
     void Update()
