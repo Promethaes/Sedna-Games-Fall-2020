@@ -105,6 +105,8 @@ public class NetworkManager : MonoBehaviour
         client = new Client();
         recThread = new Thread(client.Receive);
         //listener = new NetworkManagerUDPListener(port,IPAddress.Parse(ip));
+        if (recThread.ThreadState == ThreadState.Unstarted)
+            recThread.Start();
     }
 
     public void Send(string message)
@@ -119,8 +121,6 @@ public class NetworkManager : MonoBehaviour
 
     void Update()
     {
-        if (client.clientSocket.Connected && recThread.ThreadState == ThreadState.Unstarted)
-            recThread.Start();
         SortRecievedMessages();
     }
 
