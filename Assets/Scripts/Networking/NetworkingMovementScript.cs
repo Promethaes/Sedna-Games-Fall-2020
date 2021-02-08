@@ -10,8 +10,8 @@ public class NetworkingMovementScript : MonoBehaviour
     Rigidbody rigidbody = null;
 
     public bool send = false;
+    public int networkedPlayerNum = -1;
 
-    public NetworkManager manager;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,12 +27,12 @@ public class NetworkingMovementScript : MonoBehaviour
     private void FixedUpdate()
     {
         rigidbody.velocity = rigidbody.velocity + new Vector3(moveVec.x, 0, moveVec.y);
-        timer -= Time.fixedDeltaTime;
-        if (send && timer <= 0.0f){
-            timer = mTimer;
-            manager.Send("cli " + (manager.clientNum + 1).ToString() + " plr pos " +
-            gameObject.transform.position.x.ToString() + " " + gameObject.transform.position.y.ToString() + " " + gameObject.transform.position.z.ToString());
-        }
+        //timer -= Time.fixedDeltaTime;
+        //if (send && timer <= 0.0f){
+        //    timer = mTimer;
+        //    manager.Send("cli " + (manager.clientNum + 1).ToString() + " plr pos " +
+        //    gameObject.transform.position.x.ToString() + " " + gameObject.transform.position.y.ToString() + " " + gameObject.transform.position.z.ToString());
+        //}
     }
 
     public void OnMove(InputAction.CallbackContext ctx)

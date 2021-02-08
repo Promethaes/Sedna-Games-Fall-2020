@@ -90,9 +90,12 @@ public class NetworkManager : MonoBehaviour
     Client client;
     Thread recThread;
 
-    public GameObject player;
+    public GameObject playerPrefab;
+    GameObject player = null;
+    NetworkingMovementScript nMovement = null;
 
-    public int clientNum = -1;
+    List<GameObject> players = new List<GameObject>();
+
     void Start()
     {
         client = new Client();
@@ -100,6 +103,9 @@ public class NetworkManager : MonoBehaviour
         recThread.Start();
         byte[] buffer = Encoding.ASCII.GetBytes("initMsg");
         client.clientSocket.SendTo(buffer, client.endPoint);
+        player = GameObject.Instantiate(playerPrefab);
+        nMovement = player.GetComponent<NetworkingMovementScript>();
+        players.Add(player);
     }
 
     public void Send(string message)
@@ -134,17 +140,21 @@ public class NetworkManager : MonoBehaviour
                 i--;
                 continue;
             }
-            if (client.backlog[i].Contains("clin") && clientNum == -1)
+            else if (client.backlog[i].Contains("clin") && nMovement.networkedPlayerNum == -1)
             {
                 var parts = client.backlog[i].Split(' ');
-                clientNum = int.Parse(parts[1]);
+                nMovement.networkedPlayerNum = int.Parse(parts[1]);
                 client.backlog.RemoveAt(i);
                 i--;
-                Debug.Log(clientNum);
+                Debug.Log(nMovement.networkedPlayerNum);
                 continue;
             }
+            else if(client.backlog[i].Contains("spawn")){ //finish this later
 
-            string comp = "cli" + " " + clientNum.ToString();
+            }
+
+            
+            string comp = "cli" + " " + nMovement.networkedPlayerNum.ToString();
 
             if (client.backlog[i].Contains(comp) && RunCommand(client.backlog[i]))
             {
