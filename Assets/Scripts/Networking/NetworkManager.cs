@@ -17,19 +17,21 @@ public class StateObject
 class Client
 {
     public Socket clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-    EventWaitHandle connectWaitHandle = new EventWaitHandle(true, EventResetMode.ManualReset);
+    public Socket listenSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
     EventWaitHandle sendDone = new EventWaitHandle(true, EventResetMode.ManualReset);
     EventWaitHandle receiveDone = new EventWaitHandle(true, EventResetMode.ManualReset);
-    IPEndPoint endPoint;
-    public List<String> backlog = new List<string>();
+    public IPEndPoint endPoint;
+    public List<string> backlog = new List<string>();
+    public bool leave = false;
+
     public Client()
     {
         IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
         IPAddress ipAddress = IPAddress.Parse("192.168.0.46");
         endPoint = new IPEndPoint(ipAddress, 5000);
 
+        clientSocket.Bind(new IPEndPoint(IPAddress.Any, 0));
 
-        connectWaitHandle.WaitOne();
     }
 
     public void Send(string message)
@@ -58,36 +60,27 @@ class Client
 
     public void Receive()
     {
-        try
+        while (true)
         {
-            StateObject state = new StateObject();
-            state.remoteClient = (EndPoint)endPoint;
+            if (leave)
+                break;
+            receiveDone.Reset();
+            try
+            {
+                byte[] buffer = new byte[1024];
+                var ep = (EndPoint)endPoint;
+                int length = clientSocket.ReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref ep);
 
-            clientSocket.BeginReceiveFrom(state.buffer, 0, StateObject.BufferSize, SocketFlags.None, ref state.remoteClient, new AsyncCallback(RecieveCallback), state);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-        }
-    }
+                var fString = Encoding.ASCII.GetString(buffer, 0, length);
 
-    void RecieveCallback(IAsyncResult ar)
-    {
-        try
-        {
-            StateObject state = (StateObject)ar.AsyncState;
-
-            int length = clientSocket.EndReceiveFrom(ar, ref state.remoteClient);
-
-            state.finalString = Encoding.ASCII.GetString(state.buffer, 0, length);
-            backlog.Add(state.finalString);
-
-            clientSocket.BeginReceiveFrom(state.buffer, 0, StateObject.BufferSize, SocketFlags.None, ref state.remoteClient, new AsyncCallback(RecieveCallback), state);
+                Console.WriteLine(fString);
+                backlog.Add(fString);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             receiveDone.Set();
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
         }
     }
 }
@@ -104,9 +97,9 @@ public class NetworkManager : MonoBehaviour
     {
         client = new Client();
         recThread = new Thread(client.Receive);
-        //listener = new NetworkManagerUDPListener(port,IPAddress.Parse(ip));
-        if (recThread.ThreadState == ThreadState.Unstarted)
-            recThread.Start();
+        recThread.Start();
+        byte[] buffer = Encoding.ASCII.GetBytes("initMsg");
+        client.clientSocket.SendTo(buffer, client.endPoint);
     }
 
     public void Send(string message)
@@ -117,6 +110,13 @@ public class NetworkManager : MonoBehaviour
     private void OnDestroy()
     {
         // client.Close();
+        client.leave = true;
+        var buffer = Encoding.ASCII.GetBytes("endMsg");
+        client.clientSocket.SendTo(buffer, client.endPoint);
+        recThread.Join();
+
+
+        client.clientSocket.Close();
     }
 
     void Update()
