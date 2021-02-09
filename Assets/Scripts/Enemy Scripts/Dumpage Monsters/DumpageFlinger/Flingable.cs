@@ -37,6 +37,8 @@ public class Flingable : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             other.gameObject.GetComponent<PlayerBackend>().takeDamage(damage);
+            if (Random.Range(0.0f,1.0f) <= 0.3f)
+                other.GetComponent<PlayerController>().slowed();
             gameObject.SetActive(false);
         }
     }

@@ -518,6 +518,7 @@ MonoBehaviour:
   range: 0
   damageValues: 0
   hitbox: {fileID: 2129156771927513135}
+  fear: 0
   enemy: 0
   icePickRange: 5
   randomScale: 1
