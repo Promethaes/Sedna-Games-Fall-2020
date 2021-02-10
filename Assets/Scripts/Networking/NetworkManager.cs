@@ -187,7 +187,7 @@ public class NetworkManager : MonoBehaviour
                 for(int j = 0; j < players.Count;i++){
                     if(players[j].nMovement.networkedPlayerNum == j){
                         Destroy(players[j].p);
-                        players.RemoveAt(j)
+                        players.RemoveAt(j);
                         j--;
                         break;
                     }
