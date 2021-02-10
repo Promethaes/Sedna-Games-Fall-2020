@@ -89,12 +89,22 @@ public class NetworkManager : MonoBehaviour
 {
     Client client;
     Thread recThread;
-
     public GameObject playerPrefab;
-    GameObject player = null;
-    NetworkingMovementScript nMovement = null;
 
-    List<GameObject> players = new List<GameObject>();
+    struct PItem
+    {
+        public GameObject p;
+        public NetworkingMovementScript nMovement;
+
+        public PItem(GameObject pObject)
+        {
+            p = pObject;
+            nMovement = pObject.GetComponent<NetworkingMovementScript>();
+        }
+    }
+
+    List<PItem> players = new List<PItem>();
+    PItem player;
 
     void Start()
     {
@@ -103,8 +113,7 @@ public class NetworkManager : MonoBehaviour
         recThread.Start();
         byte[] buffer = Encoding.ASCII.GetBytes("initMsg");
         client.clientSocket.SendTo(buffer, client.endPoint);
-        player = GameObject.Instantiate(playerPrefab);
-        nMovement = player.GetComponent<NetworkingMovementScript>();
+        player = new PItem(GameObject.Instantiate(playerPrefab));
         players.Add(player);
     }
 
@@ -140,32 +149,37 @@ public class NetworkManager : MonoBehaviour
                 i--;
                 continue;
             }
-            else if (client.backlog[i].Contains("clin") && nMovement.networkedPlayerNum == -1)
+            else if (client.backlog[i].Contains("clin") && player.nMovement.networkedPlayerNum == -1)
             {
                 var parts = client.backlog[i].Split(' ');
-                nMovement.networkedPlayerNum = int.Parse(parts[1]);
+                player.nMovement.networkedPlayerNum = int.Parse(parts[1]);
                 client.backlog.RemoveAt(i);
                 i--;
-                Debug.Log(nMovement.networkedPlayerNum);
+                Debug.Log(player.nMovement.networkedPlayerNum);
                 continue;
             }
-            else if(client.backlog[i].Contains("spawn")){ //finish this later
+            else if (client.backlog[i].Contains("spawn"))
+            { //finish this later
+                var temp = new PItem(GameObject.Instantiate(playerPrefab));
 
+                players.Add(temp);
             }
 
-            
-            string comp = "cli" + " " + nMovement.networkedPlayerNum.ToString();
-
-            if (client.backlog[i].Contains(comp) && RunCommand(client.backlog[i]))
+            foreach (var p in players)
             {
-                client.backlog.RemoveAt(i);
-                i--;
+                string comp = "cli" + " " + p.nMovement.networkedPlayerNum.ToString();
+
+                if (client.backlog[i].Contains(comp) && RunCommand(p.p, client.backlog[i]))
+                {
+                    client.backlog.RemoveAt(i);
+                    i--;
+                }
             }
         }
     }
 
 
-    bool RunCommand(string command)
+    bool RunCommand(GameObject p, string command)
     {
         if (command.Contains("plr"))
         {
@@ -174,17 +188,17 @@ public class NetworkManager : MonoBehaviour
 
             if (command.Contains("pos"))
             {
-                player.transform.position = v;
+                p.transform.position = v;
                 return true;
             }
             else if (command.Contains("scl"))
             {
-                player.transform.localScale = v;
+                p.transform.localScale = v;
                 return true;
             }
             else if (command.Contains("vel"))
             {
-                var r = player.GetComponent<Rigidbody>();
+                var r = p.GetComponent<Rigidbody>();
                 r.velocity = r.velocity + v;
                 return true;
             }
