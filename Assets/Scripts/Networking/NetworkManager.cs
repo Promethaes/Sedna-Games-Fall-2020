@@ -90,16 +90,19 @@ public class NetworkManager : MonoBehaviour
     Client client;
     Thread recThread;
     public GameObject playerPrefab;
+    public bool send = false;
 
     struct PItem
     {
         public GameObject p;
         public NetworkingMovementScript nMovement;
+        public Transform transform;
 
         public PItem(GameObject pObject)
         {
             p = pObject;
             nMovement = pObject.GetComponent<NetworkingMovementScript>();
+            transform = p.gameObject.transform;
         }
     }
 
@@ -136,6 +139,13 @@ public class NetworkManager : MonoBehaviour
 
     void Update()
     {
+        if(send){
+            Send("cli " + player.nMovement.networkedPlayerNum.ToString() + " plr pos " 
+            + player.transform.position.x.ToString() + " " 
+            + player.transform.position.y.ToString() + " " 
+            + player.transform.position.z.ToString() 
+            );
+        }
         SortRecievedMessages();
     }
 
