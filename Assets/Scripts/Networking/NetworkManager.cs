@@ -183,9 +183,15 @@ public class NetworkManager : MonoBehaviour
             else if(client.backlog[i].Contains("remove")){
                 var parts = client.backlog[i].Split(' ');
                 int index = int.Parse(parts[1]);
-                Destroy(players[index].p);
-                players.RemoveAt(index);
-                 
+
+                for(int j = 0; j < players.Count;i++){
+                    if(players[j].nMovement.networkedPlayerNum == j){
+                        Destroy(players[j].p);
+                        players.RemoveAt(j)
+                        j--;
+                        break;
+                    }
+                }
             }
 
             foreach (var p in players)
