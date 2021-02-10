@@ -6,11 +6,14 @@ using UnityEngine.InputSystem;
 public class NetworkingMovementScript : MonoBehaviour
 {
 
-    Vector2 moveVec = new Vector2();
+    Vector3 moveVec = new Vector3();
     Rigidbody rigidbody = null;
 
     public bool send = false;
     public int networkedPlayerNum = -1;
+
+    public float movespeed = 10.0f;
+    public float jumpheight = 5.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -26,17 +29,20 @@ public class NetworkingMovementScript : MonoBehaviour
     float mTimer = 0.033f;
     private void FixedUpdate()
     {
-        rigidbody.velocity = rigidbody.velocity + new Vector3(moveVec.x, 0, moveVec.y);
-        //timer -= Time.fixedDeltaTime;
-        //if (send && timer <= 0.0f){
-        //    timer = mTimer;
-        //    manager.Send("cli " + (manager.clientNum + 1).ToString() + " plr pos " +
-        //    gameObject.transform.position.x.ToString() + " " + gameObject.transform.position.y.ToString() + " " + gameObject.transform.position.z.ToString());
-        //}
+        rigidbody.velocity = rigidbody.velocity + moveVec;
+        moveVec.y = 0;
     }
 
     public void OnMove(InputAction.CallbackContext ctx)
     {
-        moveVec = ctx.ReadValue<Vector2>();
+        var temp = ctx.ReadValue<Vector2>();
+        moveVec = new Vector3(temp.x,0.0f,temp.y)*movespeed;
+    }
+
+    public void OnJump(InputAction.CallbackContext ctx){
+        var temp = ctx.ReadValue<float>();
+
+        if(temp > 0.5f)
+        moveVec.y = jumpheight;
     }
 }

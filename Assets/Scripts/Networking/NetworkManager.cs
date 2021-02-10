@@ -180,6 +180,13 @@ public class NetworkManager : MonoBehaviour
                 Debug.Log("Client "+ temp.nMovement.networkedPlayerNum.ToString() + " joined the session");
                 continue;
             }
+            else if(client.backlog[i].Contains("remove")){
+                var parts = client.backlog[i].Split(' ');
+                int index = int.Parse(parts[1]);
+                Destroy(players[index].p);
+                players.RemoveAt(index);
+                 
+            }
 
             foreach (var p in players)
             {
@@ -189,6 +196,7 @@ public class NetworkManager : MonoBehaviour
                 {
                     client.backlog.RemoveAt(i);
                     i--;
+                    continue;
                 }
             }
         }
