@@ -159,10 +159,15 @@ public class NetworkManager : MonoBehaviour
                 continue;
             }
             else if (client.backlog[i].Contains("spawn"))
-            { //finish this later
+            { 
+                var parts = client.backlog[i].Split(' ');
                 var temp = new PItem(GameObject.Instantiate(playerPrefab));
-
+                temp.nMovement.networkedPlayerNum = int.Parse(parts[1]);
+                client.backlog.RemoveAt(i);
+                i--;
                 players.Add(temp);
+                Debug.Log("Client "+ temp.nMovement.networkedPlayerNum.ToString() + " joined the session");
+                continue;
             }
 
             foreach (var p in players)
