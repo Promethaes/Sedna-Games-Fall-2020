@@ -137,18 +137,22 @@ public class NetworkManager : MonoBehaviour
         client.clientSocket.Close();
     }
 
-    void Update()
-    {
-        if(send){
+    Vector3 lastPos = new Vector3();
+    float timer = 0.0f;
+    void FixedUpdate() {
+        Debug.Log((player.transform.position.magnitude - lastPos.magnitude));
+         if( timer <= 0.0f && send && Mathf.Abs(player.transform.position.magnitude - lastPos.magnitude) >= 0.01f){
             Send("cli " + player.nMovement.networkedPlayerNum.ToString() + " plr pos " 
             + player.transform.position.x.ToString() + " " 
             + player.transform.position.y.ToString() + " " 
             + player.transform.position.z.ToString() 
             );
+            timer = 0.033f;
         }
         SortRecievedMessages();
+        lastPos = player.transform.position;
+        timer -= Time.fixedDeltaTime;
     }
-
     void SortRecievedMessages()
     {
         for (int i = 0; i < client.backlog.Count; i++)
@@ -174,6 +178,7 @@ public class NetworkManager : MonoBehaviour
                 var temp = new PItem(GameObject.Instantiate(playerPrefab));
                 temp.nMovement.networkedPlayerNum = int.Parse(parts[1]);
                 temp.nMovement.enabled = false;
+                temp.p.GetComponent<Rigidbody>().useGravity = false;
                 client.backlog.RemoveAt(i);
                 i--;
                 players.Add(temp);
