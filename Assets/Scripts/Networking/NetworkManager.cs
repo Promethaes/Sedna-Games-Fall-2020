@@ -178,7 +178,6 @@ public class NetworkManager : MonoBehaviour
                 var temp = new PItem(GameObject.Instantiate(playerPrefab));
                 temp.nMovement.networkedPlayerNum = int.Parse(parts[1]);
                 temp.nMovement.enabled = false;
-                temp.p.GetComponent<Rigidbody>().useGravity = false;
                 client.backlog.RemoveAt(i);
                 i--;
                 players.Add(temp);
