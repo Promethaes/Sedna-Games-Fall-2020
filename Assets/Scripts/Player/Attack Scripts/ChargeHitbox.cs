@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackHitbox : MonoBehaviour
+public class ChargeHitbox : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
@@ -10,9 +10,11 @@ public class AttackHitbox : MonoBehaviour
         {
             PlayerController player = GetComponentInParent<PlayerController>();
             EnemyData foe = other.GetComponentInParent<EnemyData>();
-            foe.takeDamage(player.damageValues[player.comboCounter]);
-            if (foe.health <= 0.0f)
-                player.killCount++;
+            foe.takeDamage(25.0f);
+
+            //Knockback
+            var dir = Vector3.Normalize(foe.transform.position - transform.position);
+            foe.GetComponentInParent<Rigidbody>().AddForce(dir*100.0f, ForceMode.Impulse);
             player.hitEnemy = true;
         }
     }

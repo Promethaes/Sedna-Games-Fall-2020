@@ -31,6 +31,7 @@ public class EnemyData : MonoBehaviour
     public float range;
     public float damageValues;
     public GameObject hitbox;
+    public bool fear = false;
 
     public enum enemyType
     {
@@ -124,6 +125,10 @@ public class EnemyData : MonoBehaviour
     public float getMaxHealth()
     {
         return maxHealth;
+    }
+    public bool getFear()
+    {
+        return fear;
     }
     public void takeDamage(float hp)
     {

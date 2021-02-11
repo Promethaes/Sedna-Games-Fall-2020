@@ -35,7 +35,7 @@ public class Flies : MonoBehaviour
 
         if (shouldHit && _timer <= 0.0f)
         {
-            target.GetComponent<PlayerBackend>().hp -= damage;
+            target.GetComponent<PlayerBackend>().takeDamage(damage);
             _timer = maxTime;
         }
         _lifetime -= Time.deltaTime;

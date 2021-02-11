@@ -7,7 +7,8 @@ public class PlayerBackend : MonoBehaviour
     public float hp = 100.0f;
     public float maxHP = 100.0f;
     public CheckpointManager manager;
-
+    public bool turtleBuff = false;
+    public bool invuln = false;
     private void Start()
     {
         manager = GameObject.FindGameObjectWithTag("CheckpointManager").GetComponent<CheckpointManager>();
@@ -20,6 +21,12 @@ public class PlayerBackend : MonoBehaviour
             KillPlayer();
         if (hp > maxHP)
             hp = maxHP;
+    }
+
+    public void takeDamage(float dmg)
+    {
+        if (!invuln)
+            hp -= dmg - (dmg*turtleBuff.GetHashCode()*0.1f);
     }
 
     public void KillPlayer()

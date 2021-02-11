@@ -29,7 +29,10 @@ public class AITrackPlayer : StateMachineBehaviour
         {
             if ((enemy.transform.position - player.transform.position).magnitude < enemyData.searchRadius)
             {
-                agent.SetDestination(player.transform.position);
+                if (enemyData.getFear())
+                    agent.SetDestination(-player.transform.position);
+                else
+                    agent.SetDestination(player.transform.position);
             }
             else
             {
