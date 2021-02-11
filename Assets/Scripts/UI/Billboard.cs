@@ -35,7 +35,7 @@ public class Billboard : MonoBehaviour
                 _images[i].color = _color;
             }
         //if (_fadeTime <= 0.0f)
-
-        transform.LookAt(Camera.main.transform);
+        //TODO: When activating a cutscene, the game can't tell what the main camera is, causes game to break
+        //transform.LookAt(Camera.main.transform);
     }
 }
