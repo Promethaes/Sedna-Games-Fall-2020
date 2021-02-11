@@ -34,7 +34,8 @@ public class Quest : MonoBehaviour {
             completed = temp;
         }
         else {
-            questText.color = new Color(0, 1, 0);
+            if(questCounter != null) 
+                questText.color = new Color(0, 1, 0);
         }
     }
 

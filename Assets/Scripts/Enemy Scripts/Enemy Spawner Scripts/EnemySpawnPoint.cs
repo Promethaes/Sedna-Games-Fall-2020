@@ -12,7 +12,6 @@ public class EnemySpawnPoint : MonoBehaviour
     public int maxSpawn = 5;
     public bool oneTimeSpawn = false;
     bool _shouldSpawn = false;
-    bool _activeEnemies = false;
     public float spawnTimeInterval = 1.0f;
     float _pvtSpawnTimeInterval = 1.0f;
     public Barriers _barriers;
@@ -30,32 +29,29 @@ public class EnemySpawnPoint : MonoBehaviour
         }
     }
 
+    void HandleDoneSpawning()
+    {
+        if (!AnyEnemiesActive())
+        {
+            _barriers.barrierDown();
+            var temp = spawnEnemies[0].GetComponentInChildren<EnemyData>().getPlayers();
+            for (int i = 0; i < temp.Length; i++)
+                temp[i].GetComponentInChildren<PlayerController>().outOfCombat = true;
+        }
+    }
+
     void Update()
     {
         if (oneTimeSpawn)
         {
-            if (!AnyEnemiesActive())
-            {
-                _barriers.barrierDown();
-                var temp = spawnEnemies[0].GetComponentInChildren<EnemyData>().getPlayers();
-                for (int i = 0; i < temp.Length; i++)
-                    temp[i].GetComponentInChildren<PlayerController>().outOfCombat = true;
-            }
+            HandleDoneSpawning();
             return;
         }
         _pvtSpawnTimeInterval -= Time.deltaTime;
         if (_pvtSpawnTimeInterval <= 0.0f && _shouldSpawn)
             SpawnEnemy();
         if (!_shouldSpawn)
-        {
-            if (!AnyEnemiesActive())
-            {
-                _barriers.barrierDown();
-                var temp = spawnEnemies[0].GetComponentInChildren<EnemyData>().getPlayers();
-                for (int i = 0; i < temp.Length; i++)
-                    temp[i].GetComponentInChildren<PlayerController>().outOfCombat = true;
-            }
-        }
+            HandleDoneSpawning();
     }
     void CreatePool()
     {
@@ -68,13 +64,10 @@ public class EnemySpawnPoint : MonoBehaviour
 
     public bool AnyEnemiesActive()
     {
-        _activeEnemies = false;
         for (int i = 0; i < spawnEnemies.Count; i++)
         {
             if (spawnEnemies[i].activeSelf)
-            {
                 return true;
-            }
         }
         return false;
     }
