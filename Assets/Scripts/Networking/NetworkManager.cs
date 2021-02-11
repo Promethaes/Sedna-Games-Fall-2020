@@ -140,7 +140,6 @@ public class NetworkManager : MonoBehaviour
     Vector3 lastPos = new Vector3();
     float timer = 0.0f;
     void FixedUpdate() {
-        Debug.Log((player.transform.position.magnitude - lastPos.magnitude));
          if( timer <= 0.0f && send && Mathf.Abs(player.transform.position.magnitude - lastPos.magnitude) >= 0.01f){
             Send("cli " + player.nMovement.networkedPlayerNum.ToString() + " plr pos " 
             + player.transform.position.x.ToString() + " " 
