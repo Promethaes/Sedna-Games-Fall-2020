@@ -252,6 +252,13 @@ public class NetworkManager : MonoBehaviour
     {
         if (command.Contains("plr"))
         {
+            if (command.Contains("ready"))
+            {
+                var m = p.GetComponent<NetworkingMovementScript>();
+                m.readyPressed = true;
+                return true;
+            }
+
             var parts = command.Split(' ');
             Vector3 v = new Vector3(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6]));
 
@@ -269,12 +276,6 @@ public class NetworkManager : MonoBehaviour
             {
                 var r = p.GetComponent<Rigidbody>();
                 r.velocity = r.velocity + v;
-                return true;
-            }
-            else if (command.Contains("ready"))
-            {
-                var m = p.GetComponent<NetworkingMovementScript>();
-                m.readyPressed = true;
                 return true;
             }
         }
