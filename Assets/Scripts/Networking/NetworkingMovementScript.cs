@@ -46,7 +46,9 @@ public class NetworkingMovementScript : MonoBehaviour
     {
         var temp = ctx.ReadValue<float>();
 
-        if (temp >= 0.5f)
+        if (temp >= 0.5f){
+            readyPressed = true;
             Debug.Log(gameObject.name + " Is Ready");
+        }
     }
 }

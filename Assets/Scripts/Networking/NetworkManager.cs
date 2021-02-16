@@ -145,19 +145,20 @@ public class NetworkManager : MonoBehaviour
     bool sentReadyMessage = false;
     void FixedUpdate()
     {
-        if (timer <= 0.0f && send && Mathf.Abs(player.transform.position.magnitude - lastPos.magnitude) >= 0.01f)
+        if (timer <= 0.0f && send)
         {
             if (player.nMovement.readyPressed && !sentReadyMessage)
             {
-                Send("cli " + player.nMovement.networkedPlayerNum.ToString() + "plr ready");
+                Send("cli " + player.nMovement.networkedPlayerNum.ToString() + " plr ready");
                 sentReadyMessage = true;
             }
 
-            Send("cli " + player.nMovement.networkedPlayerNum.ToString() + " plr pos "
-            + player.transform.position.x.ToString() + " "
-            + player.transform.position.y.ToString() + " "
-            + player.transform.position.z.ToString()
-            );
+            if (Mathf.Abs(player.transform.position.magnitude - lastPos.magnitude) >= 0.01f)
+                Send("cli " + player.nMovement.networkedPlayerNum.ToString() + " plr pos "
+                + player.transform.position.x.ToString() + " "
+                + player.transform.position.y.ToString() + " "
+                + player.transform.position.z.ToString()
+                );
             timer = 0.033f;
         }
         SortRecievedMessages();
@@ -208,6 +209,7 @@ public class NetworkManager : MonoBehaviour
                 var temp = new PItem(GameObject.Instantiate(playerPrefab));
                 temp.nMovement.networkedPlayerNum = int.Parse(parts[1]);
                 temp.nMovement.enabled = false;
+                temp.p.GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled = false;
                 client.backlog.RemoveAt(i);
                 i--;
                 players.Add(temp);

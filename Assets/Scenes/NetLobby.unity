@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -327,8 +327,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 6595150141337280388, guid: 9ed3ec6ffb058484fb4760e81d1444db,
     type: 3}
-  send: 0
-  interpetCommands: 0
+  send: 1
+  interpetCommands: 1
   sceneChanger: {fileID: 6175845212675874868, guid: 3892f0171b9b81044b7bdcf1be98023f,
     type: 3}
 --- !u!4 &1592388364
