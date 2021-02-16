@@ -186,7 +186,7 @@ MonoBehaviour:
     m_ActionName: Lobby/Ready[/XInputControllerWindows/buttonSouth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Lobby
+  m_DefaultActionMap: 646adb99-8c0f-4f42-ad3c-645e2138b8ec
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &6595150141337280446
