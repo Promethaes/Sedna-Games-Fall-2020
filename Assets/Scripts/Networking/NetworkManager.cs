@@ -116,7 +116,9 @@ public class NetworkManager : MonoBehaviour
         recThread.Start();
         byte[] buffer = Encoding.ASCII.GetBytes("initMsg");
         client.clientSocket.SendTo(buffer, client.endPoint);
-        player = new PItem(GameObject.Instantiate(playerPrefab));
+        var p = GameObject.FindGameObjectWithTag("Player");
+        p.AddComponent<NetworkingMovementScript>();
+        player = new PItem(p);
         players.Add(player);
     }
 

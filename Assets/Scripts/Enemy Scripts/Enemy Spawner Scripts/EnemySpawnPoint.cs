@@ -11,6 +11,7 @@ public class EnemySpawnPoint : MonoBehaviour
     public float spawnRadiusScalar = 15.0f;
     public int maxSpawn = 5;
     public bool oneTimeSpawn = false;
+    public bool randomizeSpawnPos = false;
     bool _shouldSpawn = false;
     bool _activeEnemies = false;
     public float spawnTimeInterval = 1.0f;
@@ -98,7 +99,11 @@ public class EnemySpawnPoint : MonoBehaviour
 
         float radius = gameObject.GetComponent<SphereCollider>().radius;
 
-        spawnEnemies[spawnIndex].transform.position = gameObject.transform.position + new Vector3(Random.Range(-radius, radius), 0.0f, Random.Range(-radius, radius)) * spawnRadiusScalar;
+        Vector3 placeVec = new Vector3(radius+spawnIndex, 0.0f, radius+spawnIndex);
+        if (randomizeSpawnPos)
+            placeVec = new Vector3(Random.Range(-radius, radius), 0.0f, Random.Range(-radius, radius));
+
+        spawnEnemies[spawnIndex].transform.position = gameObject.transform.position + placeVec * spawnRadiusScalar;
         spawnEnemies[spawnIndex].SetActive(true);
         var enemy = spawnEnemies[spawnIndex].GetComponentInChildren<EnemyData>();
         enemy._health = enemy._maxHealth;
