@@ -155,7 +155,6 @@ public class PlayerController : MonoBehaviour
         if (playerType == PlayerType.BISON)
             abilityHitbox = GetComponentInChildren<ChargeHitbox>(true);
         damageValues = originalDamageValues;
-        Debug.Log(hitboxes.Length);
     }
 
     void Update()
@@ -434,7 +433,7 @@ public class PlayerController : MonoBehaviour
         if (_animator)
             _animator.SetBool("ability", true);
 
-        abilityScript.enterQTE(this);
+        StartCoroutine(abilityScript.enterQTE(this));
         useAbility = false;
     }
 

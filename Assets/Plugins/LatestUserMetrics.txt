@@ -1,93 +1,247 @@
-METRICS LOG ENTRY ID 20006
+METRICS LOG ENTRY ID 3586
 	CHECKPOINTS:
-		 - Checkpoint #1:13.940000
-		 - Checkpoint #2:42.040001
+		 - Checkpoint #1:2.900000
+		 - Checkpoint #2:25.320000
 	DEATHS:
 		P1Deaths:
 		P2Deaths:
 		P3Deaths:
 		P4Deaths:
-METRICS LOG ENTRY ID 20656
+METRICS LOG ENTRY ID 4034
 	CHECKPOINTS:
-		 - Checkpoint #1:2.400000
+		 - Checkpoint #1:2.080000
+		 - Checkpoint #2:10.059999
 	DEATHS:
 		P1Deaths:
 		P2Deaths:
 		P3Deaths:
 		P4Deaths:
-METRICS LOG ENTRY ID 21609
+METRICS LOG ENTRY ID 4210
 	CHECKPOINTS:
-		 - Checkpoint #1:2.660000
-		 - Checkpoint #2:50.739998
+		 - Checkpoint #1:3.000000
+		 - Checkpoint #2:11.380000
 	DEATHS:
 		P1Deaths:
 		P2Deaths:
 		P3Deaths:
 		P4Deaths:
-METRICS LOG ENTRY ID 22455
+METRICS LOG ENTRY ID 6156
 	CHECKPOINTS:
-		 - Checkpoint #1:2.560000
+		 - Checkpoint #1:2.540000
+		 - Checkpoint #2:13.280000
 	DEATHS:
 		P1Deaths:
 		P2Deaths:
 		P3Deaths:
 		P4Deaths:
-METRICS LOG ENTRY ID 23115
+METRICS LOG ENTRY ID 6251
 	CHECKPOINTS:
-		 - Checkpoint #1:3.320000
-		 - Checkpoint #2:44.500000
+		 - Checkpoint #1:3.640000
+		 - Checkpoint #2:12.340000
 	DEATHS:
 		P1Deaths:
 		P2Deaths:
 		P3Deaths:
 		P4Deaths:
-METRICS LOG ENTRY ID 23621
+METRICS LOG ENTRY ID 7671
+	CHECKPOINTS:
+		 - Checkpoint #1:3.560000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 8785
+	CHECKPOINTS:
+		 - Checkpoint #1:2.740000
+		 - Checkpoint #2:15.080000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 8880
+	CHECKPOINTS:
+		 - Checkpoint #1:4.000000
+		 - Checkpoint #2:13.679999
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 8997
+	CHECKPOINTS:
+		 - Checkpoint #1:2.500000
+		 - Checkpoint #2:11.400000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 9268
+	CHECKPOINTS:
+		 - Checkpoint #1:3.620000
+		 - Checkpoint #2:12.500000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 9872
+	CHECKPOINTS:
+		 - Checkpoint #1:4.440000
+		 - Checkpoint #2:12.400000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 9993
+	CHECKPOINTS:
+		 - Checkpoint #1:7.080000
+		 - Checkpoint #2:13.320000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 10238
+	CHECKPOINTS:
+		 - Checkpoint #1:2.240000
+		 - Checkpoint #2:9.380000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 12877
+	CHECKPOINTS:
+		 - Checkpoint #1:9.679999
+		 - Checkpoint #2:17.920000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 14523
+	CHECKPOINTS:
+		 - Checkpoint #1:3.740000
+		 - Checkpoint #2:12.080000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 14637
+	CHECKPOINTS:
+		 - Checkpoint #1:3.800000
+		 - Checkpoint #2:12.880000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 14915
+	CHECKPOINTS:
+		 - Checkpoint #1:3.240000
+		 - Checkpoint #2:11.860000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 16854
+	CHECKPOINTS:
+		 - Checkpoint #1:3.060000
+		 - Checkpoint #2:10.460000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 17426
+	CHECKPOINTS:
+		 - Checkpoint #1:2.240000
+		 - Checkpoint #2:12.000000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 17697
+	CHECKPOINTS:
+		 - Checkpoint #1:3.060000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 18076
+	CHECKPOINTS:
+		 - Checkpoint #1:3.060000
+		 - Checkpoint #2:10.440000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 18144
+	CHECKPOINTS:
+		 - Checkpoint #1:3.920000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 18360
 	CHECKPOINTS:
 		 - Checkpoint #1:3.220000
+		 - Checkpoint #2:10.780000
 	DEATHS:
 		P1Deaths:
 		P2Deaths:
 		P3Deaths:
 		P4Deaths:
-METRICS LOG ENTRY ID 23941
+METRICS LOG ENTRY ID 19581
 	CHECKPOINTS:
-		 - Checkpoint #1:3.460000
+		 - Checkpoint #1:14.839999
+		 - Checkpoint #2:22.959999
 	DEATHS:
 		P1Deaths:
 		P2Deaths:
 		P3Deaths:
 		P4Deaths:
-METRICS LOG ENTRY ID 24091
+METRICS LOG ENTRY ID 20299
 	CHECKPOINTS:
-		 - Checkpoint #1:8.900000
-		 - Checkpoint #2:16.580000
+		 - Checkpoint #1:6.060000
+		 - Checkpoint #2:14.540000
 	DEATHS:
 		P1Deaths:
 		P2Deaths:
 		P3Deaths:
 		P4Deaths:
-METRICS LOG ENTRY ID 24620
+METRICS LOG ENTRY ID 21256
 	CHECKPOINTS:
-		 - Checkpoint #1:3.140000
-		 - Checkpoint #2:9.900000
+		 - Checkpoint #1:4.760000
+		 - Checkpoint #2:11.620000
 	DEATHS:
 		P1Deaths:
 		P2Deaths:
 		P3Deaths:
 		P4Deaths:
-METRICS LOG ENTRY ID 25832
+METRICS LOG ENTRY ID 21449
 	CHECKPOINTS:
-		 - Checkpoint #1:2.700000
-		 - Checkpoint #2:10.380000
+		 - Checkpoint #1:17.740000
+		 - Checkpoint #2:24.439999
 	DEATHS:
 		P1Deaths:
 		P2Deaths:
 		P3Deaths:
 		P4Deaths:
-METRICS LOG ENTRY ID 26204
+METRICS LOG ENTRY ID 26210
 	CHECKPOINTS:
-		 - Checkpoint #1:8.900000
-		 - Checkpoint #2:16.799999
+		 - Checkpoint #1:10.340000
+		 - Checkpoint #2:28.160000
 	DEATHS:
 		P1Deaths:
 		P2Deaths:
@@ -95,8 +249,33 @@ METRICS LOG ENTRY ID 26204
 		P4Deaths:
 METRICS LOG ENTRY ID 26540
 	CHECKPOINTS:
-		 - Checkpoint #1:3.220000
-		 - Checkpoint #2:12.520000
+		 - Checkpoint #1:2.620000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 28552
+	CHECKPOINTS:
+		 - Checkpoint #1:3.200000
+		 - Checkpoint #2:11.759999
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 28885
+	CHECKPOINTS:
+		 - Checkpoint #1:3.720000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 29032
+	CHECKPOINTS:
+		 - Checkpoint #1:2.200000
+		 - Checkpoint #2:15.360000
 	DEATHS:
 		P1Deaths:
 		P2Deaths:

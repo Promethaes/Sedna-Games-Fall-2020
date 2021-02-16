@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class AbilityScript : MonoBehaviour
 {
     //progress bar
+    public Image[] _progressBar;
+    float _barSize=1000.0f;
+    float _barHeight=50.0f;
     Cutscene cutscene = null;
     public PlayerController playerController;
     public bool inCutscene;
@@ -14,41 +18,72 @@ public class AbilityScript : MonoBehaviour
     public TextMeshProUGUI middleText;
     public TextMeshProUGUI bottomText;
 
-    public void enterQTE(PlayerController player)
+    public IEnumerator enterQTE(PlayerController player)
     {
         Debug.Log("Entering QTE");
         if (inCutscene)
-            return;
+            yield return null;
         player.inCutscene = true;
         playerController = player;
         inCutscene = true;
+        for (int i=0;i<_progressBar.Length;i++)
+            _progressBar[i].gameObject.SetActive(true);
+        _progressBar[0].rectTransform.sizeDelta = new Vector2(_barSize, _barHeight);
+        _progressBar[1].rectTransform.sizeDelta = new Vector2(0, _barHeight);
         switch (playerController.playerType)
         {
             case PlayerType.TURTLE:
-                startTurtleQTE();
+                StartCoroutine(startTurtleQTE());
                 break;
             case PlayerType.BISON:
-                startBisonQTE();
+                StartCoroutine(startBisonQTE());
                 break;
             case PlayerType.POLAR_BEAR:
-                startPolarQTE();
+                StartCoroutine(startPolarQTE());
                 break;
             case PlayerType.RATTLESNAKE:
-                startSnakeQTE();
+                StartCoroutine(startSnakeQTE());
                 break; 
         }
+        yield return null;
+    }
+    IEnumerator resetValues()
+    {
         Debug.Log("Resetting values");
         inCutscene = false;
-        player.inCutscene = false;
+        playerController.inCutscene = false;
         playerController = null;
         cutscene = null;
         topText.text= "";
         middleText.text= "";
         bottomText.text= "";
+        for (int i=0;i<_progressBar.Length;i++)
+        _progressBar[i].gameObject.SetActive(false);
+        _progressBar[0].rectTransform.sizeDelta = new Vector2(_barSize, _barHeight);
+        _progressBar[1].rectTransform.sizeDelta = new Vector2(0, _barHeight);
+        yield return null;
     }
-    void startTurtleQTE()
+    bool circleCheck(int num)
     {
-        Debug.Log("Starting Turtle QTE");
+        Vector2[] _inputs = {new Vector2(0,1),new Vector2(1,0),new Vector2(0,-1),new Vector2(-1,0)};
+        var move = playerController.moveInput;
+        switch (num)
+        {
+            case 0:
+                return (move.x < 0.2f && move.x > -0.2f && move.y > 0.8f);
+            case 1:
+                return (move.x > 0.8f && move.y < 0.2f && move.y > -0.2f);
+            case 2:
+                return (move.x < 0.2f && move.x > -0.2f && move.y < -0.8f);
+            case 3:
+                return (move.x < -0.8f && move.y < 0.2f && move.y > -0.2f);
+            default:
+                return false;
+        }
+
+    }
+    IEnumerator startTurtleQTE()
+    {
         //NOTE: Circular motion (10 circles)
         topText.text = "Bubble Shield";
         middleText.text = "";
@@ -57,22 +92,23 @@ public class AbilityScript : MonoBehaviour
         float _timer = 60.0f;
         int _counter = 0;
         float _progress = 0.0f;
-        Vector2[] _inputs = {new Vector2(0,1),new Vector2(1,0),new Vector2(0,-1),new Vector2(-1,0)};
         while (_counter < 40 && _timer > 0.0f)
         {
-            if (playerController.moveInput == _inputs[_counter % 4])
+            if (circleCheck(_counter % 4))
                 _counter++;
-            _progress = _counter/40;
+            _progress = (float)_counter/40.0f;
+            _progressBar[1].rectTransform.sizeDelta = new Vector2(_progress*_barSize, _barHeight);
             //NOTE: Replace with a bar later
             middleText.text = _progress.ToString();
-            _timer-=Time.fixedTime;
-            Debug.Log(_counter);
+            yield return new WaitForFixedUpdate();
+            _timer-=Time.fixedDeltaTime;
         }
         if (_counter >= 40)
             cutscene.startCutscene();
-        Debug.Log("Ending Turtle QTE");
+        StartCoroutine(resetValues());
+        yield return null;
     }
-    void startBisonQTE()
+    IEnumerator startBisonQTE()
     {
         //NOTE: Mash dash (progressive with drain)
         topText.text = "Ram";
@@ -86,20 +122,22 @@ public class AbilityScript : MonoBehaviour
 
         while (_timer > 0.0f && _progress < 1.0f)
         {
-            _progress = Mathf.Max(_progress-(_drain*Time.fixedTime),0.0f);
+            _progress = Mathf.Max(_progress-(_drain*Time.deltaTime),0.0f);
             if (playerController.isDashing)
             {
                 _progress+=_mashProgress;
                 playerController.isDashing=false;
             }
             //NOTE: Replace with a bar later
-            middleText.text = _progress.ToString();
-            _timer-=Time.fixedTime;
+            _progressBar[1].rectTransform.sizeDelta = new Vector2(_progress*_barSize, _barHeight);
+            yield return new WaitForFixedUpdate();
+            _timer-=Time.fixedDeltaTime;
         }
         if (_progress >= 1.0f)
             cutscene.startCutscene();
+        StartCoroutine(resetValues());
     }
-    void startPolarQTE()
+    IEnumerator startPolarQTE()
     {
         //NOTE: Four button rush (20 inputs randomized between ABXY)
         topText.text = "Ice Boxing";
@@ -138,12 +176,15 @@ public class AbilityScript : MonoBehaviour
                         _counter++;
                     break;
             }
-            _timer-=Time.fixedTime;
+            _progressBar[1].rectTransform.sizeDelta = new Vector2(_counter/20*_barSize, _barHeight);
+            yield return new WaitForFixedUpdate();
+            _timer-=Time.fixedDeltaTime;
         }
         if (_counter >= 20)
             cutscene.startCutscene();
+        StartCoroutine(resetValues());
     }
-    void startSnakeQTE()
+    IEnumerator startSnakeQTE()
     {
         //NOTE: Four button Pattern (3 times, 5 buttons each)
         //NOTE: Maybe Simon Says if this is too basic
@@ -186,8 +227,14 @@ public class AbilityScript : MonoBehaviour
             else if (playerController.attack && _pattern[_patternCounter] == 3)
                 _patternCounter++;
             else if (playerController.isJumping || playerController.isDashing || playerController.toggle || playerController.attack)
-                //NOTE: This is where you input wrong and it sends you back to the beginning
                 _patternCounter = 0;
+
+            playerController.isJumping = false;
+            playerController.isDashing = false;
+            playerController.toggle = false;
+            playerController.attack = false;
+
+            _progressBar[1].rectTransform.sizeDelta = new Vector2((_counter/3+_patternCounter/5)/2*_barSize, _barHeight);
 
             //Pattern completion checking
             if (_patternCounter >= 5)
@@ -208,11 +255,12 @@ public class AbilityScript : MonoBehaviour
                         break;
                 }
             }
-
-            _timer-=Time.fixedTime;
+            yield return new WaitForFixedUpdate();
+            _timer-=Time.fixedDeltaTime;
         }
         if (_counter >=3)
             cutscene.startCutscene();
+        StartCoroutine(resetValues());
 
     }
     public void setCutscene(Cutscene cs)
