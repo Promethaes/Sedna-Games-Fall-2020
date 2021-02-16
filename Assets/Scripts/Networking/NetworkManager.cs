@@ -168,7 +168,8 @@ public class NetworkManager : MonoBehaviour
         bool allReady = true;
         foreach (var p in players)
         {
-            allReady = p.nMovement.readyPressed;
+            if(!p.nMovement.readyPressed)
+                allReady = false;
         }
 
         if (allReady)
