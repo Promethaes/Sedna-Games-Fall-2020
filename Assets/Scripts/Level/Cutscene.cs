@@ -12,6 +12,7 @@ public class Cutscene : MonoBehaviour
 
     public void startCutscene()
     {
+        Debug.Log("Starting Cutscene");
         _color = blocks[0].GetComponent<MeshRenderer>().material.color;
         if (Camera.allCameras.Length > 0)
             Camera.allCameras[0].gameObject.SetActive(false);

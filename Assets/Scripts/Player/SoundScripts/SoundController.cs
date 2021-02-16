@@ -53,7 +53,7 @@ public class SoundController : MonoBehaviour
 
         _lastPosition = gameObject.transform.position;
 
-        if (_playerController.isJumping == 1.0f)
+        if (_playerController.isJumping)
             jumpSound.Play();
 
         if (_playerController.selectWheel && _playerController._wheelSelection != _lastWheel)

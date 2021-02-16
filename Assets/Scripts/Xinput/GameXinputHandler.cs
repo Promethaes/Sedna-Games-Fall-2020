@@ -79,12 +79,12 @@ public class GameXinputHandler : MonoBehaviour
 
     void OnJump(ControllerStickValues value)
     {
-        _playerController.isJumping = 1.0f;
+        _playerController.isJumping = true;
     }
 
     void OnDash(ControllerStickValues value)
     {
-        _playerController.isDashing = 1.0f;
+        _playerController.isDashing = true;
     }
 
     void OnAbility(ControllerStickValues value)

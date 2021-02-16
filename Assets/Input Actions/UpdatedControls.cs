@@ -89,6 +89,14 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Toggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""33af21b0-0984-47b4-bdc7-aa9661462391"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -293,11 +301,22 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""0823805e-1631-4ef3-8d6b-ece912945be0"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""CombatAbility"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""125d0da4-b3d9-4532-87f1-b6c87ec53254"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Toggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -772,6 +791,7 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
         m_Game_Revive = m_Game.FindAction("Revive", throwIfNotFound: true);
         m_Game_Select = m_Game.FindAction("Select", throwIfNotFound: true);
         m_Game_CombatAbility = m_Game.FindAction("CombatAbility", throwIfNotFound: true);
+        m_Game_Toggle = m_Game.FindAction("Toggle", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Move = m_UI.FindAction("Move", throwIfNotFound: true);
@@ -840,6 +860,7 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Game_Revive;
     private readonly InputAction m_Game_Select;
     private readonly InputAction m_Game_CombatAbility;
+    private readonly InputAction m_Game_Toggle;
     public struct GameActions
     {
         private @UpdatedControls m_Wrapper;
@@ -853,6 +874,7 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
         public InputAction @Revive => m_Wrapper.m_Game_Revive;
         public InputAction @Select => m_Wrapper.m_Game_Select;
         public InputAction @CombatAbility => m_Wrapper.m_Game_CombatAbility;
+        public InputAction @Toggle => m_Wrapper.m_Game_Toggle;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -889,6 +911,9 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
                 @CombatAbility.started -= m_Wrapper.m_GameActionsCallbackInterface.OnCombatAbility;
                 @CombatAbility.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnCombatAbility;
                 @CombatAbility.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnCombatAbility;
+                @Toggle.started -= m_Wrapper.m_GameActionsCallbackInterface.OnToggle;
+                @Toggle.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnToggle;
+                @Toggle.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnToggle;
             }
             m_Wrapper.m_GameActionsCallbackInterface = instance;
             if (instance != null)
@@ -920,6 +945,9 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
                 @CombatAbility.started += instance.OnCombatAbility;
                 @CombatAbility.performed += instance.OnCombatAbility;
                 @CombatAbility.canceled += instance.OnCombatAbility;
+                @Toggle.started += instance.OnToggle;
+                @Toggle.performed += instance.OnToggle;
+                @Toggle.canceled += instance.OnToggle;
             }
         }
     }
@@ -1051,6 +1079,7 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
         void OnRevive(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
         void OnCombatAbility(InputAction.CallbackContext context);
+        void OnToggle(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
