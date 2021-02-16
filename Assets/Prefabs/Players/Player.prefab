@@ -340,6 +340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerPrefabs: []
+  _animator: {fileID: 0}
 --- !u!114 &816510627477673577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,6 +451,7 @@ MonoBehaviour:
   - type: 3
     prefab: {fileID: 5198594359940231113, guid: a7830bd555028984f92877dffa6d2d8d,
       type: 3}
+  _animator: {fileID: 0}
 --- !u!114 &8452957873613565362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,7 +545,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: c1aa81e4a45ad264489a1c468699b59d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

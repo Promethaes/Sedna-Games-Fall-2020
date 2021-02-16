@@ -30,7 +30,7 @@ public class SpawnFlies : MonoBehaviour
         }
 
         players = GameObject.FindGameObjectsWithTag("Player");
-        _lastHP = enemyData._health;
+        _lastHP = enemyData.health;
     }
     public void Spawn()
     {
@@ -61,11 +61,11 @@ public class SpawnFlies : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enemyData._health - _lastHP != 0.0f)
+        if (enemyData.health - _lastHP != 0.0f)
         {
             Spawn();
         }
 
-        _lastHP = enemyData._health;
+        _lastHP = enemyData.health;
     }
 }

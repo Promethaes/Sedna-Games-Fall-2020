@@ -72,6 +72,7 @@ public class GameInputHandler : MonoBehaviour
         if (ctx.action.name == _controls.Game.Jump.name) OnJump(ctx);
         if (ctx.action.name == _controls.Game.Dash.name) OnDash(ctx);
         if (ctx.action.name == _controls.Game.Ability.name) OnAbility(ctx);
+        if (ctx.action.name == _controls.Game.CombatAbility.name) OnCombatAbility(ctx);
         if (ctx.action.name == _controls.Game.Attack.name) OnAttack(ctx);
         if (ctx.action.name == _controls.Game.Revive.name) OnRevive(ctx);
         if (ctx.action.name == _controls.Game.Select.name) OnSelect(ctx);
@@ -104,6 +105,15 @@ public class GameInputHandler : MonoBehaviour
             _playerController.useAbility = true;
         else
             _playerController.useAbility = false;
+    }
+    public void OnCombatAbility(CallbackContext ctx)
+    {
+        float temp = ctx.ReadValue<float>();
+
+        if (temp >= 0.5f)
+            _playerController.useCombatAbility = true;
+        else
+            _playerController.useCombatAbility = false;
     }
     public void OnRevive(CallbackContext ctx)
     {

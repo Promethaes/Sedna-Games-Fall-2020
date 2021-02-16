@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using Unity;
 
@@ -11,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 12.0f;
     [SerializeField] private float jumpSpeed = 3.0f;
     [SerializeField] private float dashSpeed = 2.5f;
+    [SerializeField] private float attackDistance = 8.0f;
 
     [Header("Player abilities")]
     // Default mesh is turtle, if a turtle has bison abilities, either this or the player mesh in GameInputHandler did not get set properly
@@ -35,6 +37,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public float isDashing = 0.0f;
     [HideInInspector] public bool insideCastingZone = false;
     [HideInInspector] public bool useAbility = false;
+    [HideInInspector] public bool useCombatAbility = false;
     [HideInInspector] public bool attack = false;
 
     private Rigidbody _rigidbody = null;
@@ -53,9 +56,10 @@ public class PlayerController : MonoBehaviour
     // Attack stuff
     private float _comboDuration = 0.0f;
     private float _animationDuration = 0.5f;
-    private int _comboCounter = 0;
-    private float[] _damageValues = new float[3];
-    private float[] _animationDelay = new float[3];
+    public int comboCounter = 0;
+    public float[] damageValues = new float[3];
+    public float[] _animationDelay = new float[3];
+    public AttackHitbox[] hitboxes;
 
     public bool _isGrounded = true;
     RaycastHit terrain;
@@ -81,6 +85,22 @@ public class PlayerController : MonoBehaviour
     public bool playAttackSound = false;
     private float turnSpeed;
 
+    private float _abilityCD = 10.0f;
+    private float _abilityDuration = 7.5f;
+    private float _chargeDuration = 3.0f;
+    private bool _charging = false;
+    private float _chargeMultiplier = 3.5f;
+    public ChargeHitbox abilityHitbox;
+    public int killCount;
+    public float[] originalDamageValues;
+    private float _originalSpeed;
+    public bool roarBuff=false;
+
+    // Debuffs
+    bool _slowDebuff=false;
+    bool _poisonDebuff=false;
+    float _slowDuration;
+    float _poisonDuration;
 
     // -------------------------------------------------------------------------
 
@@ -104,7 +124,7 @@ public class PlayerController : MonoBehaviour
                 backend.maxHP = 1000;
                 break;
             case PlayerType.POLAR_BEAR:
-                _setCombo(1.0f, 999999.0f, 50.0f, 0.8f / 1.21f, 1.0f / 1.45f, 1.2f / 0.56f);
+                _setCombo(1.0f, 999999.0f, 50.0f, 0.90f / 1.21f, 1.20f / 1.45f, 0.80f / 0.56f);
                 backend.maxHP = 1000;
 
                 break;
@@ -127,7 +147,11 @@ public class PlayerController : MonoBehaviour
         else
             _playerMesh = GetComponentInParent<GameInputHandler>()._playerPrefabs[(int)playerType].prefab;
         backend.hp = backend.maxHP * percentage;
-
+        hitboxes = _playerMesh.GetComponentsInChildren<AttackHitbox>(true);
+        if (playerType == PlayerType.BISON)
+            abilityHitbox = GetComponentInChildren<ChargeHitbox>(true);
+        originalDamageValues = damageValues;
+        Debug.Log(hitboxes.Length);
     }
 
     void Update()
@@ -155,8 +179,9 @@ public class PlayerController : MonoBehaviour
         _dashCooldown -= Time.fixedDeltaTime;
         _wheelCooldown -= Time.fixedDeltaTime;
         _regenTicks -= Time.fixedDeltaTime;
+        _abilityCD -= Time.fixedDeltaTime;
 
-        if (!downed)
+        if (!downed && _animationDuration <= 0.0f)
         {
             //Jump Movement
             if (isJumping == 1.0f)
@@ -172,6 +197,10 @@ public class PlayerController : MonoBehaviour
                 _Regen();
                 _regenTicks = 2.0f;
             }
+
+            //Combat Ability
+            if (useCombatAbility)
+                _useCombatAbility();
         }
     }
 
@@ -203,9 +232,9 @@ public class PlayerController : MonoBehaviour
     private void _setCombo(float x, float y, float z, float u, float v, float w)
     {
         //Damage values for combo hits 1/2/3, animation length for combo hits 1/2/3
-        _damageValues[0] = x;
-        _damageValues[1] = y;
-        _damageValues[2] = z;
+        damageValues[0] = x;
+        damageValues[1] = y;
+        damageValues[2] = z;
         _animationDelay[0] = u;
         _animationDelay[1] = v;
         _animationDelay[2] = w;
@@ -305,7 +334,7 @@ public class PlayerController : MonoBehaviour
         if (_animator)
             _animator.SetBool("walking", true);
 
-        if (_dashDuration < 0.0f)
+        if (_dashDuration < 0.0f && _animationDuration < 0.0f && !_charging)
         {
             //NOTE: Camera position affects the rotation of the player's movement, which is stored in the first value of Vector3 vel (Current: 135.0f)
             Vector3 vel = playerCamera.transform.right*moveInput.x + playerCamera.transform.forward * moveInput.y;
@@ -411,19 +440,185 @@ public class PlayerController : MonoBehaviour
         useAbility = false;
     }
 
+    void _useCombatAbility()
+    {
+        if (_abilityCD > 0.0f)
+            return;
+        switch (playerType)
+        {
+            case PlayerType.TURTLE: StartCoroutine(Buff()); break;
+            case PlayerType.POLAR_BEAR: StartCoroutine(Roar()); break;
+            case PlayerType.RATTLESNAKE: StartCoroutine(Fear()); break;
+            case PlayerType.BISON: StartCoroutine(Charge()); break;
+        }
+    }
+
+    public void slowed()
+    {
+        if (!_slowDebuff && _slowDuration<=0.0f)
+            StartCoroutine(SlowDebuff());
+        _slowDebuff = true;
+        _slowDuration = 7.5f;
+    }
+
+    public void poisoned()
+    {
+        if (!_poisonDebuff && _poisonDuration<=0.0f)
+            StartCoroutine(PoisonDebuff());
+        _poisonDebuff = true;
+        _poisonDuration = 5.0f;
+    }
+    IEnumerator SlowDebuff()
+    {
+        Coroutine _speedFormula = StartCoroutine(SpeedFormula());
+        while (_slowDuration > 0.0f)
+        {
+            yield return new WaitForSeconds(2.5f);
+            _slowDuration -= 2.5f;
+        }
+        _slowDebuff = false;
+        StopCoroutine(_speedFormula);
+        yield return null;
+    }
+    IEnumerator PoisonDebuff()
+    {
+        while (_poisonDuration > 0.0f)
+        {
+            GetComponent<PlayerBackend>().takeDamage(3.0f);
+            yield return new WaitForSeconds(1.0f);
+            _poisonDuration -= 1.0f;
+        }
+        _poisonDebuff = false;
+        yield return null;
+    }
+
+    IEnumerator Buff()
+    {
+        Debug.Log("Start Buff");
+        GetComponent<PlayerBackend>().turtleBuff = true;
+        Coroutine _damageFormula = StartCoroutine(DamageFormula()); 
+        Coroutine _speedFormula = StartCoroutine(SpeedFormula());
+        
+        //TODO: Implement debuff cleansing once debuffs are in
+        _poisonDuration = 0.0f;
+        _slowDuration = 0.0f;
+        _slowDebuff = false;
+        _poisonDebuff = false;
+        // Waits for _abilityDuration
+        yield return new WaitForSeconds(_abilityDuration);
+
+        // Resets values
+        GetComponent<PlayerBackend>().turtleBuff = false;
+        
+        StopCoroutine(DamageFormula());
+        StopCoroutine(SpeedFormula());
+
+        _abilityCD = 10.0f;
+        Debug.Log("End Buff");
+
+    }
+    IEnumerator DamageFormula()
+    {
+        var _players = GetComponentInParent<GamePlayerManager>().players;
+        while (true)
+        {
+            for (int i=0;i<_players.Count;i++)
+                for (int n=0;n<damageValues.Length;n++)
+                    _players[i].GetComponent<PlayerController>().damageValues[n] = _players[i].GetComponent<PlayerController>().originalDamageValues[n]
+                    + _players[i].GetComponent<PlayerController>().originalDamageValues[n]*_players[i].GetComponent<PlayerBackend>().turtleBuff.GetHashCode()*0.1f 
+                    + _players[i].GetComponent<PlayerController>().originalDamageValues[n]*roarBuff.GetHashCode()*Mathf.Min(killCount, 3)*.05f;
+            
+            for (int n=0;n<damageValues.Length;n++)
+                damageValues[n] += 25.0f*(playerType==PlayerType.POLAR_BEAR).GetHashCode();
+            yield return new WaitForSeconds(1);
+        }
+        for (int n=0;n<damageValues.Length;n++)
+            damageValues[n] = originalDamageValues[n] 
+            + originalDamageValues[n]*GetComponent<PlayerBackend>().turtleBuff.GetHashCode()*0.1f
+            + originalDamageValues[n]*roarBuff.GetHashCode()*Mathf.Min(killCount, 3)*.05f;
+        yield return null;
+    }
+    IEnumerator SpeedFormula()
+    {
+        while (true)
+        {
+            moveSpeed = _originalSpeed + _originalSpeed*GetComponent<PlayerBackend>().turtleBuff.GetHashCode()*0.1f - _originalSpeed*_slowDebuff.GetHashCode()*0.1f;
+            yield return new WaitForSeconds(1);
+        }
+        moveSpeed = _originalSpeed + _originalSpeed*GetComponent<PlayerBackend>().turtleBuff.GetHashCode()*0.1f - _originalSpeed*_slowDebuff.GetHashCode()*0.1f;
+        yield return null;
+    }
+    IEnumerator Roar()
+    {
+        killCount = 0;
+        roarBuff = true;
+        Coroutine _damageFormula = StartCoroutine(DamageFormula()); 
+
+        yield return new WaitForSeconds(_abilityDuration);
+
+        // Reset values
+        killCount = 0;
+        roarBuff = false;
+        StopCoroutine(_damageFormula);
+
+        _abilityCD = 10.0f;
+        yield return null;
+    }
+    IEnumerator Fear()
+    {
+        Collider[] _enemies = Physics.OverlapSphere(transform.position,5.0f);
+        for (int i=0;i<_enemies.Length;i++)
+        {
+            _enemies[i].GetComponent<EnemyData>().fear = true;
+            _enemies[i].GetComponent<EnemyData>().damageValues *= 0.8f;
+        }
+        yield return new WaitForSeconds(_abilityDuration);
+        for (int i=0;i<_enemies.Length;i++)
+        {
+            _enemies[i].GetComponent<EnemyData>().fear = false;
+            _enemies[i].GetComponent<EnemyData>().damageValues /= 0.8f;
+        }
+        _abilityCD = 10.0f;
+    }
+    IEnumerator Charge()
+    {
+        Debug.Log("Start Charge");
+        _chargeDuration = 3.0f;
+        _dashCooldown = _chargeDuration;
+        _jumpCooldown = _chargeDuration;
+        _charging = true;
+        var turn = turnSpeed;
+        turnSpeed *=_chargeMultiplier;
+        GetComponent<PlayerBackend>().invuln = true;
+        abilityHitbox.gameObject.SetActive(true);
+        while (_chargeDuration > 0.0f)
+        {
+            _chargeDuration -= Time.deltaTime;
+            _rigidbody.velocity = new Vector3(playerCamera.transform.forward.x*moveSpeed*_chargeMultiplier, -1.0f, playerCamera.transform.forward.z*moveSpeed*_chargeMultiplier);
+            _playerMesh.transform.rotation = Quaternion.Euler(0.0f,Mathf.SmoothDampAngle(_playerMesh.transform.eulerAngles.y,playerCamera.transform.eulerAngles.y,ref turnSpeed,0.05f),0.0f);
+            yield return null;
+        }
+        _charging = false;
+        GetComponent<PlayerBackend>().invuln = false;
+        turnSpeed = turn;
+        abilityHitbox.gameObject.SetActive(false);
+        _abilityCD = 10.0f;
+        Debug.Log("End Charge");
+    }
+
     void _Attack()
     {
         if (_animationDuration >= 0.0f)
         {
             return;
         }
-        if (_comboDuration < 0.0f) _comboCounter = 0;
-        _animationDuration = _animationDelay[_comboCounter];
+        if (_comboDuration < 0.0f) comboCounter = 0;
+        _animationDuration = _animationDelay[comboCounter];
 
         if (_animator)
         {
 
-            switch (_comboCounter)
+            switch (comboCounter)
             {
                 case 0:
                     _animator.SetTrigger("attack1");
@@ -440,16 +635,18 @@ public class PlayerController : MonoBehaviour
             }
 
         }
-
+        _rigidbody.velocity = Vector3.zero;
+        _rigidbody.AddForce(_playerMesh.transform.forward*attackDistance, ForceMode.Impulse);
+        /*
         RaycastHit enemy;
         if(Physics.Raycast(transform.position, _playerMesh.transform.forward, out enemy, 2.0f) && enemy.transform.tag == "Enemy") {
             EnemyData foe = enemy.collider.GetComponent<EnemyData>();
-            foe.takeDamage(_damageValues[_comboCounter]);
+            foe.takeDamage(damageValues[comboCounter]);
             hitEnemy = true;
         }
-
-        _comboCounter++;
-        if (_comboCounter > 2) _comboCounter = 0;
+*/
+        comboCounter++;
+        if (comboCounter > 2) comboCounter = 0;
         _comboDuration = 2.0f;
 
         attack = false;
@@ -459,7 +656,7 @@ public class PlayerController : MonoBehaviour
     void _Revive()
     {
         RaycastHit player;
-        if (Physics.Raycast(transform.position, transform.forward, out player, 5.0f) && player.transform.tag == "Player")
+        if (Physics.Raycast(_playerMesh.transform.position, transform.forward, out player, 5.0f) && player.transform.tag == "Player")
         {
             PlayerController revivee = player.collider.gameObject.GetComponent<PlayerController>();
             if (backend.hp > 0.0f)

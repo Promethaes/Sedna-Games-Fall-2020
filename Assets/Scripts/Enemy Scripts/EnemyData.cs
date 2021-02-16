@@ -22,14 +22,16 @@ public class EnemyData : MonoBehaviour
     public List<FMODUnity.StudioEventEmitter> enemySounds = new List<FMODUnity.StudioEventEmitter>();
 
 
-    public Billboard _billboard;
-    public RectTransform _healthBar;
-    public RectTransform _healthBarBackground;
-    public float _healthBarSize = 90.0f;
-    public float _maxHealth;
-    public float _health;
-    public float _range;
-    public float _damageValues;
+    public Billboard billboard;
+    public RectTransform healthBar;
+    public RectTransform healthBarBackground;
+    public float healthBarSize = 90.0f;
+    public float maxHealth;
+    public float health;
+    public float range;
+    public float damageValues;
+    public GameObject hitbox;
+    public bool fear = false;
 
     public enum enemyType
     {
@@ -97,8 +99,8 @@ public class EnemyData : MonoBehaviour
 
 
 
-        _healthBarBackground.sizeDelta = new Vector2(_health/_maxHealth*_healthBarSize, _healthBar.sizeDelta.y);
-        _healthBar.sizeDelta = new Vector2(_health/_maxHealth*_healthBarSize, _healthBar.sizeDelta.y);
+        healthBarBackground.sizeDelta = new Vector2(health/maxHealth*healthBarSize, healthBar.sizeDelta.y);
+        healthBar.sizeDelta = new Vector2(health/maxHealth*healthBarSize, healthBar.sizeDelta.y);
         players = GameObject.FindGameObjectsWithTag("Player");
         agent = this.GetComponent<NavMeshAgent>();
     }
@@ -112,31 +114,35 @@ public class EnemyData : MonoBehaviour
 
     public void setHealth(float hp)
     {
-        _maxHealth = hp * enemyScale;
-        _health = hp * enemyScale;
+        maxHealth = hp * enemyScale;
+        health = hp * enemyScale;
     }
 
     public float getHealth()
     {
-        return _health;
+        return health;
     }
     public float getMaxHealth()
     {
-        return _maxHealth;
+        return maxHealth;
+    }
+    public bool getFear()
+    {
+        return fear;
     }
     public void takeDamage(float hp)
     {
-        _health -= hp;
-        _healthBar.sizeDelta = new Vector2(_health/_maxHealth*_healthBarSize, _healthBar.sizeDelta.y);
-        _billboard.healthChanged();
+        health -= hp;
+        healthBar.sizeDelta = new Vector2(health/maxHealth*healthBarSize, healthBar.sizeDelta.y);
+        billboard.healthChanged();
         enemySounds[(int)EnemySoundIndex.Pain].Play();
-        if (_health <= 0.0f)
+        if (health <= 0.0f)
             die();
     }
 
     protected void die()
     {
-        if (_health <= 0.0f)
+        if (health <= 0.0f)
         {
             enemySounds[(int)EnemySoundIndex.Die].Play();
             //TODO: Dying animation, loot drops, etc.
@@ -150,8 +156,8 @@ public class EnemyData : MonoBehaviour
     protected void setCombo(float damage, float range)
     {
         //Damage values for combo hits 1/2/3, animation length for combo hits 1/2/3
-        _damageValues = damage * enemyScale;
-        _range = range * enemyScale;
+        damageValues = damage * enemyScale;
+        range = range * enemyScale;
     }
 
     public NavMeshAgent getNavMeshAgent()
