@@ -101,6 +101,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Lobby",
+            "id": "646adb99-8c0f-4f42-ad3c-645e2138b8ec",
+            "actions": [
+                {
+                    "name": "Ready",
+                    "type": "Button",
+                    "id": "a3b04f09-a95a-44ed-9bd6-c10c863cbcd3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4570cfec-ced3-4b9b-a720-a7835763722c",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ready",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

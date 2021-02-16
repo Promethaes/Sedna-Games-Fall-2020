@@ -91,7 +91,8 @@ public class NetworkManager : MonoBehaviour
     Thread recThread;
     public GameObject playerPrefab;
     public bool send = false;
-
+    public bool interpetCommands = true;
+    public SceneChanger sceneChanger;
     struct PItem
     {
         public GameObject p;
@@ -116,10 +117,11 @@ public class NetworkManager : MonoBehaviour
         recThread.Start();
         byte[] buffer = Encoding.ASCII.GetBytes("initMsg");
         client.clientSocket.SendTo(buffer, client.endPoint);
-        var p = GameObject.FindGameObjectWithTag("Player");
-        p.AddComponent<NetworkingMovementScript>();
-        player = new PItem(p);
+        player = new PItem(GameObject.Instantiate(playerPrefab));
+        player.p.name = "LocalPlayer";
         players.Add(player);
+
+        DontDestroyOnLoad(gameObject);
     }
 
     public void Send(string message)
@@ -129,7 +131,6 @@ public class NetworkManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        // client.Close();
         client.leave = true;
         var buffer = Encoding.ASCII.GetBytes("endMsg");
         client.clientSocket.SendTo(buffer, client.endPoint);
@@ -141,21 +142,49 @@ public class NetworkManager : MonoBehaviour
 
     Vector3 lastPos = new Vector3();
     float timer = 0.0f;
-    void FixedUpdate() {
-         if( timer <= 0.0f && send && Mathf.Abs(player.transform.position.magnitude - lastPos.magnitude) >= 0.01f){
-            Send("cli " + player.nMovement.networkedPlayerNum.ToString() + " plr pos " 
-            + player.transform.position.x.ToString() + " " 
-            + player.transform.position.y.ToString() + " " 
-            + player.transform.position.z.ToString() 
+    bool sentReadyMessage = false;
+    void FixedUpdate()
+    {
+        if (timer <= 0.0f && send && Mathf.Abs(player.transform.position.magnitude - lastPos.magnitude) >= 0.01f)
+        {
+            if (player.nMovement.readyPressed && !sentReadyMessage)
+            {
+                Send("cli " + player.nMovement.networkedPlayerNum.ToString() + "plr ready");
+                sentReadyMessage = true;
+            }
+
+            Send("cli " + player.nMovement.networkedPlayerNum.ToString() + " plr pos "
+            + player.transform.position.x.ToString() + " "
+            + player.transform.position.y.ToString() + " "
+            + player.transform.position.z.ToString()
             );
             timer = 0.033f;
         }
         SortRecievedMessages();
         lastPos = player.transform.position;
         timer -= Time.fixedDeltaTime;
+
+        bool allReady = true;
+        foreach (var p in players)
+        {
+            allReady = p.nMovement.readyPressed;
+        }
+
+        if (allReady)
+        {
+            foreach (var p in players)
+            {
+                p.nMovement.readyPressed = false;
+            }
+            sceneChanger.changeScene(2);//TEMP
+        }
+
     }
     void SortRecievedMessages()
     {
+        if (!interpetCommands)
+            return;
+
         for (int i = 0; i < client.backlog.Count; i++)
         {
             if (client.backlog[i].Length >= 40)
@@ -174,7 +203,7 @@ public class NetworkManager : MonoBehaviour
                 continue;
             }
             else if (client.backlog[i].Contains("spawn"))
-            { 
+            {
                 var parts = client.backlog[i].Split(' ');
                 var temp = new PItem(GameObject.Instantiate(playerPrefab));
                 temp.nMovement.networkedPlayerNum = int.Parse(parts[1]);
@@ -182,15 +211,18 @@ public class NetworkManager : MonoBehaviour
                 client.backlog.RemoveAt(i);
                 i--;
                 players.Add(temp);
-                Debug.Log("Client "+ temp.nMovement.networkedPlayerNum.ToString() + " joined the session");
+                Debug.Log("Client " + temp.nMovement.networkedPlayerNum.ToString() + " joined the session");
                 continue;
             }
-            else if(client.backlog[i].Contains("remove")){
+            else if (client.backlog[i].Contains("remove"))
+            {
                 var parts = client.backlog[i].Split(' ');
                 int index = int.Parse(parts[1]);
 
-                for(int j = 0; j < players.Count;i++){
-                    if(players[j].nMovement.networkedPlayerNum == j){
+                for (int j = 0; j < players.Count; i++)
+                {
+                    if (players[j].nMovement.networkedPlayerNum == j)
+                    {
                         Destroy(players[j].p);
                         players.RemoveAt(j);
                         j--;
@@ -235,6 +267,12 @@ public class NetworkManager : MonoBehaviour
             {
                 var r = p.GetComponent<Rigidbody>();
                 r.velocity = r.velocity + v;
+                return true;
+            }
+            else if (command.Contains("ready"))
+            {
+                var m = p.GetComponent<NetworkingMovementScript>();
+                m.readyPressed = true;
                 return true;
             }
         }

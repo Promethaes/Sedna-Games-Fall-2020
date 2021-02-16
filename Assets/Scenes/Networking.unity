@@ -3088,6 +3088,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 6595150141337280388, guid: 9ed3ec6ffb058484fb4760e81d1444db,
     type: 3}
   send: 1
+  interpetCommands: 1
 --- !u!4 &1716811047
 Transform:
   m_ObjectHideFlags: 0

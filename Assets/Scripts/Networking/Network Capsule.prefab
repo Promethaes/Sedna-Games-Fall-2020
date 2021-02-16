@@ -169,9 +169,24 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d14094d2-f087-4c9c-a7ae-232886db8185
     m_ActionName: Gameplay/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6595150141337280446}
+        m_MethodName: OnReady
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a3b04f09-a95a-44ed-9bd6-c10c863cbcd3
+    m_ActionName: Lobby/Ready[/XInputControllerWindows/buttonSouth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Gameplay
+  m_DefaultActionMap: Lobby
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &6595150141337280446
@@ -186,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 163aaef32e366ff41bb263a42cf5b0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  send: 0
   networkedPlayerNum: -1
   movespeed: 1
   jumpheight: 10
+  readyPressed: 0
