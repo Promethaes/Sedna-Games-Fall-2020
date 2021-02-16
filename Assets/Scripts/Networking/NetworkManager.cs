@@ -118,7 +118,6 @@ public class NetworkManager : MonoBehaviour
         client.clientSocket.SendTo(buffer, client.endPoint);
         var p = GameObject.FindGameObjectWithTag("Player");
         p.AddComponent<NetworkingMovementScript>();
-        playerPrefab = p;
         player = new PItem(p);
         players.Add(player);
     }
