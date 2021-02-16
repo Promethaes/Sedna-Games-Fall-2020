@@ -208,6 +208,7 @@ public class NetworkManager : MonoBehaviour
                 var parts = client.backlog[i].Split(' ');
                 var temp = new PItem(GameObject.Instantiate(playerPrefab));
                 temp.nMovement.networkedPlayerNum = int.Parse(parts[1]);
+                temp.nMovement.readyPressed = false;
                 temp.nMovement.enabled = false;
                 temp.p.GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled = false;
                 client.backlog.RemoveAt(i);
