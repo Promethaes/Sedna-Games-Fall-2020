@@ -177,10 +177,10 @@ public class NetworkManager : MonoBehaviour
             foreach (var p in players)
             {
                 p.nMovement.readyPressed = false;
+                DontDestroyOnLoad(p.p);
             }
-            sceneChanger.changeScene(2);//TEMP
             player.p.GetComponent<UnityEngine.InputSystem.PlayerInput>().SwitchCurrentActionMap("Gameplay");
-            DontDestroyOnLoad(player.p);
+            sceneChanger.changeScene(2);//TEMP
         }
 
     }
