@@ -93,6 +93,7 @@ public class NetworkManager : MonoBehaviour
     public bool send = false;
     public bool interpetCommands = true;
     public SceneChanger sceneChanger;
+    public Transform playerSpawn;
     struct PItem
     {
         public GameObject p;
@@ -165,10 +166,16 @@ public class NetworkManager : MonoBehaviour
         lastPos = player.transform.position;
         timer -= Time.fixedDeltaTime;
 
+        ChangeToGameScene();
+
+    }
+
+    void ChangeToGameScene()
+    {
         bool allReady = true;
         foreach (var p in players)
         {
-            if(!p.nMovement.readyPressed)
+            if (!p.nMovement.readyPressed)
                 allReady = false;
         }
 
@@ -177,13 +184,14 @@ public class NetworkManager : MonoBehaviour
             foreach (var p in players)
             {
                 p.nMovement.readyPressed = false;
+                p.transform.position = playerSpawn.position + new Vector3(0.0f, 5.0f, p.nMovement.networkedPlayerNum);
                 DontDestroyOnLoad(p.p);
             }
             player.p.GetComponent<UnityEngine.InputSystem.PlayerInput>().SwitchCurrentActionMap("Gameplay");
-            sceneChanger.changeScene(2);//TEMP
+            sceneChanger.changeScene(3);//TEMP
         }
-
     }
+
     void SortRecievedMessages()
     {
         if (!interpetCommands)
