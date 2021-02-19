@@ -38,7 +38,7 @@ class Client
     {
         byte[] sendBuffer = Encoding.ASCII.GetBytes(message);
 
-        clientSocket.BeginSendTo(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, endPoint, new AsyncCallback(SendCallback), clientSocket);
+        clientSocket.SendTo(sendBuffer,0,sendBuffer.Length,SocketFlags.None,endPoint);
     }
 
     void SendCallback(IAsyncResult ar)
@@ -160,7 +160,7 @@ public class NetworkManager : MonoBehaviour
                 + player.transform.position.y.ToString() + " "
                 + player.transform.position.z.ToString()
                 );
-            timer = 0.033f;
+            timer = (1.0f/16.33f);
         }
         SortRecievedMessages();
         lastPos = player.transform.position;
