@@ -15,6 +15,7 @@ public class PlayerConfigurationManager : MonoBehaviour
     public static PlayerConfigurationManager get { get; private set; }
 
     public CSNetworkManager networkManager;
+    public GameObject _configPrefab;
     private void Awake()
     {
         if (get != null)
