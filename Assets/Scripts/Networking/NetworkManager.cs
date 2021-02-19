@@ -250,7 +250,7 @@ public class NetworkManager : MonoBehaviour
             {
                 string comp = "cli" + " " + p.nMovement.networkedPlayerNum.ToString();
 
-                if (client.backlog[i].Contains(comp) && RunCommand(p.p, client.backlog[i]))
+                if (client.backlog[i].Contains(comp) && RunCommand(p, client.backlog[i]))
                 {
                     client.backlog.RemoveAt(i);
                     i--;
@@ -261,14 +261,13 @@ public class NetworkManager : MonoBehaviour
     }
 
 
-    bool RunCommand(GameObject p, string command)
+    bool RunCommand(PItem p, string command)
     {
         if (command.Contains("plr"))
         {
             if (command.Contains("ready"))
             {
-                var m = p.GetComponent<NetworkingMovementScript>();
-                m.readyPressed = true;
+                p.nMovement.readyPressed = true;
                 return true;
             }
 
@@ -287,7 +286,7 @@ public class NetworkManager : MonoBehaviour
             }
             else if (command.Contains("vel"))
             {
-                var r = p.GetComponent<Rigidbody>();
+                var r = p.p.GetComponent<Rigidbody>();
                 r.velocity = r.velocity + v;
                 return true;
             }
