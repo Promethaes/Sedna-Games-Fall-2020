@@ -111,12 +111,14 @@ public class NetworkManager : MonoBehaviour
     List<PItem> players = new List<PItem>();
     PItem player;
 
+    public int sessionID = 6969;
+
     void Start()
     {
         client = new Client();
         recThread = new Thread(client.Receive);
         recThread.Start();
-        byte[] buffer = Encoding.ASCII.GetBytes("initMsg");
+        byte[] buffer = Encoding.ASCII.GetBytes("initMsg " + sessionID.ToString());
         client.clientSocket.SendTo(buffer, client.endPoint);
         player = new PItem(GameObject.Instantiate(playerPrefab));
         player.p.name = "LocalPlayer";
