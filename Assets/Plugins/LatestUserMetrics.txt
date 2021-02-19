@@ -1,39 +1,6 @@
-METRICS LOG ENTRY ID 30255
+METRICS LOG ENTRY ID 22739
 	CHECKPOINTS:
-		 - Checkpoint #1:6.980000
-	DEATHS:
-		P1Deaths:
-		P2Deaths:
-		P3Deaths:
-		P4Deaths:
-METRICS LOG ENTRY ID 427
-	CHECKPOINTS:
-		 - Checkpoint #1:6.060000
-	DEATHS:
-		P1Deaths:
-		P2Deaths:
-		P3Deaths:
-		P4Deaths:
-METRICS LOG ENTRY ID 1520
-	CHECKPOINTS:
-		 - Checkpoint #1:1.040000
-	DEATHS:
-		P1Deaths:
-		P2Deaths:
-		P3Deaths:
-		P4Deaths:
-METRICS LOG ENTRY ID 1965
-	CHECKPOINTS:
-		 - Checkpoint #1:2.040000
-		 - Checkpoint #2:70.479996
-	DEATHS:
-		P1Deaths:
-		P2Deaths:
-		P3Deaths:
-		P4Deaths:
-METRICS LOG ENTRY ID 2360
-	CHECKPOINTS:
-		 - Checkpoint #1:3.020000
+		 - Checkpoint #1:2.400000
 	DEATHS:
 		P1Deaths:
 		P2Deaths:

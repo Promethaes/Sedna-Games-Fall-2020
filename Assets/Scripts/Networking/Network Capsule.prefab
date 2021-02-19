@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6595150141337280389}
   - component: {fileID: 6595150141337280446}
   - component: {fileID: 7076918912481116391}
+  - component: {fileID: 8029211895600115770}
   m_Layer: 0
   m_Name: Network Capsule
   m_TagString: Player
@@ -206,6 +207,63 @@ MonoBehaviour:
   m_DefaultActionMap: Lobby
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &8029211895600115770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6595150141337280388}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a4eb0d62f2e08d46aac3c761a895562, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 12
+  jumpSpeed: 3
+  dashSpeed: 2.5
+  attackDistance: 8
+  playerType: 3
+  ramThrough: {fileID: 0}
+  bubbleShieldScript: {fileID: 0}
+  polarBearScript: {fileID: 0}
+  playerCamera: {fileID: 0}
+  lookingAt: {fileID: 0}
+  yUpperBound: 4
+  yLowerBound: -1
+  rotationSpeedInverse: 1
+  mouseInput: {x: 0, y: 0}
+  moveInput: {x: 0, y: 0}
+  isJumping: 0
+  isDashing: 0
+  insideCastingZone: 0
+  useAbility: 0
+  useCombatAbility: 0
+  attack: 0
+  comboCounter: 0
+  damageValues:
+  - 0
+  - 0
+  - 0
+  _animationDelay:
+  - 0
+  - 0
+  - 0
+  hitboxes: []
+  _isGrounded: 1
+  hopSpeed: 0.25
+  revive: 0
+  downed: 0
+  selectWheel: 0
+  _confirmWheel: 0
+  _wheelSelection: 0
+  outOfCombat: 1
+  hitEnemy: 0
+  playAttackSound: 0
+  abilityHitbox: {fileID: 0}
+  killCount: 0
+  originalDamageValues: []
+  roarBuff: 0
 --- !u!1 &7098779936852727268
 GameObject:
   m_ObjectHideFlags: 0
