@@ -847,6 +847,12 @@ PrefabInstance:
       propertyPath: networkManager
       value: 
       objectReference: {fileID: 1326626067}
+    - target: {fileID: 7400510157950478725, guid: 8eb3693b7cfe99f4f815bfcf6799d56b,
+        type: 3}
+      propertyPath: _configPrefab
+      value: 
+      objectReference: {fileID: 3061059140731848134, guid: e2dc830e9db51dd4bb1bcdd2e42e7efd,
+        type: 3}
     - target: {fileID: 7400510157950478726, guid: 8eb3693b7cfe99f4f815bfcf6799d56b,
         type: 3}
       propertyPath: m_LocalPosition.x

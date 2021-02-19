@@ -195,6 +195,9 @@ public class CSNetworkManager : MonoBehaviour
                 PlayerConfigurationManager.get.playerConfigurations.Add(remotePlayer);
                 remotePlayers.Add(remotePlayer);
                 GameObject.Instantiate(PlayerConfigurationManager.get._configPrefab);
+                client.backlog.RemoveAt(i);
+                i--;
+                continue;
             }
             else if (client.backlog[i].Contains("remove"))
             {
