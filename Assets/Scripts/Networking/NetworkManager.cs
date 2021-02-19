@@ -148,10 +148,12 @@ public class NetworkManager : MonoBehaviour
     {
         if (timer <= 0.0f && send)
         {
+            timer = (1.0f/16.33f);
             if (player.nMovement.readyPressed && !sentReadyMessage)
             {
                 Send("cli " + player.nMovement.networkedPlayerNum.ToString() + " plr ready");
                 sentReadyMessage = true;
+                return;
             }
 
             if (Mathf.Abs(player.transform.position.magnitude - lastPos.magnitude) >= 0.01f)
@@ -160,7 +162,6 @@ public class NetworkManager : MonoBehaviour
                 + player.transform.position.y.ToString() + " "
                 + player.transform.position.z.ToString()
                 );
-            timer = (1.0f/16.33f);
         }
         SortRecievedMessages();
         lastPos = player.transform.position;
