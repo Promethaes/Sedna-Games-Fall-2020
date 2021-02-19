@@ -148,7 +148,7 @@ public class NetworkManager : MonoBehaviour
     {
         if (timer <= 0.0f && send)
         {
-            timer = (1.0f/16.33f);
+            timer = (1.0f/32.66f);
             if (player.nMovement.readyPressed && !sentReadyMessage)
             {
                 Send("cli " + player.nMovement.networkedPlayerNum.ToString() + " plr ready");
