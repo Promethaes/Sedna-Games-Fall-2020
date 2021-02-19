@@ -214,6 +214,7 @@ public class NetworkManager : MonoBehaviour
                 temp.nMovement.readyPressed = false;
                 temp.nMovement.enabled = false;
                 temp.p.GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled = false;
+                temp.p.GetComponentInChildren<Camera>().enabled = false;
                 client.backlog.RemoveAt(i);
                 i--;
                 players.Add(temp);
