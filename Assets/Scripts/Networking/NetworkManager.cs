@@ -148,20 +148,27 @@ public class NetworkManager : MonoBehaviour
     {
         if (timer <= 0.0f && send)
         {
-            timer = (1.0f/32.66f);
+            bool sentMessage = false;
             if (player.nMovement.readyPressed && !sentReadyMessage)
             {
                 Send("cli " + player.nMovement.networkedPlayerNum.ToString() + " plr ready");
                 sentReadyMessage = true;
+                sentMessage = true;
                 return;
             }
 
-            if (Mathf.Abs(player.transform.position.magnitude - lastPos.magnitude) >= 0.01f)
+            if (Mathf.Abs(player.transform.position.magnitude - lastPos.magnitude) >= 0.001f){
+
                 Send("cli " + player.nMovement.networkedPlayerNum.ToString() + " plr pos "
                 + player.transform.position.x.ToString() + " "
                 + player.transform.position.y.ToString() + " "
                 + player.transform.position.z.ToString()
                 );
+                sentMessage = true;
+            }
+
+            if(sentMessage)
+                timer = 0.090f;
         }
         SortRecievedMessages();
         lastPos = player.transform.position;
