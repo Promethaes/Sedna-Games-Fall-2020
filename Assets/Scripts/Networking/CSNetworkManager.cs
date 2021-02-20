@@ -120,11 +120,11 @@ public class CSNetworkManager : MonoBehaviour
 
     public void AddNetworkedPlayer(PlayerConfiguration config, bool isLocal)
     {
-        foreach(var r in remotePlayers)
-            if(r == config)
+        foreach (var r in remotePlayers)
+            if (r == config)
                 return;
-        foreach(var l in localPlayers)
-            if(l == config)
+        foreach (var l in localPlayers)
+            if (l == config)
                 return;
 
         if (isLocal)
@@ -154,14 +154,24 @@ public class CSNetworkManager : MonoBehaviour
 
     }
 
+    float timer = 0.0f;
+
     // Update is called once per frame
     void Update()
     {
         SortRecievedMessages();
 
         foreach (var p in localPlayers)
+        {
             if (p.isReady && !p.sentReadyMessage)
                 SendReadyMessage(p);
+            if (timer <= 0.0f){
+                p.sentReadyMessage = false;
+                timer = 1.0f;
+            }
+        }
+
+        timer -= Time.deltaTime;
     }
 
     void SortRecievedMessages()
@@ -201,7 +211,7 @@ public class CSNetworkManager : MonoBehaviour
                 remotePlayers.Add(remotePlayer);
                 PlayerConfigurationManager.get.playerConfigurations.Add(remotePlayer);
                 remotePlayer.index = PlayerConfigurationManager.get.playerConfigurations.Count - 1;
-                
+
                 var np = GameObject.Instantiate(PlayerConfigurationManager.get._configPrefab);
                 np.GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled = false;
                 //tempRemoteMenuPlayers.Add(np);
