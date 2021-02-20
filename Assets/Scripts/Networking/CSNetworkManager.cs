@@ -199,6 +199,9 @@ public class CSNetworkManager : MonoBehaviour
             {
                 var remotePlayer = new PlayerConfiguration(null);
                 remotePlayers.Add(remotePlayer);
+                PlayerConfigurationManager.get.playerConfigurations.Add(remotePlayer);
+                remotePlayer.index = PlayerConfigurationManager.get.playerConfigurations.Count - 1;
+                
                 var np = GameObject.Instantiate(PlayerConfigurationManager.get._configPrefab);
                 np.GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled = false;
                 //tempRemoteMenuPlayers.Add(np);

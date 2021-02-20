@@ -54,7 +54,8 @@ public class PlayerConfigurationManager : MonoBehaviour
             playerInput.transform.parent = transform;
             var p = new PlayerConfiguration(playerInput);
             _playerConfigs.Add(p);
-            networkManager.AddNetworkedPlayer(p,true);
+
+            networkManager.AddNetworkedPlayer(p, true);
         }
     }
 
