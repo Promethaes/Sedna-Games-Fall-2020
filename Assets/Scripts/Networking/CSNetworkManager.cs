@@ -96,6 +96,7 @@ public class CSNetworkManager : MonoBehaviour
 
     public List<PlayerConfiguration> localPlayers = new List<PlayerConfiguration>();
     List<PlayerConfiguration> remotePlayers = new List<PlayerConfiguration>();
+    List<GameObject> tempRemoteMenuPlayers = new List<GameObject>();
 
     void Awake()
     {
@@ -119,11 +120,19 @@ public class CSNetworkManager : MonoBehaviour
 
     public void AddNetworkedPlayer(PlayerConfiguration config, bool isLocal)
     {
+        foreach(var r in remotePlayers)
+            if(r == config)
+                return;
+        foreach(var l in localPlayers)
+            if(l == config)
+                return;
+
         if (isLocal)
         {
             localPlayers.Add(config);
             byte[] buffer = Encoding.ASCII.GetBytes("initMsg " + sessionID.ToString());
             client.clientSocket.SendTo(buffer, client.endPoint);
+            Debug.Log("Local Player Joined");
             return;
         }
 
@@ -151,9 +160,6 @@ public class CSNetworkManager : MonoBehaviour
         SortRecievedMessages();
 
         foreach (var p in localPlayers)
-            if (p.isReady && !p.sentReadyMessage)
-                SendReadyMessage(p);
-        foreach (var p in remotePlayers)
             if (p.isReady && !p.sentReadyMessage)
                 SendReadyMessage(p);
     }
@@ -192,9 +198,10 @@ public class CSNetworkManager : MonoBehaviour
             else if (client.backlog[i].Contains("spawn"))
             {
                 var remotePlayer = new PlayerConfiguration(null);
-                PlayerConfigurationManager.get.playerConfigurations.Add(remotePlayer);
                 remotePlayers.Add(remotePlayer);
-                GameObject.Instantiate(PlayerConfigurationManager.get._configPrefab);
+                var np = GameObject.Instantiate(PlayerConfigurationManager.get._configPrefab);
+                np.GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled = false;
+                //tempRemoteMenuPlayers.Add(np);
                 client.backlog.RemoveAt(i);
                 i--;
                 continue;
