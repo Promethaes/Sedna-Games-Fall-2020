@@ -185,6 +185,9 @@ public class CSNetworkManager : MonoBehaviour
 
         timer -= Time.deltaTime;
 
+        if(localPlayers.Count == 0 && remotePlayers.Count == 0)
+            allReady = false;
+
         if (!changed && allReady)
         {
             changed = true;
