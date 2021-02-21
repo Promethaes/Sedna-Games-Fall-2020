@@ -162,6 +162,9 @@ public class CSNetworkManager : MonoBehaviour
     {
         SortRecievedMessages();
 
+        if (changed)
+            return;
+
         timer -= Time.deltaTime;
 
         bool allReady = true;
@@ -189,13 +192,11 @@ public class CSNetworkManager : MonoBehaviour
         if (localPlayers.Count == 0 && remotePlayers.Count == 0)
             allReady = false;
 
-        if(!allReady)
+        if (!allReady)
             changeTimer = 3.0f;
 
-
-        if (!changed && allReady)
+        else
         {
-
             changeTimer -= Time.deltaTime;
 
             if (changeTimer <= 0.0f)
