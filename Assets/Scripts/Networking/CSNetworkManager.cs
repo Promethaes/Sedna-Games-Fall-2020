@@ -197,6 +197,7 @@ public class CSNetworkManager : MonoBehaviour
                     {
                         var parts = client.backlog[i].Split(' ');
                         lplayer.clientNumber = int.Parse(parts[1]);
+                        Debug.Log(lplayer.clientNumber);
                         break;
                     }
                 }
