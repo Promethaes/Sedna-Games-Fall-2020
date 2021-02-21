@@ -207,7 +207,10 @@ public class CSNetworkManager : MonoBehaviour
             }
             else if (client.backlog[i].Contains("spawn"))
             {
+                var parts = client.backlog[i].Split(' ');
+
                 var remotePlayer = new PlayerConfiguration(null);
+                remotePlayer.clientNumber = int.Parse(parts[1]);
                 remotePlayers.Add(remotePlayer);
                 PlayerConfigurationManager.get.playerConfigurations.Add(remotePlayer);
                 remotePlayer.index = PlayerConfigurationManager.get.playerConfigurations.Count - 1;
