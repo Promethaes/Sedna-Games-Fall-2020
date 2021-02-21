@@ -155,12 +155,14 @@ public class CSNetworkManager : MonoBehaviour
     }
 
     float timer = 0.0f;
-
+    float changeTimer = 3.0f;
     bool changed = false;
     // Update is called once per frame
     void Update()
     {
         SortRecievedMessages();
+
+        timer -= Time.deltaTime;
 
         bool allReady = true;
         foreach (var p in localPlayers)
@@ -183,15 +185,24 @@ public class CSNetworkManager : MonoBehaviour
                 allReady = false;
         }
 
-        timer -= Time.deltaTime;
 
-        if(localPlayers.Count == 0 && remotePlayers.Count == 0)
+        if (localPlayers.Count == 0 && remotePlayers.Count == 0)
             allReady = false;
+
+        if(!allReady)
+            changeTimer = 3.0f;
+
 
         if (!changed && allReady)
         {
-            changed = true;
-            PlayerConfigurationManager.get.allPlayersReady();
+
+            changeTimer -= Time.deltaTime;
+
+            if (changeTimer <= 0.0f)
+            {
+                changed = true;
+                PlayerConfigurationManager.get.allPlayersReady();
+            }
         }
 
     }
