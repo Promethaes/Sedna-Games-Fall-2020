@@ -156,22 +156,41 @@ public class CSNetworkManager : MonoBehaviour
 
     float timer = 0.0f;
 
+    bool changed = false;
     // Update is called once per frame
     void Update()
     {
         SortRecievedMessages();
 
+        bool allReady = true;
         foreach (var p in localPlayers)
         {
+            if (!p.isReady)
+                allReady = false;
+
             if (p.isReady && !p.sentReadyMessage)
                 SendReadyMessage(p);
-            if (timer <= 0.0f){
+            if (timer <= 0.0f)
+            {
                 p.sentReadyMessage = false;
                 timer = 1.0f;
             }
         }
 
+        foreach (var p in remotePlayers)
+        {
+            if (!p.isReady)
+                allReady = false;
+        }
+
         timer -= Time.deltaTime;
+
+        if (!changed && allReady)
+        {
+            changed = true;
+            PlayerConfigurationManager.get.allPlayersReady();
+        }
+
     }
 
     void SortRecievedMessages()
@@ -218,6 +237,7 @@ public class CSNetworkManager : MonoBehaviour
 
                 var np = GameObject.Instantiate(PlayerConfigurationManager.get._configPrefab);
                 np.GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled = false;
+                DontDestroyOnLoad(np);
                 //tempRemoteMenuPlayers.Add(np);
                 client.backlog.RemoveAt(i);
                 i--;
