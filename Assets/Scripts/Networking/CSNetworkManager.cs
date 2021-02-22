@@ -181,7 +181,7 @@ public class CSNetworkManager : MonoBehaviour
             {
                 for (int i = 0; i < localPlayers.Count; i++)
                 {
-                    if (playerManager.players[i].GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled == false)
+                    if (playerManager.players[i].GetComponent<Camera>().enabled == false)
                         continue;
 
                     client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
@@ -329,7 +329,7 @@ public class CSNetworkManager : MonoBehaviour
                     {
                         for (int j = 0; j < playerManager.players.Count; j++)
                         {
-                            if (playerManager.players[j].GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled == false)
+                            if (playerManager.players[j].GetComponent<Camera>().enabled == false)
                                 RunCommand(playerManager.players[j], client.backlog[i]);
                         }
                     }
