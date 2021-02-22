@@ -21,10 +21,14 @@ public class PlayerConfiguration
 
     public int clientNumber = -1;
     public bool sentReadyMessage = false;
+    public bool isRemotePlayer = false;
     public PlayerConfiguration(PlayerInput playerInput)
     {
         if (playerInput == null)
+        {
+            isRemotePlayer = true;
             return;
+        }
         input = playerInput;
         index = playerInput.playerIndex;
     }
