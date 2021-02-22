@@ -171,13 +171,16 @@ public class CSNetworkManager : MonoBehaviour
         {
             timer -= Time.deltaTime;
 
-            if(playerManager == null)
+            if (playerManager == null)
                 playerManager = FindObjectOfType<GamePlayerManager>();
 
             if (timer <= 0.0f && send)
             {
-                for(int i = 0; i < localPlayers.Count;i++)
+                for (int i = 0; i < localPlayers.Count; i++)
                 {
+                    if (playerManager.players[i].GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled == false)
+                        continue;
+
                     client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
                     + playerManager.players[i].transform.position.x.ToString() + " "
                     + playerManager.players[i].transform.position.y.ToString() + " "
@@ -310,12 +313,25 @@ public class CSNetworkManager : MonoBehaviour
             {
                 string comp = "cli " + p.clientNumber.ToString();
 
-                if (client.backlog[i].Contains(comp) && RunCommand(p, client.backlog[i]))
+                if (client.backlog[i].Contains(comp))
                 {
-                    client.backlog.RemoveAt(i);
-                    i--;
-                    continue;
+                    if (RunCommand(p, client.backlog[i]))
+                    {
+
+                        client.backlog.RemoveAt(i);
+                        i--;
+                        continue;
+                    }
+                    else if (playerManager != null)
+                    {
+                        for (int j = 0; j < playerManager.players.Count; j++)
+                        {
+                            if(playerManager.players[j].GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled == false)
+                                RunCommand(playerManager.players[j],client.backlog[i]);
+                        }
+                    }
                 }
+
             }
 
         }
