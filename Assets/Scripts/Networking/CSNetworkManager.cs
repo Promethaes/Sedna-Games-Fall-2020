@@ -174,6 +174,9 @@ public class CSNetworkManager : MonoBehaviour
             if (playerManager == null)
                 playerManager = FindObjectOfType<GamePlayerManager>();
 
+            if (playerManager == null)
+                return;
+
             if (timer <= 0.0f && send)
             {
                 for (int i = 0; i < localPlayers.Count; i++)
@@ -326,8 +329,8 @@ public class CSNetworkManager : MonoBehaviour
                     {
                         for (int j = 0; j < playerManager.players.Count; j++)
                         {
-                            if(playerManager.players[j].GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled == false)
-                                RunCommand(playerManager.players[j],client.backlog[i]);
+                            if (playerManager.players[j].GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled == false)
+                                RunCommand(playerManager.players[j], client.backlog[i]);
                         }
                     }
                 }
