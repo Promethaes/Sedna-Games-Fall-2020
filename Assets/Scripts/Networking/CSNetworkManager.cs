@@ -162,9 +162,35 @@ public class CSNetworkManager : MonoBehaviour
     {
         SortRecievedMessages();
 
-        if (changed)
-            return;
 
+
+        //char select section
+        if (changed)
+        {
+            timer -= Time.deltaTime;
+
+            if (timer <= 0.0f && send)
+            {
+                foreach (var p in localPlayers)
+                {
+                    client.Send("cli " + p.clientNumber.ToString() + " plr pos "
+                    + p.gameObject.transform.position.x.ToString() + " "
+                    + p.gameObject.transform.position.y.ToString() + " "
+                    + p.gameObject.transform.position.z.ToString()
+                    );
+                }
+
+                timer = 0.090f;
+            }
+        }
+        else
+            charSelect();
+
+
+    }
+
+    void charSelect()
+    {
         timer -= Time.deltaTime;
 
         bool allReady = true;
@@ -205,7 +231,6 @@ public class CSNetworkManager : MonoBehaviour
                 PlayerConfigurationManager.get.allPlayersReady();
             }
         }
-
     }
 
     void SortRecievedMessages()
@@ -251,7 +276,7 @@ public class CSNetworkManager : MonoBehaviour
                 remotePlayer.index = PlayerConfigurationManager.get.playerConfigurations.Count - 1;
                 var np = GameObject.Instantiate(PlayerConfigurationManager.get._configPrefab);
 
-                PlayerConfigurationManager.get.setPlayerCharacter(remotePlayer.index,np.GetComponent<MakePlayerCharSelectMenu>().playerSetupMenu.GetComponent<PlayerCharSelectMenu>()._characterPrefabs[1]);
+                PlayerConfigurationManager.get.setPlayerCharacter(remotePlayer.index, np.GetComponent<MakePlayerCharSelectMenu>().playerSetupMenu.GetComponent<PlayerCharSelectMenu>()._characterPrefabs[1]);
                 np.GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled = false;
                 DontDestroyOnLoad(np);
                 //tempRemoteMenuPlayers.Add(np);
@@ -295,15 +320,39 @@ public class CSNetworkManager : MonoBehaviour
 
     bool RunCommand(PlayerConfiguration p, string command)
     {
+        if (command.Contains("plr") && command.Contains("ready"))
+        {
+            p.isReady = true;
+            return true;
+        }
+
+        return false;
+    }
+
+    bool RunCommand(GameObject p, string command)
+    {
         if (command.Contains("plr"))
         {
-            if (command.Contains("ready"))
+            var parts = command.Split(' ');
+            Vector3 v = new Vector3(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6]));
+
+            if (command.Contains("pos"))
             {
-                p.isReady = true;
+                p.transform.position = v;
+                return true;
+            }
+            else if (command.Contains("scl"))
+            {
+                p.transform.localScale = v;
+                return true;
+            }
+            else if (command.Contains("vel"))
+            {
+                var r = p.GetComponent<Rigidbody>();
+                r.velocity = r.velocity + v;
                 return true;
             }
         }
-
         return false;
     }
 }
