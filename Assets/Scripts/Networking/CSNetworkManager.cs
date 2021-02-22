@@ -119,7 +119,7 @@ public class CSNetworkManager : MonoBehaviour
         client.clientSocket.Close();
     }
 
-    public void AddNetworkedPlayer(PlayerConfiguration config, bool isLocal, GameObject player)
+    public void AddNetworkedPlayer(PlayerConfiguration config, bool isLocal)
     {
         foreach (var r in remotePlayers)
             if (r == config)
@@ -135,7 +135,6 @@ public class CSNetworkManager : MonoBehaviour
             client.clientSocket.SendTo(buffer, client.endPoint);
             Debug.Log("Local Player Joined");
 
-            localPlayersGameObject.Add(player);
             return;
         }
 
@@ -160,6 +159,8 @@ public class CSNetworkManager : MonoBehaviour
     float timer = 0.0f;
     float changeTimer = 3.0f;
     bool changed = false;
+
+    GamePlayerManager playerManager;
     // Update is called once per frame
     void Update()
     {
@@ -170,14 +171,17 @@ public class CSNetworkManager : MonoBehaviour
         {
             timer -= Time.deltaTime;
 
+            if(playerManager == null)
+                playerManager = FindObjectOfType<GamePlayerManager>();
+
             if (timer <= 0.0f && send)
             {
                 for(int i = 0; i < localPlayers.Count;i++)
                 {
                     client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
-                    + localPlayersGameObject[i].transform.position.x.ToString() + " "
-                    + localPlayersGameObject[i].transform.position.y.ToString() + " "
-                    + localPlayersGameObject[i].transform.position.z.ToString()
+                    + playerManager.players[i].transform.position.x.ToString() + " "
+                    + playerManager.players[i].transform.position.y.ToString() + " "
+                    + playerManager.players[i].transform.position.z.ToString()
                     );
                 }
 
