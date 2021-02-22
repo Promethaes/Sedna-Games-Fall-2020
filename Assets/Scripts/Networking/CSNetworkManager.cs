@@ -97,6 +97,7 @@ public class CSNetworkManager : MonoBehaviour
     public List<PlayerConfiguration> localPlayers = new List<PlayerConfiguration>();
     List<PlayerConfiguration> remotePlayers = new List<PlayerConfiguration>();
     List<GameObject> tempRemoteMenuPlayers = new List<GameObject>();
+    List<GameObject> localPlayersGameObject = new List<GameObject>();
 
     void Awake()
     {
@@ -118,7 +119,7 @@ public class CSNetworkManager : MonoBehaviour
         client.clientSocket.Close();
     }
 
-    public void AddNetworkedPlayer(PlayerConfiguration config, bool isLocal)
+    public void AddNetworkedPlayer(PlayerConfiguration config, bool isLocal, GameObject player)
     {
         foreach (var r in remotePlayers)
             if (r == config)
@@ -133,6 +134,8 @@ public class CSNetworkManager : MonoBehaviour
             byte[] buffer = Encoding.ASCII.GetBytes("initMsg " + sessionID.ToString());
             client.clientSocket.SendTo(buffer, client.endPoint);
             Debug.Log("Local Player Joined");
+
+            localPlayersGameObject.Add(player);
             return;
         }
 
@@ -162,8 +165,6 @@ public class CSNetworkManager : MonoBehaviour
     {
         SortRecievedMessages();
 
-
-
         //char select section
         if (changed)
         {
@@ -171,12 +172,12 @@ public class CSNetworkManager : MonoBehaviour
 
             if (timer <= 0.0f && send)
             {
-                foreach (var p in localPlayers)
+                for(int i = 0; i < localPlayers.Count;i++)
                 {
-                    client.Send("cli " + p.clientNumber.ToString() + " plr pos "
-                    + p.gameObject.transform.position.x.ToString() + " "
-                    + p.gameObject.transform.position.y.ToString() + " "
-                    + p.gameObject.transform.position.z.ToString()
+                    client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
+                    + localPlayersGameObject[i].transform.position.x.ToString() + " "
+                    + localPlayersGameObject[i].transform.position.y.ToString() + " "
+                    + localPlayersGameObject[i].transform.position.z.ToString()
                     );
                 }
 
@@ -185,8 +186,6 @@ public class CSNetworkManager : MonoBehaviour
         }
         else
             charSelect();
-
-
     }
 
     void charSelect()

@@ -55,7 +55,7 @@ public class PlayerConfigurationManager : MonoBehaviour
             var p = new PlayerConfiguration(playerInput);
             _playerConfigs.Add(p);
 
-            networkManager.AddNetworkedPlayer(p, true);
+            networkManager.AddNetworkedPlayer(p, true, playerInput.gameObject);
         }
     }
 
