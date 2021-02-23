@@ -27,11 +27,14 @@ public class Dumpage_Idle : StateMachineBehaviour
     {
         if (animator.GetFloat("idleTime") > 0.0f)
             animator.SetFloat("idleTime", animator.GetFloat("idleTime") - Time.deltaTime);
+
+        
         foreach(GameObject player in players)
         {
             if ((enemy.transform.position - player.transform.position).magnitude < enemyData.searchRadius)
             {
                 animator.SetBool("tracking", true);
+                break;
             }
         }
         
