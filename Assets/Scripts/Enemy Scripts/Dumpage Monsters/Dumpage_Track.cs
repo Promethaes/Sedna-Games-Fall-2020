@@ -27,23 +27,30 @@ public class Dumpage_Track : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        float shortestMag = 1000.0f;
+        GameObject closestPlayer = null;
         foreach (GameObject player in players)
         {
-            if ((enemy.transform.position - player.transform.position).magnitude < enemyData.searchRadius + 5)
+            float lMag = (enemy.transform.position - player.transform.position).magnitude;
+            if (lMag < shortestMag)
             {
-                agent.SetDestination(player.transform.position);
-            }
-            else
-            {
-                agent.SetDestination(enemy.transform.position);
-                animator.SetBool("tracking", false);
-                animator.SetFloat("idleTime", 2.0f);
-            }
-            if ((enemy.transform.position - player.transform.position).magnitude < 3)
-            {
-                animator.SetBool("attack", true);
+                shortestMag = lMag;
+                closestPlayer = player;
             }
         }
+
+        if (shortestMag == 1000.0f)
+        {
+            agent.SetDestination(enemy.transform.position);
+            animator.SetBool("tracking", false);
+            animator.SetFloat("idleTime", 2.0f);
+        }
+
+        var mag = (enemy.transform.position - closestPlayer.transform.position).magnitude;
+        agent.SetDestination(closestPlayer.transform.position);
+
+        if (mag < 3)
+            animator.SetBool("attack", true);
 
     }
 
