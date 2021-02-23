@@ -158,16 +158,16 @@ public class CSNetworkManager : MonoBehaviour
 
     float timer = 0.0f;
     float changeTimer = 3.0f;
-    bool changed = false;
-
+    bool changedScene = false;
     GamePlayerManager playerManager;
+    List<Vector3> lastPosList = new List<Vector3>();
     // Update is called once per frame
     void Update()
     {
         SortRecievedMessages();
 
         //char select section
-        if (changed)
+        if (changedScene)
         {
             timer -= Time.deltaTime;
 
@@ -177,21 +177,32 @@ public class CSNetworkManager : MonoBehaviour
             if (playerManager == null)
                 return;
 
+            if (lastPosList.Count == 0)
+                foreach (var p in playerManager.players)
+                    lastPosList.Add(p.transform.position);
+
             if (timer <= 0.0f && send)
             {
+                bool sentPos = false;
                 for (int i = 0; i < localPlayers.Count; i++)
                 {
                     if (playerManager.players[i].GetComponentInChildren<Camera>().enabled == false)
                         continue;
 
-                    client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
-                    + playerManager.players[i].transform.position.x.ToString() + " "
-                    + playerManager.players[i].transform.position.y.ToString() + " "
-                    + playerManager.players[i].transform.position.z.ToString()
-                    );
+                    if (Mathf.Abs(playerManager.players[i].transform.position.magnitude - lastPosList[i].magnitude) >= 0.001f)
+                    {
+                        client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
+                        + playerManager.players[i].transform.position.x.ToString() + " "
+                        + playerManager.players[i].transform.position.y.ToString() + " "
+                        + playerManager.players[i].transform.position.z.ToString()
+                        );
+                        sentPos = true;
+                    }
+                    lastPosList[i] = playerManager.players[i].transform.position;
                 }
 
-                timer = 0.090f;
+                if (sentPos)
+                    timer = 0.090f;
             }
         }
         else
@@ -236,7 +247,7 @@ public class CSNetworkManager : MonoBehaviour
 
             if (changeTimer <= 0.0f)
             {
-                changed = true;
+                changedScene = true;
                 PlayerConfigurationManager.get.allPlayersReady();
             }
         }
