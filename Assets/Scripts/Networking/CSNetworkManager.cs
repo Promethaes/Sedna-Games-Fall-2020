@@ -189,20 +189,18 @@ public class CSNetworkManager : MonoBehaviour
                     if (playerManager.players[i].GetComponentInChildren<Camera>().enabled == false)
                         continue;
 
-                    if (Mathf.Abs(playerManager.players[i].transform.position.magnitude - lastPosList[i].magnitude) >= 0.001f)
-                    {
-                        client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
-                        + playerManager.players[i].transform.position.x.ToString() + " "
-                        + playerManager.players[i].transform.position.y.ToString() + " "
-                        + playerManager.players[i].transform.position.z.ToString()
-                        );
-                        sentPos = true;
-                    }
+
+                    client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
+                    + playerManager.players[i].transform.position.x.ToString() + " "
+                    + playerManager.players[i].transform.position.y.ToString() + " "
+                    + playerManager.players[i].transform.position.z.ToString()
+                    );
+                    sentPos = true;
                     lastPosList[i] = playerManager.players[i].transform.position;
                 }
 
                 if (sentPos)
-                    timer = 0.090f;
+                    timer = 1.0f;
             }
         }
         else
@@ -341,7 +339,12 @@ public class CSNetworkManager : MonoBehaviour
                         for (int j = 0; j < playerManager.players.Count; j++)
                         {
                             if (playerManager.players[j].GetComponentInChildren<Camera>().enabled == false)
-                                RunCommand(playerManager.players[j], client.backlog[i]);
+                                if (RunCommand(playerManager.players[j], client.backlog[i]))
+                                {
+                                    client.backlog.RemoveAt(i);
+                                    i--;
+                                    break;
+                                }
                         }
                     }
                 }
