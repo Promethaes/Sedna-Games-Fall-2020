@@ -96,6 +96,7 @@ public class PlayerController : MonoBehaviour
     public ChargeHitbox abilityHitbox;
     public int killCount;
     public bool roarBuff=false;
+    public bool venomBuff=false;
 
     // Debuffs
     bool _slowDebuff=false;
@@ -445,7 +446,7 @@ public class PlayerController : MonoBehaviour
         {
             case PlayerType.TURTLE: StartCoroutine(Buff()); break;
             case PlayerType.POLAR_BEAR: StartCoroutine(Roar()); break;
-            case PlayerType.RATTLESNAKE: StartCoroutine(Fear()); break;
+            case PlayerType.RATTLESNAKE: StartCoroutine(Venom()); break;
             case PlayerType.BISON: StartCoroutine(Charge()); break;
         }
     }
@@ -556,21 +557,13 @@ public class PlayerController : MonoBehaviour
         _abilityCD = 10.0f;
         yield return null;
     }
-    IEnumerator Fear()
+    IEnumerator Venom()
     {
-        Collider[] _enemies = Physics.OverlapSphere(transform.position,5.0f);
-        for (int i=0;i<_enemies.Length;i++)
-        {
-            _enemies[i].GetComponent<EnemyData>().fear = true;
-            _enemies[i].GetComponent<EnemyData>().damageValues *= 0.8f;
-        }
+        venomBuff = true;
         yield return new WaitForSeconds(_abilityDuration);
-        for (int i=0;i<_enemies.Length;i++)
-        {
-            _enemies[i].GetComponent<EnemyData>().fear = false;
-            _enemies[i].GetComponent<EnemyData>().damageValues /= 0.8f;
-        }
+        venomBuff = false;
         _abilityCD = 10.0f;
+        yield return null;
     }
     IEnumerator Charge()
     {
