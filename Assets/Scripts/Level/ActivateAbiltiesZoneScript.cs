@@ -26,7 +26,7 @@ public class ActivateAbiltiesZoneScript : MonoBehaviour
         if (other.gameObject.tag == "Player" && pController.playerType == zoneType)
         {
             pController.insideCastingZone = true;
-            pController.bubbleShieldScript.cutscene = _cutscene;
+            pController.abilityScript.setCutscene(_cutscene);
 
             gameObject.GetComponentInChildren<TMPro.TextMeshPro>().text = "Press LB";
         }
@@ -42,7 +42,7 @@ public class ActivateAbiltiesZoneScript : MonoBehaviour
         if (other.gameObject.tag == "Player" && pController.playerType == zoneType)
         {
             pController.insideCastingZone = false;
-            pController.bubbleShieldScript.cutscene = null;
+            pController.abilityScript.setCutscene(null);
 
             gameObject.GetComponentInChildren<TMPro.TextMeshPro>().text = "Come Closer!";
         }
