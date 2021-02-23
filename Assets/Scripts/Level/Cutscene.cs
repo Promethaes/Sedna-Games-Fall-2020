@@ -38,8 +38,14 @@ public class Cutscene : MonoBehaviour
         }
 
         yield return new WaitForSecondsRealtime(1.5f);
+        Debug.Log("Ending Cutscene");
         cam.gameObject.SetActive(false);
-        GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Camera>(true).gameObject.SetActive(true);
+        var players = GameObject.FindGameObjectsWithTag("Player");
+        for (int i=0;i<players.Length;i++)
+        {
+            players[i].GetComponentInChildren<Camera>(true).gameObject.SetActive(true);
+            players[i].GetComponentInChildren<PlayerController>().inCutscene = false;
+        }
         cutsceneComplete = true;
         //Destroy(this);
     }
