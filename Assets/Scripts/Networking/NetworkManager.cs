@@ -94,7 +94,7 @@ public class NetworkManager : MonoBehaviour
             if(sentMessage)
                 timer = 0.090f;
         }
-        SortRecievedMessages();
+        //SortRecievedMessages();
         lastPos = player.transform.position;
         timer -= Time.fixedDeltaTime;
 
@@ -124,73 +124,73 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
-    void SortRecievedMessages()
-    {
-        if (!interpetCommands)
-            return;
+    // void SortRecievedMessages()
+    // {
+    //     if (!interpetCommands)
+    //         return;
 
-        for (int i = 0; i < client.backlog.Count; i++)
-        {
-            if (client.backlog[i].Length >= 40)
-            {
-                client.backlog.RemoveAt(i);
-                i--;
-                continue;
-            }
-            else if (client.backlog[i].Contains("clin") && player.nMovement.networkedPlayerNum == -1)
-            {
-                var parts = client.backlog[i].Split(' ');
-                player.nMovement.networkedPlayerNum = int.Parse(parts[1]);
-                client.backlog.RemoveAt(i);
-                i--;
-                Debug.Log(player.nMovement.networkedPlayerNum);
-                continue;
-            }
-            else if (client.backlog[i].Contains("spawn"))
-            {
-                var parts = client.backlog[i].Split(' ');
-                var temp = new PItem(GameObject.Instantiate(playerPrefab));
-                temp.nMovement.networkedPlayerNum = int.Parse(parts[1]);
-                temp.nMovement.readyPressed = false;
-                temp.nMovement.enabled = false;
-                temp.p.GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled = false;
-                temp.p.GetComponentInChildren<Camera>().enabled = false;
-                client.backlog.RemoveAt(i);
-                i--;
-                players.Add(temp);
-                Debug.Log("Client " + temp.nMovement.networkedPlayerNum.ToString() + " joined the session");
-                continue;
-            }
-            else if (client.backlog[i].Contains("remove"))
-            {
-                var parts = client.backlog[i].Split(' ');
-                int index = int.Parse(parts[1]);
+    //     for (int i = 0; i < client.backlog.Count; i++)
+    //     {
+    //         if (client.backlog[i].Length >= 40)
+    //         {
+    //             client.backlog.RemoveAt(i);
+    //             i--;
+    //             continue;
+    //         }
+    //         else if (client.backlog[i].Contains("clin") && player.nMovement.networkedPlayerNum == -1)
+    //         {
+    //             var parts = client.backlog[i].Split(' ');
+    //             player.nMovement.networkedPlayerNum = int.Parse(parts[1]);
+    //             client.backlog.RemoveAt(i);
+    //             i--;
+    //             Debug.Log(player.nMovement.networkedPlayerNum);
+    //             continue;
+    //         }
+    //         else if (client.backlog[i].Contains("spawn"))
+    //         {
+    //             var parts = client.backlog[i].Split(' ');
+    //             var temp = new PItem(GameObject.Instantiate(playerPrefab));
+    //             temp.nMovement.networkedPlayerNum = int.Parse(parts[1]);
+    //             temp.nMovement.readyPressed = false;
+    //             temp.nMovement.enabled = false;
+    //             temp.p.GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled = false;
+    //             temp.p.GetComponentInChildren<Camera>().enabled = false;
+    //             client.backlog.RemoveAt(i);
+    //             i--;
+    //             players.Add(temp);
+    //             Debug.Log("Client " + temp.nMovement.networkedPlayerNum.ToString() + " joined the session");
+    //             continue;
+    //         }
+    //         else if (client.backlog[i].Contains("remove"))
+    //         {
+    //             var parts = client.backlog[i].Split(' ');
+    //             int index = int.Parse(parts[1]);
 
-                for (int j = 0; j < players.Count; i++)
-                {
-                    if (players[j].nMovement.networkedPlayerNum == j)
-                    {
-                        Destroy(players[j].p);
-                        players.RemoveAt(j);
-                        j--;
-                        break;
-                    }
-                }
-            }
+    //             for (int j = 0; j < players.Count; i++)
+    //             {
+    //                 if (players[j].nMovement.networkedPlayerNum == j)
+    //                 {
+    //                     Destroy(players[j].p);
+    //                     players.RemoveAt(j);
+    //                     j--;
+    //                     break;
+    //                 }
+    //             }
+    //         }
 
-            foreach (var p in players)
-            {
-                string comp = "cli" + " " + p.nMovement.networkedPlayerNum.ToString();
+    //         foreach (var p in players)
+    //         {
+    //             string comp = "cli" + " " + p.nMovement.networkedPlayerNum.ToString();
 
-                if (client.backlog[i].Contains(comp) && RunCommand(p, client.backlog[i]))
-                {
-                    client.backlog.RemoveAt(i);
-                    i--;
-                    continue;
-                }
-            }
-        }
-    }
+    //             if (client.backlog[i].Contains(comp) && RunCommand(p, client.backlog[i]))
+    //             {
+    //                 client.backlog.RemoveAt(i);
+    //                 i--;
+    //                 continue;
+    //             }
+    //         }
+    //     }
+    // }
 
 
     bool RunCommand(PItem p, string command)

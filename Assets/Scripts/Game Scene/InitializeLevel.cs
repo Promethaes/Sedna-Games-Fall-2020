@@ -23,12 +23,13 @@ public class InitializeLevel : MonoBehaviour
             if (playerConfigs[i].isRemotePlayer)
             {
                 player.GetComponentInChildren<Camera>().enabled = false;
+                player.GetComponent<PlayerController>().enabled = false;
+                player.name = "REMOTE";
             }
             else
                 _cameraSplitter.addCameras(player.GetComponent<PlayerCameraAndUI>());
 
             player.GetComponent<GameInputHandler>().initPlayer(playerConfigs[i]);
-            Debug.Log("isremote? " + playerConfigs[i].isRemotePlayer);
 
 
 
