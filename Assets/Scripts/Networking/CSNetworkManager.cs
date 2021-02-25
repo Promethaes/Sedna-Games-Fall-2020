@@ -15,18 +15,6 @@ public class StateObject
     public int index = -1;
     public EndPoint remoteClient;
 }
-
-public class BacklogString
-{
-    public string str;
-    public bool interpreted;
-
-    public BacklogString(string s)
-    {
-        str = s;
-        interpreted = false;
-    }
-}
 class Client
 {
     public Socket clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
@@ -34,7 +22,7 @@ class Client
     EventWaitHandle sendDone = new EventWaitHandle(true, EventResetMode.ManualReset);
     EventWaitHandle receiveDone = new EventWaitHandle(true, EventResetMode.ManualReset);
     public IPEndPoint endPoint;
-    volatile public List<BacklogString> backlog = new List<BacklogString>();
+    public List<string> backlog = new List<string>();
     public bool leave = false;
 
     public Client()
@@ -78,15 +66,6 @@ class Client
             if (leave)
                 break;
             receiveDone.Reset();
-           for (int i = 0; i < backlog.Count; i++)
-           {
-               if (backlog[i].interpreted)
-               {
-                   backlog.RemoveAt(i);
-                   i--;
-               }
-           }
-
             try
             {
                 byte[] buffer = new byte[1024];
@@ -95,8 +74,10 @@ class Client
 
                 var fString = Encoding.ASCII.GetString(buffer, 0, length);
 
+                backlog.Add(fString);
 
-                backlog.Add(new BacklogString(fString));
+                
+
             }
             catch (Exception e)
             {
@@ -277,35 +258,36 @@ public class CSNetworkManager : MonoBehaviour
         if (!interpetCommands)
             return;
 
-        var backlog = new List<BacklogString>(client.backlog);
-        for (int i = 0; i < backlog.Count; i++)
+        for (int i = 0; i < client.backlog.Count; i++)
         {
-            if (backlog[i].str.Length >= 40 || backlog[i].interpreted)
+            if (client.backlog[i].Length >= 40)
             {
-                client.backlog[i].interpreted = true;
+                client.backlog.RemoveAt(i);
+                i--;
                 continue;
             }
 
-            else if (backlog[i].str.Contains("clin"))
+            else if (client.backlog[i].Contains("clin"))
             {
                 //temp code, will only work for 1 player
                 foreach (var lplayer in localPlayers)
                 {
                     if (lplayer.clientNumber == -1)
                     {
-                        var parts = backlog[i].str.Split(' ');
+                        var parts = client.backlog[i].Split(' ');
                         lplayer.clientNumber = int.Parse(parts[1]);
                         Debug.Log(lplayer.clientNumber);
                         break;
                     }
                 }
 
-                client.backlog[i].interpreted = true;
+                client.backlog.RemoveAt(i);
+                i--;
                 continue;
             }
-            else if (backlog[i].str.Contains("spawn"))
+            else if (client.backlog[i].Contains("spawn"))
             {
-                var parts = backlog[i].str.Split(' ');
+                var parts = client.backlog[i].Split(' ');
 
                 var remotePlayer = new PlayerConfiguration(null);
                 remotePlayer.clientNumber = int.Parse(parts[1]);
@@ -318,12 +300,13 @@ public class CSNetworkManager : MonoBehaviour
                 np.GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled = false;
                 DontDestroyOnLoad(np);
                 //tempRemoteMenuPlayers.Add(np);
-                client.backlog[i].interpreted = true;
+                client.backlog.RemoveAt(i);
+                i--;
                 continue;
             }
-            else if (backlog[i].str.Contains("remove"))
+            else if (client.backlog[i].Contains("remove"))
             {
-                var parts = backlog[i].str.Split(' ');
+                var parts = client.backlog[i].Split(' ');
                 int index = int.Parse(parts[1]);
 
                 for (int j = 0; j < remotePlayers.Count; j++)
@@ -335,7 +318,8 @@ public class CSNetworkManager : MonoBehaviour
                     }
                 }
 
-                client.backlog[i].interpreted = true;
+                client.backlog.RemoveAt(i);
+                i--;
                 continue;
             }
 
@@ -343,11 +327,13 @@ public class CSNetworkManager : MonoBehaviour
             {
                 string comp = "cli " + p.clientNumber.ToString();
 
-                if (backlog[i].str.Contains(comp))
+                if (client.backlog[i].Contains(comp))
                 {
-                    if (RunCommand(p, backlog[i].str))
+                    if (RunCommand(p, client.backlog[i]))
                     {
-                        client.backlog[i].interpreted = true;
+
+                        client.backlog.RemoveAt(i);
+                        i--;
                         continue;
                     }
                     else if (playerManager != null)
@@ -355,9 +341,10 @@ public class CSNetworkManager : MonoBehaviour
                         for (int j = 0; j < playerManager.players.Count; j++)
                         {
                             if (playerManager.players[j].GetComponentInChildren<Camera>().enabled == false)
-                                if (RunCommand(playerManager.players[j], backlog[i].str))
+                                if (RunCommand(playerManager.players[j], client.backlog[i]))
                                 {
-                                    client.backlog[i].interpreted = true;
+                                    client.backlog.RemoveAt(i);
+                                    i--;
                                     break;
                                 }
                         }
@@ -389,7 +376,6 @@ public class CSNetworkManager : MonoBehaviour
 
             if (command.Contains("pos"))
             {
-                Debug.Log("Done Command");
                 p.transform.position = v;
                 return true;
             }
