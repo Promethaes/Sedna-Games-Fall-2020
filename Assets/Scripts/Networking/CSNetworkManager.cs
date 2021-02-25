@@ -66,7 +66,8 @@ class Client
             if (leave)
                 break;
             receiveDone.Reset();
-            while(backlog.Count !=0);
+            while (backlog.Count != 0)
+                Debug.Log("backlog not empty!");
             try
             {
                 byte[] buffer = new byte[1024];
@@ -76,8 +77,6 @@ class Client
                 var fString = Encoding.ASCII.GetString(buffer, 0, length);
 
                 backlog.Add(fString);
-
-                
 
             }
             catch (Exception e)
@@ -116,7 +115,7 @@ public class CSNetworkManager : MonoBehaviour
         client.leave = true;
         var buffer = Encoding.ASCII.GetBytes("endMsg");
         client.clientSocket.SendTo(buffer, client.endPoint);
-        recThread.Join();
+        recThread.Abort();
 
 
         client.clientSocket.Close();
@@ -136,7 +135,6 @@ public class CSNetworkManager : MonoBehaviour
             localPlayers.Add(config);
             byte[] buffer = Encoding.ASCII.GetBytes("initMsg " + sessionID.ToString());
             client.clientSocket.SendTo(buffer, client.endPoint);
-            Debug.Log("Local Player Joined");
 
             return;
         }
@@ -261,7 +259,8 @@ public class CSNetworkManager : MonoBehaviour
 
         for (int i = 0; i < client.backlog.Count; i++)
         {
-            if (client.backlog[i].Length >= 40)
+            var count = client.backlog.Count;
+            if (client.backlog[i].Length >= 100)
             {
                 client.backlog.RemoveAt(i);
                 i--;
@@ -277,7 +276,6 @@ public class CSNetworkManager : MonoBehaviour
                     {
                         var parts = client.backlog[i].Split(' ');
                         lplayer.clientNumber = int.Parse(parts[1]);
-                        Debug.Log(lplayer.clientNumber);
                         break;
                     }
                 }
@@ -323,7 +321,14 @@ public class CSNetworkManager : MonoBehaviour
                 i--;
                 continue;
             }
+            else if (!client.backlog[i].Contains("cli"))
+            {
+                client.backlog.RemoveAt(i);
+                i--;
+                continue;
+            }
 
+            bool didCommand = false;
             foreach (var p in remotePlayers)
             {
                 string comp = "cli " + p.clientNumber.ToString();
@@ -335,6 +340,7 @@ public class CSNetworkManager : MonoBehaviour
 
                         client.backlog.RemoveAt(i);
                         i--;
+                        didCommand = true;
                         continue;
                     }
                     else if (playerManager != null)
@@ -344,15 +350,24 @@ public class CSNetworkManager : MonoBehaviour
                             if (playerManager.players[j].GetComponentInChildren<Camera>().enabled == false)
                                 if (RunCommand(playerManager.players[j], client.backlog[i]))
                                 {
+                                    Debug.Log("Done Command");
                                     client.backlog.RemoveAt(i);
                                     i--;
+                                    didCommand = true;
                                     break;
                                 }
+                                else
+                                    Debug.Log("Did not run command! " + client.backlog[i]);
                         }
                     }
                 }
 
             }
+
+            if (didCommand)
+                continue;
+
+            Debug.Log("Did not run command! " + client.backlog[i]);
 
         }
     }

@@ -12,7 +12,6 @@ public class InitializeLevel : MonoBehaviour
     {
 
         var playerConfigs = PlayerConfigurationManager.get.playerConfigurations;
-        Debug.Log("configs size " + playerConfigs.Count);
         for (int i = 0; i < playerConfigs.Count; i++)
         {
             var position = _playerSpawn.position;
