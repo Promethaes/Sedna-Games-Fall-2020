@@ -66,6 +66,7 @@ class Client
             if (leave)
                 break;
             receiveDone.Reset();
+            while(backlog.Count !=0);
             try
             {
                 byte[] buffer = new byte[1024];
