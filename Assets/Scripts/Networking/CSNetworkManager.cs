@@ -201,7 +201,7 @@ public class CSNetworkManager : MonoBehaviour
                 }
 
                 if (sentPos)
-                    timer = 1.0f;
+                    timer = 0.090f;
             }
         }
         else
