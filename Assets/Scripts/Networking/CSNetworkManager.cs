@@ -157,6 +157,7 @@ public class CSNetworkManager : MonoBehaviour
 
     }
 
+    public float sendRateFPS = 60.0f;
     float timer = 0.0f;
     float changeTimer = 3.0f;
     bool changedScene = false;
@@ -201,7 +202,7 @@ public class CSNetworkManager : MonoBehaviour
                 }
 
                 if (sentPos)
-                    timer = 0.090f;
+                    timer = (1000.0f/sendRateFPS)/1000.0f;
             }
         }
         else
