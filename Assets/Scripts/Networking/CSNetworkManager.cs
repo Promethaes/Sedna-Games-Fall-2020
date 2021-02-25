@@ -66,8 +66,6 @@ class Client
             if (leave)
                 break;
             receiveDone.Reset();
-            while (backlog.Count != 0);
-            
             try
             {
                 byte[] buffer = new byte[1024];
@@ -78,7 +76,7 @@ class Client
 
                 backlog.Add(fString);
 
-
+                
 
             }
             catch (Exception e)
@@ -260,34 +258,36 @@ public class CSNetworkManager : MonoBehaviour
         if (!interpetCommands)
             return;
 
-        foreach (var command in client.backlog)
+        for (int i = 0; i < client.backlog.Count; i++)
         {
-            if (command.Length >= 40)
+            if (client.backlog[i].Length >= 40)
             {
-                client.backlog.Remove(command);
+                client.backlog.RemoveAt(i);
+                i--;
                 continue;
             }
 
-            else if (command.Contains("clin"))
+            else if (client.backlog[i].Contains("clin"))
             {
                 //temp code, will only work for 1 player
                 foreach (var lplayer in localPlayers)
                 {
                     if (lplayer.clientNumber == -1)
                     {
-                        var parts = command.Split(' ');
+                        var parts = client.backlog[i].Split(' ');
                         lplayer.clientNumber = int.Parse(parts[1]);
                         Debug.Log(lplayer.clientNumber);
                         break;
                     }
                 }
 
-                client.backlog.Remove(command);
+                client.backlog.RemoveAt(i);
+                i--;
                 continue;
             }
-            else if (command.Contains("spawn"))
+            else if (client.backlog[i].Contains("spawn"))
             {
-                var parts = command.Split(' ');
+                var parts = client.backlog[i].Split(' ');
 
                 var remotePlayer = new PlayerConfiguration(null);
                 remotePlayer.clientNumber = int.Parse(parts[1]);
@@ -300,12 +300,13 @@ public class CSNetworkManager : MonoBehaviour
                 np.GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled = false;
                 DontDestroyOnLoad(np);
                 //tempRemoteMenuPlayers.Add(np);
-                client.backlog.Remove(command);
+                client.backlog.RemoveAt(i);
+                i--;
                 continue;
             }
-            else if (command.Contains("remove"))
+            else if (client.backlog[i].Contains("remove"))
             {
-                var parts = command.Split(' ');
+                var parts = client.backlog[i].Split(' ');
                 int index = int.Parse(parts[1]);
 
                 for (int j = 0; j < remotePlayers.Count; j++)
@@ -317,7 +318,8 @@ public class CSNetworkManager : MonoBehaviour
                     }
                 }
 
-                client.backlog.Remove(command);
+                client.backlog.RemoveAt(i);
+                i--;
                 continue;
             }
 
@@ -325,12 +327,13 @@ public class CSNetworkManager : MonoBehaviour
             {
                 string comp = "cli " + p.clientNumber.ToString();
 
-                if (command.Contains(comp))
+                if (client.backlog[i].Contains(comp))
                 {
-                    if (RunCommand(p, command))
+                    if (RunCommand(p, client.backlog[i]))
                     {
 
-                        client.backlog.Remove(command);
+                        client.backlog.RemoveAt(i);
+                        i--;
                         continue;
                     }
                     else if (playerManager != null)
@@ -338,9 +341,10 @@ public class CSNetworkManager : MonoBehaviour
                         for (int j = 0; j < playerManager.players.Count; j++)
                         {
                             if (playerManager.players[j].GetComponentInChildren<Camera>().enabled == false)
-                                if (RunCommand(playerManager.players[j], command))
+                                if (RunCommand(playerManager.players[j], client.backlog[i]))
                                 {
-                                    client.backlog.Remove(command);
+                                    client.backlog.RemoveAt(i);
+                                    i--;
                                     break;
                                 }
                         }
