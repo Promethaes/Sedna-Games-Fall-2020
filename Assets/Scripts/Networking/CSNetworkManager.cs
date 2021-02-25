@@ -28,7 +28,7 @@ class Client
     public Client()
     {
         IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
-        IPAddress ipAddress = IPAddress.Parse("192.168.0.46");
+        IPAddress ipAddress = IPAddress.Parse("54.205.45.165");
         endPoint = new IPEndPoint(ipAddress, 5000);
 
         clientSocket.Bind(new IPEndPoint(IPAddress.Any, 0));
