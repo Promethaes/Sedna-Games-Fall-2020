@@ -24,11 +24,10 @@ class Client
     public IPEndPoint endPoint;
     public List<string> backlog = new List<string>();
     public bool leave = false;
-
-    public Client()
+    public Client(string ip)
     {
         IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
-        IPAddress ipAddress = IPAddress.Parse("192.168.0.46");
+        IPAddress ipAddress = IPAddress.Parse(ip);
         endPoint = new IPEndPoint(ipAddress, 5000);
 
         clientSocket.Bind(new IPEndPoint(IPAddress.Any, 0));
@@ -66,8 +65,8 @@ class Client
             if (leave)
                 break;
             receiveDone.Reset();
-            while (backlog.Count != 0)
-                Debug.Log("backlog not empty!");
+            //while (backlog.Count != 0)
+            //    Debug.Log("backlog not empty!");
             try
             {
                 byte[] buffer = new byte[1024];
@@ -95,6 +94,8 @@ public class CSNetworkManager : MonoBehaviour
     public bool send = false;
     public bool interpetCommands = true;
     public int sessionID = 6969;
+    [SerializeField]
+    private string IPADDRESS;
 
     public List<PlayerConfiguration> localPlayers = new List<PlayerConfiguration>();
     List<PlayerConfiguration> remotePlayers = new List<PlayerConfiguration>();
@@ -103,7 +104,7 @@ public class CSNetworkManager : MonoBehaviour
 
     void Awake()
     {
-        client = new Client();
+        client = new Client(IPADDRESS);
         recThread = new Thread(client.Receive);
         recThread.Start();
 
@@ -197,6 +198,8 @@ public class CSNetworkManager : MonoBehaviour
                     + playerManager.players[i].transform.position.y.ToString() + " "
                     + playerManager.players[i].transform.position.z.ToString()
                     );
+
+
                     sentPos = true;
                     lastPosList[i] = playerManager.players[i].transform.position;
                 }
