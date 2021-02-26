@@ -207,8 +207,13 @@ public class CSNetworkManager : MonoBehaviour
                         + playerManager.players[i].transform.position.z.ToString()
                         );
                         localPlayerControllers[i].moved = false;
+                        sentMessage = true;
                     }
-                    sentMessage = true;
+                    if (localPlayerControllers[i].attack)
+                    {
+                        client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr atk");
+                        sentMessage = true;
+                    }
                 }
 
                 if (sentMessage)
@@ -422,6 +427,11 @@ public class CSNetworkManager : MonoBehaviour
             {
                 var r = p.GetComponent<Rigidbody>();
                 r.velocity = r.velocity + v;
+                return true;
+            }
+            else if (command.Contains("atk"))
+            {
+                p.GetComponent<PlayerController>().attack = true;
                 return true;
             }
 
