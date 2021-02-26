@@ -165,7 +165,7 @@ public class CSNetworkManager : MonoBehaviour
     bool changedScene = false;
     GamePlayerManager playerManager;
     List<Vector3> lastPosList = new List<Vector3>();
-    List<Vector3> lastRotList = new List<Vector3>();
+    List<Quaternion> lastRotList = new List<Quaternion>();
     // Update is called once per frame
     void Update()
     {
@@ -186,7 +186,7 @@ public class CSNetworkManager : MonoBehaviour
                 foreach (var p in playerManager.players)
                 {
                     lastPosList.Add(p.transform.position);
-                    lastRotList.Add(p.transform.rotation.eulerAngles);
+                    lastRotList.Add(p.transform.rotation);
                 }
 
             if (timer <= 0.0f && send)
@@ -204,7 +204,7 @@ public class CSNetworkManager : MonoBehaviour
                         + playerManager.players[i].transform.position.z.ToString()
                         );
 
-                    if (playerManager.players[i].transform.rotation.eulerAngles.magnitude - lastRotList[i].magnitude != 0.0f)
+                    //if ((playerManager.players[i].transform.rotation - lastRotList[i]) != 0.0f)
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr rot "
                          + playerManager.players[i].GetComponent<PlayerController>()._playerMesh.transform.rotation.x.ToString() + " "
                          + playerManager.players[i].GetComponent<PlayerController>()._playerMesh.transform.rotation.y.ToString() + " "
@@ -214,7 +214,7 @@ public class CSNetworkManager : MonoBehaviour
 
                     sentPos = true;
                     lastPosList[i] = playerManager.players[i].transform.position;
-                    lastRotList[i] = playerManager.players[i].transform.rotation.eulerAngles;
+                    lastRotList[i] = playerManager.players[i].transform.rotation;
                 }
 
                 if (sentPos)
