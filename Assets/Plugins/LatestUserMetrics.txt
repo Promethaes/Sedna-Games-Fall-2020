@@ -1,6 +1,6 @@
-METRICS LOG ENTRY ID 7102
+METRICS LOG ENTRY ID 7552
 	CHECKPOINTS:
-		 - Checkpoint #1:2.600000
+		 - Checkpoint #1:14.400000
 	DEATHS:
 		P1Deaths:
 		P2Deaths:
