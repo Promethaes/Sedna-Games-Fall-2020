@@ -13,6 +13,7 @@ public class ActivateAbiltiesZoneScript : MonoBehaviour
     {
         manager = FindObjectOfType<AbilityZoneManager>();
         manager.abilityZones.Add(this);
+        _cutscene.abilityZone = gameObject;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -28,6 +29,7 @@ public class ActivateAbiltiesZoneScript : MonoBehaviour
             {
                 pController.insideCastingZone = true;
                 pController.abilityScript.setCutscene(_cutscene);
+                
 
                 gameObject.GetComponentInChildren<TMPro.TextMeshPro>().text = "Press LB";
             }
@@ -52,8 +54,4 @@ public class ActivateAbiltiesZoneScript : MonoBehaviour
             }
         }
     }
-
-
-
-
 }

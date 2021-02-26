@@ -91,7 +91,6 @@ public class AbilityScript : MonoBehaviour
         middleText.text = "";
         bottomText.text = "Move the joystick clockwise 10 times!";
         //NOTE: Add this to the other three once their effects are in
-        effects[0].SetActive(true);
 
         float _timer = 60.0f;
         int _counter = 0;
@@ -106,7 +105,11 @@ public class AbilityScript : MonoBehaviour
             _timer-=Time.fixedDeltaTime;
         }
         if (_counter >= 40)
+        {
+            effects[0].SetActive(true);
+            cutscene.effect = effects[0];
             cutscene.startCutscene();
+        }
         StartCoroutine(resetValues());
         yield return null;
     }
