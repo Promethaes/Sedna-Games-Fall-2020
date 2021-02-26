@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Net;
@@ -28,7 +28,7 @@ class Client
     public Client()
     {
         IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
-        IPAddress ipAddress = IPAddress.Parse("192.168.0.46");
+        IPAddress ipAddress = IPAddress.Parse("24.141.201.93");
         endPoint = new IPEndPoint(ipAddress, 5000);
 
         clientSocket.Bind(new IPEndPoint(IPAddress.Any, 0));
@@ -100,6 +100,8 @@ public class CSNetworkManager : MonoBehaviour
     List<PlayerConfiguration> remotePlayers = new List<PlayerConfiguration>();
     List<GameObject> tempRemoteMenuPlayers = new List<GameObject>();
     List<GameObject> localPlayersGameObject = new List<GameObject>();
+
+    public string ip = "";
 
     void Awake()
     {
@@ -197,6 +199,7 @@ public class CSNetworkManager : MonoBehaviour
                     + playerManager.players[i].transform.position.y.ToString() + " "
                     + playerManager.players[i].transform.position.z.ToString()
                     );
+
                     sentPos = true;
                     lastPosList[i] = playerManager.players[i].transform.position;
                 }
