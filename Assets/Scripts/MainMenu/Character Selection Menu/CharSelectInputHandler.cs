@@ -6,6 +6,7 @@ using static UnityEngine.InputSystem.InputAction;
 [RequireComponent(typeof(PlayerCharSelectMenu))]
 public class CharSelectInputHandler : MonoBehaviour {
     [SerializeField] private float _selectionCooldownTime = 0.25f;
+    [SerializeField] private float readyWait = 0.5f;
 
     private PlayerConfiguration _playerConfig;
     private UpdatedControls _controls;
@@ -42,6 +43,10 @@ public class CharSelectInputHandler : MonoBehaviour {
                 _selectAvailable = true;
             }
         }
+        if (readyWait > 0.0f)
+        {
+            readyWait -= Time.deltaTime;
+        }
     }
 
     public void initPlayerMenu(PlayerInput playerInput) {
@@ -69,15 +74,17 @@ public class CharSelectInputHandler : MonoBehaviour {
 
     public void onConfirm(CallbackContext ctx) {
         float value = ctx.ReadValue<float>();
-        if(value >= 0.5f) {
+        if(value >= 0.5f&&readyWait<=0.0f) {
             _menu.readyPlayer();
+            readyWait = 0.25f;
         }
     }
 
     public void onUnconfirm(CallbackContext ctx) {
         float value = ctx.ReadValue<float>();
-        if(value >= 0.5f) {
+        if(value >= 0.5f & readyWait <= 0.0f) {
             _menu.unreadyPlayer();
+            readyWait = 0.25f;
         }
     }
 

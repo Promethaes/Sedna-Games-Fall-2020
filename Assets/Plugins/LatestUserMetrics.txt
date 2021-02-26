@@ -1,73 +1,91 @@
-METRICS LOG ENTRY ID 28871
+METRICS LOG ENTRY ID 18183
 	CHECKPOINTS:
-		 - Checkpoint #1:6.120000
-		 - Checkpoint #2:161.839996
+		 - Checkpoint #1:6.600000
 	DEATHS:
 		P1Deaths:
 		P2Deaths:
 		P3Deaths:
 		P4Deaths:
-METRICS LOG ENTRY ID 24265
+METRICS LOG ENTRY ID 18957
 	CHECKPOINTS:
-		 - Checkpoint #1:7.500000
+		 - Checkpoint #1:4.720000
 	DEATHS:
 		P1Deaths:
 		P2Deaths:
 		P3Deaths:
 		P4Deaths:
-METRICS LOG ENTRY ID 25510
+METRICS LOG ENTRY ID 19192
 	CHECKPOINTS:
-		 - Checkpoint #1:5.600000
-		 - Checkpoint #2:37.439999
-		 - Checkpoint #3:260.839996
 	DEATHS:
 		P1Deaths:
 		P2Deaths:
 		P3Deaths:
 		P4Deaths:
-METRICS LOG ENTRY ID 29523
+METRICS LOG ENTRY ID 19656
 	CHECKPOINTS:
-		 - Checkpoint #1:188.279999
+		 - Checkpoint #1:5.800000
 	DEATHS:
 		P1Deaths:
 		P2Deaths:
 		P3Deaths:
 		P4Deaths:
-METRICS LOG ENTRY ID 29628
+METRICS LOG ENTRY ID 29440
 	CHECKPOINTS:
-		 - Checkpoint #1:4.680000
+		 - Checkpoint #1:4.800000
 	DEATHS:
 		P1Deaths:
 		P2Deaths:
 		P3Deaths:
 		P4Deaths:
-METRICS LOG ENTRY ID 29670
+METRICS LOG ENTRY ID 29590
 	CHECKPOINTS:
-		 - Checkpoint #1:3.900000
+		 - Checkpoint #1:9.880000
 	DEATHS:
 		P1Deaths:
 		P2Deaths:
 		P3Deaths:
 		P4Deaths:
-METRICS LOG ENTRY ID 29745
+METRICS LOG ENTRY ID 32052
 	CHECKPOINTS:
-		 - Checkpoint #1:12.840000
+		 - Checkpoint #1:5.760000
 	DEATHS:
 		P1Deaths:
 		P2Deaths:
 		P3Deaths:
 		P4Deaths:
-METRICS LOG ENTRY ID 30268
+METRICS LOG ENTRY ID 3624
 	CHECKPOINTS:
-		 - Checkpoint #1:45.020000
+		 - Checkpoint #1:6.660000
+		 - Checkpoint #2:50.459999
 	DEATHS:
 		P1Deaths:
 		P2Deaths:
 		P3Deaths:
 		P4Deaths:
-METRICS LOG ENTRY ID 29393
+METRICS LOG ENTRY ID 4114
 	CHECKPOINTS:
-		 - Checkpoint #1:8.300000
+		 - Checkpoint #1:6.960000
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 6384
+	CHECKPOINTS:
+		 - Checkpoint #1:12.160000
+		 - Checkpoint #2:66.860001
+		 - Checkpoint #3:151.919998
+		 - Checkpoint #4:267.899994
+		 - Checkpoint #5:495.039978
+		 - Checkpoint #6:536.359985
+	DEATHS:
+		P1Deaths:
+		P2Deaths:
+		P3Deaths:
+		P4Deaths:
+METRICS LOG ENTRY ID 15638
+	CHECKPOINTS:
+		 - Checkpoint #1:218.299988
 	DEATHS:
 		P1Deaths:
 		P2Deaths:

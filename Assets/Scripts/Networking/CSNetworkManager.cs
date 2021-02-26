@@ -199,6 +199,13 @@ public class CSNetworkManager : MonoBehaviour
                     + playerManager.players[i].transform.position.z.ToString()
                     );
 
+                    client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr qua "
+                    + playerManager.players[i].GetComponentInChildren<Camera>().transform.rotation.w.ToString() + " "
+                    + playerManager.players[i].GetComponentInChildren<Camera>().transform.rotation.x.ToString() + " "
+                    + playerManager.players[i].GetComponentInChildren<Camera>().transform.rotation.y.ToString() + " "
+                     + playerManager.players[i].GetComponentInChildren<Camera>().transform.rotation.z.ToString()
+                    );
+
 
                     sentPos = true;
                     lastPosList[i] = playerManager.players[i].transform.position;
@@ -392,11 +399,19 @@ public class CSNetworkManager : MonoBehaviour
         if (command.Contains("plr"))
         {
             var parts = command.Split(' ');
-            Vector3 v = new Vector3(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6]));
+            Vector3 v = new Vector3();
+            Quaternion v2 = new Quaternion();
+            smoothNetworkMovement SNM = p.GetComponentInChildren<smoothNetworkMovement>();//get proper location of SNM //TODO
+            
+            if (command.Contains("qua"))
+                v2 = new Quaternion(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6]),float.Parse(parts[7]));
+            else
+                v = new Vector3(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6]));
 
             if (command.Contains("pos"))
             {
-                p.transform.position = v;
+                SNM.updatePos(v);
+                //p.transform.position = v;
                 return true;
             }
             else if (command.Contains("scl"))
@@ -406,8 +421,13 @@ public class CSNetworkManager : MonoBehaviour
             }
             else if (command.Contains("vel"))
             {
-                var r = p.GetComponent<Rigidbody>();
-                r.velocity = r.velocity + v;
+                //var r = p.GetComponent<Rigidbody>();
+                //r.velocity = r.velocity + v;
+                return true;
+            }
+            else if (command.Contains("qua"))
+            {
+                SNM.updateRot(v2);
                 return true;
             }
         }
