@@ -10,6 +10,7 @@ public class AbilityScript : MonoBehaviour
     public Image[] _progressBar;
     float _barSize=1000.0f;
     float _barHeight=50.0f;
+    public GameObject[] effects;
     Cutscene cutscene = null;
     public PlayerController playerController;
     public bool inCutscene;
@@ -21,10 +22,11 @@ public class AbilityScript : MonoBehaviour
     public IEnumerator enterQTE(PlayerController player)
     {
         Debug.Log("Entering QTE");
-        if (inCutscene)
+        if (inCutscene || cutscene.cutsceneComplete)
             yield return null;
         player.inCutscene = true;
         playerController = player;
+        effects = player.GetComponentInChildren<AbilityEffectManager>().effects;
         inCutscene = true;
         for (int i=0;i<_progressBar.Length;i++)
             _progressBar[i].gameObject.SetActive(true);
@@ -70,13 +72,13 @@ public class AbilityScript : MonoBehaviour
         switch (num)
         {
             case 0:
-                return (move.x < 0.2f && move.x > -0.2f && move.y > 0.8f);
+                return (move.x < 0.3f && move.x > -0.3f && move.y > 0.7f);
             case 1:
-                return (move.x > 0.8f && move.y < 0.2f && move.y > -0.2f);
+                return (move.x > 0.7f && move.y < 0.3f && move.y > -0.3f);
             case 2:
-                return (move.x < 0.2f && move.x > -0.2f && move.y < -0.8f);
+                return (move.x < 0.3f && move.x > -0.7f && move.y < -0.7f);
             case 3:
-                return (move.x < -0.8f && move.y < 0.2f && move.y > -0.2f);
+                return (move.x < -0.7f && move.y < 0.3f && move.y > -0.3f);
             default:
                 return false;
         }
@@ -88,6 +90,7 @@ public class AbilityScript : MonoBehaviour
         topText.text = "Bubble Shield";
         middleText.text = "";
         bottomText.text = "Move the joystick clockwise 10 times!";
+        //NOTE: Add this to the other three once their effects are in
 
         float _timer = 60.0f;
         int _counter = 0;
@@ -98,13 +101,15 @@ public class AbilityScript : MonoBehaviour
                 _counter++;
             _progress = (float)_counter/40.0f;
             _progressBar[1].rectTransform.sizeDelta = new Vector2(_progress*_barSize, _barHeight);
-            //NOTE: Replace with a bar later
-            middleText.text = _progress.ToString();
             yield return new WaitForFixedUpdate();
             _timer-=Time.fixedDeltaTime;
         }
         if (_counter >= 40)
+        {
+            effects[0].SetActive(true);
+            cutscene.effect = effects[0];
             cutscene.startCutscene();
+        }
         StartCoroutine(resetValues());
         yield return null;
     }
