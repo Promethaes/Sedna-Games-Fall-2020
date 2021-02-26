@@ -11,27 +11,25 @@ public class InitializeLevel : MonoBehaviour
     private void Awake()
     {
 
-        var playerConfigs =
-        (UseXinputScript.use) ? XinputPlayerManager.get.players :
-         PlayerConfigurationManager.get.playerConfigurations;
-
+        var playerConfigs = PlayerConfigurationManager.get.playerConfigurations;
         for (int i = 0; i < playerConfigs.Count; i++)
         {
             var position = _playerSpawn.position;
             position.x += playerConfigs[i].index;
 
             var player = Instantiate(_playerPrefab, position, _playerSpawn.rotation, _playerManager.transform);
-
-            if (UseXinputScript.use)
+            
+            if (playerConfigs[i].isRemotePlayer)
             {
-                player.GetComponent<GameXinputHandler>().initPlayer(playerConfigs[i]);
+                player.GetComponentInChildren<Camera>().enabled = false;
+                player.name = "REMOTE";
             }
             else
-            {
-                player.GetComponent<GameInputHandler>().initPlayer(playerConfigs[i]);
-            }
+                _cameraSplitter.addCameras(player.GetComponent<PlayerCameraAndUI>());
 
-            _cameraSplitter.addCameras(player.GetComponent<PlayerCameraAndUI>());
+            player.GetComponent<GameInputHandler>().initPlayer(playerConfigs[i]);
+
+
 
             _playerManager.players.Add(player);
         }
