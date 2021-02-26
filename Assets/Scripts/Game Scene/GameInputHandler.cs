@@ -95,79 +95,45 @@ public class GameInputHandler : MonoBehaviour
     public void OnJump(CallbackContext ctx)
     {
         float temp = ctx.ReadValue<float>();
-
-        if (temp >= 0.5f)
-            _playerController.isJumping = true;
-        else
-            _playerController.isJumping = false;
+        _playerController.isJumping = temp >= 0.5f;
     }
     public void OnDash(CallbackContext ctx)
     {
         float temp = ctx.ReadValue<float>();
-
-        if (temp >= 0.5f)
-            _playerController.isDashing = true;
-        else
-            _playerController.isDashing = false;
+        _playerController.isDashing = temp >= 0.5f;
     }
 
     public void OnAbility(CallbackContext ctx)
     {
         float temp = ctx.ReadValue<float>();
-
-        if (temp >= 0.5f)
-            _playerController.useAbility = true;
-        else
-            _playerController.useAbility = false;
+        _playerController.useAbility = temp >= 0.5f;
     }
     public void OnCombatAbility(CallbackContext ctx)
     {
         float temp = ctx.ReadValue<float>();
-
-        if (temp >= 0.5f)
-            _playerController.useCombatAbility = true;
-        else
-            _playerController.useCombatAbility = false;
+        _playerController.useCombatAbility = temp >= 0.5f;
     }
     public void OnRevive(CallbackContext ctx)
     {
         float temp = ctx.ReadValue<float>();
-
-        if (temp >= 0.5f)
-            _playerController.revive = true;
-        else
-            _playerController.revive = false;
+        _playerController.revive = temp >= 0.5f;
     }
 
     public void OnAttack(CallbackContext ctx)
     {
         float temp = ctx.ReadValue<float>();
-
-        if (temp >= 0.5f)
-            _playerController.attack = true;
-        else
-            _playerController.attack = false;
-
+        _playerController.attack = temp >= 0.5f;
     }
     public void OnToggle(CallbackContext ctx)
     {
         float temp = ctx.ReadValue<float>();
-
-        if (temp >= 0.5f)
-            _playerController.toggle = true;
-        else
-            _playerController.toggle = false;
-
+        _playerController.toggle = temp >= 0.5f;
     }
 
     public void OnSelect(CallbackContext ctx)
     {
         float temp = ctx.ReadValue<float>();
-
-        if (temp >= 0.5f)
-            _playerController.selectWheel = true;
-        else
-            _playerController.selectWheel = false;
+        _playerController.selectWheel = temp >= 0.5f;
     }
 
 }
