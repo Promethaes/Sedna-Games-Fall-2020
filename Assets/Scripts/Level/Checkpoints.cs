@@ -7,7 +7,7 @@ public class Checkpoints : MonoBehaviour
 {
     public CheckpointManager manager;
     private void OnTriggerEnter(Collider other) {
-        if (other.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             if (manager.checkSpawn() != transform)
                 manager.newSpawn();

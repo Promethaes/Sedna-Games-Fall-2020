@@ -25,7 +25,7 @@ public class RangedEnemyData : MonoBehaviour
             var temp = GameObject.Instantiate(flingable);
             temp.SetActive(false);
             temp.transform.position = gameObject.transform.position;
-            temp.GetComponent<Flingable>().damage = enemyData._damageValues;
+            temp.GetComponent<Flingable>().damage = enemyData.damageValues;
             _flingables.Add(temp);
         }
     }
@@ -60,7 +60,7 @@ public class RangedEnemyData : MonoBehaviour
         _flingables[_key].transform.position = gameObject.transform.position + new Vector3(0.0f, 1f, 0.0f) + gameObject.transform.forward;
 
         //@Temp: remove after values are set in stone
-        _flingables[_key].GetComponent<Flingable>().damage = enemyData._damageValues;
+        _flingables[_key].GetComponent<Flingable>().damage = enemyData.damageValues;
 
         var tPos = target.position - gameObject.transform.position;
 

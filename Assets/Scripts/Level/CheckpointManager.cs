@@ -22,7 +22,7 @@ public class CheckpointManager : MonoBehaviour {
         foreach(EnemySpawnPoint spawner in enemySpawners) {
             foreach(GameObject enemy in spawner.spawnEnemies) {
                 enemy.SetActive(false);
-                enemy.GetComponent<EnemyData>()._health = enemy.GetComponent<EnemyData>().getMaxHealth();
+                enemy.GetComponent<EnemyData>().health = enemy.GetComponent<EnemyData>().getMaxHealth();
             }
             spawner.setShouldSpawn(false);
         }

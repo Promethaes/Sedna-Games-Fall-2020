@@ -12,6 +12,7 @@ public class GameInputHandler : MonoBehaviour
     private UpdatedControls _controls = null;
 
     public List<PlayerTypeToGameObject> _playerPrefabs = null;
+    public Animator _animator;
 
     private void Awake()
     {
@@ -43,6 +44,7 @@ public class GameInputHandler : MonoBehaviour
         _playerMesh = _playerPrefabs[config.index].prefab;
         _playerMesh.SetActive(true);
         _playerController.playerType = config.character.type;
+        _animator = _playerMesh.GetComponentInChildren<Animator>();
 
         _playerConfig.input.SwitchCurrentActionMap("Game");
         _playerConfig.input.onActionTriggered += onActionTriggered;
@@ -57,6 +59,7 @@ public class GameInputHandler : MonoBehaviour
         _playerMesh.SetActive(true);
         _playerConfig.character.type = _playerPrefabs[config].type;
         _playerController.playerType = _playerPrefabs[config].type;
+        _animator = _playerMesh.GetComponentInChildren<Animator>();
 
         // Set UI image
         GameObject.Find("PlayerUIPanel(Clone)").GetComponent<PlayerHealthUI>().setCharacterImage(config);
@@ -69,7 +72,9 @@ public class GameInputHandler : MonoBehaviour
         if (ctx.action.name == _controls.Game.Jump.name) OnJump(ctx);
         if (ctx.action.name == _controls.Game.Dash.name) OnDash(ctx);
         if (ctx.action.name == _controls.Game.Ability.name) OnAbility(ctx);
+        if (ctx.action.name == _controls.Game.CombatAbility.name) OnCombatAbility(ctx);
         if (ctx.action.name == _controls.Game.Attack.name) OnAttack(ctx);
+        if (ctx.action.name == _controls.Game.Toggle.name) OnToggle(ctx);
         if (ctx.action.name == _controls.Game.Revive.name) OnRevive(ctx);
         if (ctx.action.name == _controls.Game.Select.name) OnSelect(ctx);
 
@@ -86,11 +91,21 @@ public class GameInputHandler : MonoBehaviour
     }
     public void OnJump(CallbackContext ctx)
     {
-        _playerController.isJumping = ctx.ReadValue<float>();
+        float temp = ctx.ReadValue<float>();
+
+        if (temp >= 0.5f)
+            _playerController.isJumping = true;
+        else
+            _playerController.isJumping = false;
     }
     public void OnDash(CallbackContext ctx)
     {
-        _playerController.isDashing = ctx.ReadValue<float>();
+        float temp = ctx.ReadValue<float>();
+
+        if (temp >= 0.5f)
+            _playerController.isDashing = true;
+        else
+            _playerController.isDashing = false;
     }
 
     public void OnAbility(CallbackContext ctx)
@@ -101,6 +116,15 @@ public class GameInputHandler : MonoBehaviour
             _playerController.useAbility = true;
         else
             _playerController.useAbility = false;
+    }
+    public void OnCombatAbility(CallbackContext ctx)
+    {
+        float temp = ctx.ReadValue<float>();
+
+        if (temp >= 0.5f)
+            _playerController.useCombatAbility = true;
+        else
+            _playerController.useCombatAbility = false;
     }
     public void OnRevive(CallbackContext ctx)
     {
@@ -120,6 +144,16 @@ public class GameInputHandler : MonoBehaviour
             _playerController.attack = true;
         else
             _playerController.attack = false;
+
+    }
+    public void OnToggle(CallbackContext ctx)
+    {
+        float temp = ctx.ReadValue<float>();
+
+        if (temp >= 0.5f)
+            _playerController.toggle = true;
+        else
+            _playerController.toggle = false;
 
     }
 
