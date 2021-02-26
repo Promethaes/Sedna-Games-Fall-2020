@@ -204,7 +204,7 @@ public class CSNetworkManager : MonoBehaviour
                         + playerManager.players[i].transform.position.z.ToString()
                         );
 
-                    if (playerManager.players[i].transform.position.magnitude - lastRotList[i].magnitude != 0.0f)
+                    if (playerManager.players[i].transform.rotation.eulerAngles.magnitude - lastRotList[i].magnitude != 0.0f)
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr rot "
                          + playerManager.players[i].GetComponent<PlayerController>()._playerMesh.transform.eulerAngles.x.ToString() + " "
                          + playerManager.players[i].GetComponent<PlayerController>()._playerMesh.transform.eulerAngles.y.ToString() + " "
