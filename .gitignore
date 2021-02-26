@@ -67,5 +67,5 @@ crashlytics-build.properties
 *.iobj
 *.ipdb
 *.hint
-*.log
+fmod_editor.log
 Assets/Plugins/LatestUserMetrics.txt
