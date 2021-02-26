@@ -164,8 +164,7 @@ public class CSNetworkManager : MonoBehaviour
     float changeTimer = 3.0f;
     bool changedScene = false;
     GamePlayerManager playerManager;
-    List<Vector3> lastPosList = new List<Vector3>();
-    List<Quaternion> lastRotList = new List<Quaternion>();
+    List<PlayerController> localPlayerControllers = new List<PlayerController>();
     // Update is called once per frame
     void Update()
     {
@@ -177,47 +176,39 @@ public class CSNetworkManager : MonoBehaviour
             timer -= Time.deltaTime;
 
             if (playerManager == null)
-                playerManager = FindObjectOfType<GamePlayerManager>();
-
-            if (playerManager == null)
-                return;
-
-            if (lastPosList.Count == 0 && lastRotList.Count == 0)
-                foreach (var p in playerManager.players)
-                {
-                    lastPosList.Add(p.transform.position);
-                    lastRotList.Add(p.transform.rotation);
-                }
-
-            if (timer <= 0.0f && send)
             {
-                bool sentPos = false;
-                for (int i = 0; i < localPlayers.Count; i++)
+                playerManager = FindObjectOfType<GamePlayerManager>();
+                if (playerManager == null)
+                    return;
+            }
+            else
+            {
+                for (int i = 0; i < playerManager.players.Count; i++)
                 {
                     if (playerManager.players[i].GetComponentInChildren<Camera>().enabled == false)
                         continue;
 
-                    if (playerManager.players[i].transform.position.magnitude - lastPosList[i].magnitude != 0.0f)
+                    localPlayerControllers.Add(playerManager.players[i].GetComponent<PlayerController>());
+                }
+            }
+
+
+            if (timer <= 0.0f && send)
+            {
+                bool sentMessage = false;
+                for (int i = 0; i < localPlayerControllers.Count; i++)
+                {
+                    if (localPlayerControllers[i].moved)
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
                         + playerManager.players[i].transform.position.x.ToString() + " "
                         + playerManager.players[i].transform.position.y.ToString() + " "
                         + playerManager.players[i].transform.position.z.ToString()
                         );
 
-                    //if ((playerManager.players[i].transform.rotation - lastRotList[i]) != 0.0f)
-                        client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr rot "
-                         + playerManager.players[i].GetComponent<PlayerController>()._playerMesh.transform.rotation.x.ToString() + " "
-                         + playerManager.players[i].GetComponent<PlayerController>()._playerMesh.transform.rotation.y.ToString() + " "
-                         + playerManager.players[i].GetComponent<PlayerController>()._playerMesh.transform.rotation.z.ToString() + " "
-                         + playerManager.players[i].GetComponent<PlayerController>()._playerMesh.transform.rotation.w.ToString()
-                         );
-
-                    sentPos = true;
-                    lastPosList[i] = playerManager.players[i].transform.position;
-                    lastRotList[i] = playerManager.players[i].transform.rotation;
+                    sentMessage = true;
                 }
 
-                if (sentPos)
+                if (sentMessage)
                     timer = (1000.0f / sendRateFPS) / 1000.0f;
             }
         }
