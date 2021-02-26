@@ -420,6 +420,11 @@ public class CSNetworkManager : MonoBehaviour
                 p.GetComponent<PlayerController>().attack = true;
                 return true;
             }
+            else if (command.Contains("chng"))
+            {
+                p.GetComponent<PlayerController>().ChangeChar(int.Parse(parts[4]));
+                return true;
+            }
             Vector3 v = new Vector3(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6]));
 
             if (command.Contains("pos"))
