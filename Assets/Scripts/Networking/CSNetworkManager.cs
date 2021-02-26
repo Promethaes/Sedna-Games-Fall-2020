@@ -181,7 +181,7 @@ public class CSNetworkManager : MonoBehaviour
                 if (playerManager == null)
                     return;
             }
-            else
+            else if (localPlayerControllers.Count == 0)
             {
                 for (int i = 0; i < playerManager.players.Count; i++)
                 {
