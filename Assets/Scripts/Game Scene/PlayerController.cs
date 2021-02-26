@@ -106,6 +106,7 @@ public class PlayerController : MonoBehaviour
 
     //
     public bool inCutscene = false;
+    public GameObject questUI;
 
     // -------------------------------------------------------------------------
 
@@ -115,6 +116,25 @@ public class PlayerController : MonoBehaviour
         backend = this.GetComponentInParent<PlayerBackend>();
         backend.hp = backend.maxHP;
         setupPlayer();
+        StartCoroutine(SetupWheelUI());
+        StartCoroutine(SetupQuestUI());
+    }
+
+    IEnumerator SetupWheelUI()
+    {
+        while (_wheelUI == null)
+        {
+            yield return new WaitForSeconds(5.0f);
+        }
+    }
+
+    IEnumerator SetupQuestUI()
+    {
+        while (questUI == null)
+        {
+            questUI = GameObject.Find("QuestsUI");
+            yield return new WaitForSeconds(2.5f);
+        }
     }
 
     void setupPlayer()
@@ -205,6 +225,9 @@ public class PlayerController : MonoBehaviour
             //Combat Ability
             if (useCombatAbility)
                 _useCombatAbility();
+
+            if (toggle)
+                _Toggle();
         }
     }
 
@@ -276,31 +299,19 @@ public class PlayerController : MonoBehaviour
         if (absY > 0.25f || absX > 0.25f)
         {
             if (absX >= absY)
-            {
                 if (mouseInput.x > 0.0f)
-                {
                     //set 1, rattlesnake
                     _wheelSelection = 1;
-                }
                 else
-                {
                     //set 3, bison
                     _wheelSelection = 3;
-                }
-            }
             else
-            {
                 if (mouseInput.y > 0.0f)
-                {
                     //set 0, turtle
                     _wheelSelection = 0;
-                }
                 else
-                {
                     //set 2, polar bear
                     _wheelSelection = 2;
-                }
-            }
             _wheelUI.normalizeWheelUI();
             _wheelUI.highlightWheelUI(_wheelSelection);
         }
@@ -653,6 +664,12 @@ public class PlayerController : MonoBehaviour
             }
         }
         revive = false;
+    }
+
+    void _Toggle()
+    {
+        toggle = false;
+        questUI.SetActive(!questUI.activeSelf);
     }
 
     void _Regen()
