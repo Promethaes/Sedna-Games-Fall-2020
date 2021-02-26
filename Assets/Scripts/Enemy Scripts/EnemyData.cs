@@ -42,6 +42,7 @@ public class EnemyData : MonoBehaviour
         chaotic_Water_Spirit,
         flinger,
         dumpageMiniBoss,
+        splitter,
     }
 
     public enemyType enemy = enemyType.buckthorn;
@@ -72,28 +73,32 @@ public class EnemyData : MonoBehaviour
         {
             case enemyType.buckthorn:
                 setHealth(150.0f);
-                setCombo(15.0f, 2.5f);
+                setCombo(15.0f);
                 break;
             case enemyType.chaotic_Water_Spirit:
                 setHealth(80.0f);
-                setCombo(15.0f, 10.0f);
+                setCombo(15.0f);
                 break;
             case enemyType.dumpage_Monster:
                 setHealth(250.0f);
-                setCombo(20.0f, 2.0f);
+                setCombo(20.0f);
                 break;
             case enemyType.icePick:
                 setHealth(120.0f);
-                setCombo(8.0f, 10.9f);
+                setCombo(8.0f);
                 icePickEnemies.Add(this.gameObject);
                 break;
             case enemyType.flinger:
                 setHealth(150.0f);
-                setCombo(15.0f, 30.0f);
+                setCombo(15.0f);
                 break;
             case enemyType.dumpageMiniBoss:
                 setHealth(350.0f);
-                setCombo(20.0f, 30.0f);
+                setCombo(20.0f);
+                break;
+            case enemyType.splitter:
+                setHealth(75.0f);
+                setCombo(20.0f);
                 break;
             default:
                 break;
@@ -175,11 +180,10 @@ public class EnemyData : MonoBehaviour
         yield return null;
     }
 
-    protected void setCombo(float damage, float range)
+    protected void setCombo(float damage)
     {
         //Damage values for combo hits 1/2/3, animation length for combo hits 1/2/3
         damageValues = damage * enemyScale;
-        range = range * enemyScale;
     }
 
     public NavMeshAgent getNavMeshAgent()

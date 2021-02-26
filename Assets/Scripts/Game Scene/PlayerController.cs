@@ -116,17 +116,9 @@ public class PlayerController : MonoBehaviour
         backend = this.GetComponentInParent<PlayerBackend>();
         backend.hp = backend.maxHP;
         setupPlayer();
-        StartCoroutine(SetupWheelUI());
         StartCoroutine(SetupQuestUI());
     }
 
-    IEnumerator SetupWheelUI()
-    {
-        while (_wheelUI == null)
-        {
-            yield return new WaitForSeconds(5.0f);
-        }
-    }
 
     IEnumerator SetupQuestUI()
     {
