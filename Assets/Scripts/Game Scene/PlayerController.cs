@@ -316,6 +316,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void ChangeChar(int selec)
+    {
+        GetComponentInParent<GameInputHandler>().swapPlayer(selec);
+        _animator = GetComponentInParent<GameInputHandler>()._animator;
+        setupPlayer();
+    }
+
+    public bool playerChanged = false;
     void _ConfirmWheel()
     {
         _wheelUI.hideWheelUI();
@@ -334,7 +342,7 @@ public class PlayerController : MonoBehaviour
                 _animator = GetComponentInParent<GameInputHandler>()._animator;
             }
 
-
+            playerChanged = true;
             setupPlayer();
         }
     }

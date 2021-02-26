@@ -22,7 +22,6 @@ public class InitializeLevel : MonoBehaviour
             if (playerConfigs[i].isRemotePlayer)
             {
                 player.GetComponentInChildren<Camera>().enabled = false;
-                player.GetComponent<PlayerController>().enabled = false;
                 player.name = "REMOTE";
             }
             else

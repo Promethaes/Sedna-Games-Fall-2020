@@ -214,6 +214,12 @@ public class CSNetworkManager : MonoBehaviour
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr atk");
                         sentMessage = true;
                     }
+                    if (localPlayerControllers[i].playerChanged)
+                    {
+                        client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr chng " + ((int)localPlayerControllers[i].playerType).ToString());
+                        localPlayerControllers[i].playerChanged = false;
+                        sentMessage = true;
+                    }
                 }
 
                 if (sentMessage)
@@ -312,7 +318,6 @@ public class CSNetworkManager : MonoBehaviour
                 var np = GameObject.Instantiate(PlayerConfigurationManager.get._configPrefab);
 
                 PlayerConfigurationManager.get.setPlayerCharacter(remotePlayer.index, np.GetComponent<MakePlayerCharSelectMenu>().playerSetupMenu.GetComponent<PlayerCharSelectMenu>()._characterPrefabs[1]);
-                np.GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled = false;
                 DontDestroyOnLoad(np);
                 //tempRemoteMenuPlayers.Add(np);
                 client.backlog.RemoveAt(i);
@@ -410,7 +415,11 @@ public class CSNetworkManager : MonoBehaviour
                 p.transform.rotation.Set(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6]), float.Parse(parts[7]));
                 return true;
             }
-
+            else if (command.Contains("atk"))
+            {
+                p.GetComponent<PlayerController>().attack = true;
+                return true;
+            }
             Vector3 v = new Vector3(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6]));
 
             if (command.Contains("pos"))
@@ -429,11 +438,7 @@ public class CSNetworkManager : MonoBehaviour
                 r.velocity = r.velocity + v;
                 return true;
             }
-            else if (command.Contains("atk"))
-            {
-                p.GetComponent<PlayerController>().attack = true;
-                return true;
-            }
+
 
         }
         return false;
