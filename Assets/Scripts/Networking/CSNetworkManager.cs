@@ -198,13 +198,16 @@ public class CSNetworkManager : MonoBehaviour
                 bool sentMessage = false;
                 for (int i = 0; i < localPlayerControllers.Count; i++)
                 {
+
                     if (localPlayerControllers[i].moved)
+                    {
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
                         + playerManager.players[i].transform.position.x.ToString() + " "
                         + playerManager.players[i].transform.position.y.ToString() + " "
                         + playerManager.players[i].transform.position.z.ToString()
                         );
-
+                        localPlayerControllers[i].moved = false;
+                    }
                     sentMessage = true;
                 }
 
