@@ -165,6 +165,7 @@ public class CSNetworkManager : MonoBehaviour
     bool changedScene = false;
     GamePlayerManager playerManager;
     List<Vector3> lastPosList = new List<Vector3>();
+    List<Vector3> lastRotList = new List<Vector3>();
     // Update is called once per frame
     void Update()
     {
@@ -181,9 +182,12 @@ public class CSNetworkManager : MonoBehaviour
             if (playerManager == null)
                 return;
 
-            if (lastPosList.Count == 0)
+            if (lastPosList.Count == 0 && lastRotList.Count == 0)
                 foreach (var p in playerManager.players)
+                {
                     lastPosList.Add(p.transform.position);
+                    lastRotList.Add(p.transform.rotation.eulerAngles);
+                }
 
             if (timer <= 0.0f && send)
             {
@@ -193,23 +197,23 @@ public class CSNetworkManager : MonoBehaviour
                     if (playerManager.players[i].GetComponentInChildren<Camera>().enabled == false)
                         continue;
 
+                    if (playerManager.players[i].transform.position.magnitude - lastPosList[i].magnitude != 0.0f)
+                        client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
+                        + playerManager.players[i].transform.position.x.ToString() + " "
+                        + playerManager.players[i].transform.position.y.ToString() + " "
+                        + playerManager.players[i].transform.position.z.ToString()
+                        );
 
-                    client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
-                    + playerManager.players[i].transform.position.x.ToString() + " "
-                    + playerManager.players[i].transform.position.y.ToString() + " "
-                    + playerManager.players[i].transform.position.z.ToString()
-                    );
-
-                   client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr rot "
-                    + playerManager.players[i].GetComponent<PlayerController>()._playerMesh.transform.eulerAngles.x.ToString() + " "
-                    + playerManager.players[i].GetComponent<PlayerController>()._playerMesh.transform.eulerAngles.y.ToString() + " "
-                    + playerManager.players[i].GetComponent<PlayerController>()._playerMesh.transform.eulerAngles.z.ToString()
-                    );
-                    //client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
-                    //+ playerManager.players[i].transform.rotation.ToString());
+                    if (playerManager.players[i].transform.position.magnitude - lastRotList[i].magnitude != 0.0f)
+                        client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr rot "
+                         + playerManager.players[i].GetComponent<PlayerController>()._playerMesh.transform.eulerAngles.x.ToString() + " "
+                         + playerManager.players[i].GetComponent<PlayerController>()._playerMesh.transform.eulerAngles.y.ToString() + " "
+                         + playerManager.players[i].GetComponent<PlayerController>()._playerMesh.transform.eulerAngles.z.ToString()
+                         );
 
                     sentPos = true;
                     lastPosList[i] = playerManager.players[i].transform.position;
+                    lastRotList[i] = playerManager.players[i].transform.rotation.eulerAngles;
                 }
 
                 if (sentPos)
