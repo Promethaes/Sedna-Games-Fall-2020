@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool toggle = false;
 
     private Rigidbody _rigidbody = null;
-    private GameObject _playerMesh = null;
+    public GameObject _playerMesh = null;
 
     // Jump stuff
     private bool _jumped = false;

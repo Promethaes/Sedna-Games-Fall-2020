@@ -28,7 +28,7 @@ class Client
     public Client()
     {
         IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
-        IPAddress ipAddress = IPAddress.Parse("24.141.201.93");
+        IPAddress ipAddress = IPAddress.Parse("192.168.0.46");
         endPoint = new IPEndPoint(ipAddress, 5000);
 
         clientSocket.Bind(new IPEndPoint(IPAddress.Any, 0));
@@ -200,12 +200,20 @@ public class CSNetworkManager : MonoBehaviour
                     + playerManager.players[i].transform.position.z.ToString()
                     );
 
+                   client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr rot "
+                    + playerManager.players[i].GetComponent<PlayerController>()._playerMesh.transform.eulerAngles.x.ToString() + " "
+                    + playerManager.players[i].GetComponent<PlayerController>()._playerMesh.transform.eulerAngles.y.ToString() + " "
+                    + playerManager.players[i].GetComponent<PlayerController>()._playerMesh.transform.eulerAngles.z.ToString()
+                    );
+                    //client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
+                    //+ playerManager.players[i].transform.rotation.ToString());
+
                     sentPos = true;
                     lastPosList[i] = playerManager.players[i].transform.position;
                 }
 
                 if (sentPos)
-                    timer = (1000.0f/sendRateFPS)/1000.0f;
+                    timer = (1000.0f / sendRateFPS) / 1000.0f;
             }
         }
         else
@@ -408,6 +416,11 @@ public class CSNetworkManager : MonoBehaviour
             {
                 var r = p.GetComponent<Rigidbody>();
                 r.velocity = r.velocity + v;
+                return true;
+            }
+            else if (command.Contains("rot"))
+            {
+                p.transform.Rotate(v);
                 return true;
             }
         }
