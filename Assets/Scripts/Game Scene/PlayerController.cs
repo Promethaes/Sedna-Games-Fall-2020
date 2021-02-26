@@ -436,6 +436,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public bool usedAbility = false;
     void _UseAbility()
     {
         if (!useAbility)
@@ -449,6 +450,7 @@ public class PlayerController : MonoBehaviour
 
         StartCoroutine(abilityScript.enterQTE(this));
         useAbility = false;
+        usedAbility = true;
     }
 
     void _useCombatAbility()

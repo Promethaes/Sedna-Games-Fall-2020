@@ -220,6 +220,12 @@ public class CSNetworkManager : MonoBehaviour
                         localPlayerControllers[i].playerChanged = false;
                         sentMessage = true;
                     }
+                    if (localPlayerControllers[i].usedAbility)
+                    {
+                        client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr abil");
+                        localPlayerControllers[i].usedAbility = false;
+                        sentMessage = true;
+                    }
                 }
 
                 if (sentMessage)
@@ -423,6 +429,11 @@ public class CSNetworkManager : MonoBehaviour
             else if (command.Contains("chng"))
             {
                 p.GetComponent<PlayerController>().ChangeChar(int.Parse(parts[4]));
+                return true;
+            }
+            else if (command.Contains("abil"))
+            {
+                p.GetComponent<PlayerController>().useAbility = true;
                 return true;
             }
             Vector3 v = new Vector3(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6]));
