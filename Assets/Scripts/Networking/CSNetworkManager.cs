@@ -206,9 +206,10 @@ public class CSNetworkManager : MonoBehaviour
 
                     if (playerManager.players[i].transform.rotation.eulerAngles.magnitude - lastRotList[i].magnitude != 0.0f)
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr rot "
-                         + playerManager.players[i].GetComponent<PlayerController>()._playerMesh.transform.eulerAngles.x.ToString() + " "
-                         + playerManager.players[i].GetComponent<PlayerController>()._playerMesh.transform.eulerAngles.y.ToString() + " "
-                         + playerManager.players[i].GetComponent<PlayerController>()._playerMesh.transform.eulerAngles.z.ToString()
+                         + playerManager.players[i].GetComponent<PlayerController>()._playerMesh.transform.rotation.x.ToString() + " "
+                         + playerManager.players[i].GetComponent<PlayerController>()._playerMesh.transform.rotation.y.ToString() + " "
+                         + playerManager.players[i].GetComponent<PlayerController>()._playerMesh.transform.rotation.z.ToString() + " "
+                         + playerManager.players[i].GetComponent<PlayerController>()._playerMesh.transform.rotation.w.ToString()
                          );
 
                     sentPos = true;
@@ -404,6 +405,13 @@ public class CSNetworkManager : MonoBehaviour
         if (command.Contains("plr"))
         {
             var parts = command.Split(' ');
+
+            if (command.Contains("rot"))
+            {
+                p.transform.rotation.Set(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6]), float.Parse(parts[7]));
+                return true;
+            }
+
             Vector3 v = new Vector3(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6]));
 
             if (command.Contains("pos"))
@@ -422,11 +430,7 @@ public class CSNetworkManager : MonoBehaviour
                 r.velocity = r.velocity + v;
                 return true;
             }
-            else if (command.Contains("rot"))
-            {
-                p.transform.Rotate(v);
-                return true;
-            }
+
         }
         return false;
     }
