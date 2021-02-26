@@ -5,7 +5,6 @@ using TMPro;
 
 public class PlayerCharSelectMenu : MonoBehaviour
 {
-
     public int charSelectIndex = 0;
     public FMODUnity.StudioEventEmitter charSwapSound;
 
@@ -63,7 +62,7 @@ public class PlayerCharSelectMenu : MonoBehaviour
     public void startGame()
     {
         if (!_inputEnabled) return;
-        PlayerConfigurationManager.get.allPlayersReady();
+       // PlayerConfigurationManager.get.allPlayersReady();
     }
 
     public void scrollSelectionForward()

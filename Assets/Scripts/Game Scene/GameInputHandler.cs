@@ -46,8 +46,11 @@ public class GameInputHandler : MonoBehaviour
         _playerController.playerType = config.character.type;
         _animator = _playerMesh.GetComponentInChildren<Animator>();
 
-        _playerConfig.input.SwitchCurrentActionMap("Game");
-        _playerConfig.input.onActionTriggered += onActionTriggered;
+        if (_playerConfig.input != null)
+        {
+            _playerConfig.input.SwitchCurrentActionMap("Game");
+            _playerConfig.input.onActionTriggered += onActionTriggered;
+        }
     }
 
     public void swapPlayer(int config)
