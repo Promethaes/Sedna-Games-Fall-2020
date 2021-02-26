@@ -168,7 +168,7 @@ public class PlayerController : MonoBehaviour
             _playerMesh = GetComponentInParent<GameXinputHandler>().playerPrefabs[(int)playerType].prefab;
         else
             _playerMesh = GetComponentInParent<GameInputHandler>()._playerPrefabs[(int)playerType].prefab;
-            
+
         backend.hp = backend.maxHP * percentage;
         hitboxes = _playerMesh.GetComponentsInChildren<AttackHitbox>(true);
         if (playerType == PlayerType.BISON)
@@ -375,7 +375,7 @@ public class PlayerController : MonoBehaviour
                 {
                     _jumped = false;
                     _doubleJumped = false;
-                    _animator.SetBool("jumping", false);
+                    if(_animator) _animator.SetBool("jumping", false);
                 }
             }
             if (downed || inCutscene)
