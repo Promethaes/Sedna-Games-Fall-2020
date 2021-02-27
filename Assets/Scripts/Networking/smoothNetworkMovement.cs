@@ -2,12 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimeKeeper
-{
-    public float lastTime = 0.0f;
-    public float thisTime = 0.001f;
-}
-
 public class smoothNetworkMovement : MonoBehaviour
 {
 
@@ -17,17 +11,14 @@ public class smoothNetworkMovement : MonoBehaviour
     public Quaternion oldRot;
     public Quaternion newRot;
 
-    TimeKeeper posTime = null;
-    TimeKeeper rotTime = null;
+   
 
     // Start is called before the first frame update
     void Start()
     {
         t = GetComponent<Transform>();
 
-        posTime = new TimeKeeper();
-        rotTime = new TimeKeeper();
-
+      
         //get proper transform //TODO
     }
 
@@ -35,16 +26,12 @@ public class smoothNetworkMovement : MonoBehaviour
     {
         oldPos = newPos;
         newPos = v;
-        posTime.lastTime = posTime.thisTime;
-        posTime.thisTime = Time.time;
     }
 
     public void updateRot(Quaternion q)
     {
         oldRot = newRot;
         newRot = q;
-        rotTime.lastTime = rotTime.thisTime;
-        rotTime.thisTime = Time.time;
     }
     // Update is called once per frame
     void Update()
@@ -57,9 +44,6 @@ public class smoothNetworkMovement : MonoBehaviour
     float u = 0.0f;
     void _UpdatePos()
     {
-        float currentTime = Time.time - (posTime.lastTime);
-        float percent = ((currentTime - posTime.lastTime) / (posTime.thisTime - posTime.lastTime));
-
         if (u >= 1.0f)
         {
             u = 0.0f;
@@ -75,8 +59,6 @@ public class smoothNetworkMovement : MonoBehaviour
     float rotU = 0.0f;
     void _UpdateRot()
     {
-        float currentTime = Time.time - (rotTime.lastTime);
-        float percent = ((currentTime - rotTime.lastTime) / (rotTime.thisTime - rotTime.lastTime));
 
         if (rotU >= 1.0f)
         {
