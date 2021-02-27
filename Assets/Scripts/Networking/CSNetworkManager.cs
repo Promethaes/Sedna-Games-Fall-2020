@@ -200,10 +200,10 @@ public class CSNetworkManager : MonoBehaviour
                     );
 
                     client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr qua "
-                    + playerManager.players[i].GetComponentInChildren<Camera>().transform.rotation.w.ToString() + " "
                     + playerManager.players[i].GetComponentInChildren<Camera>().transform.rotation.x.ToString() + " "
                     + playerManager.players[i].GetComponentInChildren<Camera>().transform.rotation.y.ToString() + " "
-                     + playerManager.players[i].GetComponentInChildren<Camera>().transform.rotation.z.ToString()
+                     + playerManager.players[i].GetComponentInChildren<Camera>().transform.rotation.z.ToString() + " "
+                    + playerManager.players[i].GetComponentInChildren<Camera>().transform.rotation.w.ToString()
                     );
 
 
@@ -212,7 +212,7 @@ public class CSNetworkManager : MonoBehaviour
                 }
 
                 if (sentPos)
-                    timer = (1000.0f/sendRateFPS)/1000.0f;
+                    timer = (1000.0f / sendRateFPS) / 1000.0f;
             }
         }
         else
@@ -401,10 +401,13 @@ public class CSNetworkManager : MonoBehaviour
             var parts = command.Split(' ');
             Vector3 v = new Vector3();
             Quaternion v2 = new Quaternion();
-            smoothNetworkMovement SNM = p.GetComponentInChildren<smoothNetworkMovement>();//get proper location of SNM //TODO
+            smoothNetworkMovement SNM = p.GetComponent<smoothNetworkMovement>();//get proper location of SNM //TODO
+            if(!SNM)
+                SNM = p.AddComponent<smoothNetworkMovement>();
             
+
             if (command.Contains("qua"))
-                v2 = new Quaternion(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6]),float.Parse(parts[7]));
+                v2 = new Quaternion(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6]), float.Parse(parts[7]));
             else
                 v = new Vector3(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6]));
 
