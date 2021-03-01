@@ -24,11 +24,10 @@ class Client
     public IPEndPoint endPoint;
     public List<string> backlog = new List<string>();
     public bool leave = false;
-
-    public Client()
+    public Client(string ip)
     {
         IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
-        IPAddress ipAddress = IPAddress.Parse("192.168.0.46");
+        IPAddress ipAddress = IPAddress.Parse(ip);
         endPoint = new IPEndPoint(ipAddress, 5000);
 
         clientSocket.Bind(new IPEndPoint(IPAddress.Any, 0));
@@ -66,8 +65,8 @@ class Client
             if (leave)
                 break;
             receiveDone.Reset();
-            while (backlog.Count != 0)
-                Debug.Log("backlog not empty!");
+            //while (backlog.Count != 0)
+            //    Debug.Log("backlog not empty!");
             try
             {
                 byte[] buffer = new byte[1024];
@@ -95,17 +94,17 @@ public class CSNetworkManager : MonoBehaviour
     public bool send = false;
     public bool interpetCommands = true;
     public int sessionID = 6969;
+    [SerializeField]
+    private string IPADDRESS;
 
     public List<PlayerConfiguration> localPlayers = new List<PlayerConfiguration>();
     List<PlayerConfiguration> remotePlayers = new List<PlayerConfiguration>();
     List<GameObject> tempRemoteMenuPlayers = new List<GameObject>();
     List<GameObject> localPlayersGameObject = new List<GameObject>();
 
-    public string ip = "";
-
     void Awake()
     {
-        client = new Client();
+        client = new Client(IPADDRESS);
         recThread = new Thread(client.Receive);
         recThread.Start();
 
@@ -163,6 +162,7 @@ public class CSNetworkManager : MonoBehaviour
     float timer = 0.0f;
     float changeTimer = 3.0f;
     bool changedScene = false;
+    public float smoothMovementLerpSpeed = 100.0f;
     GamePlayerManager playerManager;
     List<PlayerController> localPlayerControllers = new List<PlayerController>();
     // Update is called once per frame
@@ -226,6 +226,18 @@ public class CSNetworkManager : MonoBehaviour
                         localPlayerControllers[i].usedAbility = false;
                         sentMessage = true;
                     }
+                    if (localPlayerControllers[i].rotated)
+                    {
+
+                        client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr qua "
+                        + localPlayerControllers[i]._playerMesh.transform.rotation.x.ToString() + " "
+                        + localPlayerControllers[i]._playerMesh.transform.rotation.y.ToString() + " "
+                        + localPlayerControllers[i]._playerMesh.transform.rotation.z.ToString() + " "
+                        + localPlayerControllers[i]._playerMesh.transform.rotation.w.ToString()
+                        );
+                        localPlayerControllers[i].rotated = false;
+                    }
+
                 }
 
                 if (sentMessage)
@@ -416,12 +428,7 @@ public class CSNetworkManager : MonoBehaviour
         {
             var parts = command.Split(' ');
 
-            if (command.Contains("rot"))
-            {
-                p.transform.rotation.Set(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6]), float.Parse(parts[7]));
-                return true;
-            }
-            else if (command.Contains("atk"))
+            if (command.Contains("atk"))
             {
                 p.GetComponent<PlayerController>().attack = true;
                 return true;
@@ -436,22 +443,27 @@ public class CSNetworkManager : MonoBehaviour
                 p.GetComponent<PlayerController>().useAbility = true;
                 return true;
             }
-            Vector3 v = new Vector3(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6]));
+
+            smoothNetworkMovement SNM = p.GetComponent<smoothNetworkMovement>();//get proper location of SNM //TODO
+            if (!SNM)
+                SNM = p.AddComponent<smoothNetworkMovement>();
+
+            //temp so we can mess around with it in editor
+            SNM.lerpSpeed = smoothMovementLerpSpeed;
+
+
+            if (command.Contains("qua"))
+            {
+                var v2 = new Quaternion(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6]), float.Parse(parts[7]));
+                SNM.updateRot(v2);
+                return true;
+            }
 
             if (command.Contains("pos"))
             {
-                p.transform.position = v;
-                return true;
-            }
-            else if (command.Contains("scl"))
-            {
-                p.transform.localScale = v;
-                return true;
-            }
-            else if (command.Contains("vel"))
-            {
-                var r = p.GetComponent<Rigidbody>();
-                r.velocity = r.velocity + v;
+                var v = new Vector3(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6]));
+                SNM.updatePos(v);
+                //p.transform.position = v;
                 return true;
             }
 

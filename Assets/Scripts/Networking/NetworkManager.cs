@@ -16,6 +16,9 @@ public class NetworkManager : MonoBehaviour
     public bool interpetCommands = true;
     public SceneChanger sceneChanger;
     public Transform playerSpawn;
+    [SerializeField]
+    private string IPADDRESS;
+
     struct PItem
     {
         public GameObject p;
@@ -37,7 +40,7 @@ public class NetworkManager : MonoBehaviour
 
     void Start()
     {
-        client = new Client();
+        client = new Client(IPADDRESS);
         recThread = new Thread(client.Receive);
         recThread.Start();
         byte[] buffer = Encoding.ASCII.GetBytes("initMsg " + sessionID.ToString());
