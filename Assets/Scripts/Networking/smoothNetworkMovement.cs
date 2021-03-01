@@ -5,33 +5,38 @@ using UnityEngine;
 public class smoothNetworkMovement : MonoBehaviour
 {
 
-    public Transform t;
-    public Vector3 oldPos;
-    public Vector3 newPos;
-    public Quaternion oldRot;
-    public Quaternion newRot;
-
-   
+    Transform t;
+    Vector3 oldPos;
+    Vector3 newPos;
+    List<Vector3> oldPosList = new List<Vector3>();
+    List<Vector3> newPosList = new List<Vector3>();
+    Quaternion oldRot;
+    Quaternion newRot;
+    List<Quaternion> oldRotList = new List<Quaternion>();
+    List<Quaternion> newRotList = new List<Quaternion>();
 
     // Start is called before the first frame update
     void Start()
     {
         t = GetComponent<Transform>();
 
-      
         //get proper transform //TODO
     }
 
     public void updatePos(Vector3 v)
     {
         oldPos = newPos;
+        oldPosList.Add(oldPos);
         newPos = v;
+        newPosList.Add(newPos);
     }
 
     public void updateRot(Quaternion q)
     {
         oldRot = newRot;
+        oldRotList.Add(oldRot);
         newRot = q;
+        newRotList.Add(newRot);
     }
     // Update is called once per frame
     void Update()
@@ -47,13 +52,16 @@ public class smoothNetworkMovement : MonoBehaviour
         if (u >= 1.0f)
         {
             u = 0.0f;
-            oldPos = newPos;
+            //oldPos = newPos;
+            oldPosList.RemoveAt(0);
+            newPosList.RemoveAt(0);
         }
-        if (oldPos != newPos)
-            u += Time.deltaTime;
+        if (newPosList.Count == 0)
+            return;
 
+        u += Time.deltaTime;
 
-        t.position = new Vector3(Mathf.Lerp(oldPos.x, newPos.x, u), Mathf.Lerp(oldPos.y, newPos.y, u), Mathf.Lerp(oldPos.z, newPos.z, u));
+        t.position = Vector3.Lerp(oldPosList[0], newPosList[0], u);
     }
 
     float rotU = 0.0f;
@@ -63,11 +71,14 @@ public class smoothNetworkMovement : MonoBehaviour
         if (rotU >= 1.0f)
         {
             rotU = 0.0f;
-            oldRot = newRot;
+            oldRotList.RemoveAt(0);
+            newRotList.RemoveAt(0);
         }
-        if (oldRot != newRot)
-            rotU += Time.deltaTime;
+        if (newRotList.Count == 0)
+            return;
 
-        t.rotation = Quaternion.Slerp(oldRot, newRot, rotU);
+        rotU += Time.deltaTime;
+
+        t.rotation = Quaternion.Slerp(oldRotList[0], newRotList[0], rotU);
     }
 }

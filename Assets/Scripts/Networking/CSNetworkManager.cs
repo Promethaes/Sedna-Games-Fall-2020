@@ -102,8 +102,6 @@ public class CSNetworkManager : MonoBehaviour
     List<GameObject> tempRemoteMenuPlayers = new List<GameObject>();
     List<GameObject> localPlayersGameObject = new List<GameObject>();
 
-    public string ip = "";
-
     void Awake()
     {
         client = new Client(IPADDRESS);
@@ -227,13 +225,18 @@ public class CSNetworkManager : MonoBehaviour
                         localPlayerControllers[i].usedAbility = false;
                         sentMessage = true;
                     }
+                    if (localPlayerControllers[i].rotated)
+                    {
+                        
+                        client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr qua "
+                        + localPlayerControllers[i]._playerMesh.transform.rotation.x.ToString() + " "
+                        + localPlayerControllers[i]._playerMesh.transform.rotation.y.ToString() + " "
+                        + localPlayerControllers[i]._playerMesh.transform.rotation.z.ToString() + " "
+                        + localPlayerControllers[i]._playerMesh.transform.rotation.w.ToString()
+                        );
+                        localPlayerControllers[i].rotated = false;
+                    }
 
-                    client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr qua "
-                    + playerManager.players[i].GetComponentInChildren<Camera>().transform.rotation.x.ToString() + " "
-                    + playerManager.players[i].GetComponentInChildren<Camera>().transform.rotation.y.ToString() + " "
-                     + playerManager.players[i].GetComponentInChildren<Camera>().transform.rotation.z.ToString() + " "
-                    + playerManager.players[i].GetComponentInChildren<Camera>().transform.rotation.w.ToString()
-                    );
                 }
 
                 if (sentMessage)
@@ -441,14 +444,14 @@ public class CSNetworkManager : MonoBehaviour
             }
 
             smoothNetworkMovement SNM = p.GetComponent<smoothNetworkMovement>();//get proper location of SNM //TODO
-            if(!SNM)
+            if (!SNM)
                 SNM = p.AddComponent<smoothNetworkMovement>();
 
             if (command.Contains("qua"))
             {
-              var v2 = new Quaternion(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6]), float.Parse(parts[7]));
-              SNM.updateRot(v2);
-              return true;
+                var v2 = new Quaternion(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6]), float.Parse(parts[7]));
+                SNM.updateRot(v2);
+                return true;
             }
 
             if (command.Contains("pos"))
