@@ -15,6 +15,8 @@ public class smoothNetworkMovement : MonoBehaviour
     List<Quaternion> oldRotList = new List<Quaternion>();
     List<Quaternion> newRotList = new List<Quaternion>();
 
+    public float lerpSpeed = 100.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,7 +61,7 @@ public class smoothNetworkMovement : MonoBehaviour
         if (newPosList.Count == 0)
             return;
 
-        u += Time.deltaTime;
+        u += Time.deltaTime*lerpSpeed;
 
         t.position = Vector3.Lerp(oldPosList[0], newPosList[0], u);
     }
@@ -67,7 +69,6 @@ public class smoothNetworkMovement : MonoBehaviour
     float rotU = 0.0f;
     void _UpdateRot()
     {
-
         if (rotU >= 1.0f)
         {
             rotU = 0.0f;
@@ -77,7 +78,7 @@ public class smoothNetworkMovement : MonoBehaviour
         if (newRotList.Count == 0)
             return;
 
-        rotU += Time.deltaTime;
+        rotU += Time.deltaTime*lerpSpeed;
 
         t.rotation = Quaternion.Slerp(oldRotList[0], newRotList[0], rotU);
     }

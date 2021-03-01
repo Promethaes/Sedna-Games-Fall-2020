@@ -162,6 +162,7 @@ public class CSNetworkManager : MonoBehaviour
     float timer = 0.0f;
     float changeTimer = 3.0f;
     bool changedScene = false;
+    public float smoothMovementLerpSpeed = 100.0f;
     GamePlayerManager playerManager;
     List<PlayerController> localPlayerControllers = new List<PlayerController>();
     // Update is called once per frame
@@ -227,7 +228,7 @@ public class CSNetworkManager : MonoBehaviour
                     }
                     if (localPlayerControllers[i].rotated)
                     {
-                        
+
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr qua "
                         + localPlayerControllers[i]._playerMesh.transform.rotation.x.ToString() + " "
                         + localPlayerControllers[i]._playerMesh.transform.rotation.y.ToString() + " "
@@ -446,6 +447,10 @@ public class CSNetworkManager : MonoBehaviour
             smoothNetworkMovement SNM = p.GetComponent<smoothNetworkMovement>();//get proper location of SNM //TODO
             if (!SNM)
                 SNM = p.AddComponent<smoothNetworkMovement>();
+
+            //temp so we can mess around with it in editor
+            SNM.lerpSpeed = smoothMovementLerpSpeed;
+
 
             if (command.Contains("qua"))
             {

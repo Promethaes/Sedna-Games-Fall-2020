@@ -643,14 +643,14 @@ public class PlayerController : MonoBehaviour
 
         _rigidbody.velocity = Vector3.zero;
         _rigidbody.AddForce(_playerMesh.transform.forward * attackDistance, ForceMode.Impulse);
-        /*
+        
         RaycastHit enemy;
         if(Physics.Raycast(transform.position, _playerMesh.transform.forward, out enemy, 2.0f) && enemy.transform.tag == "Enemy") {
             EnemyData foe = enemy.collider.GetComponent<EnemyData>();
             foe.takeDamage(damageValues[comboCounter]);
             hitEnemy = true;
         }
-        */
+        
         comboCounter++;
         if (comboCounter > 2) comboCounter = 0;
         _comboDuration = 2.0f;
