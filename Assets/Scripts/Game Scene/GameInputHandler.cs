@@ -46,8 +46,11 @@ public class GameInputHandler : MonoBehaviour
         _playerController.playerType = config.character.type;
         _animator = _playerMesh.GetComponentInChildren<Animator>();
 
-        _playerConfig.input.SwitchCurrentActionMap("Game");
-        _playerConfig.input.onActionTriggered += onActionTriggered;
+        if (_playerConfig.input != null)
+        {
+            _playerConfig.input.SwitchCurrentActionMap("Game");
+            _playerConfig.input.onActionTriggered += onActionTriggered;
+        }
     }
 
     public void swapPlayer(int config)
@@ -72,7 +75,9 @@ public class GameInputHandler : MonoBehaviour
         if (ctx.action.name == _controls.Game.Jump.name) OnJump(ctx);
         if (ctx.action.name == _controls.Game.Dash.name) OnDash(ctx);
         if (ctx.action.name == _controls.Game.Ability.name) OnAbility(ctx);
+        if (ctx.action.name == _controls.Game.CombatAbility.name) OnCombatAbility(ctx);
         if (ctx.action.name == _controls.Game.Attack.name) OnAttack(ctx);
+        if (ctx.action.name == _controls.Game.Toggle.name) OnToggle(ctx);
         if (ctx.action.name == _controls.Game.Revive.name) OnRevive(ctx);
         if (ctx.action.name == _controls.Game.Select.name) OnSelect(ctx);
 
@@ -89,51 +94,46 @@ public class GameInputHandler : MonoBehaviour
     }
     public void OnJump(CallbackContext ctx)
     {
-        _playerController.isJumping = ctx.ReadValue<float>();
+        float temp = ctx.ReadValue<float>();
+        _playerController.isJumping = temp >= 0.5f;
     }
     public void OnDash(CallbackContext ctx)
     {
-        _playerController.isDashing = ctx.ReadValue<float>();
+        float temp = ctx.ReadValue<float>();
+        _playerController.isDashing = temp >= 0.5f;
     }
 
     public void OnAbility(CallbackContext ctx)
     {
         float temp = ctx.ReadValue<float>();
-
-        if (temp >= 0.5f)
-            _playerController.useAbility = true;
-        else
-            _playerController.useAbility = false;
+        _playerController.useAbility = temp >= 0.5f;
+    }
+    public void OnCombatAbility(CallbackContext ctx)
+    {
+        float temp = ctx.ReadValue<float>();
+        _playerController.useCombatAbility = temp >= 0.5f;
     }
     public void OnRevive(CallbackContext ctx)
     {
         float temp = ctx.ReadValue<float>();
-
-        if (temp >= 0.5f)
-            _playerController.revive = true;
-        else
-            _playerController.revive = false;
+        _playerController.revive = temp >= 0.5f;
     }
 
     public void OnAttack(CallbackContext ctx)
     {
         float temp = ctx.ReadValue<float>();
-
-        if (temp >= 0.5f)
-            _playerController.attack = true;
-        else
-            _playerController.attack = false;
-
+        _playerController.attack = temp >= 0.5f;
+    }
+    public void OnToggle(CallbackContext ctx)
+    {
+        float temp = ctx.ReadValue<float>();
+        _playerController.toggle = temp >= 0.5f;
     }
 
     public void OnSelect(CallbackContext ctx)
     {
         float temp = ctx.ReadValue<float>();
-
-        if (temp >= 0.5f)
-            _playerController.selectWheel = true;
-        else
-            _playerController.selectWheel = false;
+        _playerController.selectWheel = temp >= 0.5f;
     }
 
 }

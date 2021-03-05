@@ -31,6 +31,8 @@ public class EnemyData : MonoBehaviour
     public float range;
     public float damageValues;
     public GameObject hitbox;
+    public bool fear = false;
+    float _poisonDuration = 10.0f;
 
     public enum enemyType
     {
@@ -63,6 +65,7 @@ public class EnemyData : MonoBehaviour
         }
     }
 
+    //TODO: Split this by map type
     public void Init()
     {
         switch (enemy)
@@ -125,6 +128,10 @@ public class EnemyData : MonoBehaviour
     {
         return maxHealth;
     }
+    public bool getFear()
+    {
+        return fear;
+    }
     public void takeDamage(float hp)
     {
         health -= hp;
@@ -147,6 +154,26 @@ public class EnemyData : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public void Poison()
+    {
+        if (_poisonDuration > 0.0f)
+            _poisonDuration = 10.0f;
+        else
+            StartCoroutine(PoisonDebuff());
+    }
+
+    IEnumerator PoisonDebuff()
+    {
+        damageValues*=0.8f;
+        while(_poisonDuration > 0.0f)
+        {
+        takeDamage(10.0f);
+        yield return new WaitForSeconds(1.0f);
+        _poisonDuration-=1.0f;
+        }
+        damageValues/=0.8f;
+        yield return null;
+    }
 
     protected void setCombo(float damage, float range)
     {

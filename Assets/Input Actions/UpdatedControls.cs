@@ -81,6 +81,22 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""CombatAbility"",
+                    ""type"": ""Button"",
+                    ""id"": ""49fa762c-2d26-4072-be9e-c6f94b0aa8c6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Toggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""33af21b0-0984-47b4-bdc7-aa9661462391"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -279,6 +295,28 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0823805e-1631-4ef3-8d6b-ece912945be0"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CombatAbility"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""125d0da4-b3d9-4532-87f1-b6c87ec53254"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Toggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -710,6 +748,33 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""ChatApp"",
+            ""id"": ""cbb2bd43-eb15-4f6b-9ac1-567434693cfd"",
+            ""actions"": [
+                {
+                    ""name"": ""SendMessage"",
+                    ""type"": ""Button"",
+                    ""id"": ""02f3d444-3c1d-4207-a6c0-f4e6904ed896"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""2829d588-0edc-414b-b434-0b1af875dc2f"",
+                    ""path"": ""*/{Menu}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SendMessage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -752,6 +817,8 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
         m_Game_Move = m_Game.FindAction("Move", throwIfNotFound: true);
         m_Game_Revive = m_Game.FindAction("Revive", throwIfNotFound: true);
         m_Game_Select = m_Game.FindAction("Select", throwIfNotFound: true);
+        m_Game_CombatAbility = m_Game.FindAction("CombatAbility", throwIfNotFound: true);
+        m_Game_Toggle = m_Game.FindAction("Toggle", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Move = m_UI.FindAction("Move", throwIfNotFound: true);
@@ -762,6 +829,9 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
         m_CharSelect_Confirm = m_CharSelect.FindAction("Confirm", throwIfNotFound: true);
         m_CharSelect_Unconfirm = m_CharSelect.FindAction("Unconfirm", throwIfNotFound: true);
         m_CharSelect_StartGame = m_CharSelect.FindAction("StartGame", throwIfNotFound: true);
+        // ChatApp
+        m_ChatApp = asset.FindActionMap("ChatApp", throwIfNotFound: true);
+        m_ChatApp_SendMessage = m_ChatApp.FindAction("SendMessage", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -819,6 +889,8 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Game_Move;
     private readonly InputAction m_Game_Revive;
     private readonly InputAction m_Game_Select;
+    private readonly InputAction m_Game_CombatAbility;
+    private readonly InputAction m_Game_Toggle;
     public struct GameActions
     {
         private @UpdatedControls m_Wrapper;
@@ -831,6 +903,8 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_Game_Move;
         public InputAction @Revive => m_Wrapper.m_Game_Revive;
         public InputAction @Select => m_Wrapper.m_Game_Select;
+        public InputAction @CombatAbility => m_Wrapper.m_Game_CombatAbility;
+        public InputAction @Toggle => m_Wrapper.m_Game_Toggle;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -864,6 +938,12 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
                 @Select.started -= m_Wrapper.m_GameActionsCallbackInterface.OnSelect;
                 @Select.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnSelect;
                 @Select.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnSelect;
+                @CombatAbility.started -= m_Wrapper.m_GameActionsCallbackInterface.OnCombatAbility;
+                @CombatAbility.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnCombatAbility;
+                @CombatAbility.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnCombatAbility;
+                @Toggle.started -= m_Wrapper.m_GameActionsCallbackInterface.OnToggle;
+                @Toggle.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnToggle;
+                @Toggle.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnToggle;
             }
             m_Wrapper.m_GameActionsCallbackInterface = instance;
             if (instance != null)
@@ -892,6 +972,12 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
                 @Select.started += instance.OnSelect;
                 @Select.performed += instance.OnSelect;
                 @Select.canceled += instance.OnSelect;
+                @CombatAbility.started += instance.OnCombatAbility;
+                @CombatAbility.performed += instance.OnCombatAbility;
+                @CombatAbility.canceled += instance.OnCombatAbility;
+                @Toggle.started += instance.OnToggle;
+                @Toggle.performed += instance.OnToggle;
+                @Toggle.canceled += instance.OnToggle;
             }
         }
     }
@@ -994,6 +1080,39 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
         }
     }
     public CharSelectActions @CharSelect => new CharSelectActions(this);
+
+    // ChatApp
+    private readonly InputActionMap m_ChatApp;
+    private IChatAppActions m_ChatAppActionsCallbackInterface;
+    private readonly InputAction m_ChatApp_SendMessage;
+    public struct ChatAppActions
+    {
+        private @UpdatedControls m_Wrapper;
+        public ChatAppActions(@UpdatedControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @SendMessage => m_Wrapper.m_ChatApp_SendMessage;
+        public InputActionMap Get() { return m_Wrapper.m_ChatApp; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ChatAppActions set) { return set.Get(); }
+        public void SetCallbacks(IChatAppActions instance)
+        {
+            if (m_Wrapper.m_ChatAppActionsCallbackInterface != null)
+            {
+                @SendMessage.started -= m_Wrapper.m_ChatAppActionsCallbackInterface.OnSendMessage;
+                @SendMessage.performed -= m_Wrapper.m_ChatAppActionsCallbackInterface.OnSendMessage;
+                @SendMessage.canceled -= m_Wrapper.m_ChatAppActionsCallbackInterface.OnSendMessage;
+            }
+            m_Wrapper.m_ChatAppActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @SendMessage.started += instance.OnSendMessage;
+                @SendMessage.performed += instance.OnSendMessage;
+                @SendMessage.canceled += instance.OnSendMessage;
+            }
+        }
+    }
+    public ChatAppActions @ChatApp => new ChatAppActions(this);
     private int m_GamepadSchemeIndex = -1;
     public InputControlScheme GamepadScheme
     {
@@ -1022,6 +1141,8 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnRevive(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
+        void OnCombatAbility(InputAction.CallbackContext context);
+        void OnToggle(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -1034,5 +1155,9 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
         void OnConfirm(InputAction.CallbackContext context);
         void OnUnconfirm(InputAction.CallbackContext context);
         void OnStartGame(InputAction.CallbackContext context);
+    }
+    public interface IChatAppActions
+    {
+        void OnSendMessage(InputAction.CallbackContext context);
     }
 }

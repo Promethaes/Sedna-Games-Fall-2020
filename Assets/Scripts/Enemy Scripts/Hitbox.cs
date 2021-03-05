@@ -9,7 +9,9 @@ public class Hitbox : MonoBehaviour
         if (other.tag == "Player")
         {
             PlayerBackend foe = other.GetComponentInParent<PlayerBackend>();
-            foe.hp -= gameObject.GetComponentInParent<EnemyData>().damageValues;
+            foe.takeDamage(gameObject.GetComponentInParent<EnemyData>().damageValues);
+            if (Random.Range(0.0f,1.0f) <= 0.3f)
+                foe.GetComponent<PlayerController>().poisoned();
             gameObject.SetActive(false);
         }
     }
