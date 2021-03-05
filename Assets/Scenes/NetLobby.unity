@@ -555,7 +555,7 @@ MonoBehaviour:
   send: 1
   interpetCommands: 1
   sessionID: 6969
-  IPADDRESS: 192.168.0.46
+  IPADDRESS: 192.168.0.8
   sendRateFPS: 15
   smoothMovementLerpSpeed: 15
 --- !u!4 &1326626068

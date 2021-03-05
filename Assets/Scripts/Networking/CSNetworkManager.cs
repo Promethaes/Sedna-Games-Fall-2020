@@ -350,7 +350,16 @@ public class CSNetworkManager : MonoBehaviour
                 for (int j = 0; j < remotePlayers.Count; j++)
                 {
                     if (remotePlayers[j].clientNumber == index)
-                    {
+                    {                        
+                        //GameObject[] tempList = GameObject.FindGameObjectsWithTag("Enemy");
+                        //foreach(GameObject e in tempList)//remove player from enemy script
+                        //{
+                        //    
+                        //}
+                        if (playerManager.players[j+1].GetComponentInChildren<Camera>().enabled == false)
+                            playerManager.players[j+1].SetActive(false) ;
+                        //Destroy(playerManager.players[j+1]);
+                        playerManager.players.RemoveAt(j+1);
                         remotePlayers.RemoveAt(j);
                         break;
                     }
