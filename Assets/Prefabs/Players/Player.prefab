@@ -354,8 +354,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  jumpSpeed: 7
+  jumpSpeed: 4
   dashSpeed: 2
+  attackDistance: 8
   playerType: 0
   ramThrough: {fileID: 2271589204219896814}
   bubbleShieldScript: {fileID: 5489993372627504198}
@@ -372,6 +373,16 @@ MonoBehaviour:
   insideCastingZone: 0
   useAbility: 0
   attack: 0
+  comboCounter: 0
+  damageValues:
+  - 0
+  - 0
+  - 0
+  _animationDelay:
+  - 0
+  - 0
+  - 0
+  hitboxes: []
   _isGrounded: 1
   hopSpeed: 0.25
   revive: 0
