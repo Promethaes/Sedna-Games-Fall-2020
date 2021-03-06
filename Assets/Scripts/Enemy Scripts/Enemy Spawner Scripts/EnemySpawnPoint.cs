@@ -106,7 +106,13 @@ public class EnemySpawnPoint : MonoBehaviour
 
         Vector3 placeVec = new Vector3(radius + spawnIndex, 0.0f, radius + spawnIndex);
         if (randomizeSpawnPos)
-            placeVec = new Vector3(Random.Range(-radius, radius), 0.0f, Random.Range(-radius, radius));
+        {
+            var x = Random.Range(-radius, radius);
+            Debug.Log(x);
+            var z = Random.Range(-radius, radius);
+            Debug.Log(z);
+            placeVec = new Vector3(x, 0.0f, z);
+        }
 
         spawnEnemies[spawnIndex].transform.position = gameObject.transform.position + placeVec * spawnRadiusScalar;
         spawnEnemies[spawnIndex].SetActive(true);
