@@ -141,7 +141,7 @@ MonoBehaviour:
   identifier: 2c5177b11d81d824dbb064f9ac8527da
   parentIdentifier: default
   displaySortOrder: 0
-  active: 0
+  active: 1
   Properties:
     LiveUpdate:
       Value: 0
@@ -185,7 +185,7 @@ MonoBehaviour:
     CallbackHandler:
       Value: {fileID: 0}
       HasValue: 0
-  outputType: 
+  outputType: AUTODETECT
   threadAffinities:
     Value: []
     HasValue: 0
@@ -265,10 +265,10 @@ MonoBehaviour:
   m_Name: FMODStudioSettings
   m_EditorClassIdentifier: 
   SwitchSettingsMigration: 1
-  HasSourceProject: 0
-  HasPlatforms: 0
-  sourceProjectPath: Assets/FMOD/ZooGame/ZooGame.fspro
-  sourceBankPath: Assets/FMOD
+  HasSourceProject: 1
+  HasPlatforms: 1
+  sourceProjectPath: FMOD Project/ZooGame.fspro
+  sourceBankPath: FMOD Project\Build
   SourceBankPathUnformatted: 
   AutomaticEventLoading: 1
   BankLoadType: 0
@@ -276,7 +276,7 @@ MonoBehaviour:
   EncryptionKey: 
   ImportType: 0
   TargetAssetPath: FMODBanks
-  TargetBankFolder: 
+  TargetBankFolder: FMOD Project\Build\Desktop
   LoggingLevel: 2
   SpeakerModeSettings: []
   SampleRateSettings: []
@@ -289,15 +289,8 @@ MonoBehaviour:
   Plugins: []
   MasterBanks:
   - Master
-  - Banks/Master
   Banks:
   - _test
-  - Banks/_test
-  - Banks/Dumpage Monster
-  - Banks/General Sounds
-  - Banks/OST
-  - Banks/ui
-  - Banks/Wetlands
   - Dumpage Monster
   - General Sounds
   - OST
@@ -456,8 +449,8 @@ MonoBehaviour:
       Value: 1
       HasValue: 1
     LiveUpdatePort:
-      Value: 0
-      HasValue: 0
+      Value: 9264
+      HasValue: 1
     Overlay:
       Value: 1
       HasValue: 1
