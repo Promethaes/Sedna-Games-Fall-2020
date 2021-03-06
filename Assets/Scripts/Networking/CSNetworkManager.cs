@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System;
+using UnityEngine.Events;
 
 public class StateObject
 {
@@ -103,6 +104,10 @@ public class CSNetworkManager : MonoBehaviour
     List<GameObject> localPlayersGameObject = new List<GameObject>();
 
     bool isHostClient = false;
+
+    //[SerializeField]
+    //UnityEvent OnSpawnEnemy;
+
     void Awake()
     {
         client = new Client(IPADDRESS);
@@ -151,21 +156,21 @@ public class CSNetworkManager : MonoBehaviour
             return;
         client.Send("cli " + config.clientNumber.ToString() + " plr ready");//temp, only works for one player rn
         config.sentReadyMessage = true;
+        SendRandSeed();
     }
+    //temp
+    bool generatedSeed = false;
+    int seed = -1;
     public void SendRandSeed()
     {
-        var seed = UnityEngine.Random.Range(0, 256);
-        if (isHostClient)
+        if (isHostClient && generatedSeed)
         {
-            UnityEngine.Random.InitState(seed);
             client.Send("rand " + seed.ToString());
+            return;
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
+        seed = UnityEngine.Random.Range(0, 256);
+        UnityEngine.Random.InitState(seed);
+        generatedSeed = true;
     }
 
     public float sendRateFPS = 60.0f;
@@ -296,7 +301,6 @@ public class CSNetworkManager : MonoBehaviour
             if (changeTimer <= 0.0f)
             {
                 changedScene = true;
-                SendRandSeed();
                 PlayerConfigurationManager.get.allPlayersReady();
             }
         }

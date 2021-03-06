@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemySpawnPoint : MonoBehaviour
 {
-
     //the particular enemy you want to spawn here
     public GameObject enemyPrefab;
     public List<GameObject> spawnEnemies = new List<GameObject>();
@@ -18,8 +17,10 @@ public class EnemySpawnPoint : MonoBehaviour
     public Barriers _barriers;
     public bool overrideAndClear = false;
 
+
     void Start()
     {
+            
         CreatePool();
         enemyPrefab.transform.position = gameObject.transform.position;
         if (oneTimeSpawn)
@@ -106,14 +107,8 @@ public class EnemySpawnPoint : MonoBehaviour
 
         Vector3 placeVec = new Vector3(radius + spawnIndex, 0.0f, radius + spawnIndex);
         if (randomizeSpawnPos)
-        {
-            var x = Random.Range(-radius, radius);
-            Debug.Log(x);
-            var z = Random.Range(-radius, radius);
-            Debug.Log(z);
-            placeVec = new Vector3(x, 0.0f, z);
-        }
-
+            placeVec = new Vector3(Random.Range(-radius, radius), 0.0f, Random.Range(-radius, radius));
+        
         spawnEnemies[spawnIndex].transform.position = gameObject.transform.position + placeVec * spawnRadiusScalar;
         spawnEnemies[spawnIndex].SetActive(true);
         var enemy = spawnEnemies[spawnIndex].GetComponentInChildren<EnemyData>();
