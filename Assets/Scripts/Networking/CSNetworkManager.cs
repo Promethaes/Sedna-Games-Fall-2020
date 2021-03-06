@@ -102,6 +102,7 @@ public class CSNetworkManager : MonoBehaviour
     List<GameObject> tempRemoteMenuPlayers = new List<GameObject>();
     List<GameObject> localPlayersGameObject = new List<GameObject>();
 
+    bool isHostClient = false;
     void Awake()
     {
         client = new Client(IPADDRESS);
@@ -153,9 +154,12 @@ public class CSNetworkManager : MonoBehaviour
     }
     public void SendRandSeed()
     {
-        var seed = UnityEngine.Random.Range(0,256);
-        UnityEngine.Random.InitState(seed);
-        client.Send("rand " + seed.ToString());
+        var seed = UnityEngine.Random.Range(0, 256);
+        if (isHostClient)
+        {
+            UnityEngine.Random.InitState(seed);
+            client.Send("rand " + seed.ToString());
+        }
     }
 
     // Start is called before the first frame update
@@ -322,6 +326,8 @@ public class CSNetworkManager : MonoBehaviour
                     {
                         var parts = client.backlog[i].Split(' ');
                         lplayer.clientNumber = int.Parse(parts[1]);
+                        if (lplayer.clientNumber == 0)
+                            isHostClient = true;
                         break;
                     }
                 }
@@ -366,7 +372,8 @@ public class CSNetworkManager : MonoBehaviour
                 i--;
                 continue;
             }
-            else if (client.backlog[i].Contains("rand")){
+            else if (client.backlog[i].Contains("rand"))
+            {
                 var parts = client.backlog[i].Split(' ');
                 int seed = int.Parse(parts[1]);
 
