@@ -354,7 +354,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _originalSpeed: 12
-  jumpSpeed: 7
+  moveSpeed: 12
+  jumpSpeed: 4
   dashSpeed: 2
   attackDistance: 8
   playerType: 0
@@ -373,6 +374,7 @@ MonoBehaviour:
   useCombatAbility: 0
   attack: 0
   toggle: 0
+  _playerMesh: {fileID: 0}
   comboCounter: 0
   damageValues:
   - 0
@@ -403,6 +405,10 @@ MonoBehaviour:
   venomBuff: 0
   inCutscene: 0
   questUI: {fileID: 0}
+  moved: 0
+  playerChanged: 0
+  rotated: 0
+  usedAbility: 0
 --- !u!114 &5369776141784647950
 MonoBehaviour:
   m_ObjectHideFlags: 0
