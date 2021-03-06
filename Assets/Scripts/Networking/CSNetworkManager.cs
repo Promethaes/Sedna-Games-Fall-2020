@@ -163,6 +163,8 @@ public class CSNetworkManager : MonoBehaviour
     int seed = -1;
     public void SendRandSeed()
     {
+        if (!isHostClient)
+            return;
         if (isHostClient && generatedSeed)
         {
             client.Send("rand " + seed.ToString());
