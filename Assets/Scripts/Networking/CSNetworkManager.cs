@@ -165,7 +165,7 @@ public class CSNetworkManager : MonoBehaviour
     {
         if (!isHostClient)
             return;
-        if (isHostClient && generatedSeed)
+        if (generatedSeed)
         {
             client.Send("rand " + seed.ToString());
             return;
@@ -384,7 +384,9 @@ public class CSNetworkManager : MonoBehaviour
                 int seed = int.Parse(parts[1]);
 
                 UnityEngine.Random.InitState(seed);
-
+                client.backlog.RemoveAt(i);
+                i--;
+                continue;
             }
             else if (!client.backlog[i].Contains("cli"))
             {
