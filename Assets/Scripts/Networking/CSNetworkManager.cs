@@ -151,6 +151,12 @@ public class CSNetworkManager : MonoBehaviour
         client.Send("cli " + config.clientNumber.ToString() + " plr ready");//temp, only works for one player rn
         config.sentReadyMessage = true;
     }
+    public void SendRandSeed()
+    {
+        var seed = UnityEngine.Random.Range(0,256);
+        UnityEngine.Random.InitState(seed);
+        client.Send("rand " + seed.ToString());
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -170,7 +176,6 @@ public class CSNetworkManager : MonoBehaviour
     {
         SortRecievedMessages();
 
-        //char select section
         if (changedScene)
         {
             timer -= Time.deltaTime;
@@ -287,6 +292,7 @@ public class CSNetworkManager : MonoBehaviour
             if (changeTimer <= 0.0f)
             {
                 changedScene = true;
+                SendRandSeed();
                 PlayerConfigurationManager.get.allPlayersReady();
             }
         }
@@ -359,6 +365,13 @@ public class CSNetworkManager : MonoBehaviour
                 client.backlog.RemoveAt(i);
                 i--;
                 continue;
+            }
+            else if (client.backlog[i].Contains("rand")){
+                var parts = client.backlog[i].Split(' ');
+                int seed = int.Parse(parts[1]);
+
+                UnityEngine.Random.InitState(seed);
+
             }
             else if (!client.backlog[i].Contains("cli"))
             {
