@@ -370,8 +370,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    Vector3 lastPos = Vector3.zero;
     void _Move()
     {
+
+        if (remotePlayer)
+        {
+            if (_animator)
+                _animator.SetBool("walking", Mathf.Abs(gameObject.transform.position.magnitude - lastPos.magnitude) >= 0.01f);
+            
+            lastPos = gameObject.transform.position;
+            return;
+        }
 
         if (_dashDuration < 0.0f && _animationDuration < 0.0f && !_charging)
         {
