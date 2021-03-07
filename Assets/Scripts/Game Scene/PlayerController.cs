@@ -191,7 +191,8 @@ public class PlayerController : MonoBehaviour
 
     void SendMovemnt()
     {
-        if (_rigidbody.velocity.magnitude >= 0.5f)
+        Debug.Log(_rigidbody.velocity.magnitude);
+        if (_rigidbody.velocity.magnitude >= 3.0f)
             sendMovement = true;
     }
 
