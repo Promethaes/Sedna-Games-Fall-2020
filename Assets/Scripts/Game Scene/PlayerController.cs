@@ -113,10 +113,10 @@ public class PlayerController : MonoBehaviour
 
     //Network variables
     public bool sendPlayerChanged = false;
-    public bool sendRotation = false;
     public bool remotePlayer = false;
     public bool sendAttack = false;
     public bool sendJump = false;
+    public bool sendMovement = false;
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -189,6 +189,12 @@ public class PlayerController : MonoBehaviour
         damageValues = originalDamageValues;
     }
 
+    void SendMovemnt()
+    {
+        if (_rigidbody.velocity.magnitude >= 0.5f)
+            sendMovement = true;
+    }
+
     void Update()
     {
         _comboDuration -= Time.deltaTime;
@@ -210,6 +216,9 @@ public class PlayerController : MonoBehaviour
 
         if (attack) _Attack();
         if (revive) _Revive();
+
+        if (!remotePlayer)
+            SendMovemnt();
     }
 
     //Physics update (FixedUpdate); updates at set intervals
@@ -395,13 +404,8 @@ public class PlayerController : MonoBehaviour
             Vector3 vel = playerCamera.transform.right * moveInput.x + playerCamera.transform.forward * moveInput.y;
             vel *= moveSpeed;
             if (vel.magnitude >= 0.1f)
-            {
-                if (_playerMesh.transform.rotation != playerCamera.transform.rotation)
-                {
-                    _playerMesh.transform.rotation = Quaternion.Euler(0.0f, Mathf.SmoothDampAngle(_playerMesh.transform.eulerAngles.y, playerCamera.transform.eulerAngles.y, ref turnSpeed, 0.25f), 0.0f);
-                    sendRotation = true;
-                }
-            }
+                _playerMesh.transform.rotation = Quaternion.Euler(0.0f, Mathf.SmoothDampAngle(_playerMesh.transform.eulerAngles.y, playerCamera.transform.eulerAngles.y, ref turnSpeed, 0.25f), 0.0f);
+
             float y = _rigidbody.velocity.y;
             //NOTE: Checks for _isGrounded to reduce the effects of gravity such that the player doesn't slide off slopes
             //TODO: Adjust raycast for actual models' radii

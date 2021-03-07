@@ -218,7 +218,7 @@ public class CSNetworkManager : MonoBehaviour
                     if (localPlayerControllers[i].sendAttack)
                     {
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr atk");
-                       
+
                         localPlayerControllers[i].sendAttack = false;
                         sentMessage = true;
                     }
@@ -228,13 +228,20 @@ public class CSNetworkManager : MonoBehaviour
                         localPlayerControllers[i].sendJump = false;
                         sentMessage = true;
                     }
-                    if (localPlayerControllers[i].GetComponent<Rigidbody>().velocity.magnitude >= 0.01f)
+                    if (localPlayerControllers[i].sendMovement)
                     {
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
                         + playerManager.players[i].transform.position.x.ToString() + " "
                         + playerManager.players[i].transform.position.y.ToString() + " "
                         + playerManager.players[i].transform.position.z.ToString()
                         );
+                        client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr qua "
+                       + localPlayerControllers[i]._playerMesh.transform.rotation.x.ToString() + " "
+                       + localPlayerControllers[i]._playerMesh.transform.rotation.y.ToString() + " "
+                       + localPlayerControllers[i]._playerMesh.transform.rotation.z.ToString() + " "
+                       + localPlayerControllers[i]._playerMesh.transform.rotation.w.ToString()
+                       );
+                        localPlayerControllers[i].sendMovement = false;
                         sentMessage = true;
                     }
                     if (localPlayerControllers[i].sendPlayerChanged)
@@ -248,17 +255,6 @@ public class CSNetworkManager : MonoBehaviour
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr abil");
                         localPlayerControllers[i].usedAbility = false;
                         sentMessage = true;
-                    }
-                    if (localPlayerControllers[i].sendRotation)
-                    {
-
-                        client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr qua "
-                        + localPlayerControllers[i]._playerMesh.transform.rotation.x.ToString() + " "
-                        + localPlayerControllers[i]._playerMesh.transform.rotation.y.ToString() + " "
-                        + localPlayerControllers[i]._playerMesh.transform.rotation.z.ToString() + " "
-                        + localPlayerControllers[i]._playerMesh.transform.rotation.w.ToString()
-                        );
-                        localPlayerControllers[i].sendRotation = false;
                     }
 
                 }
@@ -477,7 +473,8 @@ public class CSNetworkManager : MonoBehaviour
                 p.GetComponent<PlayerController>().useAbility = true;
                 return true;
             }
-            else if(command.Contains("jmp")){
+            else if (command.Contains("jmp"))
+            {
                 p.GetComponent<PlayerController>().isJumping = true;
                 return true;
             }
