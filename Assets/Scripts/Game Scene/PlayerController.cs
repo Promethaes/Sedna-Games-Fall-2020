@@ -126,7 +126,11 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(SetupWheelUI());
         StartCoroutine(SetupQuestUI());
 
-        remotePlayer = !playerCamera.GetComponent<Camera>().enabled;
+    }
+
+    void Start()
+    {
+        remotePlayer = !gameObject.GetComponentInChildren<Camera>().enabled;
     }
 
     IEnumerator SetupWheelUI()
@@ -657,7 +661,7 @@ public class PlayerController : MonoBehaviour
             _rigidbody.velocity = Vector3.zero;
             _rigidbody.AddForce(_playerMesh.transform.forward * attackDistance, ForceMode.Impulse);
         }
-        
+
 
         RaycastHit enemy;
         if (Physics.Raycast(transform.position, _playerMesh.transform.forward, out enemy, 2.0f) && enemy.transform.tag == "Enemy")

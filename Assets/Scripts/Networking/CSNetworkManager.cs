@@ -66,7 +66,7 @@ class Client
             if (leave)
                 break;
             receiveDone.Reset();
-            while (backlog.Count != 0);
+            while (backlog.Count != 0) ;
             //    Debug.Log("backlog not empty!");
             try
             {
@@ -218,11 +218,11 @@ public class CSNetworkManager : MonoBehaviour
                     if (localPlayerControllers[i].sendAttack)
                     {
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr atk");
-                    //     client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
-                    //    + playerManager.players[i].transform.position.x.ToString() + " "
-                    //    + playerManager.players[i].transform.position.y.ToString() + " "
-                    //    + playerManager.players[i].transform.position.z.ToString()
-                    //    );
+                        client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
+                       + playerManager.players[i].transform.position.x.ToString() + " "
+                       + playerManager.players[i].transform.position.y.ToString() + " "
+                       + playerManager.players[i].transform.position.z.ToString()
+                       );
                         localPlayerControllers[i].sendAttack = false;
                         sentMessage = true;
                     }
