@@ -218,11 +218,7 @@ public class CSNetworkManager : MonoBehaviour
                     if (localPlayerControllers[i].sendAttack)
                     {
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr atk");
-                        client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
-                       + playerManager.players[i].transform.position.x.ToString() + " "
-                       + playerManager.players[i].transform.position.y.ToString() + " "
-                       + playerManager.players[i].transform.position.z.ToString()
-                       );
+                       
                         localPlayerControllers[i].sendAttack = false;
                         sentMessage = true;
                     }
@@ -232,7 +228,7 @@ public class CSNetworkManager : MonoBehaviour
                         localPlayerControllers[i].sendJump = false;
                         sentMessage = true;
                     }
-                    if (localPlayerControllers[i].sendMovement)
+                    if (localPlayerControllers[i].sendMovement || localPlayerControllers[i].GetComponent<Rigidbody>().velocity.magnitude >= 0.1f)
                     {
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
                         + playerManager.players[i].transform.position.x.ToString() + " "
@@ -429,7 +425,6 @@ public class CSNetworkManager : MonoBehaviour
                             if (playerManager.players[j].GetComponentInChildren<Camera>().enabled == false)
                                 if (RunCommand(playerManager.players[j], client.backlog[i]))
                                 {
-                                    Debug.Log("Done Command");
                                     client.backlog.RemoveAt(i);
                                     i--;
                                     didCommand = true;

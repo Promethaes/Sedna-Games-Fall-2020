@@ -364,16 +364,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    Vector3 lastPos = Vector3.zero;
+    Vector3 _lastPos = Vector3.zero;
     void _Move()
     {
         //i hate duplicate code
         if (remotePlayer)
         {
-            if (_animator)
-                _animator.SetBool("walking", Mathf.Abs(gameObject.transform.position.magnitude - lastPos.magnitude) >= 0.01f);
+            if (_animator && !isJumping && Mathf.Abs(gameObject.transform.position.y - _lastPos.y) < 1.0f && !_animator.GetBool("attacking"))
+                _animator.SetBool("walking", Mathf.Abs(gameObject.transform.position.magnitude - _lastPos.magnitude) >= 0.01f);
 
-            lastPos = gameObject.transform.position;
+            _lastPos = gameObject.transform.position;
             _isGrounded = Physics.Raycast(transform.position, -transform.up, out terrain, 0.6f);
             if (_isGrounded && terrain.transform.tag == "Terrain")
             {
@@ -673,9 +673,9 @@ public class PlayerController : MonoBehaviour
             _animator.SetBool("attacking", true);
             switch (comboCounter)
             {
-                case 0: _animator.SetTrigger("attack1"); break;
-                case 1: _animator.SetTrigger("attack2"); break;
-                case 2: _animator.SetTrigger("attack3"); break;
+                case 0: _animator.SetTrigger("attack1"); Debug.Log("Attack 0"); break;
+                case 1: _animator.SetTrigger("attack2"); Debug.Log("Attack 1"); break;
+                case 2: _animator.SetTrigger("attack3"); Debug.Log("Attack 2"); break;
                 default: _animator.SetTrigger("attack1"); break;
             }
         }
