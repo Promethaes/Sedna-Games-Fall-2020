@@ -226,6 +226,12 @@ public class CSNetworkManager : MonoBehaviour
                         localPlayerControllers[i].sendAttack = false;
                         sentMessage = true;
                     }
+                    if (localPlayerControllers[i].sendJump)
+                    {
+                        client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr jmp");
+                        localPlayerControllers[i].sendJump = false;
+                        sentMessage = true;
+                    }
                     if (localPlayerControllers[i].sendMovement)
                     {
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
@@ -477,6 +483,10 @@ public class CSNetworkManager : MonoBehaviour
                 p.GetComponent<PlayerController>().useAbility = true;
                 return true;
             }
+            else if(command.Contains("jmp")){
+                p.GetComponent<PlayerController>().isJumping = true;
+                return true;
+            }
 
             smoothNetworkMovement SNM = p.GetComponent<smoothNetworkMovement>();//get proper location of SNM //TODO
             if (!SNM)
@@ -493,7 +503,7 @@ public class CSNetworkManager : MonoBehaviour
                 return true;
             }
 
-            if (command.Contains("pos"))
+            else if (command.Contains("pos"))
             {
                 var v = new Vector3(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6]));
                 SNM.updatePos(v);

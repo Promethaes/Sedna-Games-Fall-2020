@@ -117,6 +117,7 @@ public class PlayerController : MonoBehaviour
     public bool sendRotation = false;
     public bool remotePlayer = false;
     public bool sendAttack = false;
+    public bool sendJump = false;
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -354,16 +355,9 @@ public class PlayerController : MonoBehaviour
         if (_wheelSelection != (int)playerType)
         {
             _wheelCooldown = 2.0f;
-            if (UseXinputScript.use)
-            {
-                GetComponentInParent<GameXinputHandler>().swapPlayer(_wheelSelection);
-                _animator = GetComponentInParent<GameXinputHandler>()._animator;
-            }
-            else
-            {
-                GetComponentInParent<GameInputHandler>().swapPlayer(_wheelSelection);
-                _animator = GetComponentInParent<GameInputHandler>()._animator;
-            }
+
+            GetComponentInParent<GameInputHandler>().swapPlayer(_wheelSelection);
+            _animator = GetComponentInParent<GameInputHandler>()._animator;
 
             sendPlayerChanged = true;
             setupPlayer();
@@ -373,13 +367,25 @@ public class PlayerController : MonoBehaviour
     Vector3 lastPos = Vector3.zero;
     void _Move()
     {
-
+        //i hate duplicate code
         if (remotePlayer)
         {
             if (_animator)
                 _animator.SetBool("walking", Mathf.Abs(gameObject.transform.position.magnitude - lastPos.magnitude) >= 0.01f);
-            
+
             lastPos = gameObject.transform.position;
+            _isGrounded = Physics.Raycast(transform.position, -transform.up, out terrain, 0.6f);
+            if (_isGrounded && terrain.transform.tag == "Terrain")
+            {
+                _dashed = false;
+                _airDashed = false;
+                if (_jumpAnimDuration <= 0.0f)
+                {
+                    _jumped = false;
+                    _doubleJumped = false;
+                    if (_animator) _animator.SetBool("jumping", false);
+                }
+            }
             return;
         }
 
@@ -429,6 +435,13 @@ public class PlayerController : MonoBehaviour
     {
         //NOTE: Resets the button so that the player doesn't accidentally double jump
         isJumping = false;
+
+        if (remotePlayer)
+        {
+            if (_animator) _animator.SetBool("jumping", true);
+            return;
+        }
+
         //NOTE: Jumping adds a slight boost to the x/z direction you move in to simulate push back against the ground
         //NOTE: Gravity is set to -24.525f. To change it: Edit -> Project Settings -> Physics -> y = newGravityValue
         float jump = Mathf.Sqrt(jumpSpeed * -2.0f * -24.525f);
@@ -436,6 +449,7 @@ public class PlayerController : MonoBehaviour
 
         if (_jumpAnimDuration <= 0.0f && _isGrounded && !_jumped)
         {
+            sendJump = true;
             Vector3 vel = _rigidbody.velocity;
             _rigidbody.AddForce(new Vector3(vel.x * hopSpeed, jump, vel.z * hopSpeed), ForceMode.Impulse);
             _jumped = true;
