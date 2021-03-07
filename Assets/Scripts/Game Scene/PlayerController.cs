@@ -112,7 +112,6 @@ public class PlayerController : MonoBehaviour
 
 
     //Network variables
-    public bool sendMovement = false;
     public bool sendPlayerChanged = false;
     public bool sendRotation = false;
     public bool remotePlayer = false;
@@ -397,7 +396,6 @@ public class PlayerController : MonoBehaviour
             vel *= moveSpeed;
             if (vel.magnitude >= 0.1f)
             {
-                sendMovement = true;
                 if (_playerMesh.transform.rotation != playerCamera.transform.rotation)
                 {
                     _playerMesh.transform.rotation = Quaternion.Euler(0.0f, Mathf.SmoothDampAngle(_playerMesh.transform.eulerAngles.y, playerCamera.transform.eulerAngles.y, ref turnSpeed, 0.25f), 0.0f);

@@ -228,14 +228,13 @@ public class CSNetworkManager : MonoBehaviour
                         localPlayerControllers[i].sendJump = false;
                         sentMessage = true;
                     }
-                    if (localPlayerControllers[i].sendMovement || localPlayerControllers[i].GetComponent<Rigidbody>().velocity.magnitude >= 0.1f)
+                    if (localPlayerControllers[i].GetComponent<Rigidbody>().velocity.magnitude >= 0.01f)
                     {
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
                         + playerManager.players[i].transform.position.x.ToString() + " "
                         + playerManager.players[i].transform.position.y.ToString() + " "
                         + playerManager.players[i].transform.position.z.ToString()
                         );
-                        localPlayerControllers[i].sendMovement = false;
                         sentMessage = true;
                     }
                     if (localPlayerControllers[i].sendPlayerChanged)
