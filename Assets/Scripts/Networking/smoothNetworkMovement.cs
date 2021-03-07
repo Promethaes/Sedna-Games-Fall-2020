@@ -20,9 +20,8 @@ public class smoothNetworkMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        t = GetComponent<Transform>();
-
         //get proper transform //TODO
+        t = GetComponent<Transform>();
     }
 
     public void updatePos(Vector3 v)
@@ -40,9 +39,21 @@ public class smoothNetworkMovement : MonoBehaviour
         newRot = q;
         newRotList.Add(newRot);
     }
+
+    public bool attacking = false;
     // Update is called once per frame
     void Update()
     {
+        if (attacking)
+        {
+            oldPosList.Clear();
+            newPosList.Clear();
+            oldRotList.Clear();
+            newRotList.Clear();
+            attacking = false;
+            return;
+        }
+
         _UpdatePos();
         _UpdateRot();
 
@@ -61,7 +72,7 @@ public class smoothNetworkMovement : MonoBehaviour
         if (newPosList.Count == 0)
             return;
 
-        u += Time.deltaTime*lerpSpeed;
+        u += Time.deltaTime * lerpSpeed;
 
         t.position = Vector3.Lerp(oldPosList[0], newPosList[0], u);
     }
@@ -78,7 +89,7 @@ public class smoothNetworkMovement : MonoBehaviour
         if (newRotList.Count == 0)
             return;
 
-        rotU += Time.deltaTime*lerpSpeed;
+        rotU += Time.deltaTime * lerpSpeed;
 
         t.rotation = Quaternion.Slerp(oldRotList[0], newRotList[0], rotU);
     }

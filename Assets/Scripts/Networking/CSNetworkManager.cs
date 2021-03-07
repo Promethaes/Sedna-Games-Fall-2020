@@ -66,7 +66,7 @@ class Client
             if (leave)
                 break;
             receiveDone.Reset();
-            //while (backlog.Count != 0)
+            while (backlog.Count != 0) ;
             //    Debug.Log("backlog not empty!");
             try
             {
@@ -215,30 +215,31 @@ public class CSNetworkManager : MonoBehaviour
                 for (int i = 0; i < localPlayerControllers.Count; i++)
                 {
 
-                    if (localPlayerControllers[i].attack)
+                    if (localPlayerControllers[i].sendAttack)
                     {
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr atk");
-                        client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
-                       + playerManager.players[i].transform.position.x.ToString() + " "
-                       + playerManager.players[i].transform.position.y.ToString() + " "
-                       + playerManager.players[i].transform.position.z.ToString()
-                       );
+                        //     client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
+                        //    + playerManager.players[i].transform.position.x.ToString() + " "
+                        //    + playerManager.players[i].transform.position.y.ToString() + " "
+                        //    + playerManager.players[i].transform.position.z.ToString()
+                        //    );
+                        localPlayerControllers[i].sendAttack = false;
                         sentMessage = true;
                     }
-                    if (localPlayerControllers[i].moved)
+                    if (localPlayerControllers[i].sendMovement)
                     {
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
                         + playerManager.players[i].transform.position.x.ToString() + " "
                         + playerManager.players[i].transform.position.y.ToString() + " "
                         + playerManager.players[i].transform.position.z.ToString()
                         );
-                        localPlayerControllers[i].moved = false;
+                        localPlayerControllers[i].sendMovement = false;
                         sentMessage = true;
                     }
-                    if (localPlayerControllers[i].playerChanged)
+                    if (localPlayerControllers[i].sendPlayerChanged)
                     {
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr chng " + ((int)localPlayerControllers[i].playerType).ToString());
-                        localPlayerControllers[i].playerChanged = false;
+                        localPlayerControllers[i].sendPlayerChanged = false;
                         sentMessage = true;
                     }
                     if (localPlayerControllers[i].usedAbility)
@@ -247,7 +248,7 @@ public class CSNetworkManager : MonoBehaviour
                         localPlayerControllers[i].usedAbility = false;
                         sentMessage = true;
                     }
-                    if (localPlayerControllers[i].rotated)
+                    if (localPlayerControllers[i].sendRotation)
                     {
 
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr qua "
@@ -256,7 +257,7 @@ public class CSNetworkManager : MonoBehaviour
                         + localPlayerControllers[i]._playerMesh.transform.rotation.z.ToString() + " "
                         + localPlayerControllers[i]._playerMesh.transform.rotation.w.ToString()
                         );
-                        localPlayerControllers[i].rotated = false;
+                        localPlayerControllers[i].sendRotation = false;
                     }
 
                 }
@@ -461,9 +462,17 @@ public class CSNetworkManager : MonoBehaviour
         {
             var parts = command.Split(' ');
 
+            smoothNetworkMovement SNM = p.GetComponent<smoothNetworkMovement>();//get proper location of SNM //TODO
+            if (!SNM)
+                SNM = p.AddComponent<smoothNetworkMovement>();
+
+            //temp so we can mess around with it in editor
+            SNM.lerpSpeed = smoothMovementLerpSpeed;
+
             if (command.Contains("atk"))
             {
                 p.GetComponent<PlayerController>().attack = true;
+                SNM.attacking = true;
                 return true;
             }
             else if (command.Contains("chng"))
@@ -477,12 +486,7 @@ public class CSNetworkManager : MonoBehaviour
                 return true;
             }
 
-            smoothNetworkMovement SNM = p.GetComponent<smoothNetworkMovement>();//get proper location of SNM //TODO
-            if (!SNM)
-                SNM = p.AddComponent<smoothNetworkMovement>();
 
-            //temp so we can mess around with it in editor
-            SNM.lerpSpeed = smoothMovementLerpSpeed;
 
 
             if (command.Contains("qua"))

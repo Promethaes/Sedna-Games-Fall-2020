@@ -112,10 +112,11 @@ public class PlayerController : MonoBehaviour
 
 
     //Network variables
-    public bool moved = false;
-    public bool playerChanged = false;
-    public bool rotated = false;
+    public bool sendMovement = false;
+    public bool sendPlayerChanged = false;
+    public bool sendRotation = false;
     public bool remotePlayer = false;
+    public bool sendAttack = false;
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -360,7 +361,7 @@ public class PlayerController : MonoBehaviour
                 _animator = GetComponentInParent<GameInputHandler>()._animator;
             }
 
-            playerChanged = true;
+            sendPlayerChanged = true;
             setupPlayer();
         }
     }
@@ -376,11 +377,11 @@ public class PlayerController : MonoBehaviour
             vel *= moveSpeed;
             if (vel.magnitude >= 0.1f)
             {
-                moved = true;
+                sendMovement = true;
                 if (_playerMesh.transform.rotation != playerCamera.transform.rotation)
                 {
                     _playerMesh.transform.rotation = Quaternion.Euler(0.0f, Mathf.SmoothDampAngle(_playerMesh.transform.eulerAngles.y, playerCamera.transform.eulerAngles.y, ref turnSpeed, 0.25f), 0.0f);
-                    rotated = true;
+                    sendRotation = true;
                 }
             }
             float y = _rigidbody.velocity.y;
@@ -633,6 +634,8 @@ public class PlayerController : MonoBehaviour
     void _Attack()
     {
         if (_animationDuration >= 0.0f) return;
+
+        sendAttack = true;
 
         if (_comboDuration < 0.0f) comboCounter = 0;
         _animationDuration = _animationDelay[comboCounter];
