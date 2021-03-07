@@ -215,6 +215,16 @@ public class CSNetworkManager : MonoBehaviour
                 for (int i = 0; i < localPlayerControllers.Count; i++)
                 {
 
+                    if (localPlayerControllers[i].attack)
+                    {
+                        client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr atk");
+                        client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
+                       + playerManager.players[i].transform.position.x.ToString() + " "
+                       + playerManager.players[i].transform.position.y.ToString() + " "
+                       + playerManager.players[i].transform.position.z.ToString()
+                       );
+                        sentMessage = true;
+                    }
                     if (localPlayerControllers[i].moved)
                     {
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
@@ -223,11 +233,6 @@ public class CSNetworkManager : MonoBehaviour
                         + playerManager.players[i].transform.position.z.ToString()
                         );
                         localPlayerControllers[i].moved = false;
-                        sentMessage = true;
-                    }
-                    if (localPlayerControllers[i].attack)
-                    {
-                        client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr atk");
                         sentMessage = true;
                     }
                     if (localPlayerControllers[i].playerChanged)
