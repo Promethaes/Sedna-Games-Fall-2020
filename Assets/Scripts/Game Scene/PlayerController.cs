@@ -422,7 +422,7 @@ public class PlayerController : MonoBehaviour
             _rigidbody.AddForce(new Vector3(vel.x * hopSpeed, jump, vel.z * hopSpeed), ForceMode.Impulse);
             _jumped = true;
             _jumpAnimDuration = 0.3f;
-            _animator.SetBool("jumping", true);
+            if(_animator) _animator.SetBool("jumping", true);
         }
         else if (_jumpAnimDuration <= 0.0f && !_doubleJumped)
         {
@@ -432,7 +432,7 @@ public class PlayerController : MonoBehaviour
             _rigidbody.AddForce(new Vector3(vel.x * hopSpeed, jump, vel.z * hopSpeed), ForceMode.Impulse);
             _doubleJumped = true;
             _jumpAnimDuration = 0.3f;
-            _animator.SetTrigger("double_jump");
+            if(_animator) _animator.SetTrigger("double_jump");
         }
     }
 
@@ -442,21 +442,25 @@ public class PlayerController : MonoBehaviour
         isDashing = false;
 
         //NOTE: _dashCooldown stops dash chaining that would lead to acceleration
-        if (_dashCooldown <= 0.0f && _dashDuration <= 0.0f && !_dashed && _isGrounded)
-        {
-            Vector3 vel = _rigidbody.velocity;
-            _rigidbody.AddForce(new Vector3(vel.x * dashSpeed, 0.0f, vel.z * dashSpeed), ForceMode.Impulse);
-            _dashed = true;
-            _dashDuration = 0.35f;
-            _dashCooldown = 0.5f;
-        }
-        else if (_dashCooldown <= 0.0f && _dashDuration <= 0.0f && !_airDashed)
-        {
-            Vector3 vel = _rigidbody.velocity;
-            _rigidbody.AddForce(new Vector3(vel.x * dashSpeed, 0.0f, vel.z * dashSpeed), ForceMode.Impulse);
-            _airDashed = true;
-            _dashDuration = 0.35f;
-            _dashCooldown = 0.5f;
+        if (_dashCooldown <= 0.0f && _dashDuration <= 0.0f) {
+            if(_animator) _animator.SetTrigger("dash");
+
+            if(!_dashed && _isGrounded)
+            {
+                Vector3 vel = _rigidbody.velocity;
+                _rigidbody.AddForce(new Vector3(vel.x * dashSpeed, 0.0f, vel.z * dashSpeed), ForceMode.Impulse);
+                _dashed = true;
+                _dashDuration = 0.35f;
+                _dashCooldown = 0.5f;
+            }
+            else if (!_airDashed)
+            {
+                Vector3 vel = _rigidbody.velocity;
+                _rigidbody.AddForce(new Vector3(vel.x * dashSpeed, 0.0f, vel.z * dashSpeed), ForceMode.Impulse);
+                _airDashed = true;
+                _dashDuration = 0.35f;
+                _dashCooldown = 0.5f;
+            }
         }
     }
 
