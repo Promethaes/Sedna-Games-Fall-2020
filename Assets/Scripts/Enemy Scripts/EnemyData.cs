@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -28,7 +28,6 @@ public class EnemyData : MonoBehaviour
     public float healthBarSize = 90.0f;
     public float maxHealth;
     public float health;
-    public float range;
     public float damageValues;
     public GameObject hitbox;
     public bool fear = false;
@@ -36,19 +35,20 @@ public class EnemyData : MonoBehaviour
 
     public enum enemyType
     {
-        dumpage_Monster,
-        icePick,
         buckthorn,
         chaotic_Water_Spirit,
+        dumpage_Monster,
+        splitter,
         flinger,
         dumpageMiniBoss,
+        icePick,
+        mechaShark,
+        pickRobro,
+        roboShooter,
+        furnaceRobo,
     }
 
     public enemyType enemy = enemyType.buckthorn;
-
-    public float icePickRange = 5.0f;
-    public static List<GameObject> icePickEnemies = new List<GameObject>();
-
     public bool randomScale = true;
     public float enemyScale = 1.5f;
     public float lowerBoundEnemyScale = 1.0f;
@@ -72,28 +72,43 @@ public class EnemyData : MonoBehaviour
         {
             case enemyType.buckthorn:
                 setHealth(150.0f);
-                setCombo(15.0f, 2.5f);
+                setCombo(15.0f);
                 break;
             case enemyType.chaotic_Water_Spirit:
                 setHealth(80.0f);
-                setCombo(15.0f, 10.0f);
+                setCombo(15.0f);
                 break;
             case enemyType.dumpage_Monster:
                 setHealth(250.0f);
-                setCombo(20.0f, 2.0f);
+                setCombo(20.0f);
                 break;
-            case enemyType.icePick:
+            case enemyType.splitter:
                 setHealth(120.0f);
-                setCombo(8.0f, 10.9f);
-                icePickEnemies.Add(this.gameObject);
+                setCombo(10.0f);
                 break;
             case enemyType.flinger:
-                setHealth(150.0f);
-                setCombo(15.0f, 30.0f);
+                setHealth(160.0f);
+                setCombo(20.0f);
                 break;
             case enemyType.dumpageMiniBoss:
                 setHealth(350.0f);
-                setCombo(20.0f, 30.0f);
+                setCombo(20.0f);
+                break;
+            case enemyType.icePick:
+                setHealth(120.0f);
+                setCombo(16.0f);
+                break;
+            case enemyType.roboShooter:
+                setHealth(120.0f);
+                setCombo(8.0f);
+                break;
+            case enemyType.mechaShark:
+                setHealth(99999.0f);
+                setCombo(15.0f);
+                break;
+            case enemyType.furnaceRobo:
+                setHealth(360.0f);
+                setCombo(30.0f);
                 break;
             default:
                 break;
@@ -175,11 +190,10 @@ public class EnemyData : MonoBehaviour
         yield return null;
     }
 
-    protected void setCombo(float damage, float range)
+    protected void setCombo(float damage)
     {
         //Damage values for combo hits 1/2/3, animation length for combo hits 1/2/3
         damageValues = damage * enemyScale;
-        range = range * enemyScale;
     }
 
     public NavMeshAgent getNavMeshAgent()
