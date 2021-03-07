@@ -40,23 +40,11 @@ public class smoothNetworkMovement : MonoBehaviour
         newRotList.Add(newRot);
     }
 
-    public bool attacking = false;
     // Update is called once per frame
     void Update()
     {
-        if (attacking)
-        {
-            oldPosList.Clear();
-            newPosList.Clear();
-            oldRotList.Clear();
-            newRotList.Clear();
-            attacking = false;
-            return;
-        }
-
         _UpdatePos();
         _UpdateRot();
-
     }
 
     float u = 0.0f;

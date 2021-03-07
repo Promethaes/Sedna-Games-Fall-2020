@@ -66,7 +66,7 @@ class Client
             if (leave)
                 break;
             receiveDone.Reset();
-            while (backlog.Count != 0) ;
+            while (backlog.Count != 0);
             //    Debug.Log("backlog not empty!");
             try
             {
@@ -218,11 +218,11 @@ public class CSNetworkManager : MonoBehaviour
                     if (localPlayerControllers[i].sendAttack)
                     {
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr atk");
-                        //     client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
-                        //    + playerManager.players[i].transform.position.x.ToString() + " "
-                        //    + playerManager.players[i].transform.position.y.ToString() + " "
-                        //    + playerManager.players[i].transform.position.z.ToString()
-                        //    );
+                    //     client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
+                    //    + playerManager.players[i].transform.position.x.ToString() + " "
+                    //    + playerManager.players[i].transform.position.y.ToString() + " "
+                    //    + playerManager.players[i].transform.position.z.ToString()
+                    //    );
                         localPlayerControllers[i].sendAttack = false;
                         sentMessage = true;
                     }
@@ -462,17 +462,9 @@ public class CSNetworkManager : MonoBehaviour
         {
             var parts = command.Split(' ');
 
-            smoothNetworkMovement SNM = p.GetComponent<smoothNetworkMovement>();//get proper location of SNM //TODO
-            if (!SNM)
-                SNM = p.AddComponent<smoothNetworkMovement>();
-
-            //temp so we can mess around with it in editor
-            SNM.lerpSpeed = smoothMovementLerpSpeed;
-
             if (command.Contains("atk"))
             {
                 p.GetComponent<PlayerController>().attack = true;
-                SNM.attacking = true;
                 return true;
             }
             else if (command.Contains("chng"))
@@ -486,7 +478,12 @@ public class CSNetworkManager : MonoBehaviour
                 return true;
             }
 
+            smoothNetworkMovement SNM = p.GetComponent<smoothNetworkMovement>();//get proper location of SNM //TODO
+            if (!SNM)
+                SNM = p.AddComponent<smoothNetworkMovement>();
 
+            //temp so we can mess around with it in editor
+            SNM.lerpSpeed = smoothMovementLerpSpeed;
 
 
             if (command.Contains("qua"))
