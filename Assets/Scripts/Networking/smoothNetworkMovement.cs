@@ -26,7 +26,10 @@ public class smoothNetworkMovement : MonoBehaviour
 
     public void updatePos(Vector3 v)
     {
+
         oldPos = newPos;
+        if (oldPos.magnitude == 0.0f)
+            oldPos = gameObject.transform.position;
         oldPosList.Add(oldPos);
         newPos = v;
         newPosList.Add(newPos);
