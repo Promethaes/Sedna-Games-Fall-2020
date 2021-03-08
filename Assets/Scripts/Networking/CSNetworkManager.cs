@@ -408,8 +408,9 @@ public class CSNetworkManager : MonoBehaviour
                 var espIndex = int.Parse(parts[3]);
                 var eIndex = int.Parse(parts[5]);
                 Vector3 pos = new Vector3(float.Parse(parts[6]), float.Parse(parts[7]), float.Parse(parts[8]));
-
-                EnemySpawnPoint.AllEnemySpawnPoints[espIndex].spawnEnemies[eIndex].GetComponent<Rigidbody>().velocity = Vector3.zero;
+                var rb = EnemySpawnPoint.AllEnemySpawnPoints[espIndex].spawnEnemies[eIndex].GetComponent<Rigidbody>();
+                if (rb)
+                    rb.velocity = Vector3.zero;
                 EnemySpawnPoint.AllEnemySpawnPoints[espIndex].spawnEnemies[eIndex].transform.position = pos;
                 client.backlog.RemoveAt(i);
                 i--;
