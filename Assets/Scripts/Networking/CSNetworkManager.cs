@@ -103,7 +103,7 @@ public class CSNetworkManager : MonoBehaviour
     List<GameObject> tempRemoteMenuPlayers = new List<GameObject>();
     List<GameObject> localPlayersGameObject = new List<GameObject>();
 
-    bool isHostClient = false;
+    public bool isHostClient = false;
 
     //[SerializeField]
     //UnityEvent OnSpawnEnemy;
@@ -175,12 +175,20 @@ public class CSNetworkManager : MonoBehaviour
         generatedSeed = true;
     }
 
+    public void SendEnemyDesyncUpdate(int spawnPointIndex, int enemyIndex, Vector3 pos)
+    {
+        if (!isHostClient)
+            return;
+
+        client.Send("cli 0 esp " + spawnPointIndex.ToString() + " e " + enemyIndex.ToString() +
+        " " + pos.x.ToString() + " " + pos.y.ToString() + " " + pos.z.ToString());
+    }
+
     public float sendRateFPS = 60.0f;
     float timer = 0.0f;
     float changeTimer = 3.0f;
     bool changedScene = false;
     public float smoothMovementLerpSpeed = 100.0f;
-    int desyncPreventionTimer = 1;
     GamePlayerManager playerManager;
     List<PlayerController> localPlayerControllers = new List<PlayerController>();
     // Update is called once per frame
@@ -212,11 +220,6 @@ public class CSNetworkManager : MonoBehaviour
 
             if (timer <= 0.0f && send)
             {
-                //will currently send a desync prevention update 4 times per second
-                bool sendMovementToPreventDesync = false;
-                desyncPreventionTimer += 1;
-                if(desyncPreventionTimer == (int)sendRateFPS*2)
-                    sendMovementToPreventDesync = true;
 
                 bool sentMessage = false;
                 for (int i = 0; i < localPlayerControllers.Count; i++)
@@ -235,7 +238,7 @@ public class CSNetworkManager : MonoBehaviour
                         localPlayerControllers[i].sendJump = false;
                         sentMessage = true;
                     }
-                    if (localPlayerControllers[i].sendMovement || sendMovementToPreventDesync)
+                    if (localPlayerControllers[i].sendMovement)
                     {
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
                         + playerManager.players[i].transform.position.x.ToString() + " "
@@ -394,6 +397,19 @@ public class CSNetworkManager : MonoBehaviour
                 int seed = int.Parse(parts[1]);
 
                 UnityEngine.Random.InitState(seed);
+                client.backlog.RemoveAt(i);
+                i--;
+                continue;
+            }
+            else if (client.backlog[i].Contains("esp"))
+            {
+                var parts = client.backlog[i].Split(' ');
+                //cli 0 esp 0 e 0 0 0 0
+                var espIndex = int.Parse(parts[3]);
+                var eIndex = int.Parse(parts[5]);
+                Vector3 pos = new Vector3(float.Parse(parts[6]), float.Parse(parts[7]), float.Parse(parts[8]));
+
+                EnemySpawnPoint.AllEnemySpawnPoints[espIndex].spawnEnemies[eIndex].transform.position = pos;
                 client.backlog.RemoveAt(i);
                 i--;
                 continue;

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemySpawnPoint : MonoBehaviour
 {
+    public static List<EnemySpawnPoint> AllEnemySpawnPoints = new List<EnemySpawnPoint>();
+    public int spawnPointIndex = -1;
+
     //the particular enemy you want to spawn here
     public GameObject enemyPrefab;
     public List<GameObject> spawnEnemies = new List<GameObject>();
@@ -17,10 +20,15 @@ public class EnemySpawnPoint : MonoBehaviour
     public Barriers _barriers;
     public bool overrideAndClear = false;
 
+    public CSNetworkManager networkManager = null;
 
     void Start()
     {
-            
+        AllEnemySpawnPoints.Add(this);
+        spawnPointIndex = AllEnemySpawnPoints.Count - 1;
+
+        networkManager = FindObjectOfType<CSNetworkManager>();
+
         CreatePool();
         enemyPrefab.transform.position = gameObject.transform.position;
         if (oneTimeSpawn)
@@ -43,8 +51,28 @@ public class EnemySpawnPoint : MonoBehaviour
         }
     }
 
+    float desyncTimer = 0.0f;
+    void EnemyDesyncUpdate()
+    {
+        if (!networkManager.isHostClient)
+            return;
+
+        desyncTimer -= Time.deltaTime;
+        if (desyncTimer <= 0.0f)
+        {
+            for (int i = 0; i < spawnEnemies.Count; i++)
+                if (spawnEnemies[i].activeSelf)
+                    networkManager.SendEnemyDesyncUpdate(spawnPointIndex, i,spawnEnemies[i].transform.position);
+
+            desyncTimer = (1000.0f / networkManager.sendRateFPS) / 1000.0f;
+        }
+
+    }
+
     void Update()
     {
+        EnemyDesyncUpdate();
+
         if (overrideAndClear)
             KillSpawnPoint();
         if (oneTimeSpawn)
@@ -108,12 +136,13 @@ public class EnemySpawnPoint : MonoBehaviour
         Vector3 placeVec = new Vector3(radius + spawnIndex, 0.0f, radius + spawnIndex);
         if (randomizeSpawnPos)
             placeVec = new Vector3(Random.Range(-radius, radius), 0.0f, Random.Range(-radius, radius));
-        
+
         spawnEnemies[spawnIndex].transform.position = gameObject.transform.position + placeVec * spawnRadiusScalar;
         spawnEnemies[spawnIndex].SetActive(true);
         var enemy = spawnEnemies[spawnIndex].GetComponentInChildren<EnemyData>();
         enemy.health = enemy.maxHealth;
         enemy.healthBar.sizeDelta = new Vector2(enemy.getHealth() / enemy.getMaxHealth() * 90.0f, enemy.healthBar.sizeDelta.y);
+        enemy.spawnPointIndex = spawnPointIndex;
         _pvtSpawnTimeInterval = spawnTimeInterval;
     }
 
