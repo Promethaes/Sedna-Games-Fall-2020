@@ -217,6 +217,8 @@ GameObject:
   - component: {fileID: 9145494780735996664}
   - component: {fileID: 1937662721376738147}
   - component: {fileID: 2746547740495317389}
+  - component: {fileID: 6559961405960342717}
+  - component: {fileID: -7652940201251454267}
   m_Layer: 0
   m_Name: MiniBoss
   m_TagString: Enemy
@@ -233,7 +235,7 @@ Transform:
   m_GameObject: {fileID: 8226452393176891317}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 506.07596, y: 4.6600037, z: 517.9183}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.4490066, y: 2.4490066, z: 2.4490066}
   m_Children:
   - {fileID: 2160128622509204344}
   - {fileID: 6084149244488833376}
@@ -367,6 +369,35 @@ MonoBehaviour:
   enemyData: {fileID: 9145494780735996667}
   prefab: {fileID: 8727932547203495207, guid: c9258adff64cc624cb3a0119f16e85ef, type: 3}
   poolSize: 4
+--- !u!54 &6559961405960342717
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8226452393176891317}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 10
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &-7652940201251454267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8226452393176891317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf51a34b015058642b4158be34cbad40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lerpSpeed: 0.2
 --- !u!1 &8228875897217003794
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,9 +652,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 918a42cbce1e74843b67830f6cf3c9b3, type: 3}
---- !u!224 &2160128622509204344 stripped
+--- !u!224 &6969852516052397512 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 9008868705525029347, guid: 918a42cbce1e74843b67830f6cf3c9b3,
+  m_CorrespondingSourceObject: {fileID: 19804668603995987, guid: 918a42cbce1e74843b67830f6cf3c9b3,
     type: 3}
   m_PrefabInstance: {fileID: 6989516058606664347}
   m_PrefabAsset: {fileID: 0}
@@ -639,9 +670,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 084a1b8ac8bb5e948b319f2f1e7cf875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &6969852516052397512 stripped
+--- !u!224 &2160128622509204344 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 19804668603995987, guid: 918a42cbce1e74843b67830f6cf3c9b3,
+  m_CorrespondingSourceObject: {fileID: 9008868705525029347, guid: 918a42cbce1e74843b67830f6cf3c9b3,
     type: 3}
   m_PrefabInstance: {fileID: 6989516058606664347}
   m_PrefabAsset: {fileID: 0}

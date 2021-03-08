@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 3527685000496018684}
   - component: {fileID: 3527685000496018687}
   - component: {fileID: 6123906102558059876}
+  - component: {fileID: 5433265143885649428}
   m_Layer: 0
   m_Name: Flinger
   m_TagString: Enemy
@@ -239,6 +240,19 @@ MonoBehaviour:
   tossAngle: 2
   speed: 2.52
   poolSize: 4
+--- !u!114 &5433265143885649428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4338570631340935602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf51a34b015058642b4158be34cbad40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lerpSpeed: 0.2
 --- !u!1 &5600217152425000415
 GameObject:
   m_ObjectHideFlags: 0

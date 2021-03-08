@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 4431924052111653427}
   - component: {fileID: 4431924052111653424}
   - component: {fileID: 6703472332188093369}
+  - component: {fileID: -1138844208907011512}
   m_Layer: 0
   m_Name: Splitter
   m_TagString: Enemy
@@ -325,6 +326,7 @@ MonoBehaviour:
   range: 0
   damageValues: 0
   hitbox: {fileID: 0}
+  fear: 0
   enemy: 0
   icePickRange: 5
   randomScale: 1
@@ -368,6 +370,19 @@ MonoBehaviour:
   splitlings:
   - {fileID: 6006553244821029437, guid: bc74c195fd278d049adb906ec3942d2a, type: 3}
   - {fileID: 81745033361949159, guid: 4cc87095c85659b4e8c636321b0b17df, type: 3}
+--- !u!114 &-1138844208907011512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3548892170378463101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf51a34b015058642b4158be34cbad40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lerpSpeed: 0.2
 --- !u!1 &5895545915735587060
 GameObject:
   m_ObjectHideFlags: 0

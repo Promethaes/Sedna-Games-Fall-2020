@@ -411,7 +411,9 @@ public class CSNetworkManager : MonoBehaviour
                 var rb = EnemySpawnPoint.AllEnemySpawnPoints[espIndex].spawnEnemies[eIndex].GetComponent<Rigidbody>();
                 if (rb)
                     rb.velocity = Vector3.zero;
-                EnemySpawnPoint.AllEnemySpawnPoints[espIndex].spawnEnemies[eIndex].transform.position = pos;
+                var snm = EnemySpawnPoint.AllEnemySpawnPoints[espIndex].spawnEnemies[eIndex].GetComponent<smoothNetworkMovement>();
+                if(snm)
+                    snm.updatePos(pos);
                 client.backlog.RemoveAt(i);
                 i--;
                 continue;
