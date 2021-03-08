@@ -34,7 +34,6 @@ public class EnemyData : MonoBehaviour
     public bool fear = false;
     float _poisonDuration = 10.0f;
 
-    public int spawnPointIndex = -1;
 
     public enum enemyType
     {

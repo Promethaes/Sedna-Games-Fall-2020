@@ -64,7 +64,7 @@ public class EnemySpawnPoint : MonoBehaviour
                 if (spawnEnemies[i].activeSelf)
                     networkManager.SendEnemyDesyncUpdate(spawnPointIndex, i,spawnEnemies[i].transform.position);
 
-            desyncTimer = (1000.0f / networkManager.sendRateFPS) / 1000.0f;
+            desyncTimer = 5.0f / 1000.0f;
         }
 
     }
@@ -142,7 +142,6 @@ public class EnemySpawnPoint : MonoBehaviour
         var enemy = spawnEnemies[spawnIndex].GetComponentInChildren<EnemyData>();
         enemy.health = enemy.maxHealth;
         enemy.healthBar.sizeDelta = new Vector2(enemy.getHealth() / enemy.getMaxHealth() * 90.0f, enemy.healthBar.sizeDelta.y);
-        enemy.spawnPointIndex = spawnPointIndex;
         _pvtSpawnTimeInterval = spawnTimeInterval;
     }
 
