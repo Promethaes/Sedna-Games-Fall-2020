@@ -180,6 +180,7 @@ public class CSNetworkManager : MonoBehaviour
     float changeTimer = 3.0f;
     bool changedScene = false;
     public float smoothMovementLerpSpeed = 100.0f;
+    int desyncPreventionTimer = 1;
     GamePlayerManager playerManager;
     List<PlayerController> localPlayerControllers = new List<PlayerController>();
     // Update is called once per frame
@@ -211,6 +212,12 @@ public class CSNetworkManager : MonoBehaviour
 
             if (timer <= 0.0f && send)
             {
+                //will currently send a desync prevention update 4 times per second
+                bool sendMovementToPreventDesync = false;
+                desyncPreventionTimer += 1;
+                if(desyncPreventionTimer == (int)sendRateFPS*2)
+                    sendMovementToPreventDesync = true;
+
                 bool sentMessage = false;
                 for (int i = 0; i < localPlayerControllers.Count; i++)
                 {
@@ -228,7 +235,7 @@ public class CSNetworkManager : MonoBehaviour
                         localPlayerControllers[i].sendJump = false;
                         sentMessage = true;
                     }
-                    if (localPlayerControllers[i].sendMovement)
+                    if (localPlayerControllers[i].sendMovement || sendMovementToPreventDesync)
                     {
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
                         + playerManager.players[i].transform.position.x.ToString() + " "

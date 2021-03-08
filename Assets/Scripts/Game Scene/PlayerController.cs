@@ -254,6 +254,9 @@ public class PlayerController : MonoBehaviour
 
             if (toggle)
                 _Toggle();
+
+            if(remotePlayer)
+                _rigidbody.velocity = Vector3.zero;
         }
     }
 
