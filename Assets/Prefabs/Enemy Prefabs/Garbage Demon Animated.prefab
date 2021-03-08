@@ -576,7 +576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf51a34b015058642b4158be34cbad40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lerpSpeed: 0.2
+  lerpSpeed: 15
 --- !u!1 &2898936684503486437
 GameObject:
   m_ObjectHideFlags: 0
