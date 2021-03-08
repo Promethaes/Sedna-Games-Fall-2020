@@ -18,7 +18,7 @@ public class MovingPlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 dir = transform.position-target.position;
+        Vector3 dir = target.position-transform.position;
         if ((transform.position - target.position).magnitude < 0.5f && !pause)
         {
             pause = true;
@@ -26,20 +26,24 @@ public class MovingPlatform : MonoBehaviour
                 target = end;
             else
                 target = start;
-            float timer = 1.5f;
-            while (timer > 0.0f)
-            {
-                timer -= Time.deltaTime;
-            }
-            pause = false;
+            StartCoroutine(StopPlatform());
         }
-        else
+        else if (!pause)
         {
             transform.position += dir.normalized*Time.deltaTime*speed;
-            player.transform.position += dir.normalized*Time.deltaTime*speed;;
+            if (player!=null)
+                player.transform.position += dir.normalized*Time.deltaTime*speed;;
         }
     }
-    private void OnTriggerStay(Collider other) {
+    IEnumerator StopPlatform()
+    {
+        yield return new WaitForSeconds(1.5f);
+        pause = false;
+    }
+    private void OnCollisionStay(Collision other) {
         player = other.transform;
+    }
+    private void OnCollisionExit(Collider other) {
+        player = null;
     }
 }
