@@ -191,7 +191,6 @@ public class PlayerController : MonoBehaviour
 
     void SendMovemnt()
     {
-        Debug.Log(_rigidbody.velocity.magnitude);
         if (_rigidbody.velocity.magnitude >= 3.0f)
             sendMovement = true;
     }
@@ -379,10 +378,12 @@ public class PlayerController : MonoBehaviour
         //i hate duplicate code
         if (remotePlayer)
         {
-            if (_animator && !isJumping && Mathf.Abs(gameObject.transform.position.y - _lastPos.y) < 1.0f && !_animator.GetBool("attacking"))
-                _animator.SetBool("walking", Mathf.Abs(gameObject.transform.position.magnitude - _lastPos.magnitude) >= 0.01f);
+            var pos = gameObject.transform.position;
+            pos.y = 0.0f;
+            if (_animator && !_animator.GetBool("attacking") && !_animator.GetBool("jumping"))
+                _animator.SetBool("walking", Mathf.Abs(pos.magnitude - _lastPos.magnitude) >= 0.1f);
 
-            _lastPos = gameObject.transform.position;
+            _lastPos = pos;
             _isGrounded = Physics.Raycast(transform.position, -transform.up, out terrain, 0.6f);
             if (_isGrounded && terrain.transform.tag == "Terrain")
             {
@@ -441,7 +442,11 @@ public class PlayerController : MonoBehaviour
 
         if (remotePlayer)
         {
-            if (_animator) _animator.SetBool("jumping", true);
+            if (_animator)
+            {
+                _animator.SetBool("walking", false);
+                _animator.SetBool("jumping", true);
+            }
             return;
         }
 
@@ -676,9 +681,9 @@ public class PlayerController : MonoBehaviour
             _animator.SetBool("attacking", true);
             switch (comboCounter)
             {
-                case 0: _animator.SetTrigger("attack1"); Debug.Log("Attack 0"); break;
-                case 1: _animator.SetTrigger("attack2"); Debug.Log("Attack 1"); break;
-                case 2: _animator.SetTrigger("attack3"); Debug.Log("Attack 2"); break;
+                case 0: _animator.SetTrigger("attack1"); break;
+                case 1: _animator.SetTrigger("attack2"); break;
+                case 2: _animator.SetTrigger("attack3"); break;
                 default: _animator.SetTrigger("attack1"); break;
             }
         }
