@@ -43,7 +43,7 @@ public class MovingPlatform : MonoBehaviour
     private void OnCollisionStay(Collision other) {
         player = other.transform;
     }
-    private void OnCollisionExit(Collider other) {
+    private void OnCollisionExit(Collision other) {
         player = null;
     }
 }

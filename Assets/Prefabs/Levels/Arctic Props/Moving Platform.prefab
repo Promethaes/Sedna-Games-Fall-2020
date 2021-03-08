@@ -1641,4 +1641,3 @@ MonoBehaviour:
   start: {fileID: 0}
   end: {fileID: 0}
   speed: 5
-  player: {fileID: 0}

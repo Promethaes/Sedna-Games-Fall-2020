@@ -21,7 +21,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 5164299966564100628}
+  - {fileID: 4741618816222202850}
   MinDistance: 1
   MaxDistance: 20
   Length: 960
@@ -321,6 +321,26 @@ MonoBehaviour:
   m_Name: parameter:/wet_exp/In Combat
   m_EditorClassIdentifier: 
   Name: In Combat
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &-8455825186049291397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/dmp_ko/size
+  m_EditorClassIdentifier: 
+  Name: size
   Min: 0
   Max: 1
   Default: 0
@@ -699,6 +719,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &-7434367876512147612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/dmp_attack/size
+  m_EditorClassIdentifier: 
+  Name: size
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
 --- !u!114 &-7417803930513045946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -842,6 +882,26 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 50
+--- !u!114 &-7024256534238186434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/river/clearedObstacle
+  m_EditorClassIdentifier: 
+  Name: clearedObstacle
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
 --- !u!114 &-6990320711752172420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1291,7 +1351,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Banks/OST.bank
   Name: Banks/OST
   StudioPath: bank:/OST
-  lastModified: 637428796496117698
+  lastModified: 637428562189592688
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -1623,7 +1683,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: -5518715250354801144}
+  - {fileID: -8455825186049291397}
   MinDistance: 1
   MaxDistance: 20
   Length: 329
@@ -1949,6 +2009,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &-4518729775254695970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/wet_exp/Progress
+  m_EditorClassIdentifier: 
+  Name: Progress
+  Min: 1
+  Max: 7
+  Default: 1
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
 --- !u!114 &-4459161839435171629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1984,7 +2064,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Banks/_test.bank
   Name: Banks/_test
   StudioPath: bank:/_test
-  lastModified: 637428796496327889
+  lastModified: 637428562208097301
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -2127,7 +2207,7 @@ MonoBehaviour:
   Path: Assets/FMOD/_test.bank
   Name: _test
   StudioPath: bank:/_test
-  lastModified: 637428796496698224
+  lastModified: 637428562214790494
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -2250,7 +2330,7 @@ MonoBehaviour:
   Path: Assets/FMOD/ui.bank
   Name: ui
   StudioPath: bank:/ui
-  lastModified: 637432358341705921
+  lastModified: 637435942185780843
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -2409,7 +2489,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Banks/Master.bank
   Name: Banks/Master
   StudioPath: bank:/Master
-  lastModified: 637428796495447090
+  lastModified: 637428562185341204
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -2454,7 +2534,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: -7417803930513045946}
+  - {fileID: 4101154535089899567}
   MinDistance: 1
   MaxDistance: 20
   Length: 406
@@ -2698,6 +2778,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &-2709640165828538161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/dmp_attack/size
+  m_EditorClassIdentifier: 
+  Name: size
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-2586747133737842459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3121,6 +3221,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &-1869434779241702890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/dmp_spawn/size
+  m_EditorClassIdentifier: 
+  Name: size
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
 --- !u!114 &-1854706835793170950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3176,7 +3296,7 @@ MonoBehaviour:
   Path: Assets/FMOD/OST.bank
   Name: OST
   StudioPath: bank:/OST
-  lastModified: 637428796496478024
+  lastModified: 637428562213803131
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -3527,6 +3647,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &-933244944748109859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/async test/testParameter
+  m_EditorClassIdentifier: 
+  Name: testParameter
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-903411987192850839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3587,6 +3727,46 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &-727408352329421310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/pitch mod test/testParameter
+  m_EditorClassIdentifier: 
+  Name: testParameter
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &-716074124417614910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/async test/testParameter
+  m_EditorClassIdentifier: 
+  Name: testParameter
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
 --- !u!114 &-589307193152171155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3624,6 +3804,26 @@ MonoBehaviour:
   m_Name: parameter:/dmp_pain/size
   m_EditorClassIdentifier: 
   Name: size
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &-464323991194257424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/wet_exp/In Combat
+  m_EditorClassIdentifier: 
+  Name: In Combat
   Min: 0
   Max: 1
   Default: 0
@@ -3712,8 +3912,8 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -3995291363218799188}
-  - {fileID: -6656930051898529670}
+  - {fileID: 6129753542047684231}
+  - {fileID: -464323991194257424}
   MinDistance: 0
   MaxDistance: 0
   Length: 128000
@@ -3752,7 +3952,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Banks/Wetlands.bank
   Name: Banks/Wetlands
   StudioPath: bank:/Wetlands
-  lastModified: 637432358341295549
+  lastModified: 637435942185478293
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -3878,7 +4078,7 @@ MonoBehaviour:
   - {fileID: -3628646633846481941}
   StringsBanks:
   - {fileID: 2428733274517835223}
-  stringsBankWriteTime: 637428796496377933
+  stringsBankWriteTime: 637428562213493963
   cacheVersion: 6
 --- !u!114 &108883908754983310
 MonoBehaviour:
@@ -4555,7 +4755,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637428796496377933
+  lastModified: 637428562208825405
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -4723,7 +4923,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Banks/General Sounds.bank
   Name: Banks/General Sounds
   StudioPath: bank:/General Sounds
-  lastModified: 637428796495447090
+  lastModified: 637428562185291577
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -4788,7 +4988,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 1910156548990949010}
+  - {fileID: 2903742172617521160}
   MinDistance: 1
   MaxDistance: 20
   Length: 70485
@@ -4807,7 +5007,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637428796496377933
+  lastModified: 637428562213493963
   LoadResult: 0
   FileSizes:
   - Name: 
@@ -5097,6 +5297,46 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &2884646719078732423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/dmp_ko/size
+  m_EditorClassIdentifier: 
+  Name: size
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &2903742172617521160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/river/clearedObstacle
+  m_EditorClassIdentifier: 
+  Name: clearedObstacle
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &2906900051800614459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5298,7 +5538,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: -1878434496494327941}
+  - {fileID: -727408352329421310}
   MinDistance: 1
   MaxDistance: 20
   Length: 1469
@@ -5506,6 +5746,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &4101154535089899567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/dmp_pain/size
+  m_EditorClassIdentifier: 
+  Name: size
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &4116305101601018912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5701,7 +5961,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Banks/ui.bank
   Name: Banks/ui
   StudioPath: bank:/ui
-  lastModified: 637432358341465703
+  lastModified: 637435942185488042
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -5720,7 +5980,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Dumpage Monster.bank
   Name: Dumpage Monster
   StudioPath: bank:/Dumpage Monster
-  lastModified: 637428796496337897
+  lastModified: 637428562208207016
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -5804,6 +6064,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &4741618816222202850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/dmp_spawn/size
+  m_EditorClassIdentifier: 
+  Name: size
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &4796811817733871125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6151,7 +6431,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Banks/Dumpage Monster.bank
   Name: Banks/Dumpage Monster
   StudioPath: bank:/Dumpage Monster
-  lastModified: 637428796495417066
+  lastModified: 637428562182531915
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -6255,6 +6535,46 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &6129753542047684231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/wet_exp/Progress
+  m_EditorClassIdentifier: 
+  Name: Progress
+  Min: 1
+  Max: 7
+  Default: 1
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &6242273661005041255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/wet_exp/In Combat
+  m_EditorClassIdentifier: 
+  Name: In Combat
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
 --- !u!114 &6302025990138328075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6310,7 +6630,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Wetlands.bank
   Name: Wetlands
   StudioPath: bank:/Wetlands
-  lastModified: 637432358341695911
+  lastModified: 637435942185751577
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -6555,7 +6875,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: -7305657275154276309}
+  - {fileID: -933244944748109859}
   MinDistance: 0
   MaxDistance: 0
   Length: 10666
@@ -6894,7 +7214,7 @@ MonoBehaviour:
   Path: Assets/FMOD/General Sounds.bank
   Name: General Sounds
   StudioPath: bank:/General Sounds
-  lastModified: 637428796496367926
+  lastModified: 637428562208307048
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -6939,7 +7259,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 4796811817733871125}
+  - {fileID: -2709640165828538161}
   MinDistance: 1
   MaxDistance: 20
   Length: 593
@@ -7017,6 +7337,26 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
   m_Name: parameter:/dmp_attack/size
+  m_EditorClassIdentifier: 
+  Name: size
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &8086552406042219767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/dmp_pain/size
   m_EditorClassIdentifier: 
   Name: size
   Min: 0
@@ -7380,6 +7720,26 @@ MonoBehaviour:
   m_Name: parameter:/dmp_spawn/size
   m_EditorClassIdentifier: 
   Name: size
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &9205753808376587162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/pitch mod test/testParameter
+  m_EditorClassIdentifier: 
+  Name: testParameter
   Min: 0
   Max: 1
   Default: 0
