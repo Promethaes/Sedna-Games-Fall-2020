@@ -191,7 +191,8 @@ public class PlayerController : MonoBehaviour
 
     void SendMovemnt()
     {
-        if (_rigidbody.velocity.magnitude >= 3.0f)
+        //if (_rigidbody.velocity.magnitude >= 3.0f)
+            //fuck it honestly. May adjust later, but we're sending so few packets...its fine right?
             sendMovement = true;
     }
 
