@@ -9,6 +9,8 @@ public class Cutscene : MonoBehaviour
     float _fadeTime=2.5f;
     Color _color;
     public bool cutsceneComplete = false;
+    public GameObject abilityZone;
+    public GameObject effect;
 
     public void startCutscene()
     {
@@ -47,6 +49,8 @@ public class Cutscene : MonoBehaviour
             players[i].GetComponentInChildren<PlayerController>().inCutscene = false;
         }
         cutsceneComplete = true;
+        abilityZone.SetActive(false);
+        effect.SetActive(false);
         //Destroy(this);
     }
 }

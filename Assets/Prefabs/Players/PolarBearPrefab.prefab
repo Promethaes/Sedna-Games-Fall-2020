@@ -359,7 +359,7 @@ Animator:
   m_GameObject: {fileID: 6342574812352505978}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5ce30633a1be76d409d47bdfdabf5e58, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -378,7 +378,7 @@ Animator:
   m_GameObject: {fileID: 8498680498367167920}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5ce30633a1be76d409d47bdfdabf5e58, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5bdacf472f67f10408991b7c40086574, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -449,16 +449,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7726518400033974192, guid: 485e87dae39976640a220ca54b270dca,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2179481110041231623, guid: 485e87dae39976640a220ca54b270dca,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 485e87dae39976640a220ca54b270dca,
         type: 3}
       propertyPath: m_Name
       value: Polar_Bear_Animation
+      objectReference: {fileID: 0}
+    - target: {fileID: 5398741684392809372, guid: 485e87dae39976640a220ca54b270dca,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5467912486616002230, guid: 485e87dae39976640a220ca54b270dca,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 150569f5829509c4bb822968be1fbe3c, type: 2}
+    - target: {fileID: 7994332132821093712, guid: 485e87dae39976640a220ca54b270dca,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 485e87dae39976640a220ca54b270dca, type: 3}
 --- !u!1 &8498680498367167920 stripped

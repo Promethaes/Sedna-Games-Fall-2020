@@ -388,6 +388,11 @@ MonoBehaviour:
   _progressBar:
   - {fileID: 1554948649932957559}
   - {fileID: 4830467803639516429}
+  effect:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   playerController: {fileID: 0}
   inCutscene: 0
   topText: {fileID: 7071846988726089225}

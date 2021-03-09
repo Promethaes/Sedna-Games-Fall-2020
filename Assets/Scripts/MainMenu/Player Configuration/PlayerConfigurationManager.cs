@@ -13,6 +13,9 @@ public class PlayerConfigurationManager : MonoBehaviour
     public List<PlayerConfiguration> playerConfigurations { get { return _playerConfigs; } }
 
     public static PlayerConfigurationManager get { get; private set; }
+
+    public CSNetworkManager networkManager;
+    public GameObject _configPrefab;
     private void Awake()
     {
         if (get != null)
@@ -49,7 +52,10 @@ public class PlayerConfigurationManager : MonoBehaviour
         {
             Logger.Log("Player {0} joined", playerInput.playerIndex);
             playerInput.transform.parent = transform;
-            _playerConfigs.Add(new PlayerConfiguration(playerInput));
+            var p = new PlayerConfiguration(playerInput);
+            _playerConfigs.Add(p);
+
+            networkManager.AddNetworkedPlayer(p, true);
         }
     }
 
