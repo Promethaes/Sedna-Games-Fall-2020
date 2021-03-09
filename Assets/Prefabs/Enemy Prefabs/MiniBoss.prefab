@@ -235,7 +235,7 @@ Transform:
   m_GameObject: {fileID: 8226452393176891317}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 506.07596, y: 4.6600037, z: 517.9183}
-  m_LocalScale: {x: 2.4490066, y: 2.4490066, z: 2.4490066}
+  m_LocalScale: {x: 3.478079, y: 3.478079, z: 3.478079}
   m_Children:
   - {fileID: 2160128622509204344}
   - {fileID: 6084149244488833376}
@@ -303,7 +303,7 @@ MonoBehaviour:
   healthBarSize: 90
   maxHealth: 0
   health: 0
-  range: 0
+  range: 300
   damageValues: 0
   hitbox: {fileID: 0}
   fear: 0
@@ -348,11 +348,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 9145494780735996667}
-  flingable: {fileID: 4733966854396529314, guid: 5d99ea7ec5b3df743ad5b120ebdec951,
+  flingable: {fileID: 4379798456340604989, guid: 5d99ea7ec5b3df743ad5b120ebdec951,
     type: 3}
   target: {fileID: 0}
   tossAngle: 4.27
-  speed: 1.41
+  speed: 5
   poolSize: 10
 --- !u!114 &2746547740495317389
 MonoBehaviour:
@@ -378,7 +378,7 @@ Rigidbody:
   m_GameObject: {fileID: 8226452393176891317}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 5
   m_AngularDrag: 10
   m_UseGravity: 1
   m_IsKinematic: 0

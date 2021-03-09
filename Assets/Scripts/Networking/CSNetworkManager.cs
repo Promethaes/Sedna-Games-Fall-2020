@@ -413,7 +413,7 @@ public class CSNetworkManager : MonoBehaviour
                     rb.velocity = Vector3.zero;
                 var snm = EnemySpawnPoint.AllEnemySpawnPoints[espIndex].spawnEnemies[eIndex].GetComponent<smoothNetworkMovement>();
                 if(snm)
-                    snm.updatePos(pos);
+                    snm.updatePos(pos,true);
                 client.backlog.RemoveAt(i);
                 i--;
                 continue;

@@ -42,13 +42,13 @@ public class EnemySpawnPoint : MonoBehaviour
 
     void HandleDoneSpawning()
     {
-        if (!AnyEnemiesActive())
-        {
-            _barriers.barrierDown();
-            var temp = spawnEnemies[0].GetComponentInChildren<EnemyData>().getPlayers();
-            for (int i = 0; i < temp.Length; i++)
-                temp[i].GetComponentInChildren<PlayerController>().outOfCombat = true;
-        }
+        if (AnyEnemiesActive())
+            return;
+
+        _barriers.barrierDown();
+        var temp = spawnEnemies[0].GetComponentInChildren<EnemyData>().getPlayers();
+        for (int i = 0; i < temp.Length; i++)
+            temp[i].GetComponentInChildren<PlayerController>().outOfCombat = true;
     }
 
     float desyncTimer = 0.0f;
@@ -62,7 +62,7 @@ public class EnemySpawnPoint : MonoBehaviour
         {
             for (int i = 0; i < spawnEnemies.Count; i++)
                 if (spawnEnemies[i].activeSelf)
-                    networkManager.SendEnemyDesyncUpdate(spawnPointIndex, i,spawnEnemies[i].transform.position);
+                    networkManager.SendEnemyDesyncUpdate(spawnPointIndex, i, spawnEnemies[i].transform.position);
 
             desyncTimer = 5.0f;
         }
@@ -119,16 +119,14 @@ public class EnemySpawnPoint : MonoBehaviour
 
         if (_pvtSpawnTimeInterval > 0.0f)
             return;
-        else
+
+        for (int i = 0; i < spawnEnemies.Count; i++)
         {
-            for (int i = 0; i < spawnEnemies.Count; i++)
-            {
-                if (!spawnEnemies[i].activeSelf)
-                    spawnIndex = i;
-            }
-            if (spawnIndex == -1)
-                return;//no availible enemy spawns
+            if (!spawnEnemies[i].activeSelf)
+                spawnIndex = i;
         }
+        if (spawnIndex == -1)
+            return;//no availible enemy spawns
 
 
         float radius = gameObject.GetComponent<SphereCollider>().radius;
@@ -156,6 +154,13 @@ public class EnemySpawnPoint : MonoBehaviour
             _shouldSpawn = true;
             other.gameObject.GetComponentInChildren<PlayerController>().outOfCombat = false;
             _barriers.barrierUp();
+            return;
+        }
+        if(other.gameObject.tag == "Enemy"){
+            foreach(var e in spawnEnemies)
+                if(e == other.gameObject)
+                    return;
+            spawnEnemies.Add(other.gameObject);
         }
     }
 

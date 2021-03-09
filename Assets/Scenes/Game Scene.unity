@@ -2750,6 +2750,8 @@ MonoBehaviour:
   - {fileID: 1367637382}
   cam: {fileID: 753456485}
   cutsceneComplete: 0
+  abilityZone: {fileID: 0}
+  effect: {fileID: 0}
 --- !u!1001 &293003484
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3815,6 +3817,16 @@ PrefabInstance:
         type: 3}
       propertyPath: oneTimeSpawn
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5784125631913345533, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.755
+      objectReference: {fileID: 0}
+    - target: {fileID: 5784125631913345533, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.229
       objectReference: {fileID: 0}
     - target: {fileID: 6625323132635407495, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
@@ -6020,6 +6032,8 @@ MonoBehaviour:
   - {fileID: 2034077184}
   cam: {fileID: 708533397}
   cutsceneComplete: 0
+  abilityZone: {fileID: 0}
+  effect: {fileID: 0}
 --- !u!4 &455243218
 Transform:
   m_ObjectHideFlags: 0
@@ -8910,6 +8924,8 @@ MonoBehaviour:
   - {fileID: 986057623}
   cam: {fileID: 552129453}
   cutsceneComplete: 0
+  abilityZone: {fileID: 0}
+  effect: {fileID: 0}
 --- !u!1001 &783334897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14935,6 +14951,8 @@ MonoBehaviour:
   - {fileID: 586659241}
   cam: {fileID: 319271241}
   cutsceneComplete: 0
+  abilityZone: {fileID: 0}
+  effect: {fileID: 0}
 --- !u!4 &1226279376
 Transform:
   m_ObjectHideFlags: 0
@@ -17202,6 +17220,8 @@ MonoBehaviour:
   - {fileID: 2029821539}
   cam: {fileID: 1241736956}
   cutsceneComplete: 0
+  abilityZone: {fileID: 0}
+  effect: {fileID: 0}
 --- !u!4 &1463999954
 Transform:
   m_ObjectHideFlags: 0

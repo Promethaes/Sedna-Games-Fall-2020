@@ -24,11 +24,11 @@ public class smoothNetworkMovement : MonoBehaviour
         t = GetComponent<Transform>();
     }
 
-    public void updatePos(Vector3 v)
+    public void updatePos(Vector3 v,bool resetOldPosition = false)
     {
 
         oldPos = newPos;
-        if (oldPos.magnitude == 0.0f)
+        if (oldPos.magnitude == 0.0f || resetOldPosition)
             oldPos = gameObject.transform.position;
         oldPosList.Add(oldPos);
         newPos = v;
