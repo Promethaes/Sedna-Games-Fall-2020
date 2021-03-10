@@ -184,6 +184,11 @@ public class CSNetworkManager : MonoBehaviour
         " " + pos.x.ToString() + " " + pos.y.ToString() + " " + pos.z.ToString());
     }
 
+    public void SendCutsceneStart(int cutsceneIndex)
+    {
+        client.Send("cli " + localPlayers[0].clientNumber.ToString() + " cut " + cutsceneIndex.ToString());
+    }
+
     public float sendRateFPS = 60.0f;
     float timer = 0.0f;
     float changeTimer = 3.0f;

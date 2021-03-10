@@ -15,14 +15,20 @@ public class Cutscene : MonoBehaviour
     public GameObject abilityZone;
     public GameObject effect;
 
+    CSNetworkManager _networkManager = null;
+
     void Start()
     {
         AllCutscenes.Add(this);
         index = AllCutscenes.Count - 1;
+        _networkManager = FindObjectOfType<CSNetworkManager>();
     }
 
     public void startCutscene()
     {
+        if(_networkManager)
+            _networkManager.SendCutsceneStart(index);
+
         Debug.Log("Starting Cutscene");
         _color = blocks[0].GetComponent<MeshRenderer>().material.color;
         if (Camera.allCameras.Length > 0)
