@@ -260,10 +260,10 @@ public class CSNetworkManager : MonoBehaviour
                         localPlayerControllers[i].sendPlayerChanged = false;
                         sentMessage = true;
                     }
-                    if (localPlayerControllers[i].usedAbility)
+                    if (localPlayerControllers[i].sendUsedAbility)
                     {
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr abil");
-                        localPlayerControllers[i].usedAbility = false;
+                        localPlayerControllers[i].sendUsedAbility = false;
                         sentMessage = true;
                     }
 
@@ -412,8 +412,21 @@ public class CSNetworkManager : MonoBehaviour
                 if (rb)
                     rb.velocity = Vector3.zero;
                 var snm = EnemySpawnPoint.AllEnemySpawnPoints[espIndex].spawnEnemies[eIndex].GetComponent<smoothNetworkMovement>();
-                if(snm)
-                    snm.updatePos(pos,true);
+                if (snm)
+                    snm.updatePos(pos, true);
+                client.backlog.RemoveAt(i);
+                i--;
+                continue;
+            }
+            else if (client.backlog[i].Contains("cut"))
+            {
+                var parts = client.backlog[i].Split(' ');
+
+                //cli 0 cut 0 
+                var cutsceneIndex = int.Parse(parts[3]);
+
+                Cutscene.AllCutscenes[cutsceneIndex].startCutscene();
+
                 client.backlog.RemoveAt(i);
                 i--;
                 continue;

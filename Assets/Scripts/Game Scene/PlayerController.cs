@@ -509,13 +509,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public bool usedAbility = false;
+    public bool sendUsedAbility = false;
     void _UseAbility()
     {
         if (_animator) _animator.SetBool("ability", true);
         StartCoroutine(abilityScript.enterQTE(this));
         useAbility = false;
-        usedAbility = true;
+        sendUsedAbility = true;
     }
 
     void _useCombatAbility()
