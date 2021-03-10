@@ -271,6 +271,12 @@ public class CSNetworkManager : MonoBehaviour
                         localPlayerControllers[i].sendUsedAbility = false;
                         sentMessage = true;
                     }
+                    if (localPlayerControllers[i].sendUsedCombatAbility)
+                    {
+                        client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr cabil");
+                        localPlayerControllers[i].sendUsedCombatAbility = false;
+                        sentMessage = true;
+                    }
 
                 }
 
@@ -511,6 +517,11 @@ public class CSNetworkManager : MonoBehaviour
             else if (command.Contains("chng"))
             {
                 p.GetComponent<PlayerController>().ChangeChar(int.Parse(parts[4]));
+                return true;
+            }
+            else if (command.Contains("cabil"))
+            {
+                p.GetComponent<PlayerController>().useCombatAbility = true;
                 return true;
             }
             else if (command.Contains("abil"))

@@ -517,10 +517,11 @@ public class PlayerController : MonoBehaviour
         useAbility = false;
         sendUsedAbility = true;
     }
-
+    public bool sendUsedCombatAbility = false;
     void _useCombatAbility()
     {
         if (_abilityCD > 0.0f) return;
+        sendUsedCombatAbility = true;
         switch (playerType)
         {
             case PlayerType.TURTLE: StartCoroutine(Buff()); break;
