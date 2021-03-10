@@ -24,19 +24,19 @@ public class Cutscene : MonoBehaviour
 
     IEnumerator Fade()
     {
-        while (_fadeTime >= 0.0f)
-        {
-            _fadeTime-=0.1f*Time.deltaTime;
-            _color.a -=0.1f/_fadeTime*Time.deltaTime;
-            for (int i=0;i<blocks.Length;i++)
-                blocks[i].GetComponent<MeshRenderer>().material.SetColor("Base_Color", _color);
-            yield return null;
-        }
-        _color.a = 1.0f;
+        //while (_fadeTime >= 0.0f)
+        //{
+        //    _fadeTime-=0.1f*Time.deltaTime;
+        //    //_color.a -=0.1f/_fadeTime*Time.deltaTime;
+        //    //for (int i=0;i<blocks.Length;i++)
+        //    //    blocks[i].GetComponent<MeshRenderer>().material.SetColor("Base_Color", _color);
+        //    yield return null;
+        //}
+        //_color.a = 1.0f;
         for (int b=0;b<blocks.Length;b++)
         {
             blocks[b].SetActive(false);
-            blocks[b].GetComponent<MeshRenderer>().material.SetColor("Base_Color", _color);
+           // blocks[b].GetComponent<MeshRenderer>().material.SetColor("Base_Color", _color);
         }
 
         yield return new WaitForSecondsRealtime(1.5f);

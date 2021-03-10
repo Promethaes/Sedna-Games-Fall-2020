@@ -22,7 +22,7 @@ public class AbilityScript : MonoBehaviour
     public IEnumerator enterQTE(PlayerController player)
     {
         Debug.Log("Entering QTE");
-        if (inCutscene || cutscene.cutsceneComplete)
+        if (inCutscene || cutscene.cutsceneComplete || player.remotePlayer)
             yield return null;
         player.inCutscene = true;
         playerController = player;
