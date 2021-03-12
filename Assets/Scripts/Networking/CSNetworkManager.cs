@@ -94,7 +94,7 @@ public class CSNetworkManager : MonoBehaviour
     Thread recThread;
     public bool send = false;
     public bool interpetCommands = true;
-    public int sessionID = 6969;
+    public int sessionID = -1;
     [SerializeField]
     private string IPADDRESS;
 
@@ -108,11 +108,14 @@ public class CSNetworkManager : MonoBehaviour
     //[SerializeField]
     //UnityEvent OnSpawnEnemy;
 
-    void Awake()
+    void Start()
     {
+        //IPADDRESS = PlayerPrefs.GetString("ip","192.168.0.46");
         client = new Client(IPADDRESS);
         recThread = new Thread(client.Receive);
         recThread.Start();
+
+        Debug.Log("EE");
 
         DontDestroyOnLoad(gameObject);
     }
@@ -356,6 +359,8 @@ public class CSNetworkManager : MonoBehaviour
                     {
                         var parts = client.backlog[i].Split(' ');
                         lplayer.clientNumber = int.Parse(parts[1]);
+                        sessionID = int.Parse(parts[2]);
+                        Debug.Log(sessionID);
                         if (lplayer.clientNumber == 0)
                             isHostClient = true;
                         break;
