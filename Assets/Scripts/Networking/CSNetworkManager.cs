@@ -453,7 +453,7 @@ public class CSNetworkManager : MonoBehaviour
                 return true;
             }
 
-            smoothNetworkMovement SNM = p.GetComponent<smoothNetworkMovement>();//get proper location of SNM //TODO
+            smoothNetworkMovement SNM = p.GetComponent<smoothNetworkMovement>();
             if (!SNM)
                 SNM = p.AddComponent<smoothNetworkMovement>();
 

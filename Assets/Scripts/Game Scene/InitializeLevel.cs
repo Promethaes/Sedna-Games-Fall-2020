@@ -10,7 +10,6 @@ public class InitializeLevel : MonoBehaviour
 
     private void Awake()
     {
-
         var playerConfigs = PlayerConfigurationManager.get.playerConfigurations;
         for (int i = 0; i < playerConfigs.Count; i++)
         {
@@ -25,7 +24,12 @@ public class InitializeLevel : MonoBehaviour
                 player.name = "REMOTE";
             }
             else
+            {
                 _cameraSplitter.addCameras(player.GetComponent<PlayerCameraAndUI>());
+                NewCameraScript._player = player;
+                player.GetComponentInChildren<Camera>().enabled = false;
+            }
+                
 
             player.GetComponent<GameInputHandler>().initPlayer(playerConfigs[i]);
 
