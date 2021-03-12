@@ -12,6 +12,7 @@ public class ChangeToGameScene : MonoBehaviour
 
     public void ChangeToNetLobby()
     {
+        PlayerPrefs.SetString("SID", "-1");
         UnityEngine.SceneManagement.SceneManager.LoadScene("CSNetLobby");
     }
 }

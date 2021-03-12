@@ -111,11 +111,11 @@ public class CSNetworkManager : MonoBehaviour
     void Start()
     {
         //IPADDRESS = PlayerPrefs.GetString("ip","192.168.0.46");
+        sessionID = int.Parse(PlayerPrefs.GetString("SID"));
         client = new Client(IPADDRESS);
         recThread = new Thread(client.Receive);
         recThread.Start();
 
-        Debug.Log("EE");
 
         DontDestroyOnLoad(gameObject);
     }
