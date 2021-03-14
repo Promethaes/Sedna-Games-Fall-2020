@@ -143,7 +143,7 @@ public class CSNetworkManager : MonoBehaviour
         if (isLocal)
         {
             localPlayers.Add(config);
-            byte[] buffer = Encoding.ASCII.GetBytes("initMsg " + sessionID.ToString());
+            byte[] buffer = Encoding.ASCII.GetBytes("initMsg " + sessionID.ToString() + " " + PlayerPrefs.GetString("pid","peepee"));
             client.clientSocket.SendTo(buffer, client.endPoint);
 
             return;

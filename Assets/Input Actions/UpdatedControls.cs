@@ -349,6 +349,14 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""61963313-a23a-42a4-8b02-777c22851198"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -536,6 +544,39 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Point"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""31e46c48-4c4b-4be9-b367-788fa9b4d043"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""063291ba-d4de-4417-bccd-25ce04c946c2"",
+                    ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3ace51fc-2bf3-4ec7-9c17-65763b2163ac"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -854,6 +895,7 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
         m_UI_Move = m_UI.FindAction("Move", throwIfNotFound: true);
         m_UI_Select = m_UI.FindAction("Select", throwIfNotFound: true);
         m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
+        m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
         // CharSelect
         m_CharSelect = asset.FindActionMap("CharSelect", throwIfNotFound: true);
         m_CharSelect_MouseMove = m_CharSelect.FindAction("MouseMove", throwIfNotFound: true);
@@ -1020,6 +1062,7 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
     private readonly InputAction m_UI_Move;
     private readonly InputAction m_UI_Select;
     private readonly InputAction m_UI_Point;
+    private readonly InputAction m_UI_Cancel;
     public struct UIActions
     {
         private @UpdatedControls m_Wrapper;
@@ -1027,6 +1070,7 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_UI_Move;
         public InputAction @Select => m_Wrapper.m_UI_Select;
         public InputAction @Point => m_Wrapper.m_UI_Point;
+        public InputAction @Cancel => m_Wrapper.m_UI_Cancel;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1045,6 +1089,9 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
                 @Point.started -= m_Wrapper.m_UIActionsCallbackInterface.OnPoint;
                 @Point.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnPoint;
                 @Point.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnPoint;
+                @Cancel.started -= m_Wrapper.m_UIActionsCallbackInterface.OnCancel;
+                @Cancel.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnCancel;
+                @Cancel.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnCancel;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1058,6 +1105,9 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
                 @Point.started += instance.OnPoint;
                 @Point.performed += instance.OnPoint;
                 @Point.canceled += instance.OnPoint;
+                @Cancel.started += instance.OnCancel;
+                @Cancel.performed += instance.OnCancel;
+                @Cancel.canceled += instance.OnCancel;
             }
         }
     }
@@ -1188,6 +1238,7 @@ public class @UpdatedControls : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
         void OnPoint(InputAction.CallbackContext context);
+        void OnCancel(InputAction.CallbackContext context);
     }
     public interface ICharSelectActions
     {

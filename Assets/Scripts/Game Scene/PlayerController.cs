@@ -188,12 +188,12 @@ public class PlayerController : MonoBehaviour
             abilityHitbox = GetComponentInChildren<ChargeHitbox>(true);
         damageValues = originalDamageValues;
     }
-
+    Vector3 nLastPos = new Vector3();
     void SendMovemnt()
     {
-        //if (_rigidbody.velocity.magnitude >= 3.0f)
-            //fuck it honestly. May adjust later, but we're sending so few packets...its fine right?
+        if ((gameObject.transform.position - nLastPos).magnitude != 0.0f)
             sendMovement = true;
+        nLastPos = gameObject.transform.position;
     }
 
     void Update()
@@ -256,7 +256,7 @@ public class PlayerController : MonoBehaviour
             if (toggle)
                 _Toggle();
 
-            if(remotePlayer)
+            if (remotePlayer)
                 _rigidbody.velocity = Vector3.zero;
         }
     }
