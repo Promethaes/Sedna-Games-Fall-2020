@@ -12613,7 +12613,7 @@ PrefabInstance:
     - target: {fileID: 5060433708512069856, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
       propertyPath: spawnRadiusScalar
-      value: 7
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a6aa22063edefc4a875949879326c1b, type: 3}
@@ -15265,8 +15265,8 @@ GameObject:
   - component: {fileID: 1246895444}
   - component: {fileID: 1246895443}
   m_Layer: 0
-  m_Name: Quests
-  m_TagString: Untagged
+  m_Name: QuestsUI
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

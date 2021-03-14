@@ -1,0 +1,235 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading;
+using System;
+
+public class NetworkManager : MonoBehaviour
+{
+    Client client;
+    Thread recThread;
+    public GameObject playerPrefab;
+    public bool send = false;
+    public bool interpetCommands = true;
+    public SceneChanger sceneChanger;
+    public Transform playerSpawn;
+    [SerializeField]
+    private string IPADDRESS;
+
+    struct PItem
+    {
+        public GameObject p;
+        public NetworkingMovementScript nMovement;
+        public Transform transform;
+
+        public PItem(GameObject pObject)
+        {
+            p = pObject;
+            nMovement = pObject.GetComponent<NetworkingMovementScript>();
+            transform = p.gameObject.transform;
+        }
+    }
+
+    List<PItem> players = new List<PItem>();
+    PItem player;
+
+    public int sessionID = 6969;
+
+    void Start()
+    {
+        client = new Client(IPADDRESS);
+        recThread = new Thread(client.Receive);
+        recThread.Start();
+        byte[] buffer = Encoding.ASCII.GetBytes("initMsg " + sessionID.ToString());
+        client.clientSocket.SendTo(buffer, client.endPoint);
+        player = new PItem(GameObject.Instantiate(playerPrefab));
+        player.p.name = "LocalPlayer";
+        players.Add(player);
+
+        DontDestroyOnLoad(gameObject);
+    }
+
+    public void Send(string message)
+    {
+        client.Send(message);
+    }
+
+    private void OnDestroy()
+    {
+        client.leave = true;
+        var buffer = Encoding.ASCII.GetBytes("endMsg");
+        client.clientSocket.SendTo(buffer, client.endPoint);
+        recThread.Join();
+
+
+        client.clientSocket.Close();
+    }
+
+    Vector3 lastPos = new Vector3();
+    float timer = 0.0f;
+    bool sentReadyMessage = false;
+    void FixedUpdate()
+    {
+        if (timer <= 0.0f && send)
+        {
+            bool sentMessage = false;
+            if (player.nMovement.readyPressed && !sentReadyMessage)
+            {
+                Send("cli " + player.nMovement.networkedPlayerNum.ToString() + " plr ready");
+                sentReadyMessage = true;
+                sentMessage = true;
+                return;
+            }
+
+            if (Mathf.Abs(player.transform.position.magnitude - lastPos.magnitude) >= 0.001f){
+
+                Send("cli " + player.nMovement.networkedPlayerNum.ToString() + " plr pos "
+                + player.transform.position.x.ToString() + " "
+                + player.transform.position.y.ToString() + " "
+                + player.transform.position.z.ToString()
+                );
+                sentMessage = true;
+            }
+
+            if(sentMessage)
+                timer = 0.090f;
+        }
+        //SortRecievedMessages();
+        lastPos = player.transform.position;
+        timer -= Time.fixedDeltaTime;
+
+        ChangeToGameScene();
+
+    }
+
+    void ChangeToGameScene()
+    {
+        bool allReady = true;
+        foreach (var p in players)
+        {
+            if (!p.nMovement.readyPressed)
+                allReady = false;
+        }
+
+        if (allReady)
+        {
+            foreach (var p in players)
+            {
+                p.nMovement.readyPressed = false;
+                p.transform.position = playerSpawn.position + new Vector3(0.0f, 5.0f, p.nMovement.networkedPlayerNum);
+                DontDestroyOnLoad(p.p);
+            }
+            player.p.GetComponent<UnityEngine.InputSystem.PlayerInput>().SwitchCurrentActionMap("Gameplay");
+            sceneChanger.changeScene(3);//TEMP
+        }
+    }
+
+    // void SortRecievedMessages()
+    // {
+    //     if (!interpetCommands)
+    //         return;
+
+    //     for (int i = 0; i < client.backlog.Count; i++)
+    //     {
+    //         if (client.backlog[i].Length >= 40)
+    //         {
+    //             client.backlog.RemoveAt(i);
+    //             i--;
+    //             continue;
+    //         }
+    //         else if (client.backlog[i].Contains("clin") && player.nMovement.networkedPlayerNum == -1)
+    //         {
+    //             var parts = client.backlog[i].Split(' ');
+    //             player.nMovement.networkedPlayerNum = int.Parse(parts[1]);
+    //             client.backlog.RemoveAt(i);
+    //             i--;
+    //             Debug.Log(player.nMovement.networkedPlayerNum);
+    //             continue;
+    //         }
+    //         else if (client.backlog[i].Contains("spawn"))
+    //         {
+    //             var parts = client.backlog[i].Split(' ');
+    //             var temp = new PItem(GameObject.Instantiate(playerPrefab));
+    //             temp.nMovement.networkedPlayerNum = int.Parse(parts[1]);
+    //             temp.nMovement.readyPressed = false;
+    //             temp.nMovement.enabled = false;
+    //             temp.p.GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled = false;
+    //             temp.p.GetComponentInChildren<Camera>().enabled = false;
+    //             client.backlog.RemoveAt(i);
+    //             i--;
+    //             players.Add(temp);
+    //             Debug.Log("Client " + temp.nMovement.networkedPlayerNum.ToString() + " joined the session");
+    //             continue;
+    //         }
+    //         else if (client.backlog[i].Contains("remove"))
+    //         {
+    //             var parts = client.backlog[i].Split(' ');
+    //             int index = int.Parse(parts[1]);
+
+    //             for (int j = 0; j < players.Count; i++)
+    //             {
+    //                 if (players[j].nMovement.networkedPlayerNum == j)
+    //                 {
+    //                     Destroy(players[j].p);
+    //                     players.RemoveAt(j);
+    //                     j--;
+    //                     break;
+    //                 }
+    //             }
+    //         }
+
+    //         foreach (var p in players)
+    //         {
+    //             string comp = "cli" + " " + p.nMovement.networkedPlayerNum.ToString();
+
+    //             if (client.backlog[i].Contains(comp) && RunCommand(p, client.backlog[i]))
+    //             {
+    //                 client.backlog.RemoveAt(i);
+    //                 i--;
+    //                 continue;
+    //             }
+    //         }
+    //     }
+    // }
+
+
+    bool RunCommand(PItem p, string command)
+    {
+        if (command.Contains("plr"))
+        {
+            if (command.Contains("ready"))
+            {
+                p.nMovement.readyPressed = true;
+                return true;
+            }
+
+            var parts = command.Split(' ');
+            Vector3 v = new Vector3(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6]));
+
+            if (command.Contains("pos"))
+            {
+                p.transform.position = v;
+                return true;
+            }
+            else if (command.Contains("scl"))
+            {
+                p.transform.localScale = v;
+                return true;
+            }
+            else if (command.Contains("vel"))
+            {
+                var r = p.p.GetComponent<Rigidbody>();
+                r.velocity = r.velocity + v;
+                return true;
+            }
+        }
+
+        Debug.Log("Invalid Command: " + command);
+        return false;
+    }
+
+
+}

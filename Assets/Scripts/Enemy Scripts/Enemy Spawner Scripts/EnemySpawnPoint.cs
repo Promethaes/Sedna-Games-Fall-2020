@@ -11,10 +11,12 @@ public class EnemySpawnPoint : MonoBehaviour
     public float spawnRadiusScalar = 15.0f;
     public int maxSpawn = 5;
     public bool oneTimeSpawn = false;
+    public bool randomizeSpawnPos = false;
     bool _shouldSpawn = false;
     public float spawnTimeInterval = 1.0f;
     float _pvtSpawnTimeInterval = 1.0f;
     public Barriers _barriers;
+    public bool overrideAndClear = false;
 
     void Start()
     {
@@ -42,6 +44,8 @@ public class EnemySpawnPoint : MonoBehaviour
 
     void Update()
     {
+        if (overrideAndClear)
+            KillSpawnPoint();
         if (oneTimeSpawn)
         {
             HandleDoneSpawning();
@@ -53,6 +57,15 @@ public class EnemySpawnPoint : MonoBehaviour
         if (!_shouldSpawn)
             HandleDoneSpawning();
     }
+
+    void KillSpawnPoint()
+    {
+        foreach (var e in spawnEnemies)
+            e.SetActive(false);
+
+        HandleDoneSpawning();
+    }
+
     void CreatePool()
     {
         for (int i = 0; i < maxSpawn; i++)
@@ -91,7 +104,11 @@ public class EnemySpawnPoint : MonoBehaviour
 
         float radius = gameObject.GetComponent<SphereCollider>().radius;
 
-        spawnEnemies[spawnIndex].transform.position = gameObject.transform.position + new Vector3(Random.Range(-radius, radius), 0.0f, Random.Range(-radius, radius)) * spawnRadiusScalar;
+        Vector3 placeVec = new Vector3(radius + spawnIndex, 0.0f, radius + spawnIndex);
+        if (randomizeSpawnPos)
+            placeVec = new Vector3(Random.Range(-radius, radius), 0.0f, Random.Range(-radius, radius));
+
+        spawnEnemies[spawnIndex].transform.position = gameObject.transform.position + placeVec * spawnRadiusScalar;
         spawnEnemies[spawnIndex].SetActive(true);
         var enemy = spawnEnemies[spawnIndex].GetComponentInChildren<EnemyData>();
         enemy.health = enemy.maxHealth;
