@@ -62,9 +62,19 @@ public class LobbyManager : MonoBehaviour
                 newRoom.GetComponent<LobbyBarTextSetter>().roomOccupents.text = parts[2] + "/4";
                 newRoom.transform.SetParent(gameObject.transform);
                 rooms.Add(newRoom);
-                newRoom.transform.localPosition = new Vector3(roomBarStartPos.x,roomBarStartPos.y - barSpacing*rooms.Count - 1,newRoom.transform.position.z);
+                newRoom.transform.localPosition = new Vector3(roomBarStartPos.x, roomBarStartPos.y - barSpacing * rooms.Count - 1, newRoom.transform.position.z);
                 _lobbyClient.backlog.RemoveAt(i);
                 i--;
+            }
+            else if (_lobbyClient.backlog[i] == "no")
+            {
+                Debug.Log("Clearing rooms");
+                for (int j = 0; j < rooms.Count; j++)
+                {
+                    Destroy(rooms[j]);
+                    rooms.RemoveAt(j);
+                    j--;
+                }
             }
 
         }
