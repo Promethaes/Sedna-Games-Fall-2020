@@ -19,40 +19,31 @@ public class LobbyManager : MonoBehaviour
         _lobbyClient = new Client(serverIP);
         recThread = new Thread(_lobbyClient.Receive);
         recThread.Start();
-        StartCoroutine("SendInfoRequest");
-    }
-
-    IEnumerator SendInfoRequest()
-    {
-        while (true)
-        {
-            _lobbyClient.Send("roominfo");
-            yield return new WaitForSeconds(roomRequestRefreshRate);
-        }
     }
 
     void OnDestroy()
     {
-        StopCoroutine("SendInfoRequest");
         _lobbyClient.leave = true;
         recThread.Abort();
 
         _lobbyClient.clientSocket.Close();
     }
 
-    // Update is called once per frame
+    public void Refresh()
+    {
+        _lobbyClient.Send("roominfo");
+        for (int j = 0; j < rooms.Count; j++)
+        {
+            Destroy(rooms[j]);
+            rooms.RemoveAt(j);
+            j--;
+        }
+    }
+
     void Update()
     {
         for (int i = 0; i < _lobbyClient.backlog.Count; i++)
         {
-            for (int j = 0; j < rooms.Count; j++)
-            {
-                Destroy(rooms[j]);
-                rooms.RemoveAt(j);
-                j--;
-            }
-            Debug.Log(_lobbyClient.backlog[i]);
-
             if (_lobbyClient.backlog[i].Contains("room"))
             {
                 var parts = _lobbyClient.backlog[i].Split(' ');
@@ -60,6 +51,7 @@ public class LobbyManager : MonoBehaviour
                 newRoom.GetComponent<SceneNavigationScript>().roomButtonSID = int.Parse(parts[1]);
                 newRoom.GetComponent<SceneNavigationScript>().roomOccupents = int.Parse(parts[2]);
                 newRoom.GetComponent<LobbyBarTextSetter>().roomOccupents.text = parts[2] + "/4";
+                newRoom.GetComponent<LobbyBarTextSetter>().roomName.text = "Room " + parts[1];
                 newRoom.transform.SetParent(gameObject.transform);
                 rooms.Add(newRoom);
                 newRoom.transform.localPosition = new Vector3(roomBarStartPos.x, roomBarStartPos.y - barSpacing * rooms.Count - 1, newRoom.transform.position.z);
@@ -68,15 +60,17 @@ public class LobbyManager : MonoBehaviour
             }
             else if (_lobbyClient.backlog[i] == "no")
             {
-                Debug.Log("Clearing rooms");
                 for (int j = 0; j < rooms.Count; j++)
                 {
                     Destroy(rooms[j]);
                     rooms.RemoveAt(j);
                     j--;
                 }
+                _lobbyClient.backlog.RemoveAt(i);
+                i--;
             }
 
         }
     }
+
 }
