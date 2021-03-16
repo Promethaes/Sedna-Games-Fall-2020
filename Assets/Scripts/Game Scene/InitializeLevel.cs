@@ -26,8 +26,9 @@ public class InitializeLevel : MonoBehaviour
             else
             {
                 _cameraSplitter.addCameras(player.GetComponent<PlayerCameraAndUI>());
-                NewCameraScript._player = player;
-                player.GetComponentInChildren<Camera>().enabled = false;
+                //NewCameraScript._player = player;
+                //player.GetComponentInChildren<Camera>().enabled = false;
+                
             }
                 
 
@@ -36,6 +37,7 @@ public class InitializeLevel : MonoBehaviour
 
 
             _playerManager.players.Add(player);
+            CameraObject.player = player.GetComponentInChildren<SkinnedMeshRenderer>();
         }
     }
 }

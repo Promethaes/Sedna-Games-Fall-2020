@@ -350,11 +350,13 @@ public class PlayerController : MonoBehaviour
             {
                 GetComponentInParent<GameXinputHandler>().swapPlayer(_wheelSelection);
                 _animator = GetComponentInParent<GameXinputHandler>()._animator;
+                CameraObject.player = GetComponentInChildren<SkinnedMeshRenderer>();
             }
             else
             {
                 GetComponentInParent<GameInputHandler>().swapPlayer(_wheelSelection);
                 _animator = GetComponentInParent<GameInputHandler>()._animator;
+                CameraObject.player = GetComponentInChildren<SkinnedMeshRenderer>();
             }
 
             playerChanged = true;
@@ -374,11 +376,12 @@ public class PlayerController : MonoBehaviour
             if (vel.magnitude >= 0.1f)
             {
                 moved = true;
-                if (_playerMesh.transform.rotation != playerCamera.transform.rotation)
-                {
-                    _playerMesh.transform.rotation = Quaternion.Euler(0.0f, Mathf.SmoothDampAngle(_playerMesh.transform.eulerAngles.y, playerCamera.transform.eulerAngles.y, ref turnSpeed, 0.25f), 0.0f);
-                    rotated = true;
-                }
+                
+            }
+            if (_playerMesh.transform.rotation != playerCamera.transform.rotation)
+            {
+                _playerMesh.transform.rotation = Quaternion.Euler(0.0f, Mathf.SmoothDampAngle(_playerMesh.transform.eulerAngles.y, playerCamera.transform.eulerAngles.y, ref turnSpeed, 0.25f), 0.0f);
+                rotated = true;
             }
             float y = _rigidbody.velocity.y;
             //NOTE: Checks for _isGrounded to reduce the effects of gravity such that the player doesn't slide off slopes
