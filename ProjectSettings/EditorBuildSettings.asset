@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/CSNetLobby.unity
     guid: 1405b08af3ff84643bcd4f7535b4a910
   - enabled: 1
+    path: Assets/Scenes/Arctic Level.unity
+    guid: d1a73e017c6a56845b0c5d72ed2a3383
+  - enabled: 0
     path: Assets/Scenes/Game Scene.unity
     guid: ed7403bafef2f944d9b5589e1f237dfe
   - enabled: 1

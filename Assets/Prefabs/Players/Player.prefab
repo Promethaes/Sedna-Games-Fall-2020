@@ -604,7 +604,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _originalSpeed: 12
   moveSpeed: 12
+<<<<<<< HEAD
   jumpSpeed: 7
+=======
+  jumpSpeed: 4
+>>>>>>> Arctic-Level-Prototype
   dashSpeed: 2
   attackDistance: 8
   playerType: 0
@@ -654,6 +658,7 @@ MonoBehaviour:
   venomBuff: 0
   inCutscene: 0
   questUI: {fileID: 0}
+<<<<<<< HEAD
   sendPlayerChanged: 0
   remotePlayer: 0
   sendAttack: 0
@@ -662,6 +667,12 @@ MonoBehaviour:
   userName: 
   sendUsedAbility: 0
   sendUsedCombatAbility: 0
+=======
+  moved: 0
+  playerChanged: 0
+  rotated: 0
+  usedAbility: 0
+>>>>>>> Arctic-Level-Prototype
 --- !u!114 &5369776141784647950
 MonoBehaviour:
   m_ObjectHideFlags: 0
