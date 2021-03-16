@@ -112,8 +112,12 @@ public class PlayerController : MonoBehaviour
 
 
     //Network variables
-    public bool moved = false;
-
+    public bool sendPlayerChanged = false;
+    public bool remotePlayer = false;
+    public bool sendAttack = false;
+    public bool sendJump = false;
+    public bool sendMovement = false;
+    public string userName = "";
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -122,6 +126,12 @@ public class PlayerController : MonoBehaviour
         setupPlayer();
         StartCoroutine(SetupWheelUI());
         StartCoroutine(SetupQuestUI());
+
+    }
+
+    void Start()
+    {
+        remotePlayer = !gameObject.GetComponentInChildren<Camera>().enabled;
     }
 
     IEnumerator SetupWheelUI()
@@ -179,6 +189,13 @@ public class PlayerController : MonoBehaviour
             abilityHitbox = GetComponentInChildren<ChargeHitbox>(true);
         damageValues = originalDamageValues;
     }
+    Vector3 nLastPos = new Vector3();
+    void SendMovemnt()
+    {
+        if ((gameObject.transform.position - nLastPos).magnitude != 0.0f)
+            sendMovement = true;
+        nLastPos = gameObject.transform.position;
+    }
 
     void Update()
     {
@@ -201,6 +218,9 @@ public class PlayerController : MonoBehaviour
 
         if (attack) _Attack();
         if (revive) _Revive();
+
+        if (!remotePlayer)
+            SendMovemnt();
     }
 
     //Physics update (FixedUpdate); updates at set intervals
@@ -236,6 +256,9 @@ public class PlayerController : MonoBehaviour
 
             if (toggle)
                 _Toggle();
+
+            if (remotePlayer)
+                _rigidbody.velocity = Vector3.zero;
         }
     }
 
@@ -338,7 +361,6 @@ public class PlayerController : MonoBehaviour
         setupPlayer();
     }
 
-    public bool playerChanged = false;
     void _ConfirmWheel()
     {
         _wheelUI.hideWheelUI();
@@ -346,40 +368,51 @@ public class PlayerController : MonoBehaviour
         if (_wheelSelection != (int)playerType)
         {
             _wheelCooldown = 2.0f;
-            if (UseXinputScript.use)
-            {
-                GetComponentInParent<GameXinputHandler>().swapPlayer(_wheelSelection);
-                _animator = GetComponentInParent<GameXinputHandler>()._animator;
-            }
-            else
-            {
-                GetComponentInParent<GameInputHandler>().swapPlayer(_wheelSelection);
-                _animator = GetComponentInParent<GameInputHandler>()._animator;
-            }
 
-            playerChanged = true;
+            GetComponentInParent<GameInputHandler>().swapPlayer(_wheelSelection);
+            _animator = GetComponentInParent<GameInputHandler>()._animator;
+
+            sendPlayerChanged = true;
             setupPlayer();
         }
     }
 
-    public bool rotated = false;
+    Vector3 _lastPos = Vector3.zero;
     void _Move()
     {
+        //i hate duplicate code
+        if (remotePlayer)
+        {
+            var pos = gameObject.transform.position;
+            pos.y = 0.0f;
+            if (_animator && !_animator.GetBool("attacking") && !_animator.GetBool("jumping"))
+                _animator.SetBool("walking", Mathf.Abs(pos.magnitude - _lastPos.magnitude) >= 0.1f);
+
+            _lastPos = pos;
+            _isGrounded = Physics.Raycast(transform.position, -transform.up, out terrain, 0.6f);
+            if (_isGrounded && terrain.transform.tag == "Terrain")
+            {
+                _dashed = false;
+                _airDashed = false;
+                if (_jumpAnimDuration <= 0.0f)
+                {
+                    _jumped = false;
+                    _doubleJumped = false;
+                    if (_animator) _animator.SetBool("jumping", false);
+                }
+            }
+            return;
+        }
 
         if (_dashDuration < 0.0f && _animationDuration < 0.0f && !_charging)
         {
+
             //NOTE: Camera position affects the rotation of the player's movement, which is stored in the first value of Vector3 vel (Current: 135.0f)
             Vector3 vel = playerCamera.transform.right * moveInput.x + playerCamera.transform.forward * moveInput.y;
             vel *= moveSpeed;
             if (vel.magnitude >= 0.1f)
-            {
-                moved = true;
-                if (_playerMesh.transform.rotation != playerCamera.transform.rotation)
-                {
-                    _playerMesh.transform.rotation = Quaternion.Euler(0.0f, Mathf.SmoothDampAngle(_playerMesh.transform.eulerAngles.y, playerCamera.transform.eulerAngles.y, ref turnSpeed, 0.25f), 0.0f);
-                    rotated = true;
-                }
-            }
+                _playerMesh.transform.rotation = Quaternion.Euler(0.0f, Mathf.SmoothDampAngle(_playerMesh.transform.eulerAngles.y, playerCamera.transform.eulerAngles.y, ref turnSpeed, 0.25f), 0.0f);
+
             float y = _rigidbody.velocity.y;
             //NOTE: Checks for _isGrounded to reduce the effects of gravity such that the player doesn't slide off slopes
             //TODO: Adjust raycast for actual models' radii
@@ -411,6 +444,17 @@ public class PlayerController : MonoBehaviour
     {
         //NOTE: Resets the button so that the player doesn't accidentally double jump
         isJumping = false;
+
+        if (remotePlayer)
+        {
+            if (_animator)
+            {
+                _animator.SetBool("walking", false);
+                _animator.SetBool("jumping", true);
+            }
+            return;
+        }
+
         //NOTE: Jumping adds a slight boost to the x/z direction you move in to simulate push back against the ground
         //NOTE: Gravity is set to -24.525f. To change it: Edit -> Project Settings -> Physics -> y = newGravityValue
         float jump = Mathf.Sqrt(jumpSpeed * -2.0f * -24.525f);
@@ -418,11 +462,12 @@ public class PlayerController : MonoBehaviour
 
         if (_jumpAnimDuration <= 0.0f && _isGrounded && !_jumped)
         {
+            sendJump = true;
             Vector3 vel = _rigidbody.velocity;
             _rigidbody.AddForce(new Vector3(vel.x * hopSpeed, jump, vel.z * hopSpeed), ForceMode.Impulse);
             _jumped = true;
             _jumpAnimDuration = 0.3f;
-            if(_animator) _animator.SetBool("jumping", true);
+            if (_animator) _animator.SetBool("jumping", true);
         }
         else if (_jumpAnimDuration <= 0.0f && !_doubleJumped)
         {
@@ -432,7 +477,7 @@ public class PlayerController : MonoBehaviour
             _rigidbody.AddForce(new Vector3(vel.x * hopSpeed, jump, vel.z * hopSpeed), ForceMode.Impulse);
             _doubleJumped = true;
             _jumpAnimDuration = 0.3f;
-            if(_animator) _animator.SetTrigger("double_jump");
+            if (_animator) _animator.SetTrigger("double_jump");
         }
     }
 
@@ -442,10 +487,11 @@ public class PlayerController : MonoBehaviour
         isDashing = false;
 
         //NOTE: _dashCooldown stops dash chaining that would lead to acceleration
-        if (_dashCooldown <= 0.0f && _dashDuration <= 0.0f) {
-            if(_animator) _animator.SetTrigger("dash");
+        if (_dashCooldown <= 0.0f && _dashDuration <= 0.0f)
+        {
+            if (_animator) _animator.SetTrigger("dash");
 
-            if(!_dashed && _isGrounded)
+            if (!_dashed && _isGrounded)
             {
                 Vector3 vel = _rigidbody.velocity;
                 _rigidbody.AddForce(new Vector3(vel.x * dashSpeed, 0.0f, vel.z * dashSpeed), ForceMode.Impulse);
@@ -464,18 +510,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public bool usedAbility = false;
+    public bool sendUsedAbility = false;
     void _UseAbility()
     {
         if (_animator) _animator.SetBool("ability", true);
         StartCoroutine(abilityScript.enterQTE(this));
         useAbility = false;
-        usedAbility = true;
+        sendUsedAbility = true;
     }
-
+    public bool sendUsedCombatAbility = false;
     void _useCombatAbility()
     {
         if (_abilityCD > 0.0f) return;
+        sendUsedCombatAbility = true;
         switch (playerType)
         {
             case PlayerType.TURTLE: StartCoroutine(Buff()); break;
@@ -630,6 +677,8 @@ public class PlayerController : MonoBehaviour
     {
         if (_animationDuration >= 0.0f) return;
 
+        sendAttack = true;
+
         if (_comboDuration < 0.0f) comboCounter = 0;
         _animationDuration = _animationDelay[comboCounter];
 
@@ -645,16 +694,21 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        _rigidbody.velocity = Vector3.zero;
-        _rigidbody.AddForce(_playerMesh.transform.forward * attackDistance, ForceMode.Impulse);
-        
+        if (!remotePlayer)
+        {
+            _rigidbody.velocity = Vector3.zero;
+            _rigidbody.AddForce(_playerMesh.transform.forward * attackDistance, ForceMode.Impulse);
+        }
+
+
         RaycastHit enemy;
-        if(Physics.Raycast(transform.position, _playerMesh.transform.forward, out enemy, 2.0f) && enemy.transform.tag == "Enemy") {
+        if (Physics.Raycast(transform.position, _playerMesh.transform.forward, out enemy, 2.0f) && enemy.transform.tag == "Enemy")
+        {
             EnemyData foe = enemy.collider.GetComponent<EnemyData>();
             foe.takeDamage(damageValues[comboCounter]);
             hitEnemy = true;
         }
-        
+
         comboCounter++;
         if (comboCounter > 2) comboCounter = 0;
         _comboDuration = 2.0f;

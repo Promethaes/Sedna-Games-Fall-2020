@@ -104,6 +104,8 @@ GameObject:
   - component: {fileID: 3527685000496018684}
   - component: {fileID: 3527685000496018687}
   - component: {fileID: 6123906102558059876}
+  - component: {fileID: 5433265143885649428}
+  - component: {fileID: 6397751357660109802}
   m_Layer: 0
   m_Name: Flinger
   m_TagString: Enemy
@@ -119,7 +121,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4338570631340935602}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 811.1379, y: 4.6600037, z: 519.3866}
+  m_LocalPosition: {x: 843.60175, y: 4.6600037, z: 487.08582}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4102905698520272097}
@@ -135,7 +137,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4338570631340935602}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2eb812bd088bf1d4d8ec1ba08b0593eb, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -188,10 +190,12 @@ MonoBehaviour:
   healthBarSize: 90
   maxHealth: 0
   health: 0
+  range: 300
   damageValues: 0
   hitbox: {fileID: 0}
   fear: 0
   enemy: 4
+  icePickRange: 5
   randomScale: 1
   enemyScale: 1
   lowerBoundEnemyScale: 1
@@ -237,6 +241,35 @@ MonoBehaviour:
   tossAngle: 2
   speed: 2.52
   poolSize: 4
+--- !u!114 &5433265143885649428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4338570631340935602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf51a34b015058642b4158be34cbad40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lerpSpeed: 15
+--- !u!54 &6397751357660109802
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4338570631340935602}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 5
+  m_AngularDrag: 10
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5600217152425000415
 GameObject:
   m_ObjectHideFlags: 0

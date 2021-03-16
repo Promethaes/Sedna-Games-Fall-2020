@@ -21,6 +21,11 @@ public class SceneChanger : MonoBehaviour
             changeScene(1);
     }
 
+    public void onOnlineButtonPressed()
+    {
+        changeScene(2);
+    }
+
     public void quitApp()
     {
 #if UNITY_EDITOR
