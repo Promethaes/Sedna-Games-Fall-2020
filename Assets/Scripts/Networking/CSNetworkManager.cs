@@ -377,6 +377,7 @@ public class CSNetworkManager : MonoBehaviour
 
                 var remotePlayer = new PlayerConfiguration(null);
                 remotePlayer.clientNumber = int.Parse(parts[1]);
+                remotePlayer.userName = parts[2];
                 remotePlayers.Add(remotePlayer);
                 PlayerConfigurationManager.get.playerConfigurations.Add(remotePlayer);
                 remotePlayer.index = PlayerConfigurationManager.get.playerConfigurations.Count - 1;

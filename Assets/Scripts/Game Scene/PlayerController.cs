@@ -117,6 +117,7 @@ public class PlayerController : MonoBehaviour
     public bool sendAttack = false;
     public bool sendJump = false;
     public bool sendMovement = false;
+    public string userName = "";
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();

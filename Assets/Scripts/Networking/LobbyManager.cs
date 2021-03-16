@@ -51,7 +51,7 @@ public class LobbyManager : MonoBehaviour
                 newRoom.GetComponent<SceneNavigationScript>().roomButtonSID = int.Parse(parts[1]);
                 newRoom.GetComponent<SceneNavigationScript>().roomOccupents = int.Parse(parts[2]);
                 newRoom.GetComponent<LobbyBarTextSetter>().roomOccupents.text = parts[2] + "/4";
-                newRoom.GetComponent<LobbyBarTextSetter>().roomName.text = "Room " + parts[1];
+                newRoom.GetComponent<LobbyBarTextSetter>().roomName.text = parts[3] + "'s Room";
                 newRoom.transform.SetParent(gameObject.transform);
                 rooms.Add(newRoom);
                 newRoom.transform.localPosition = new Vector3(roomBarStartPos.x, roomBarStartPos.y - barSpacing * rooms.Count - 1, newRoom.transform.position.z);

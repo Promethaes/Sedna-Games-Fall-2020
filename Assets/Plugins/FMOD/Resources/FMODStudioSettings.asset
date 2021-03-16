@@ -1,56 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eef8d824ea7b63742966aaa0e94ac383, type: 3}
-  m_Name: FMODStudioSettings
-  m_EditorClassIdentifier: 
-  SwitchSettingsMigration: 1
-  HasSourceProject: 1
-  HasPlatforms: 1
-  sourceProjectPath: FMOD Project/ZooGame.fspro
-  sourceBankPath: FMOD Project\Build
-  SourceBankPathUnformatted: 
-  AutomaticEventLoading: 1
-  BankLoadType: 0
-  AutomaticSampleLoading: 0
-  EncryptionKey: 
-  ImportType: 0
-  TargetAssetPath: FMODBanks
-  TargetBankFolder: FMOD Project\Build\Desktop
-  LoggingLevel: 2
-  SpeakerModeSettings: []
-  SampleRateSettings: []
-  LiveUpdateSettings: []
-  OverlaySettings: []
-  LoggingSettings: []
-  BankDirectorySettings: []
-  VirtualChannelSettings: []
-  RealChannelSettings: []
-  Plugins: []
-  MasterBanks:
-  - Master
-  Banks:
-  - _test
-  - Dumpage Monster
-  - General Sounds
-  - OST
-  - ui
-  - Wetlands
-  BanksToLoad: []
-  LiveUpdatePort: 9264
-  EnableMemoryTracking: 0
-  AndroidUseOBB: 0
-  MeterChannelOrdering: 0
-  MigratedPlatforms: 0c000000150000000b0000000a00000009000000120000000800000005000000060000000200000001000000
---- !u!114 &486181272333069634
+--- !u!114 &-6850655894369109424
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,7 +63,7 @@ MonoBehaviour:
   threadAffinities:
     Value: []
     HasValue: 0
---- !u!114 &727848150191843636
+--- !u!114 &-448423781966599005
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,6 +126,56 @@ MonoBehaviour:
   threadAffinities:
     Value: []
     HasValue: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef8d824ea7b63742966aaa0e94ac383, type: 3}
+  m_Name: FMODStudioSettings
+  m_EditorClassIdentifier: 
+  SwitchSettingsMigration: 1
+  HasSourceProject: 1
+  HasPlatforms: 1
+  sourceProjectPath: FMOD Project/ZooGame.fspro
+  sourceBankPath: FMOD Project\Build
+  SourceBankPathUnformatted: 
+  AutomaticEventLoading: 1
+  BankLoadType: 0
+  AutomaticSampleLoading: 0
+  EncryptionKey: 
+  ImportType: 0
+  TargetAssetPath: FMODBanks
+  TargetBankFolder: FMOD Project\Build\Desktop
+  LoggingLevel: 2
+  SpeakerModeSettings: []
+  SampleRateSettings: []
+  LiveUpdateSettings: []
+  OverlaySettings: []
+  LoggingSettings: []
+  BankDirectorySettings: []
+  VirtualChannelSettings: []
+  RealChannelSettings: []
+  Plugins: []
+  MasterBanks:
+  - Master
+  Banks:
+  - _test
+  - Dumpage Monster
+  - General Sounds
+  - OST
+  - ui
+  - Wetlands
+  BanksToLoad: []
+  LiveUpdatePort: 9264
+  EnableMemoryTracking: 0
+  AndroidUseOBB: 0
+  MeterChannelOrdering: 0
+  MigratedPlatforms: 0c000000150000000b0000000a00000009000000120000000800000005000000060000000200000001000000
 --- !u!114 &3006761109842917954
 MonoBehaviour:
   m_ObjectHideFlags: 0
