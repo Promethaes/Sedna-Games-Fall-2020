@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemySpawnPoint : MonoBehaviour
 {
+    public static List<EnemySpawnPoint> AllEnemySpawnPoints = new List<EnemySpawnPoint>();
+    public int spawnPointIndex = -1;
 
     //the particular enemy you want to spawn here
     public GameObject enemyPrefab;
@@ -18,8 +20,15 @@ public class EnemySpawnPoint : MonoBehaviour
     public Barriers _barriers;
     public bool overrideAndClear = false;
 
+    public CSNetworkManager networkManager = null;
+
     void Start()
     {
+        AllEnemySpawnPoints.Add(this);
+        spawnPointIndex = AllEnemySpawnPoints.Count - 1;
+
+        networkManager = FindObjectOfType<CSNetworkManager>();
+
         CreatePool();
         enemyPrefab.transform.position = gameObject.transform.position;
         if (oneTimeSpawn)
@@ -33,17 +42,37 @@ public class EnemySpawnPoint : MonoBehaviour
 
     void HandleDoneSpawning()
     {
-        if (!AnyEnemiesActive())
+        if (AnyEnemiesActive())
+            return;
+
+        _barriers.barrierDown();
+        var temp = spawnEnemies[0].GetComponentInChildren<EnemyData>().getPlayers();
+        for (int i = 0; i < temp.Length; i++)
+            temp[i].GetComponentInChildren<PlayerController>().outOfCombat = true;
+    }
+
+    float desyncTimer = 0.0f;
+    void EnemyDesyncUpdate()
+    {
+        if (!networkManager.isHostClient)
+            return;
+
+        desyncTimer -= Time.deltaTime;
+        if (desyncTimer <= 0.0f)
         {
-            _barriers.barrierDown();
-            var temp = spawnEnemies[0].GetComponentInChildren<EnemyData>().getPlayers();
-            for (int i = 0; i < temp.Length; i++)
-                temp[i].GetComponentInChildren<PlayerController>().outOfCombat = true;
+            for (int i = 0; i < spawnEnemies.Count; i++)
+                if (spawnEnemies[i].activeSelf)
+                    networkManager.SendEnemyDesyncUpdate(spawnPointIndex, i, spawnEnemies[i].transform.position);
+
+            desyncTimer = 5.0f;
         }
+
     }
 
     void Update()
     {
+        EnemyDesyncUpdate();
+
         if (overrideAndClear)
             KillSpawnPoint();
         if (oneTimeSpawn)
@@ -90,16 +119,14 @@ public class EnemySpawnPoint : MonoBehaviour
 
         if (_pvtSpawnTimeInterval > 0.0f)
             return;
-        else
+
+        for (int i = 0; i < spawnEnemies.Count; i++)
         {
-            for (int i = 0; i < spawnEnemies.Count; i++)
-            {
-                if (!spawnEnemies[i].activeSelf)
-                    spawnIndex = i;
-            }
-            if (spawnIndex == -1)
-                return;//no availible enemy spawns
+            if (!spawnEnemies[i].activeSelf)
+                spawnIndex = i;
         }
+        if (spawnIndex == -1)
+            return;//no availible enemy spawns
 
 
         float radius = gameObject.GetComponent<SphereCollider>().radius;
@@ -127,6 +154,13 @@ public class EnemySpawnPoint : MonoBehaviour
             _shouldSpawn = true;
             other.gameObject.GetComponentInChildren<PlayerController>().outOfCombat = false;
             _barriers.barrierUp();
+            return;
+        }
+        if(other.gameObject.tag == "Enemy"){
+            foreach(var e in spawnEnemies)
+                if(e == other.gameObject)
+                    return;
+            spawnEnemies.Add(other.gameObject);
         }
     }
 

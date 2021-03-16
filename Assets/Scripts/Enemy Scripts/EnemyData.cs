@@ -34,6 +34,7 @@ public class EnemyData : MonoBehaviour
     public bool fear = false;
     float _poisonDuration = 10.0f;
 
+
     public enum enemyType
     {
         dumpage_Monster,

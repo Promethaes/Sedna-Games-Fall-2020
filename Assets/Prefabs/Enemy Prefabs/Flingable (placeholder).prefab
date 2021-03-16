@@ -847,10 +847,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1586617cafeab6d4f8673ae3bff1be52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 5
   hasLifetime: 1
   lifetime: 1
   target: {fileID: 0}
+  lookAtTarget: 1
 --- !u!54 &2100289105360725493
 Rigidbody:
   m_ObjectHideFlags: 0

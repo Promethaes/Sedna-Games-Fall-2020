@@ -114,9 +114,10 @@ MonoBehaviour:
   spawnRadiusScalar: 3
   maxSpawn: 5
   oneTimeSpawn: 1
-  randomizeSpawnPos: 0
+  randomizeSpawnPos: 1
   spawnTimeInterval: 1
   _barriers: {fileID: 7232142909002152194}
+  overrideAndClear: 0
 --- !u!1001 &673374769
 PrefabInstance:
   m_ObjectHideFlags: 0

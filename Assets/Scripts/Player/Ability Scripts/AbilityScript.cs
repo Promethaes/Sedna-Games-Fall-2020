@@ -8,8 +8,8 @@ public class AbilityScript : MonoBehaviour
 {
     //progress bar
     public Image[] _progressBar;
-    float _barSize=1000.0f;
-    float _barHeight=50.0f;
+    float _barSize = 1000.0f;
+    float _barHeight = 50.0f;
     public GameObject[] effects;
     Cutscene cutscene = null;
     public PlayerController playerController;
@@ -21,33 +21,36 @@ public class AbilityScript : MonoBehaviour
 
     public IEnumerator enterQTE(PlayerController player)
     {
-        Debug.Log("Entering QTE");
-        if (inCutscene || cutscene.cutsceneComplete)
+        Debug.Log("Entering QTE remote? " + player.remotePlayer);
+        if (inCutscene || cutscene.cutsceneComplete || player.remotePlayer)
             yield return null;
-        player.inCutscene = true;
-        playerController = player;
-        effects = player.GetComponentInChildren<AbilityEffectManager>().effects;
-        inCutscene = true;
-        for (int i=0;i<_progressBar.Length;i++)
-            _progressBar[i].gameObject.SetActive(true);
-        _progressBar[0].rectTransform.sizeDelta = new Vector2(_barSize, _barHeight);
-        _progressBar[1].rectTransform.sizeDelta = new Vector2(0, _barHeight);
-        switch (playerController.playerType)
+        else
         {
-            case PlayerType.TURTLE:
-                StartCoroutine(startTurtleQTE());
-                break;
-            case PlayerType.BISON:
-                StartCoroutine(startBisonQTE());
-                break;
-            case PlayerType.POLAR_BEAR:
-                StartCoroutine(startPolarQTE());
-                break;
-            case PlayerType.RATTLESNAKE:
-                StartCoroutine(startSnakeQTE());
-                break; 
+            player.inCutscene = true;
+            playerController = player;
+            effects = player.GetComponentInChildren<AbilityEffectManager>().effects;
+            inCutscene = true;
+            for (int i = 0; i < _progressBar.Length; i++)
+                _progressBar[i].gameObject.SetActive(true);
+            _progressBar[0].rectTransform.sizeDelta = new Vector2(_barSize, _barHeight);
+            _progressBar[1].rectTransform.sizeDelta = new Vector2(0, _barHeight);
+            switch (playerController.playerType)
+            {
+                case PlayerType.TURTLE:
+                    StartCoroutine(startTurtleQTE());
+                    break;
+                case PlayerType.BISON:
+                    StartCoroutine(startBisonQTE());
+                    break;
+                case PlayerType.POLAR_BEAR:
+                    StartCoroutine(startPolarQTE());
+                    break;
+                case PlayerType.RATTLESNAKE:
+                    StartCoroutine(startSnakeQTE());
+                    break;
+            }
+            yield return null;
         }
-        yield return null;
     }
     IEnumerator resetValues()
     {
@@ -56,18 +59,18 @@ public class AbilityScript : MonoBehaviour
         playerController.inCutscene = false;
         playerController = null;
         cutscene = null;
-        topText.text= "";
-        middleText.text= "";
-        bottomText.text= "";
-        for (int i=0;i<_progressBar.Length;i++)
-        _progressBar[i].gameObject.SetActive(false);
+        topText.text = "";
+        middleText.text = "";
+        bottomText.text = "";
+        for (int i = 0; i < _progressBar.Length; i++)
+            _progressBar[i].gameObject.SetActive(false);
         _progressBar[0].rectTransform.sizeDelta = new Vector2(_barSize, _barHeight);
         _progressBar[1].rectTransform.sizeDelta = new Vector2(0, _barHeight);
         yield return null;
     }
     bool circleCheck(int num)
     {
-        Vector2[] _inputs = {new Vector2(0,1),new Vector2(1,0),new Vector2(0,-1),new Vector2(-1,0)};
+        Vector2[] _inputs = { new Vector2(0, 1), new Vector2(1, 0), new Vector2(0, -1), new Vector2(-1, 0) };
         var move = playerController.moveInput;
         switch (num)
         {
@@ -99,10 +102,10 @@ public class AbilityScript : MonoBehaviour
         {
             if (circleCheck(_counter % 4))
                 _counter++;
-            _progress = (float)_counter/40.0f;
-            _progressBar[1].rectTransform.sizeDelta = new Vector2(_progress*_barSize, _barHeight);
+            _progress = (float)_counter / 40.0f;
+            _progressBar[1].rectTransform.sizeDelta = new Vector2(_progress * _barSize, _barHeight);
             yield return new WaitForFixedUpdate();
-            _timer-=Time.fixedDeltaTime;
+            _timer -= Time.fixedDeltaTime;
         }
         if (_counter >= 40)
         {
@@ -120,23 +123,23 @@ public class AbilityScript : MonoBehaviour
         middleText.text = "";
         bottomText.text = "Mash B repeatedly!";
 
-        float _timer=60.0f;
-        float _progress=0.0f;
-        float _drain=0.1f;
-        float _mashProgress=0.025f;
+        float _timer = 60.0f;
+        float _progress = 0.0f;
+        float _drain = 0.1f;
+        float _mashProgress = 0.025f;
 
         while (_timer > 0.0f && _progress < 1.0f)
         {
-            _progress = Mathf.Max(_progress-(_drain*Time.deltaTime),0.0f);
+            _progress = Mathf.Max(_progress - (_drain * Time.deltaTime), 0.0f);
             if (playerController.isDashing)
             {
-                _progress+=_mashProgress;
-                playerController.isDashing=false;
+                _progress += _mashProgress;
+                playerController.isDashing = false;
             }
             //NOTE: Replace with a bar later
-            _progressBar[1].rectTransform.sizeDelta = new Vector2(_progress*_barSize, _barHeight);
+            _progressBar[1].rectTransform.sizeDelta = new Vector2(_progress * _barSize, _barHeight);
             yield return new WaitForFixedUpdate();
-            _timer-=Time.fixedDeltaTime;
+            _timer -= Time.fixedDeltaTime;
         }
         if (_progress >= 1.0f)
             cutscene.startCutscene();
@@ -153,8 +156,8 @@ public class AbilityScript : MonoBehaviour
         int[] _inputs = new int[20];
         int _counter = 0;
 
-        for (int i=0;i<20;i++)
-            _inputs[i] = Mathf.FloorToInt(Random.Range(0.0f,4.0f));
+        for (int i = 0; i < 20; i++)
+            _inputs[i] = Mathf.FloorToInt(Random.Range(0.0f, 4.0f));
 
         while (_timer > 0.0f && _counter < 20)
         {
@@ -181,9 +184,9 @@ public class AbilityScript : MonoBehaviour
                         _counter++;
                     break;
             }
-            _progressBar[1].rectTransform.sizeDelta = new Vector2(_counter/20*_barSize, _barHeight);
+            _progressBar[1].rectTransform.sizeDelta = new Vector2(_counter / 20 * _barSize, _barHeight);
             yield return new WaitForFixedUpdate();
-            _timer-=Time.fixedDeltaTime;
+            _timer -= Time.fixedDeltaTime;
         }
         if (_counter >= 20)
             cutscene.startCutscene();
@@ -196,30 +199,30 @@ public class AbilityScript : MonoBehaviour
         topText.text = "Rattle";
         middleText.text = "";
         bottomText.text = "Copy the three patterns!";
-        
+
         float _timer = 60.0f;
 
-        string[] _input = {"A", "B", "Y", "X"};
+        string[] _input = { "A", "B", "Y", "X" };
         int[] _patternA = new int[5];
         int[] _patternB = new int[5];
         int[] _patternC = new int[5];
         int[] _pattern = _patternA;
 
-        int _patternCounter=0;
-        int _counter=0;
+        int _patternCounter = 0;
+        int _counter = 0;
 
-        for (int i=0;i<5;i++)
+        for (int i = 0; i < 5; i++)
         {
-            _patternA[i] = Mathf.FloorToInt(Random.Range(0.0f,4.0f));
-            _patternB[i] = Mathf.FloorToInt(Random.Range(0.0f,4.0f));
-            _patternC[i] = Mathf.FloorToInt(Random.Range(0.0f,4.0f));
+            _patternA[i] = Mathf.FloorToInt(Random.Range(0.0f, 4.0f));
+            _patternB[i] = Mathf.FloorToInt(Random.Range(0.0f, 4.0f));
+            _patternC[i] = Mathf.FloorToInt(Random.Range(0.0f, 4.0f));
         }
 
-        while (_timer >0.0f && _counter < 3)
+        while (_timer > 0.0f && _counter < 3)
         {
             //Pattern text
             middleText.text = "";
-            for (int i=0;i<_pattern.Length;i++)
+            for (int i = 0; i < _pattern.Length; i++)
                 middleText.text += _input[_pattern[i]];
 
             //Pattern logic checking
@@ -239,7 +242,7 @@ public class AbilityScript : MonoBehaviour
             playerController.toggle = false;
             playerController.attack = false;
 
-            _progressBar[1].rectTransform.sizeDelta = new Vector2((_counter/3+_patternCounter/5)/2*_barSize, _barHeight);
+            _progressBar[1].rectTransform.sizeDelta = new Vector2((_counter / 3 + _patternCounter / 5) / 2 * _barSize, _barHeight);
 
             //Pattern completion checking
             if (_patternCounter >= 5)
@@ -261,9 +264,9 @@ public class AbilityScript : MonoBehaviour
                 }
             }
             yield return new WaitForFixedUpdate();
-            _timer-=Time.fixedDeltaTime;
+            _timer -= Time.fixedDeltaTime;
         }
-        if (_counter >=3)
+        if (_counter >= 3)
             cutscene.startCutscene();
         StartCoroutine(resetValues());
 

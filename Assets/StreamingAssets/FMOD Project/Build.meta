@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/FMOD/Metadata/AudioFile.meta
+guid: 3f95754edb2e223419492b60d02863f8
+=======
 guid: 61cd32feafb90554f953e57518410c12
+>>>>>>> master:Assets/StreamingAssets/FMOD Project/Build.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

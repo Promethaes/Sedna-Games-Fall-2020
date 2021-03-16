@@ -430,6 +430,7 @@ GameObject:
   - component: {fileID: 3115644646895628521}
   - component: {fileID: 3115644646895628522}
   - component: {fileID: 2898932148135907664}
+  - component: {fileID: 4704105725226404617}
   m_Layer: 0
   m_Name: Garbage Demon Animated
   m_TagString: Enemy
@@ -462,7 +463,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2881626038973140391}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2eb812bd088bf1d4d8ec1ba08b0593eb, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -556,13 +557,26 @@ Rigidbody:
   m_GameObject: {fileID: 2881626038973140391}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 1
-  m_AngularDrag: 0.05
+  m_Drag: 5
+  m_AngularDrag: 10
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &4704105725226404617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2881626038973140391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf51a34b015058642b4158be34cbad40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lerpSpeed: 15
 --- !u!1 &2898936684503486437
 GameObject:
   m_ObjectHideFlags: 0
