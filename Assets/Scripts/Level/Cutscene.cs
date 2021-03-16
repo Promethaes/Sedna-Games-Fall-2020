@@ -30,11 +30,21 @@ public class Cutscene : MonoBehaviour
             _networkManager.SendCutsceneStart(index);
 
         Debug.Log("Starting Cutscene");
-        _color = blocks[0].GetComponent<MeshRenderer>().material.color;
         if (Camera.allCameras.Length > 0)
             Camera.allCameras[0].gameObject.SetActive(false);
         cam.gameObject.SetActive(true);
-        StartCoroutine(Fade());
+        switch (abilityZone.GetComponent<ActivateAbiltiesZoneScript>().zoneType)
+        {
+            case PlayerType.TURTLE:
+                StartCoroutine(Fade());
+                break;
+            case PlayerType.POLAR_BEAR:
+                StartCoroutine(IceBreak());
+                break;
+                //TODO: create other bison/snake for w/e they do
+            default:
+                break;
+        }
     }
 
     IEnumerator Fade()
@@ -54,7 +64,7 @@ public class Cutscene : MonoBehaviour
             // blocks[b].GetComponent<MeshRenderer>().material.SetColor("Base_Color", _color);
         }
 
-        yield return new WaitForSecondsRealtime(1.5f);
+        yield return new WaitForSeconds(1.5f);
         Debug.Log("Ending Cutscene");
         cam.gameObject.SetActive(false);
         var players = GameObject.FindGameObjectsWithTag("Player");
@@ -64,12 +74,29 @@ public class Cutscene : MonoBehaviour
             players[i].GetComponentInChildren<PlayerController>().inCutscene = false;
         }
 
-        
+
 
         cutsceneComplete = true;
         abilityZone.SetActive(false);
         effect.SetActive(false);
         //Destroy(this);
     }
-}
 
+    IEnumerator IceBreak()
+    {
+        abilityZone.SetActive(false);
+        //NOTE: No effect yet
+        //effect.SetActive(false);
+        foreach(var x in blocks)
+            x.SetActive(true);
+        cutsceneComplete = true;
+        yield return new WaitForSeconds(1.5f);
+        cam.gameObject.SetActive(false);
+        var players = GameObject.FindGameObjectsWithTag("Player");
+        for (int i=0;i<players.Length;i++)
+        {
+            players[i].GetComponentInChildren<Camera>(true).gameObject.SetActive(true);
+            players[i].GetComponentInChildren<PlayerController>().inCutscene = false;
+        }
+    }
+}

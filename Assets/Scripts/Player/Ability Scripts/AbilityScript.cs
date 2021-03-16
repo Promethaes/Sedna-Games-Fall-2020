@@ -147,19 +147,20 @@ public class AbilityScript : MonoBehaviour
     }
     IEnumerator startPolarQTE()
     {
-        //NOTE: Four button rush (20 inputs randomized between ABXY)
+        //NOTE: Four button rush (10 inputs randomized between ABXY)
         topText.text = "Ice Boxing";
         middleText.text = "";
-        bottomText.text = "Input the correct button 20 times!";
+        bottomText.text = "Input the correct button 10 times!";
 
-        float _timer = 60.0f;
-        int[] _inputs = new int[20];
+        float _timer = 30.0f;
+        int[] _inputs = new int[10];
         int _counter = 0;
+        float _progress=0.0f;
 
-        for (int i = 0; i < 20; i++)
-            _inputs[i] = Mathf.FloorToInt(Random.Range(0.0f, 4.0f));
+        for (int i=0;i<10;i++)
+            _inputs[i] = Mathf.FloorToInt(Random.Range(0.0f,4.0f));
 
-        while (_timer > 0.0f && _counter < 20)
+        while (_timer > 0.0f && _counter < 10)
         {
             switch (_inputs[_counter])
             {
@@ -184,11 +185,12 @@ public class AbilityScript : MonoBehaviour
                         _counter++;
                     break;
             }
-            _progressBar[1].rectTransform.sizeDelta = new Vector2(_counter / 20 * _barSize, _barHeight);
+            _progress = (float)_counter/10.0f;
+            _progressBar[1].rectTransform.sizeDelta = new Vector2(_progress*_barSize, _barHeight);
             yield return new WaitForFixedUpdate();
             _timer -= Time.fixedDeltaTime;
         }
-        if (_counter >= 20)
+        if (_counter >= 10)
             cutscene.startCutscene();
         StartCoroutine(resetValues());
     }
