@@ -71,7 +71,7 @@ public class PlayerConfigurationManager : MonoBehaviour
     {
         if (_playerConfigs.Count <= _manager.maxPlayerCount && _playerConfigs.All(p => p.isReady))
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Game Scene"); // This should be the game scene
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Arctic Level"); // This should be the game scene
         }
     }
 }
