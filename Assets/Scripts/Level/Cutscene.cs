@@ -49,7 +49,6 @@ public class Cutscene : MonoBehaviour
 
     IEnumerator Fade()
     {
-<<<<<<< HEAD
         //while (_fadeTime >= 0.0f)
         //{
         //    _fadeTime-=0.1f*Time.deltaTime;
@@ -60,20 +59,6 @@ public class Cutscene : MonoBehaviour
         //}
         //_color.a = 1.0f;
         for (int b = 0; b < blocks.Length; b++)
-=======
-        //TODO: Figure out a way to get alpha of shaders instead
-        _color = blocks[0].GetComponent<MeshRenderer>().material.color;
-        while (_fadeTime >= 0.0f)
-        {
-            _fadeTime-=0.1f*Time.deltaTime;
-            _color.a -=0.1f/_fadeTime*Time.deltaTime;
-            for (int i=0;i<blocks.Length;i++)
-                blocks[i].GetComponent<MeshRenderer>().material.SetColor("Base_Color", _color);
-            yield return null;
-        }
-        _color.a = 1.0f;
-        for (int b=0;b<blocks.Length;b++)
->>>>>>> Arctic-Level-Prototype
         {
             blocks[b].SetActive(false);
             // blocks[b].GetComponent<MeshRenderer>().material.SetColor("Base_Color", _color);
