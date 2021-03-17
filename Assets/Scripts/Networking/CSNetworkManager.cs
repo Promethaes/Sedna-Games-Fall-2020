@@ -104,6 +104,8 @@ public class CSNetworkManager : MonoBehaviour
     List<GameObject> localPlayersGameObject = new List<GameObject>();
 
     public bool isHostClient = false;
+    //false is for wetlands, true is for arctic
+    public bool wetlandsOrArctic = false;
 
     //[SerializeField]
     //UnityEvent OnSpawnEnemy;
@@ -143,7 +145,7 @@ public class CSNetworkManager : MonoBehaviour
         if (isLocal)
         {
             localPlayers.Add(config);
-            byte[] buffer = Encoding.ASCII.GetBytes("initMsg " + sessionID.ToString() + " " + PlayerPrefs.GetString("pid","peepee"));
+            byte[] buffer = Encoding.ASCII.GetBytes("initMsg " + sessionID.ToString() + " " + PlayerPrefs.GetString("pid", "peepee"));
             client.clientSocket.SendTo(buffer, client.endPoint);
 
             return;
@@ -199,6 +201,7 @@ public class CSNetworkManager : MonoBehaviour
     public float smoothMovementLerpSpeed = 100.0f;
     GamePlayerManager playerManager;
     List<PlayerController> localPlayerControllers = new List<PlayerController>();
+    List<PlayerController> remotePlayerControllers = new List<PlayerController>();
     // Update is called once per frame
     void Update()
     {
@@ -218,8 +221,11 @@ public class CSNetworkManager : MonoBehaviour
             {
                 for (int i = 0; i < playerManager.players.Count; i++)
                 {
-                    if (playerManager.players[i].GetComponentInChildren<Camera>().enabled == false)
+                    if (playerManager.players[i].GetComponent<PlayerController>().remotePlayer)
+                    {
+                        remotePlayerControllers.Add(playerManager.players[i].GetComponent<PlayerController>());
                         continue;
+                    }
 
                     localPlayerControllers.Add(playerManager.players[i].GetComponent<PlayerController>());
                 }
@@ -330,7 +336,7 @@ public class CSNetworkManager : MonoBehaviour
             if (changeTimer <= 0.0f)
             {
                 changedScene = true;
-                PlayerConfigurationManager.get.allPlayersReady();
+                PlayerConfigurationManager.get.allPlayersReady(wetlandsOrArctic);
             }
         }
     }
@@ -398,16 +404,16 @@ public class CSNetworkManager : MonoBehaviour
                 for (int j = 0; j < remotePlayers.Count; j++)
                 {
                     if (remotePlayers[j].clientNumber == index)
-                    {                        
+                    {
                         //GameObject[] tempList = GameObject.FindGameObjectsWithTag("Enemy");
                         //foreach(GameObject e in tempList)//remove player from enemy script
                         //{
                         //    
                         //}
-                        if (playerManager.players[j+1].GetComponentInChildren<Camera>().enabled == false)
-                            playerManager.players[j+1].SetActive(false) ;
+                        if (playerManager.players[j + 1].GetComponentInChildren<Camera>().enabled == false)
+                            playerManager.players[j + 1].SetActive(false);
                         //Destroy(playerManager.players[j+1]);
-                        playerManager.players.RemoveAt(j+1);
+                        playerManager.players.RemoveAt(j + 1);
                         remotePlayers.RemoveAt(j);
                         break;
                     }
@@ -481,18 +487,17 @@ public class CSNetworkManager : MonoBehaviour
                     }
                     else if (playerManager != null)
                     {
-                        for (int j = 0; j < playerManager.players.Count; j++)
+                        for (int j = 0; j < remotePlayerControllers.Count; j++)
                         {
-                            if (playerManager.players[j].GetComponentInChildren<Camera>().enabled == false)
-                                if (RunCommand(playerManager.players[j], client.backlog[i]))
-                                {
-                                    client.backlog.RemoveAt(i);
-                                    i--;
-                                    didCommand = true;
-                                    break;
-                                }
-                                else
-                                    Debug.Log("Did not run command! " + client.backlog[i]);
+                            if (RunCommand(remotePlayerControllers[j].gameObject, client.backlog[i]))
+                            {
+                                client.backlog.RemoveAt(i);
+                                i--;
+                                didCommand = true;
+                                break;
+                            }
+                            else
+                                Debug.Log("Did not run command! " + client.backlog[i]);
                         }
                     }
                 }
@@ -531,7 +536,7 @@ public class CSNetworkManager : MonoBehaviour
             }
             else if (command.Contains("chng"))
             {
-                p.GetComponent<PlayerController>().ChangeChar(int.Parse(parts[4]));
+                p.GetComponent<PlayerController>().ChangeCharFromNetwork(int.Parse(parts[4]));
                 return true;
             }
             else if (command.Contains("cabil"))
