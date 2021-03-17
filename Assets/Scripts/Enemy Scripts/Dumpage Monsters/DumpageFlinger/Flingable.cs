@@ -10,6 +10,7 @@ public class Flingable : MonoBehaviour
     public float lifetime = 4.0f;
     float _lifetime = 4.0f;
     public Transform target;
+    public bool lookAtTarget = true;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,8 @@ public class Flingable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(target);
+        if (transform && lookAtTarget)
+            transform.LookAt(target);
         if (!hasLifetime)
             return;
         _lifetime -= Time.deltaTime;
@@ -37,7 +39,7 @@ public class Flingable : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             other.gameObject.GetComponent<PlayerBackend>().takeDamage(damage);
-            if (Random.Range(0.0f,1.0f) <= 0.3f)
+            if (Random.Range(0.0f, 1.0f) <= 0.3f)
                 other.GetComponent<PlayerController>().slowed();
             gameObject.SetActive(false);
         }
