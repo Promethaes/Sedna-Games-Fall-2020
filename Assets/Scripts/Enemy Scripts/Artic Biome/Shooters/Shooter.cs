@@ -17,7 +17,7 @@ public class Shooter : MonoBehaviour
         {
             projectiles[i].gameObject.SetActive(true);
             //TODO: Adjust this for actual gun location, probably through a transform located at muzzle
-            projectiles[i].transform.position = transform.position + transform.forward * 0.5f;
+            projectiles[i].transform.position = GetComponent<EnemyData>().hitbox.transform.position;
             yield return new WaitForSeconds(0.25f);
         }
         yield return null;
