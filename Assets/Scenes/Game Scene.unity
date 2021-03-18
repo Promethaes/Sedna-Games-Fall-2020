@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 3068e5d14df76e2498b360670caad3d9,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2785,6 +2785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d75975f35e47094c86252d665773c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: -1
   blocks:
   - {fileID: 552677780}
   - {fileID: 2144217927}
@@ -6067,6 +6068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d75975f35e47094c86252d665773c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: -1
   blocks:
   - {fileID: 904999932}
   - {fileID: 1573353536}
@@ -8957,6 +8959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d75975f35e47094c86252d665773c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: -1
   blocks:
   - {fileID: 1835877850}
   - {fileID: 1189902885}
@@ -14986,6 +14989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d75975f35e47094c86252d665773c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: -1
   blocks:
   - {fileID: 1385767548}
   - {fileID: 1215297085}
@@ -17255,6 +17259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d75975f35e47094c86252d665773c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: -1
   blocks:
   - {fileID: 1650100459}
   - {fileID: 1149249655}
@@ -23198,7 +23203,7 @@ GameObject:
   - component: {fileID: 1954070247}
   m_Layer: 0
   m_Name: CM vcam1
-  m_TagString: Untagged
+  m_TagString: virtualCam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23244,7 +23249,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7508038, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

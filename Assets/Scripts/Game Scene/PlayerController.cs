@@ -374,7 +374,8 @@ public class PlayerController : MonoBehaviour
 
             foreach (var smr in skinnedMeshRenderers)
                 if (smr.gameObject.transform.parent.parent.gameObject.activeSelf)
-                    CameraObject.player = smr;
+                    CameraObject.ChangeSkinnedMesh(smr);
+
         }
     }
 
