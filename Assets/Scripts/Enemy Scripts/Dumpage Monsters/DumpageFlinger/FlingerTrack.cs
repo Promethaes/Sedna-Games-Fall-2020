@@ -45,7 +45,7 @@ public class FlingerTrack : StateMachineBehaviour
 
         var mag = (enemy.transform.position - closestPlayer.transform.position).magnitude;
         agent.SetDestination(enemy.transform.position);
-        if (mag <= enemyData.range)
+        if (mag <= 10.0f)
         {
             rangedEnemyData.target = closestPlayer.transform;
             enemy.transform.LookAt(closestPlayer.transform);

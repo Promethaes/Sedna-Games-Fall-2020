@@ -22,6 +22,7 @@ public class PlayerConfiguration
     public int clientNumber = -1;
     public bool sentReadyMessage = false;
     public bool isRemotePlayer = false;
+    public string userName = "";
     public PlayerConfiguration(PlayerInput playerInput)
     {
         if (playerInput == null)

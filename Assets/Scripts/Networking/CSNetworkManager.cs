@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System;
+using UnityEngine.Events;
 
 public class StateObject
 {
@@ -65,7 +66,7 @@ class Client
             if (leave)
                 break;
             receiveDone.Reset();
-            //while (backlog.Count != 0)
+            while (backlog.Count != 0) ;
             //    Debug.Log("backlog not empty!");
             try
             {
@@ -93,7 +94,7 @@ public class CSNetworkManager : MonoBehaviour
     Thread recThread;
     public bool send = false;
     public bool interpetCommands = true;
-    public int sessionID = 6969;
+    public int sessionID = -1;
     [SerializeField]
     private string IPADDRESS;
 
@@ -102,11 +103,19 @@ public class CSNetworkManager : MonoBehaviour
     List<GameObject> tempRemoteMenuPlayers = new List<GameObject>();
     List<GameObject> localPlayersGameObject = new List<GameObject>();
 
-    void Awake()
+    public bool isHostClient = false;
+
+    //[SerializeField]
+    //UnityEvent OnSpawnEnemy;
+
+    void Start()
     {
+        //IPADDRESS = PlayerPrefs.GetString("ip","192.168.0.46");
+        sessionID = int.Parse(PlayerPrefs.GetString("SID"));
         client = new Client(IPADDRESS);
         recThread = new Thread(client.Receive);
         recThread.Start();
+
 
         DontDestroyOnLoad(gameObject);
     }
@@ -134,7 +143,7 @@ public class CSNetworkManager : MonoBehaviour
         if (isLocal)
         {
             localPlayers.Add(config);
-            byte[] buffer = Encoding.ASCII.GetBytes("initMsg " + sessionID.ToString());
+            byte[] buffer = Encoding.ASCII.GetBytes("initMsg " + sessionID.ToString() + " " + PlayerPrefs.GetString("pid", "peepee"));
             client.clientSocket.SendTo(buffer, client.endPoint);
 
             return;
@@ -150,12 +159,44 @@ public class CSNetworkManager : MonoBehaviour
             return;
         client.Send("cli " + config.clientNumber.ToString() + " plr ready");//temp, only works for one player rn
         config.sentReadyMessage = true;
+        SendRandSeed();
+    }
+    //temp
+    bool generatedSeed = false;
+    int seed = -1;
+    public void SendRandSeed()
+    {
+        if (!isHostClient)
+            return;
+        if (generatedSeed)
+        {
+            client.Send("rand " + seed.ToString());
+            return;
+        }
+        seed = UnityEngine.Random.Range(0, 256);
+        UnityEngine.Random.InitState(seed);
+        generatedSeed = true;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void SendEnemyDesyncUpdate(int spawnPointIndex, int enemyIndex, Vector3 pos)
     {
+        if (!isHostClient)
+            return;
+        client.Send("cli 0 esp " + spawnPointIndex.ToString() + " e " + enemyIndex.ToString() +
+        " " + pos.x.ToString() + " " + pos.y.ToString() + " " + pos.z.ToString());
+    }
 
+    public void SendUpdatedEnemyStatus(int spawnPointIndex, int enemyIndex)
+    {
+        if (!isHostClient)
+            return;
+        //cli 0 esp 0 e 0 edm
+        client.Send("cli 0 esp " + spawnPointIndex.ToString() + " e " + enemyIndex.ToString() + " edm");
+    }
+
+    public void SendCutsceneStart(int cutsceneIndex)
+    {
+        client.Send("cli " + localPlayers[0].clientNumber.ToString() + " cut " + cutsceneIndex.ToString());
     }
 
     public float sendRateFPS = 60.0f;
@@ -170,7 +211,6 @@ public class CSNetworkManager : MonoBehaviour
     {
         SortRecievedMessages();
 
-        //char select section
         if (changedScene)
         {
             timer -= Time.deltaTime;
@@ -195,47 +235,57 @@ public class CSNetworkManager : MonoBehaviour
 
             if (timer <= 0.0f && send)
             {
+
                 bool sentMessage = false;
                 for (int i = 0; i < localPlayerControllers.Count; i++)
                 {
 
-                    if (localPlayerControllers[i].moved)
+                    if (localPlayerControllers[i].sendAttack)
+                    {
+                        client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr atk");
+
+                        localPlayerControllers[i].sendAttack = false;
+                        sentMessage = true;
+                    }
+                    if (localPlayerControllers[i].sendJump)
+                    {
+                        client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr jmp");
+                        localPlayerControllers[i].sendJump = false;
+                        sentMessage = true;
+                    }
+                    if (localPlayerControllers[i].sendMovement)
                     {
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr pos "
                         + playerManager.players[i].transform.position.x.ToString() + " "
                         + playerManager.players[i].transform.position.y.ToString() + " "
                         + playerManager.players[i].transform.position.z.ToString()
                         );
-                        localPlayerControllers[i].moved = false;
+                        client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr qua "
+                       + localPlayerControllers[i]._playerMesh.transform.rotation.x.ToString() + " "
+                       + localPlayerControllers[i]._playerMesh.transform.rotation.y.ToString() + " "
+                       + localPlayerControllers[i]._playerMesh.transform.rotation.z.ToString() + " "
+                       + localPlayerControllers[i]._playerMesh.transform.rotation.w.ToString()
+                       );
+                        localPlayerControllers[i].sendMovement = false;
                         sentMessage = true;
                     }
-                    if (localPlayerControllers[i].attack)
-                    {
-                        client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr atk");
-                        sentMessage = true;
-                    }
-                    if (localPlayerControllers[i].playerChanged)
+                    if (localPlayerControllers[i].sendPlayerChanged)
                     {
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr chng " + ((int)localPlayerControllers[i].playerType).ToString());
-                        localPlayerControllers[i].playerChanged = false;
+                        localPlayerControllers[i].sendPlayerChanged = false;
                         sentMessage = true;
                     }
-                    if (localPlayerControllers[i].usedAbility)
+                    if (localPlayerControllers[i].sendUsedAbility)
                     {
                         client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr abil");
-                        localPlayerControllers[i].usedAbility = false;
+                        localPlayerControllers[i].sendUsedAbility = false;
                         sentMessage = true;
                     }
-                    if (localPlayerControllers[i].rotated)
+                    if (localPlayerControllers[i].sendUsedCombatAbility)
                     {
-
-                        client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr qua "
-                        + localPlayerControllers[i]._playerMesh.transform.rotation.x.ToString() + " "
-                        + localPlayerControllers[i]._playerMesh.transform.rotation.y.ToString() + " "
-                        + localPlayerControllers[i]._playerMesh.transform.rotation.z.ToString() + " "
-                        + localPlayerControllers[i]._playerMesh.transform.rotation.w.ToString()
-                        );
-                        localPlayerControllers[i].rotated = false;
+                        client.Send("cli " + localPlayers[i].clientNumber.ToString() + " plr cabil");
+                        localPlayerControllers[i].sendUsedCombatAbility = false;
+                        sentMessage = true;
                     }
 
                 }
@@ -316,6 +366,10 @@ public class CSNetworkManager : MonoBehaviour
                     {
                         var parts = client.backlog[i].Split(' ');
                         lplayer.clientNumber = int.Parse(parts[1]);
+                        sessionID = int.Parse(parts[2]);
+                        Debug.Log(sessionID);
+                        if (lplayer.clientNumber == 0)
+                            isHostClient = true;
                         break;
                     }
                 }
@@ -330,6 +384,7 @@ public class CSNetworkManager : MonoBehaviour
 
                 var remotePlayer = new PlayerConfiguration(null);
                 remotePlayer.clientNumber = int.Parse(parts[1]);
+                remotePlayer.userName = parts[2];
                 remotePlayers.Add(remotePlayer);
                 PlayerConfigurationManager.get.playerConfigurations.Add(remotePlayer);
                 remotePlayer.index = PlayerConfigurationManager.get.playerConfigurations.Count - 1;
@@ -355,6 +410,57 @@ public class CSNetworkManager : MonoBehaviour
                         break;
                     }
                 }
+
+                client.backlog.RemoveAt(i);
+                i--;
+                continue;
+            }
+            else if (client.backlog[i].Contains("rand"))
+            {
+                var parts = client.backlog[i].Split(' ');
+                int seed = int.Parse(parts[1]);
+
+                UnityEngine.Random.InitState(seed);
+                client.backlog.RemoveAt(i);
+                i--;
+                continue;
+            }
+            else if (client.backlog[i].Contains("esp"))
+            {
+
+
+                var parts = client.backlog[i].Split(' ');
+                var espIndex = int.Parse(parts[3]);
+                var eIndex = int.Parse(parts[5]);
+                if (client.backlog[i].Contains("edm"))
+                {
+                    //cli 0 esp 0 e 0 edm
+                    EnemySpawnPoint.AllEnemySpawnPoints[espIndex].spawnEnemies[eIndex].SetActive(false);
+                    client.backlog.RemoveAt(i);
+                    i--;
+                    continue;
+                }
+
+                //cli 0 esp 0 e 0 0 0 0
+                Vector3 pos = new Vector3(float.Parse(parts[6]), float.Parse(parts[7]), float.Parse(parts[8]));
+                var rb = EnemySpawnPoint.AllEnemySpawnPoints[espIndex].spawnEnemies[eIndex].GetComponent<Rigidbody>();
+                if (rb)
+                    rb.velocity = Vector3.zero;
+                var snm = EnemySpawnPoint.AllEnemySpawnPoints[espIndex].spawnEnemies[eIndex].GetComponent<smoothNetworkMovement>();
+                if (snm)
+                    snm.updatePos(pos, true);
+                client.backlog.RemoveAt(i);
+                i--;
+                continue;
+            }
+            else if (client.backlog[i].Contains("cut"))
+            {
+                var parts = client.backlog[i].Split(' ');
+
+                //cli 0 cut 0 
+                var cutsceneIndex = int.Parse(parts[3]);
+
+                Cutscene.AllCutscenes[cutsceneIndex].startCutscene();
 
                 client.backlog.RemoveAt(i);
                 i--;
@@ -389,7 +495,6 @@ public class CSNetworkManager : MonoBehaviour
                             if (playerManager.players[j].GetComponentInChildren<Camera>().enabled == false)
                                 if (RunCommand(playerManager.players[j], client.backlog[i]))
                                 {
-                                    Debug.Log("Done Command");
                                     client.backlog.RemoveAt(i);
                                     i--;
                                     didCommand = true;
@@ -438,9 +543,19 @@ public class CSNetworkManager : MonoBehaviour
                 p.GetComponent<PlayerController>().ChangeChar(int.Parse(parts[4]));
                 return true;
             }
+            else if (command.Contains("cabil"))
+            {
+                p.GetComponent<PlayerController>().useCombatAbility = true;
+                return true;
+            }
             else if (command.Contains("abil"))
             {
                 p.GetComponent<PlayerController>().useAbility = true;
+                return true;
+            }
+            else if (command.Contains("jmp"))
+            {
+                p.GetComponent<PlayerController>().isJumping = true;
                 return true;
             }
 
@@ -459,7 +574,7 @@ public class CSNetworkManager : MonoBehaviour
                 return true;
             }
 
-            if (command.Contains("pos"))
+            else if (command.Contains("pos"))
             {
                 var v = new Vector3(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6]));
                 SNM.updatePos(v);

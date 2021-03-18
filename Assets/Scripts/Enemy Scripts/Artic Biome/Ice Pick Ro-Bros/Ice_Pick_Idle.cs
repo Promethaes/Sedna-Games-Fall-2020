@@ -49,20 +49,17 @@ public class Ice_Pick_Idle : StateMachineBehaviour
             {
                 animator.SetBool("tracking", true);
                 originalSeeker = true;
-                foreach (GameObject x in EnemyData.icePickEnemies)
-                {
-                    if ((enemy.transform.position - x.transform.position).magnitude < enemyData.icePickRange)
+                    if ((enemy.transform.position - player.transform.position).magnitude < enemyData.searchRadius)
                     {
-                        if (!x.GetComponent<Animator>().GetBehaviour<Ice_Pick_Idle>().foundEnemy)
+                        if (!player.GetComponent<Animator>().GetBehaviour<Ice_Pick_Idle>().foundEnemy)
                         {
-                            x.GetComponent<Animator>().SetBool("tracking", true);
-                            if (!x.GetComponent<Animator>().GetBehaviour<Ice_Pick_Idle>().originalSeeker)
-                                x.GetComponent<Animator>().SetFloat("idleTime", 1.0f);
-                            x.GetComponent<Animator>().GetBehaviour<Ice_Pick_Idle>().foundEnemy = true;
+                            player.GetComponent<Animator>().SetBool("tracking", true);
+                            if (!player.GetComponent<Animator>().GetBehaviour<Ice_Pick_Idle>().originalSeeker)
+                                player.GetComponent<Animator>().SetFloat("idleTime", 1.0f);
+                            player.GetComponent<Animator>().GetBehaviour<Ice_Pick_Idle>().foundEnemy = true;
                         }
                         //x join the hunt
                     }
-                }
             }
         }
             
