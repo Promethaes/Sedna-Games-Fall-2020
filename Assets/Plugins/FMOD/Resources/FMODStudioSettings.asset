@@ -165,9 +165,11 @@ MonoBehaviour:
   - Master
   Banks:
   - _test
+  - Arctic
   - Dumpage Monster
   - General Sounds
   - OST
+  - Robros
   - ui
   - Wetlands
   BanksToLoad: []
