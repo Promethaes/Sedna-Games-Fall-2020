@@ -108,6 +108,9 @@ public class PlayerController : MonoBehaviour
     public bool inCutscene = false;
     public GameObject questUI;
 
+    // VFX
+    public ParticleSystem dashVFX;
+
     // -------------------------------------------------------------------------
 
 
@@ -495,6 +498,7 @@ public class PlayerController : MonoBehaviour
 
             if (!_dashed && _isGrounded)
             {
+                dashVFX.Play();
                 Vector3 vel = _rigidbody.velocity;
                 _rigidbody.AddForce(new Vector3(vel.x * dashSpeed, 0.0f, vel.z * dashSpeed), ForceMode.Impulse);
                 _dashed = true;
