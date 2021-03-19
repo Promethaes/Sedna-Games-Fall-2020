@@ -36,7 +36,6 @@ public class InitializeLevel : MonoBehaviour
             player.GetComponent<GameInputHandler>().initPlayer(playerConfigs[i]);
 
             if (!playerConfigs[i].isRemotePlayer)
-                //CameraObject.player = player.GetComponentInChildren<SkinnedMeshRenderer>();
                 CameraObject.ChangeSkinnedMesh(player.GetComponentInChildren<SkinnedMeshRenderer>());
             _playerManager.players.Add(player);
         }
