@@ -149,34 +149,6 @@ MonoBehaviour:
   dirtIntensity:
     overrideState: 0
     value: 0
---- !u!114 &-1154752865615422656
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3a0f3d33feada44f98cda3055d3d80d, type: 3}
-  m_Name: Outline
-  m_EditorClassIdentifier: 
-  active: 1
-  enabled:
-    overrideState: 1
-    value: 1
-  thickness:
-    overrideState: 1
-    value: 1
-  edge:
-    overrideState: 0
-    value: 0.2
-  transitionSmoothness:
-    overrideState: 0
-    value: 20
-  color:
-    overrideState: 0
-    value: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,7 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
   - {fileID: -2501626065863209109}
-  - {fileID: -1154752865615422656}
+  - {fileID: 6396830330628978103}
 --- !u!114 &250615621950898861
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -328,6 +300,34 @@ MonoBehaviour:
   ambientcolor:
     overrideState: 0
     value: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+--- !u!114 &6396830330628978103
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a0f3d33feada44f98cda3055d3d80d, type: 3}
+  m_Name: Outline
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  thickness:
+    overrideState: 1
+    value: 1
+  edge:
+    overrideState: 0
+    value: 0.2
+  transitionSmoothness:
+    overrideState: 0
+    value: 20
+  color:
+    overrideState: 0
+    value: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &7013649021356582434
 MonoBehaviour:
   m_ObjectHideFlags: 3

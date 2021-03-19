@@ -11,7 +11,7 @@ public class PolarBearAttackTwo : StateMachineBehaviour
         player = animator.GetComponentInParent<PlayerController>();
         player.hitboxes[0].gameObject.SetActive(true);
         player.hitboxes[0].attack.gameObject.SetActive(true);
-        player.hitboxes[0].attack.Play(true);
+        player.hitboxes[0].attack.GetComponent<ParticleSystem>().Play(true);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

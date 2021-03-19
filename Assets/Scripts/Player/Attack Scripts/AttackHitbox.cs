@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AttackHitbox : MonoBehaviour
 {
-    public ParticleSystem attack;
+    public GameObject attack;
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy")

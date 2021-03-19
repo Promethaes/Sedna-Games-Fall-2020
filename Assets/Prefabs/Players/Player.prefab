@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/snd/splash
+  Event: event:/snd/land
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -1078,7 +1078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/snd/movement_water
+  Event: event:/snd/movement_snow
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
