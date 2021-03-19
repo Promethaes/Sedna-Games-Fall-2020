@@ -1956,7 +1956,7 @@ GameObject:
   - component: {fileID: 196208467}
   - component: {fileID: 196208466}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: CameraObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1974,6 +1974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f09690f4c8896a468a0e3fcf71ea6f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraObject: {fileID: 1954070246}
 --- !u!4 &196208467
 Transform:
   m_ObjectHideFlags: 0
