@@ -24,9 +24,9 @@ public class Cutscene : MonoBehaviour
         _networkManager = FindObjectOfType<CSNetworkManager>();
     }
 
-    public void startCutscene()
+    public void startCutscene(bool sendOverNetwork = true)
     {
-        if(_networkManager)
+        if(_networkManager && sendOverNetwork)
             _networkManager.SendCutsceneStart(index);
 
         Debug.Log("Starting Cutscene");
