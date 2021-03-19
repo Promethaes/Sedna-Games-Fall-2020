@@ -6,13 +6,22 @@ public class PolarBearAttackThreePlus : MonoBehaviour
 {
     bool active = false;
     public GameObject crack;
+    public GameObject[] crackPieces;
     IEnumerator Attack()
     {
         Transform temp = transform.parent;
         transform.parent = null;
-        yield return new WaitForSeconds(0.5f);
-        crack.SetActive(true);
+
+        yield return new WaitForSeconds(1.5f);
+        
+        foreach (GameObject child in crackPieces)
+            child.SetActive(true);
+
         yield return new WaitForSeconds(2.5f);
+
+        foreach (GameObject child in crackPieces)
+            child.SetActive(false);
+
         crack.SetActive(false);
         active = false;
         transform.parent = temp;
