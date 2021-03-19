@@ -614,6 +614,60 @@ Transform:
   m_Father: {fileID: 7252237382990859553}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2299446917262320941
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 759986882065227378}
+  - component: {fileID: 4503198149809551604}
+  m_Layer: 0
+  m_Name: Flamethrower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &759986882065227378
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2299446917262320941}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2888467124645165687}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4503198149809551604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2299446917262320941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/enemies/chp/chp_flamethrower
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &2351326424372319887
 GameObject:
   m_ObjectHideFlags: 0
@@ -1479,7 +1533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/chp/chp_movement
+  Event: event:/enemies/chp/chp_movement
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -1594,7 +1648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/chp/chp_ko
+  Event: event:/enemies/chp/chp_ko
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -1679,7 +1733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/chp/chp_attack
+  Event: event:/enemies/chp/chp_attack
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -1785,6 +1839,7 @@ Transform:
   - {fileID: 8885014006649161114}
   - {fileID: 180768971377409945}
   - {fileID: 1998836090545483207}
+  - {fileID: 759986882065227378}
   m_Father: {fileID: 7933882479056789253}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2587,7 +2642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/chp/chp_spawn
+  Event: event:/enemies/chp/chp_furnace_spawn
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -2868,7 +2923,7 @@ GameObject:
   - component: {fileID: 6843240819171144753}
   m_Layer: 0
   m_Name: Robo Bruiser
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2882,7 +2937,7 @@ Transform:
   m_GameObject: {fileID: 7300617264964847039}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 301.06427, y: 33.208588, z: 6.882309}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.60172, y: 0.60172, z: 0.60172}
   m_Children:
   - {fileID: 1344893239937453979}
   - {fileID: 1704916087811510866}
@@ -3624,7 +3679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/chp/chp_attack
+  Event: event:/enemies/chp/chp_pain
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -3839,12 +3894,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 918a42cbce1e74843b67830f6cf3c9b3, type: 3}
---- !u!224 &4681273106261683108 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 9008868705525029347, guid: 918a42cbce1e74843b67830f6cf3c9b3,
-    type: 3}
-  m_PrefabInstance: {fileID: 4463866907457679943}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3519757479700856274 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 948684517117595541, guid: 918a42cbce1e74843b67830f6cf3c9b3,
@@ -3869,3 +3918,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 084a1b8ac8bb5e948b319f2f1e7cf875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &4681273106261683108 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 9008868705525029347, guid: 918a42cbce1e74843b67830f6cf3c9b3,
+    type: 3}
+  m_PrefabInstance: {fileID: 4463866907457679943}
+  m_PrefabAsset: {fileID: 0}

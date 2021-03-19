@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/dmp/dmp_attack
+  Event: event:/enemies/dmp/dmp_attack
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/dmp/dmp_spawn
+  Event: event:/enemies/dmp/dmp_spawn
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/dmp/dmp_pain
+  Event: event:/enemies/dmp/dmp_pain
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/dmp/dmp_ko
+  Event: event:/enemies/dmp/dmp_split
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -255,7 +255,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3548892170378463101}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 699.5538, y: 4.6600037, z: 138.79312}
+  m_LocalPosition: {x: 699.5537, y: 4.6600037, z: 138.7931}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7306385553829920281}

@@ -475,7 +475,7 @@ public class CSNetworkManager : MonoBehaviour
                 //cli 0 cut 0 
                 var cutsceneIndex = int.Parse(parts[3]);
 
-                Cutscene.AllCutscenes[cutsceneIndex].startCutscene();
+                Cutscene.AllCutscenes[cutsceneIndex].startCutscene(false);
 
                 client.backlog.RemoveAt(i);
                 i--;

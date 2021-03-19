@@ -20,7 +20,7 @@ public class FurnaceMonsterIdle : StateMachineBehaviour
             players = enemyData.getPlayers();
         }
         agent.isStopped = true;
-        enemyData.enemySounds[(int)EnemySoundIndex.Spawn].Play();
+        ///enemyData.enemySounds[(int)EnemySoundIndex.Spawn].Play();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
