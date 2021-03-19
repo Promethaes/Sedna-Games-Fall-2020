@@ -801,7 +801,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2612491112216681419}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 301.06427, y: 33.208588, z: 6.882309}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6033252493420515823}
@@ -898,6 +898,7 @@ MonoBehaviour:
   - {fileID: 1400697173430633279}
   - {fileID: 2586202530088776784}
   - {fileID: 8001228757859177138}
+  projectileSpeed: 1
 --- !u!54 &1812608330756512449
 Rigidbody:
   m_ObjectHideFlags: 0
