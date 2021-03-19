@@ -324,12 +324,10 @@ MonoBehaviour:
   healthBarSize: 90
   maxHealth: 0
   health: 0
-  range: 0
   damageValues: 0
   hitbox: {fileID: 0}
   fear: 0
   enemy: 0
-  icePickRange: 5
   randomScale: 1
   enemyScale: 1
   lowerBoundEnemyScale: 1
