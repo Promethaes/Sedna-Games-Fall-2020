@@ -10,11 +10,27 @@ public class FurnaceMonster : MonoBehaviour
 
     public void Attack()
     {
-        float _attackPattern = Random.Range(0.0f,1.0f);
+        float _attackPattern = Random.Range(0.0f, 1.0f);
         if (_attackPattern < 0.3f)
             StartCoroutine(Flamethrower());
         else
             StartCoroutine(Claw());
+    }
+
+    public bool DecideAttack()
+    {
+        float _attackPattern = Random.Range(0.0f, 1.0f);
+        Debug.Log("fire or not: " + (_attackPattern < 0.3f).ToString());
+        return _attackPattern < 0.3f;
+    }
+
+    public void ActivateClaw()
+    {
+        StartCoroutine(Claw());
+    }
+    public void ActivateFlamethrower()
+    {
+        StartCoroutine(Flamethrower());
     }
 
     IEnumerator Flamethrower()
@@ -31,9 +47,9 @@ public class FurnaceMonster : MonoBehaviour
                 _clockwise = true;
 
             if (_clockwise)
-                flamethrower.transform.parent.Rotate(Vector3.up*_angle*flameSpeed*Time.deltaTime);
+                flamethrower.transform.parent.Rotate(Vector3.up * _angle * flameSpeed * Time.deltaTime);
             else
-                flamethrower.transform.parent.Rotate(-1.0f*Vector3.up*_angle*flameSpeed*Time.deltaTime);
+                flamethrower.transform.parent.Rotate(-1.0f * Vector3.up * _angle * flameSpeed * Time.deltaTime);
             _lifeTime -= Time.deltaTime;
             yield return null;
         }
