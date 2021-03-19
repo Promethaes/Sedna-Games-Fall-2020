@@ -17,10 +17,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/NetGame.unity
     guid: bb29d3fa20d4bf04bab6d1e5f495df34
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Arctic Level.unity
     guid: d1a73e017c6a56845b0c5d72ed2a3383
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Game Scene.unity
     guid: ed7403bafef2f944d9b5589e1f237dfe
   - enabled: 0
