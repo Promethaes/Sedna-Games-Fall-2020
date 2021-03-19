@@ -108,6 +108,9 @@ public class PlayerController : MonoBehaviour
     public bool inCutscene = false;
     public GameObject questUI;
 
+    // VFX
+    public ParticleSystem dashVFX;
+
     // -------------------------------------------------------------------------
 
 
@@ -127,11 +130,6 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(SetupWheelUI());
         StartCoroutine(SetupQuestUI());
 
-    }
-
-    void Start()
-    {
-        remotePlayer = !gameObject.GetComponentInChildren<Camera>().enabled;
     }
 
     IEnumerator SetupWheelUI()
@@ -178,10 +176,7 @@ public class PlayerController : MonoBehaviour
                 _setCombo(1.0f, 999999.0f, 25.0f, 0.45f, 0.95f, 1.25f);
                 break;
         }
-        if (UseXinputScript.use)
-            _playerMesh = GetComponentInParent<GameXinputHandler>().playerPrefabs[(int)playerType].prefab;
-        else
-            _playerMesh = GetComponentInParent<GameInputHandler>()._playerPrefabs[(int)playerType].prefab;
+        _playerMesh = GetComponentInParent<GameInputHandler>()._playerPrefabs[(int)playerType].prefab;
 
         backend.hp = backend.maxHP * percentage;
         hitboxes = _playerMesh.GetComponentsInChildren<AttackHitbox>(true);
@@ -354,11 +349,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ChangeChar(int selec)
+    public void ChangeCharFromNetwork(int selec)
     {
         GetComponentInParent<GameInputHandler>().swapPlayer(selec);
         _animator = GetComponentInParent<GameInputHandler>()._animator;
+
         setupPlayer();
+
+
     }
 
     void _ConfirmWheel()
@@ -374,6 +372,13 @@ public class PlayerController : MonoBehaviour
 
             sendPlayerChanged = true;
             setupPlayer();
+
+            var skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+
+            foreach (var smr in skinnedMeshRenderers)
+                if (smr.gameObject.transform.parent.parent.gameObject.activeSelf)
+                    CameraObject.ChangeSkinnedMesh(smr);
+
         }
     }
 
@@ -411,8 +416,11 @@ public class PlayerController : MonoBehaviour
             Vector3 vel = playerCamera.transform.right * moveInput.x + playerCamera.transform.forward * moveInput.y;
             vel *= moveSpeed;
             if (vel.magnitude >= 0.1f)
+            {
+                float dashX=moveInput.x*-1.0f*90.0f;
                 _playerMesh.transform.rotation = Quaternion.Euler(0.0f, Mathf.SmoothDampAngle(_playerMesh.transform.eulerAngles.y, playerCamera.transform.eulerAngles.y, ref turnSpeed, 0.25f), 0.0f);
-
+                dashVFX.transform.rotation = Quaternion.Euler(0.0f, dashX+180.0f, 0.0f);
+            }
             float y = _rigidbody.velocity.y;
             //NOTE: Checks for _isGrounded to reduce the effects of gravity such that the player doesn't slide off slopes
             //TODO: Adjust raycast for actual models' radii
@@ -493,6 +501,8 @@ public class PlayerController : MonoBehaviour
 
             if (!_dashed && _isGrounded)
             {
+                dashVFX.gameObject.SetActive(true);
+                dashVFX.Play();
                 Vector3 vel = _rigidbody.velocity;
                 _rigidbody.AddForce(new Vector3(vel.x * dashSpeed, 0.0f, vel.z * dashSpeed), ForceMode.Impulse);
                 _dashed = true;
@@ -501,6 +511,8 @@ public class PlayerController : MonoBehaviour
             }
             else if (!_airDashed)
             {
+                dashVFX.gameObject.SetActive(true);
+                dashVFX.Play();
                 Vector3 vel = _rigidbody.velocity;
                 _rigidbody.AddForce(new Vector3(vel.x * dashSpeed, 0.0f, vel.z * dashSpeed), ForceMode.Impulse);
                 _airDashed = true;

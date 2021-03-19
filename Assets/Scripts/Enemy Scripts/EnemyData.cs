@@ -7,7 +7,13 @@ enum EnemySoundIndex
     Spawn,
     Attack,
     Pain,
-    Die
+    Die,
+    Movement,
+    DumpageSplit,
+    DumpageThrow,
+    BlasterOneShot,
+    BlasterThreeShot,
+    
 }
 public class EnemyData : MonoBehaviour
 {
@@ -128,6 +134,7 @@ public class EnemyData : MonoBehaviour
         if (randomScale)
             DetermineEnemyScale();
         Init();
+        enemySounds[(int)EnemySoundIndex.Spawn].Play();
     }
 
     public void setHealth(float hp)

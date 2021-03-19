@@ -10,6 +10,7 @@ TagManager:
   - CheckpointManager
   - UI
   - EnemySpawnPoint
+  - virtualCam
   layers:
   - Default
   - TransparentFX
@@ -26,8 +27,8 @@ TagManager:
   - Player3
   - Player4
   - Outlines
-  - 
-  - 
+  - LayerMask
+  - Seethrough
   - 
   - 
   - 
