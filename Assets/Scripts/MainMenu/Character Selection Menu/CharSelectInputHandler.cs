@@ -57,7 +57,7 @@ public class CharSelectInputHandler : MonoBehaviour {
         }
 
         if(_playerConfig.input == null) {
-            Logger.Error("No PlayerInput attached to PlayerConfig!");
+            //Logger.Error("No PlayerInput attached to PlayerConfig!");
             return;
         }
 

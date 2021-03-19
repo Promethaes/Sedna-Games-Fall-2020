@@ -4,16 +4,31 @@ using UnityEngine;
 
 public class Cutscene : MonoBehaviour
 {
+    public static List<Cutscene> AllCutscenes = new List<Cutscene>();
+    public int index = -1;
+
     public GameObject[] blocks;
     public Camera cam;
-    float _fadeTime=2.5f;
+    float _fadeTime = 2.5f;
     Color _color;
     public bool cutsceneComplete = false;
     public GameObject abilityZone;
     public GameObject effect;
 
+    CSNetworkManager _networkManager = null;
+
+    void Start()
+    {
+        AllCutscenes.Add(this);
+        index = AllCutscenes.Count - 1;
+        _networkManager = FindObjectOfType<CSNetworkManager>();
+    }
+
     public void startCutscene()
     {
+        if(_networkManager)
+            _networkManager.SendCutsceneStart(index);
+
         Debug.Log("Starting Cutscene");
         if (Camera.allCameras.Length > 0)
             Camera.allCameras[0].gameObject.SetActive(false);
@@ -34,32 +49,33 @@ public class Cutscene : MonoBehaviour
 
     IEnumerator Fade()
     {
-        //TODO: Figure out a way to get alpha of shaders instead
-        _color = blocks[0].GetComponent<MeshRenderer>().material.color;
-        while (_fadeTime >= 0.0f)
-        {
-            _fadeTime-=0.1f*Time.deltaTime;
-            _color.a -=0.1f/_fadeTime*Time.deltaTime;
-            for (int i=0;i<blocks.Length;i++)
-                blocks[i].GetComponent<MeshRenderer>().material.SetColor("Base_Color", _color);
-            yield return null;
-        }
-        _color.a = 1.0f;
-        for (int b=0;b<blocks.Length;b++)
+        //while (_fadeTime >= 0.0f)
+        //{
+        //    _fadeTime-=0.1f*Time.deltaTime;
+        //    //_color.a -=0.1f/_fadeTime*Time.deltaTime;
+        //    //for (int i=0;i<blocks.Length;i++)
+        //    //    blocks[i].GetComponent<MeshRenderer>().material.SetColor("Base_Color", _color);
+        //    yield return null;
+        //}
+        //_color.a = 1.0f;
+        for (int b = 0; b < blocks.Length; b++)
         {
             blocks[b].SetActive(false);
-            blocks[b].GetComponent<MeshRenderer>().material.SetColor("Base_Color", _color);
+            // blocks[b].GetComponent<MeshRenderer>().material.SetColor("Base_Color", _color);
         }
 
         yield return new WaitForSeconds(1.5f);
         Debug.Log("Ending Cutscene");
         cam.gameObject.SetActive(false);
         var players = GameObject.FindGameObjectsWithTag("Player");
-        for (int i=0;i<players.Length;i++)
+        for (int i = 0; i < players.Length; i++)
         {
             players[i].GetComponentInChildren<Camera>(true).gameObject.SetActive(true);
             players[i].GetComponentInChildren<PlayerController>().inCutscene = false;
         }
+
+
+
         cutsceneComplete = true;
         abilityZone.SetActive(false);
         effect.SetActive(false);
@@ -84,4 +100,3 @@ public class Cutscene : MonoBehaviour
         }
     }
 }
-

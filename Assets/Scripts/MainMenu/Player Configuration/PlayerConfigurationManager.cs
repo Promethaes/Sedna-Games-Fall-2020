@@ -67,11 +67,15 @@ public class PlayerConfigurationManager : MonoBehaviour
         }
     }
 
-    public void allPlayersReady()
+    public void allPlayersReady(bool tempDebugBool)
     {
         if (_playerConfigs.Count <= _manager.maxPlayerCount && _playerConfigs.All(p => p.isReady))
         {
-            _sceneChanger.changeScene(2); // This should be the game scene
+            if(tempDebugBool)
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Arctic Level"); // This should be the game scene
+            else
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Game Scene"); // This should be the game scene
+
         }
     }
 }

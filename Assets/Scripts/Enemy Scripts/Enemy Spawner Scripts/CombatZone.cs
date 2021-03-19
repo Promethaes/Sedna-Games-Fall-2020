@@ -10,7 +10,13 @@ public class CombatZone : MonoBehaviour
     {
         bool allDone = true;
         foreach (var esp in enemySpawnPoints)
-            allDone = !esp.AnyEnemiesActive();
+        {
+            if (esp.AnyEnemiesActive())
+            {
+                allDone = false;
+                break;
+            }
+        }
 
         if (allDone)
             gameObject.SetActive(false);

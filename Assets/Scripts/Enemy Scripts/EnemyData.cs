@@ -7,7 +7,13 @@ enum EnemySoundIndex
     Spawn,
     Attack,
     Pain,
-    Die
+    Die,
+    Movement,
+    DumpageSplit,
+    DumpageThrow,
+    BlasterOneShot,
+    BlasterThreeShot,
+    
 }
 public class EnemyData : MonoBehaviour
 {
@@ -32,6 +38,7 @@ public class EnemyData : MonoBehaviour
     public GameObject hitbox;
     public bool fear = false;
     float _poisonDuration = 10.0f;
+
 
     public enum enemyType
     {
