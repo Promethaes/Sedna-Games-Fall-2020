@@ -74,7 +74,7 @@ public class Cutscene : MonoBehaviour
             players[i].GetComponentInChildren<PlayerController>().inCutscene = false;
         }
 
-        
+
 
         cutsceneComplete = true;
         abilityZone.SetActive(false);
@@ -100,4 +100,3 @@ public class Cutscene : MonoBehaviour
         }
     }
 }
-

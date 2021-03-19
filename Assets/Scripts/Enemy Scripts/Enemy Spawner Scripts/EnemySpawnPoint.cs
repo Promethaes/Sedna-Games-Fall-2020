@@ -63,6 +63,8 @@ public class EnemySpawnPoint : MonoBehaviour
             for (int i = 0; i < spawnEnemies.Count; i++)
                 if (spawnEnemies[i].activeSelf)
                     networkManager.SendEnemyDesyncUpdate(spawnPointIndex, i, spawnEnemies[i].transform.position);
+                else
+                    networkManager.SendUpdatedEnemyStatus(spawnPointIndex,i);
 
             desyncTimer = 5.0f;
         }

@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Graphics/Materials/Grid1.mat.meta
 guid: 15618f1811082ec4fa9c3cb53478d4fa
 NativeFormatImporter:
+=======
+guid: 63eb5b79cff375e4f9215ec2ceafd437
+DefaultImporter:
+>>>>>>> master:Assets/Fonts/freeds/freeds.zip.meta
   externalObjects: {}
   mainObjectFileID: 0
   userData: 

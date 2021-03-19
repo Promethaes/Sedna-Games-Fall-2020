@@ -143,7 +143,7 @@ public class CSNetworkManager : MonoBehaviour
         if (isLocal)
         {
             localPlayers.Add(config);
-            byte[] buffer = Encoding.ASCII.GetBytes("initMsg " + sessionID.ToString() + " " + PlayerPrefs.GetString("pid","peepee"));
+            byte[] buffer = Encoding.ASCII.GetBytes("initMsg " + sessionID.ToString() + " " + PlayerPrefs.GetString("pid", "peepee"));
             client.clientSocket.SendTo(buffer, client.endPoint);
 
             return;
@@ -182,9 +182,16 @@ public class CSNetworkManager : MonoBehaviour
     {
         if (!isHostClient)
             return;
-
         client.Send("cli 0 esp " + spawnPointIndex.ToString() + " e " + enemyIndex.ToString() +
         " " + pos.x.ToString() + " " + pos.y.ToString() + " " + pos.z.ToString());
+    }
+
+    public void SendUpdatedEnemyStatus(int spawnPointIndex, int enemyIndex)
+    {
+        if (!isHostClient)
+            return;
+        //cli 0 esp 0 e 0 edm
+        client.Send("cli 0 esp " + spawnPointIndex.ToString() + " e " + enemyIndex.ToString() + " edm");
     }
 
     public void SendCutsceneStart(int cutsceneIndex)
@@ -420,10 +427,21 @@ public class CSNetworkManager : MonoBehaviour
             }
             else if (client.backlog[i].Contains("esp"))
             {
+
+
                 var parts = client.backlog[i].Split(' ');
-                //cli 0 esp 0 e 0 0 0 0
                 var espIndex = int.Parse(parts[3]);
                 var eIndex = int.Parse(parts[5]);
+                if (client.backlog[i].Contains("edm"))
+                {
+                    //cli 0 esp 0 e 0 edm
+                    EnemySpawnPoint.AllEnemySpawnPoints[espIndex].spawnEnemies[eIndex].SetActive(false);
+                    client.backlog.RemoveAt(i);
+                    i--;
+                    continue;
+                }
+
+                //cli 0 esp 0 e 0 0 0 0
                 Vector3 pos = new Vector3(float.Parse(parts[6]), float.Parse(parts[7]), float.Parse(parts[8]));
                 var rb = EnemySpawnPoint.AllEnemySpawnPoints[espIndex].spawnEnemies[eIndex].GetComponent<Rigidbody>();
                 if (rb)

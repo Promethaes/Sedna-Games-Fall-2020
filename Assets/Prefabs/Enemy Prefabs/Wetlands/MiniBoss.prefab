@@ -234,13 +234,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8226452393176891317}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-<<<<<<< HEAD:Assets/Prefabs/Enemy Prefabs/MiniBoss.prefab
   m_LocalPosition: {x: 506.07596, y: 4.6600037, z: 517.9183}
   m_LocalScale: {x: 3.478079, y: 3.478079, z: 3.478079}
-=======
-  m_LocalPosition: {x: 506.0758, y: 4.6600037, z: 517.91833}
-  m_LocalScale: {x: 1, y: 1, z: 1}
->>>>>>> Arctic-Level-Prototype:Assets/Prefabs/Enemy Prefabs/Wetlands/MiniBoss.prefab
   m_Children:
   - {fileID: 2160128622509204344}
   - {fileID: 6084149244488833376}
@@ -308,14 +303,12 @@ MonoBehaviour:
   healthBarSize: 90
   maxHealth: 0
   health: 0
-<<<<<<< HEAD:Assets/Prefabs/Enemy Prefabs/MiniBoss.prefab
   range: 300
-=======
->>>>>>> Arctic-Level-Prototype:Assets/Prefabs/Enemy Prefabs/Wetlands/MiniBoss.prefab
   damageValues: 0
   hitbox: {fileID: 0}
   fear: 0
   enemy: 5
+  icePickRange: 5
   randomScale: 0
   enemyScale: 1
   lowerBoundEnemyScale: 1
@@ -431,8 +424,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8228875897217003794}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: 0, y: 0.976, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8746529723091789071}
   m_RootOrder: 2
