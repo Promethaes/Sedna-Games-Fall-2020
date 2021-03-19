@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PolarBearAttackThree : StateMachineBehaviour
+public class PolarBearAttackTwo : StateMachineBehaviour
 {
     PlayerController player;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         player = animator.GetComponentInParent<PlayerController>();
-        player.hitboxes[2].gameObject.SetActive(true);
-        player.hitboxes[2].attack.Play(true);
+        player.hitboxes[0].gameObject.SetActive(true);
+        player.hitboxes[0].attack.gameObject.SetActive(true);
+        player.hitboxes[0].attack.Play(true);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -23,7 +24,7 @@ public class PolarBearAttackThree : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         player = animator.GetComponentInParent<PlayerController>();
-        player.hitboxes[2].gameObject.SetActive(false);
+        player.hitboxes[0].gameObject.SetActive(false);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

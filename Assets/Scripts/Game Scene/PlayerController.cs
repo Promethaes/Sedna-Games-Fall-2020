@@ -416,8 +416,11 @@ public class PlayerController : MonoBehaviour
             Vector3 vel = playerCamera.transform.right * moveInput.x + playerCamera.transform.forward * moveInput.y;
             vel *= moveSpeed;
             if (vel.magnitude >= 0.1f)
+            {
+                float dashX=moveInput.x*-1.0f*90.0f;
                 _playerMesh.transform.rotation = Quaternion.Euler(0.0f, Mathf.SmoothDampAngle(_playerMesh.transform.eulerAngles.y, playerCamera.transform.eulerAngles.y, ref turnSpeed, 0.25f), 0.0f);
-
+                dashVFX.transform.rotation = Quaternion.Euler(0.0f, dashX+180.0f, 0.0f);
+            }
             float y = _rigidbody.velocity.y;
             //NOTE: Checks for _isGrounded to reduce the effects of gravity such that the player doesn't slide off slopes
             //TODO: Adjust raycast for actual models' radii
@@ -498,6 +501,7 @@ public class PlayerController : MonoBehaviour
 
             if (!_dashed && _isGrounded)
             {
+                dashVFX.gameObject.SetActive(true);
                 dashVFX.Play();
                 Vector3 vel = _rigidbody.velocity;
                 _rigidbody.AddForce(new Vector3(vel.x * dashSpeed, 0.0f, vel.z * dashSpeed), ForceMode.Impulse);
@@ -507,6 +511,8 @@ public class PlayerController : MonoBehaviour
             }
             else if (!_airDashed)
             {
+                dashVFX.gameObject.SetActive(true);
+                dashVFX.Play();
                 Vector3 vel = _rigidbody.velocity;
                 _rigidbody.AddForce(new Vector3(vel.x * dashSpeed, 0.0f, vel.z * dashSpeed), ForceMode.Impulse);
                 _airDashed = true;
