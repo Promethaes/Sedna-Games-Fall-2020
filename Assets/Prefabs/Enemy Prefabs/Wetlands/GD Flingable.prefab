@@ -675,12 +675,10 @@ MonoBehaviour:
   healthBarSize: 90
   maxHealth: 0
   health: 0
-  range: 0
   damageValues: 0
   hitbox: {fileID: 484686910651219381}
   fear: 0
   enemy: 0
-  icePickRange: 5
   randomScale: 1
   enemyScale: 1
   lowerBoundEnemyScale: 1
@@ -919,7 +917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/dmp/dmp_pain
+  Event: event:/enemies/dmp/dmp_pain
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -1006,7 +1004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/dmp/dmp_ko
+  Event: event:/enemies/dmp/dmp_ko
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -1127,7 +1125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/dmp/dmp_attack
+  Event: event:/enemies/dmp/dmp_attack
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -1183,7 +1181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/dmp/dmp_spawn
+  Event: event:/enemies/dmp/dmp_spawn
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
