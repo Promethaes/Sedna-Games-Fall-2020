@@ -49,7 +49,7 @@ public class FurnaceMonsterTrack : StateMachineBehaviour
 
         var mag = (enemy.transform.position - closestPlayer.transform.position).magnitude;
         agent.SetDestination(closestPlayer.transform.position);
-
+        enemy.transform.LookAt(closestPlayer.transform);
         if (mag < 10)
         {
             animator.SetBool("tracking", false);
