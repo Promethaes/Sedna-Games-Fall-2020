@@ -234,7 +234,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8226452393176891317}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 506.07596, y: 4.6600037, z: 517.9183}
+  m_LocalPosition: {x: 506.0758, y: 4.6600037, z: 517.91833}
   m_LocalScale: {x: 3.478079, y: 3.478079, z: 3.478079}
   m_Children:
   - {fileID: 2160128622509204344}
@@ -303,12 +303,10 @@ MonoBehaviour:
   healthBarSize: 90
   maxHealth: 0
   health: 0
-  range: 300
   damageValues: 0
   hitbox: {fileID: 0}
   fear: 0
   enemy: 5
-  icePickRange: 5
   randomScale: 0
   enemyScale: 1
   lowerBoundEnemyScale: 1
