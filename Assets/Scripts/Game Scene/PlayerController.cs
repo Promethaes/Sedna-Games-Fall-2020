@@ -132,11 +132,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void Start()
-    {
-        remotePlayer = !gameObject.GetComponentInChildren<Camera>().enabled;
-    }
-
     IEnumerator SetupWheelUI()
     {
         while (_wheelUI == null)
@@ -181,10 +176,7 @@ public class PlayerController : MonoBehaviour
                 _setCombo(1.0f, 999999.0f, 25.0f, 0.45f, 0.95f, 1.25f);
                 break;
         }
-        if (UseXinputScript.use)
-            _playerMesh = GetComponentInParent<GameXinputHandler>().playerPrefabs[(int)playerType].prefab;
-        else
-            _playerMesh = GetComponentInParent<GameInputHandler>()._playerPrefabs[(int)playerType].prefab;
+        _playerMesh = GetComponentInParent<GameInputHandler>()._playerPrefabs[(int)playerType].prefab;
 
         backend.hp = backend.maxHP * percentage;
         hitboxes = _playerMesh.GetComponentsInChildren<AttackHitbox>(true);
@@ -357,11 +349,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ChangeChar(int selec)
+    public void ChangeCharFromNetwork(int selec)
     {
         GetComponentInParent<GameInputHandler>().swapPlayer(selec);
         _animator = GetComponentInParent<GameInputHandler>()._animator;
+
         setupPlayer();
+
+
     }
 
     void _ConfirmWheel()
@@ -377,6 +372,13 @@ public class PlayerController : MonoBehaviour
 
             sendPlayerChanged = true;
             setupPlayer();
+
+            var skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+
+            foreach (var smr in skinnedMeshRenderers)
+                if (smr.gameObject.transform.parent.parent.gameObject.activeSelf)
+                    CameraObject.ChangeSkinnedMesh(smr);
+
         }
     }
 
