@@ -22,7 +22,13 @@ public class FurnaceMonsterAttack : StateMachineBehaviour
             furnaceMonsterData = enemy.GetComponent<FurnaceMonster>();
         }
         enemyData.hitbox.SetActive(true);
-        enemyData.enemySounds[(int)EnemySoundIndex.Attack].Play();
+        if (stateInfo.IsName("Armature|Fire"))
+        {
+            enemyData.enemySounds[(int)EnemySoundIndex.DumpageSplit].Play();
+            furnaceMonsterData.ActivateFlamethrower();
+        }
+        else
+            enemyData.enemySounds[(int)EnemySoundIndex.Attack].Play();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -50,11 +56,10 @@ public class FurnaceMonsterAttack : StateMachineBehaviour
             }
             else if (stateInfo.IsName("Armature|Fire"))
             {
-                furnaceMonsterData.ActivateFlamethrower();
                 animator.SetBool("fire", false);
             }
 
-            animator.SetBool("tracking",true);
+            animator.SetBool("tracking", true);
 
         }
     }
