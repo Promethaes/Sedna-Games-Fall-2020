@@ -134,6 +134,7 @@ public class EnemyData : MonoBehaviour
         if (randomScale)
             DetermineEnemyScale();
         Init();
+        enemySounds[(int)EnemySoundIndex.Spawn].Play();
     }
 
     public void setHealth(float hp)

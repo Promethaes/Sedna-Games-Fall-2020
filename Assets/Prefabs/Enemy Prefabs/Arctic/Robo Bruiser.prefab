@@ -2923,7 +2923,7 @@ GameObject:
   - component: {fileID: 6843240819171144753}
   m_Layer: 0
   m_Name: Robo Bruiser
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2937,7 +2937,7 @@ Transform:
   m_GameObject: {fileID: 7300617264964847039}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 301.06427, y: 33.208588, z: 6.882309}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.60172, y: 0.60172, z: 0.60172}
   m_Children:
   - {fileID: 1344893239937453979}
   - {fileID: 1704916087811510866}

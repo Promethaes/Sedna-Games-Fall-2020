@@ -53,6 +53,9 @@ public class FurnaceMonster : MonoBehaviour
             _lifeTime -= Time.deltaTime;
             yield return null;
         }
+
+        flamethrower.gameObject.SetActive(false);
+
         yield return null;
     }
     IEnumerator Claw()
