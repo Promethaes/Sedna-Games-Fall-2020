@@ -7,7 +7,13 @@ enum EnemySoundIndex
     Spawn,
     Attack,
     Pain,
-    Die
+    Die,
+    Movement,
+    DumpageSplit,
+    DumpageThrow,
+    BlasterOneShot,
+    BlasterThreeShot,
+    
 }
 public class EnemyData : MonoBehaviour
 {
