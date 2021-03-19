@@ -22485,7 +22485,7 @@ MonoBehaviour:
   CameraCollisionFilter:
     serializedVersion: 2
     m_Bits: 1
-  IgnoreTag: 
+  IgnoreTag: Player
   CameraRadius: 0.2
 --- !u!114 &1916043735
 MonoBehaviour:
