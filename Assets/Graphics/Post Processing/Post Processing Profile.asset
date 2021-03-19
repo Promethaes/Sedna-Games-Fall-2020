@@ -167,7 +167,7 @@ MonoBehaviour:
     value: 1
   thickness:
     overrideState: 1
-    value: 2
+    value: 1
   edge:
     overrideState: 0
     value: 0.2
@@ -192,7 +192,6 @@ MonoBehaviour:
   settings:
   - {fileID: -2501626065863209109}
   - {fileID: -1154752865615422656}
-  - {fileID: 250615621950898861}
 --- !u!114 &250615621950898861
 MonoBehaviour:
   m_ObjectHideFlags: 3
