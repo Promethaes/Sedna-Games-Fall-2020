@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/dmp/dmp_ko
+  Event: event:/enemies/dmp/dmp_ko
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/dmp/dmp_movement
+  Event: event:/enemies/dmp/dmp_movement
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/dmp/dmp_spawn
+  Event: event:/enemies/dmp/dmp_pain
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/dmp/dmp_pain
+  Event: event:/enemies/dmp/dmp_pain
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/dmp/dmp_throw
+  Event: event:/enemies/dmp/dmp_throw
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -635,7 +635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/dmp/dmp_attack
+  Event: event:/enemies/dmp/dmp_attack
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1

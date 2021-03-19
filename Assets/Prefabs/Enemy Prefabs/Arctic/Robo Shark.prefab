@@ -529,7 +529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/chp/chp_movement
+  Event: event:/enemies/chp/chp_movement
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -613,7 +613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/chp/chp_attack
+  Event: event:/enemies/chp/chp_attack
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -667,7 +667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/chp/chp_attack
+  Event: event:/enemies/chp/chp_pain
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -721,7 +721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/chp/chp_ko
+  Event: event:/enemies/chp/chp_ko
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -897,7 +897,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/chp/chp_spawn
+  Event: event:/enemies/chp/chp_spawn
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
