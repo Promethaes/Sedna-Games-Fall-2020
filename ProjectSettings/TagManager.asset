@@ -10,6 +10,7 @@ TagManager:
   - CheckpointManager
   - UI
   - EnemySpawnPoint
+  - virtualCam
   layers:
   - Default
   - TransparentFX
