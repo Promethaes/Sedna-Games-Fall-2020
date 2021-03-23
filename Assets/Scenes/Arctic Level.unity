@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1116,7 +1116,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-96204
+  m_Name: pb_Mesh-18992
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2042,7 +2042,7 @@ PrefabInstance:
     - target: {fileID: 5060433708512069856, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
       propertyPath: spawnRadiusScalar
-      value: 3
+      value: 6.06
       objectReference: {fileID: 0}
     - target: {fileID: 5060433708512069856, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
@@ -2053,7 +2053,7 @@ PrefabInstance:
     - target: {fileID: 5060433708512069856, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
       propertyPath: maxSpawn
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7232142909002152194, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
@@ -9572,7 +9572,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7766323, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
