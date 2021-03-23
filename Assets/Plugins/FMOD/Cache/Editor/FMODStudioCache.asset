@@ -1,5 +1,25 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9191597444772740532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/dmp_pain/size
+  m_EditorClassIdentifier: 
+  Name: size
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-9171913338304821589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,7 +85,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: -8075084231012443419}
+  - {fileID: 605368976906330981}
   MinDistance: 1
   MaxDistance: 20
   Length: 1375
@@ -84,7 +104,7 @@ MonoBehaviour:
   Path: FMOD Project/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637517384549395111
+  lastModified: 637517595617283925
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -711,6 +731,26 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 96000
+--- !u!114 &-8180569660980215131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/dmp_movement/size
+  m_EditorClassIdentifier: 
+  Name: size
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-8137967114573279440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -915,7 +955,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 4131672998187968965}
+  - {fileID: 8922853090521816774}
   MinDistance: 0
   MaxDistance: 0
   Length: 444000
@@ -1502,7 +1542,7 @@ MonoBehaviour:
   Path: FMOD Project/Build/Desktop/Wood Bison.bank
   Name: Wood Bison
   StudioPath: bank:/Characters/Wood Bison
-  lastModified: 637517384549564652
+  lastModified: 637517595618615133
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -1586,7 +1626,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -5283854374121341423}
+  - {fileID: -3841678376278020013}
   MinDistance: 0
   MaxDistance: 0
   Length: 95000
@@ -1605,7 +1645,7 @@ MonoBehaviour:
   Path: FMOD Project/Build/Desktop/_test.bank
   Name: _test
   StudioPath: bank:/_test
-  lastModified: 637516990236122399
+  lastModified: 637517062878559414
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -1629,7 +1669,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 7749973722801240831}
+  - {fileID: 4180037679094245658}
   MinDistance: 1
   MaxDistance: 20
   Length: 580
@@ -1861,7 +1901,7 @@ MonoBehaviour:
   Path: FMOD Project/Build/Desktop/OST.bank
   Name: OST
   StudioPath: bank:/OST
-  lastModified: 637516990236860408
+  lastModified: 637517062878018923
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -2245,7 +2285,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 7254483272657400667}
+  - {fileID: -829336877756606507}
   MinDistance: 1
   MaxDistance: 20
   Length: 1500
@@ -2557,7 +2597,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: -1784871934457834371}
+  - {fileID: 5222434297538837679}
   MinDistance: 1
   MaxDistance: 20
   Length: 1625
@@ -2581,6 +2621,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &-5529767550456632609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/wet_exp/Progress
+  m_EditorClassIdentifier: 
+  Name: Progress
+  Min: 1
+  Max: 7
+  Default: 1
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-5513193199315581177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3211,7 +3271,7 @@ MonoBehaviour:
   Path: FMOD Project/Build/Desktop/Dumpage Monster.bank
   Name: Dumpage Monster
   StudioPath: bank:/Enemies/Dumpage Monster
-  lastModified: 637516990225824641
+  lastModified: 637517062877758684
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -3825,6 +3885,26 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &-3841678376278020013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/arc_wind_2d/arc_windIntensity
+  m_EditorClassIdentifier: 
+  Name: arc_windIntensity
+  Min: 0
+  Max: 1
+  Default: 1
   ID:
     data1: 0
     data2: 0
@@ -4564,7 +4644,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -1786805539304574519}
+  - {fileID: 6531208036622026914}
   MinDistance: 0
   MaxDistance: 0
   Length: 106000
@@ -4693,6 +4773,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &-2427577574231945439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/dmp_split/size
+  m_EditorClassIdentifier: 
+  Name: size
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-2355906766873086523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4733,7 +4833,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 8713171079635478224}
+  - {fileID: -285326960218491546}
   MinDistance: 1
   MaxDistance: 20
   Length: 1469
@@ -5777,7 +5877,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: -7460645996117657316}
+  - {fileID: 6743721575017087703}
   MinDistance: 1
   MaxDistance: 20
   Length: 70485
@@ -5861,7 +5961,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: -838870382011723783}
+  - {fileID: -9191597444772740532}
   MinDistance: 1
   MaxDistance: 20
   Length: 406
@@ -6000,6 +6100,26 @@ MonoBehaviour:
   m_Name: parameter:/pitch mod test/testParameter
   m_EditorClassIdentifier: 
   Name: testParameter
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &-829336877756606507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/dmp_attack/size
+  m_EditorClassIdentifier: 
+  Name: size
   Min: 0
   Max: 1
   Default: 0
@@ -6206,7 +6326,7 @@ MonoBehaviour:
   Path: FMOD Project/Build/Desktop/Wetlands.bank
   Name: Wetlands
   StudioPath: bank:/Levels/Wetlands
-  lastModified: 637516990236401640
+  lastModified: 637517062878549403
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -6284,6 +6404,26 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
   m_Name: parameter:/async test/testParameter
+  m_EditorClassIdentifier: 
+  Name: testParameter
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &-285326960218491546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/pitch mod test/testParameter
   m_EditorClassIdentifier: 
   Name: testParameter
   Min: 0
@@ -6519,7 +6659,7 @@ MonoBehaviour:
   - {fileID: 6387954974571720859}
   StringsBanks:
   - {fileID: -8990019198491518271}
-  stringsBankWriteTime: 637517384549395111
+  stringsBankWriteTime: 637517595617283925
   cacheVersion: 6
 --- !u!114 &1226503329861573
 MonoBehaviour:
@@ -6771,6 +6911,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &303622030089399440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/async test/testParameter
+  m_EditorClassIdentifier: 
+  Name: testParameter
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &340490376565483315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6791,8 +6951,8 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -5653061187809329714}
-  - {fileID: 15708757521239772}
+  - {fileID: -5529767550456632609}
+  - {fileID: 1876813329198306574}
   MinDistance: 0
   MaxDistance: 0
   Length: 128000
@@ -6851,7 +7011,7 @@ MonoBehaviour:
   Path: FMOD Project/Build/Desktop/Robros.bank
   Name: Robros
   StudioPath: bank:/Enemies/Robros
-  lastModified: 637517384549464919
+  lastModified: 637517595617574190
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -6985,6 +7145,26 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 2510
+  Exists: 1
+--- !u!114 &605368976906330981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/dmp_spawn/size
+  m_EditorClassIdentifier: 
+  Name: size
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
   Exists: 1
 --- !u!114 &605435486138329682
 MonoBehaviour:
@@ -7826,6 +8006,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
+--- !u!114 &1876813329198306574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/wet_exp/In Combat
+  m_EditorClassIdentifier: 
+  Name: In Combat
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &1902616277929218649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7997,7 +8197,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 2083906926309949420}
+  - {fileID: 7710156252194606418}
   MinDistance: 1
   MaxDistance: 20
   Length: 1531
@@ -8099,7 +8299,7 @@ MonoBehaviour:
   Path: FMOD Project/Build/Desktop/ui.bank
   Name: ui
   StudioPath: bank:/ui
-  lastModified: 637516990226582609
+  lastModified: 637517062878569421
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -8189,7 +8389,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: -3573786645283667579}
+  - {fileID: 4461728408892364185}
   MinDistance: 1
   MaxDistance: 20
   Length: 95000
@@ -9512,6 +9712,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &4180037679094245658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/chp_attack/size
+  m_EditorClassIdentifier: 
+  Name: size
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &4183710044538514422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9821,6 +10041,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 17018
+--- !u!114 &4461728408892364185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/arc_wind_3d/arc_windIntensity
+  m_EditorClassIdentifier: 
+  Name: arc_windIntensity
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &4563839186368939176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9860,7 +10100,7 @@ MonoBehaviour:
   Path: FMOD Project/Build/Desktop/General Sounds.bank
   Name: General Sounds
   StudioPath: bank:/General Sounds
-  lastModified: 637516990237204612
+  lastModified: 637517062877788712
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -10028,7 +10268,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: -4284841134833108991}
+  - {fileID: 303622030089399440}
   MinDistance: 0
   MaxDistance: 0
   Length: 10666
@@ -10203,6 +10443,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4000
+--- !u!114 &5222434297538837679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/dmp_throw/size
+  m_EditorClassIdentifier: 
+  Name: size
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &5306696358052515268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10675,7 +10935,7 @@ MonoBehaviour:
   Path: FMOD Project/Build/Desktop/Arctic.bank
   Name: Arctic
   StudioPath: bank:/Levels/Arctic
-  lastModified: 637517384549375161
+  lastModified: 637517595617153806
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -10694,7 +10954,7 @@ MonoBehaviour:
   Path: FMOD Project/Build/Desktop/Polar Bear.bank
   Name: Polar Bear
   StudioPath: bank:/Characters/Polar Bear
-  lastModified: 637517384549395111
+  lastModified: 637517595617283925
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -10798,7 +11058,7 @@ MonoBehaviour:
   Path: FMOD Project/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637517384549385137
+  lastModified: 637517595617283925
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -10874,6 +11134,26 @@ MonoBehaviour:
   m_Name: parameter:/async test/testParameter
   m_EditorClassIdentifier: 
   Name: testParameter
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &6531208036622026914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/arc_waves_2d/arc_wavesIntensity
+  m_EditorClassIdentifier: 
+  Name: arc_wavesIntensity
   Min: 0
   Max: 1
   Default: 0
@@ -11005,6 +11285,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &6743721575017087703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/river/clearedObstacle
+  m_EditorClassIdentifier: 
+  Name: clearedObstacle
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &6757560439885488266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11248,7 +11548,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 1271910671249431327}
+  - {fileID: -2427577574231945439}
   MinDistance: 1
   MaxDistance: 20
   Length: 1625
@@ -11773,6 +12073,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &7710156252194606418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/dmp_ko/size
+  m_EditorClassIdentifier: 
+  Name: size
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &7717924233181335772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12273,7 +12593,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 3228993357778821274}
+  - {fileID: -8180569660980215131}
   MinDistance: 1
   MaxDistance: 20
   Length: 906
@@ -12832,6 +13152,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &8922853090521816774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/arctic_main/arc_progress
+  m_EditorClassIdentifier: 
+  Name: arc_progress
+  Min: 1
+  Max: 11
+  Default: 1
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &8939677700086951216
 MonoBehaviour:
   m_ObjectHideFlags: 0
