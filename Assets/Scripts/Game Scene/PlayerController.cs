@@ -415,7 +415,7 @@ public class PlayerController : MonoBehaviour
             //NOTE: Camera position affects the rotation of the player's movement, which is stored in the first value of Vector3 vel (Current: 135.0f)
             Vector3 vel = playerCamera.transform.right * moveInput.x + playerCamera.transform.forward * moveInput.y;
             vel *= moveSpeed;
-            if (vel.magnitude >= 0.1f)
+            //if (vel.magnitude >= 0.1f)
             {
                 float dashX=moveInput.x*-1.0f*90.0f;
                 _playerMesh.transform.rotation = Quaternion.Euler(0.0f, Mathf.SmoothDampAngle(_playerMesh.transform.eulerAngles.y, playerCamera.transform.eulerAngles.y, ref turnSpeed, 0.25f), 0.0f);
