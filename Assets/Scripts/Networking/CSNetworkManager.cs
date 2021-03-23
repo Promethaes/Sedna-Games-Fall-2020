@@ -117,7 +117,7 @@ public class CSNetworkManager : MonoBehaviour
         client = new Client(IPADDRESS);
         recThread = new Thread(client.Receive);
         recThread.Start();
-
+            //EEEEEKEKEKEKEKEKKEKk
 
         DontDestroyOnLoad(gameObject);
     }
@@ -373,7 +373,6 @@ public class CSNetworkManager : MonoBehaviour
                         var parts = client.backlog[i].Split(' ');
                         lplayer.clientNumber = int.Parse(parts[1]);
                         sessionID = int.Parse(parts[2]);
-                        Debug.Log(sessionID);
                         if (lplayer.clientNumber == 0)
                             isHostClient = true;
                         break;

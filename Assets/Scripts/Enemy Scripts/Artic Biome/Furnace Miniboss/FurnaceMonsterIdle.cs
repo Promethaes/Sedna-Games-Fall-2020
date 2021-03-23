@@ -19,7 +19,7 @@ public class FurnaceMonsterIdle : StateMachineBehaviour
             agent = enemyData.getNavMeshAgent();
             players = enemyData.getPlayers();
         }
-        agent.isStopped = true;
+        //agent.isStopped = true;
         ///enemyData.enemySounds[(int)EnemySoundIndex.Spawn].Play();
     }
 
