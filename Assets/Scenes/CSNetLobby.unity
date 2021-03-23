@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -555,9 +555,9 @@ MonoBehaviour:
   send: 1
   interpetCommands: 1
   sessionID: -1
-  IPADDRESS: 192.168.0.46
+  IPADDRESS: 54.205.45.165
   isHostClient: 0
-  wetlandsOrArctic: 1
+  wetlandsOrArctic: 0
   sendRateFPS: 15
   smoothMovementLerpSpeed: 15
 --- !u!4 &1326626068
