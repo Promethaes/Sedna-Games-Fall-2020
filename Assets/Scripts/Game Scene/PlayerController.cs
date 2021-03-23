@@ -154,22 +154,22 @@ public class PlayerController : MonoBehaviour
         switch (playerType)
         {
             case PlayerType.BISON:
-                _setCombo(1.0f, 999999.0f, 50.0f, 0.7f, 1.0f, 1.10f);
-                backend.maxHP = 1000;
+                _setCombo(10.0f, 25.0f, 35.0f, 0.7f, 1.0f, 1.10f);
+                backend.maxHP = 250;
                 break;
             case PlayerType.POLAR_BEAR:
-                _setCombo(1.0f, 999999.0f, 50.0f, 0.90f / 1.21f, 1.20f / 1.45f, 0.80f / 0.56f);
-                backend.maxHP = 1000;
+                _setCombo(10.0f, 35.0f, 60.0f, 0.90f / 1.21f, 1.20f / 1.45f, 0.80f / 0.56f);
+                backend.maxHP = 150;
 
                 break;
             case PlayerType.RATTLESNAKE:
-                _setCombo(1.0f, 999999.0f, 20.0f, 0.35f, 0.75f, 1.10f);
-                backend.maxHP = 1000;
+                _setCombo(25.0f, 50.0f, 150.0f, 0.35f, 0.75f, 1.10f);
+                backend.maxHP = 50;
 
                 break;
             case PlayerType.TURTLE:
-                _setCombo(1.0f, 999999.0f, 20.0f, 0.35f, 0.75f, 1.10f);
-                backend.maxHP = 1000;
+                _setCombo(10.0f, 25.0f, 50.0f, 0.35f, 0.75f, 1.10f);
+                backend.maxHP = 100;
 
                 break;
             default:
@@ -714,7 +714,7 @@ public class PlayerController : MonoBehaviour
 
 
         RaycastHit enemy;
-        if (Physics.Raycast(transform.position, _playerMesh.transform.forward, out enemy, 2.0f) && enemy.transform.tag == "Enemy")
+        if (Physics.Raycast(transform.position, _playerMesh.transform.forward, out enemy, 5.0f) && enemy.transform.tag == "Enemy")
         {
             EnemyData foe = enemy.collider.GetComponent<EnemyData>();
             foe.takeDamage(damageValues[comboCounter]);
