@@ -12,7 +12,7 @@ public class PolarBearAttackThreePlus : MonoBehaviour
         Transform temp = transform.parent;
         transform.parent = null;
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.8f);
         
         foreach (GameObject child in crackPieces)
             child.SetActive(true);
