@@ -22,7 +22,7 @@ public class InitializeLevel : MonoBehaviour
             {
                 player.GetComponentInChildren<Camera>().enabled = false;
                 player.GetComponent<FMODUnity.StudioListener>().enabled = false;
-                player.name = "REMOTE";
+                player.name = "REMOTE " + playerConfigs[i].clientNumber.ToString();
                 player.GetComponent<PlayerController>().userName = playerConfigs[i].userName;
                 player.GetComponent<PlayerController>().remotePlayer = true;
             }

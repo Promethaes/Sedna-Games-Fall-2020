@@ -344,8 +344,8 @@ public class CSNetworkManager : MonoBehaviour
             {
                 changeTimer = 3.0f;
 
-                ///changedScene = true;
-                ///PlayerConfigurationManager.get.allPlayersReady(wetlandsOrArctic);
+                changedScene = true;
+                PlayerConfigurationManager.get.allPlayersReady(wetlandsOrArctic);
             }
         }
     }
@@ -495,37 +495,35 @@ public class CSNetworkManager : MonoBehaviour
             }
 
             bool didCommand = false;
+            var cliCommandParts = client.backlog[i].Split(' ');
+            int cliNumber = int.Parse(cliCommandParts[1]);
             foreach (var p in remotePlayers)
             {
-                string comp = "cli " + p.clientNumber.ToString();
-
-                if (client.backlog[i].Contains(comp))
+                if (cliNumber == p.clientNumber && RunCommand(p, client.backlog[i]))
                 {
-                    if (RunCommand(p, client.backlog[i]))
-                    {
+                    client.backlog.RemoveAt(i);
+                    i--;
+                    didCommand = true;
+                    break;
+                }
+            }
 
+            if (playerManager != null)
+            {
+                foreach(var pc in remotePlayerControllers)
+                {
+                    var nameParts = pc.name.Split(' ');
+                    int pcNum = int.Parse(nameParts[1]);
+                    if (pcNum == cliNumber && RunCommand(pc.gameObject, client.backlog[i]))
+                    {
                         client.backlog.RemoveAt(i);
                         i--;
                         didCommand = true;
-                        continue;
+                        break;
                     }
-                    else if (playerManager != null)
-                    {
-                        for (int j = 0; j < remotePlayerControllers.Count; j++)
-                        {
-                            if (RunCommand(remotePlayerControllers[j].gameObject, client.backlog[i]))
-                            {
-                                client.backlog.RemoveAt(i);
-                                i--;
-                                didCommand = true;
-                                break;
-                            }
-                            else
-                                Debug.Log("Did not run command! " + client.backlog[i]);
-                        }
-                    }
+                    else
+                        Debug.Log("Did not run command! " + client.backlog[i]);
                 }
-
             }
 
             if (didCommand)
