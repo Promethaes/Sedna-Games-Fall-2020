@@ -117,7 +117,7 @@ public class CSNetworkManager : MonoBehaviour
         client = new Client(IPADDRESS);
         recThread = new Thread(client.Receive);
         recThread.Start();
-            //EEEEEKEKEKEKEKEKKEKk
+        //EEEEEKEKEKEKEKEKKEKk
 
         DontDestroyOnLoad(gameObject);
     }
@@ -365,7 +365,7 @@ public class CSNetworkManager : MonoBehaviour
 
             else if (client.backlog[i].Contains("clin"))
             {
-                //temp code, will only work for 1 player
+                //temp code, will only work for 1 player??
                 foreach (var lplayer in localPlayers)
                 {
                     if (lplayer.clientNumber == -1)
@@ -441,8 +441,6 @@ public class CSNetworkManager : MonoBehaviour
             }
             else if (client.backlog[i].Contains("esp"))
             {
-
-
                 var parts = client.backlog[i].Split(' ');
                 var espIndex = int.Parse(parts[3]);
                 var eIndex = int.Parse(parts[5]);
@@ -457,9 +455,16 @@ public class CSNetworkManager : MonoBehaviour
 
                 //cli 0 esp 0 e 0 0 0 0
                 Vector3 pos = new Vector3(float.Parse(parts[6]), float.Parse(parts[7]), float.Parse(parts[8]));
-                var rb = EnemySpawnPoint.AllEnemySpawnPoints[espIndex].spawnEnemies[eIndex].GetComponent<Rigidbody>();
-                if (rb)
-                    rb.velocity = Vector3.zero;
+                try
+                {
+                    var rb = EnemySpawnPoint.AllEnemySpawnPoints[espIndex].spawnEnemies[eIndex].GetComponent<Rigidbody>();
+                    if (rb)
+                        rb.velocity = Vector3.zero;
+                }
+                catch (Exception e)
+                {
+                    Debug.Log(e);
+                }
                 var snm = EnemySpawnPoint.AllEnemySpawnPoints[espIndex].spawnEnemies[eIndex].GetComponent<smoothNetworkMovement>();
                 if (snm)
                     snm.updatePos(pos, true);

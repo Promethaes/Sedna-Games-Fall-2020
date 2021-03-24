@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -424,7 +424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a2fcdcc3dbce14f99de9529438daae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serverIP: 54.205.45.165
+  serverIP: 192.168.0.46
   roomPrefab: {fileID: 1096309618978681077, guid: 19fc2521441460c4e98bf94c3cafb3b2,
     type: 3}
   rooms: []
@@ -566,8 +566,7 @@ MonoBehaviour:
     type: 3}
   m_SubmitAction: {fileID: 6902923174917305144, guid: e592ce7475c27d6458b634315d3d63a7,
     type: 3}
-  m_CancelAction: {fileID: 5159906183700907803, guid: e592ce7475c27d6458b634315d3d63a7,
-    type: 3}
+  m_CancelAction: {fileID: 0}
   m_LeftClickAction: {fileID: 6902923174917305144, guid: e592ce7475c27d6458b634315d3d63a7,
     type: 3}
   m_MiddleClickAction: {fileID: 0}
@@ -575,7 +574,7 @@ MonoBehaviour:
   m_ScrollWheelAction: {fileID: 0}
   m_TrackedDevicePositionAction: {fileID: 0}
   m_TrackedDeviceOrientationAction: {fileID: 0}
-  m_DeselectOnBackgroundClick: 1
+  m_DeselectOnBackgroundClick: 0
   m_PointerBehavior: 0
 --- !u!114 &762511573
 MonoBehaviour:
@@ -589,7 +588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 865190562}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!1 &865190562
@@ -652,11 +651,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_NormalColor: {r: 0, g: 0.9361291, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9025669, g: 1, b: 0, a: 1}
+    m_PressedColor: {r: 1, g: 0, b: 0.15032196, a: 1}
+    m_SelectedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_DisabledColor: {r: 0.8888407, g: 0, b: 1, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -710,7 +709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.1254902, g: 0.45098042, b: 0.86274517, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1113,11 +1112,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_NormalColor: {r: 0, g: 0.9361291, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9025669, g: 1, b: 0, a: 1}
+    m_PressedColor: {r: 1, g: 0, b: 0.15032196, a: 1}
+    m_SelectedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_DisabledColor: {r: 0.8888407, g: 0, b: 1, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1171,7 +1170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.13950695, g: 0.47132784, b: 0.8962264, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
