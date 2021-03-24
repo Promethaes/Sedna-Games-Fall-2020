@@ -335,15 +335,17 @@ public class CSNetworkManager : MonoBehaviour
 
         if (!allReady)
             changeTimer = 3.0f;
-
+        //TEMP: remove the timer changes!
         else
         {
             changeTimer -= Time.deltaTime;
 
             if (changeTimer <= 0.0f)
             {
-                changedScene = true;
-                PlayerConfigurationManager.get.allPlayersReady(wetlandsOrArctic);
+                changeTimer = 3.0f;
+
+                ///changedScene = true;
+                ///PlayerConfigurationManager.get.allPlayersReady(wetlandsOrArctic);
             }
         }
     }
