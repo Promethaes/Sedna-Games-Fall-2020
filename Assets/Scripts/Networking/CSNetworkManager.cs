@@ -357,15 +357,7 @@ public class CSNetworkManager : MonoBehaviour
 
         for (int i = 0; i < client.backlog.Count; i++)
         {
-            var count = client.backlog.Count;
-            if (client.backlog[i].Length >= 100)
-            {
-                client.backlog.RemoveAt(i);
-                i--;
-                continue;
-            }
-
-            else if (client.backlog[i].Contains("clin"))
+            if (client.backlog[i].Contains("clin"))
             {
                 //temp code, will only work for 1 player??
                 foreach (var lplayer in localPlayers)
@@ -510,8 +502,9 @@ public class CSNetworkManager : MonoBehaviour
 
             if (playerManager != null)
             {
-                foreach(var pc in remotePlayerControllers)
+                foreach (var pc in remotePlayerControllers)
                 {
+                    Debug.Log(pc.name);
                     var nameParts = pc.name.Split(' ');
                     int pcNum = int.Parse(nameParts[1]);
                     if (pcNum == cliNumber && RunCommand(pc.gameObject, client.backlog[i]))
@@ -521,8 +514,7 @@ public class CSNetworkManager : MonoBehaviour
                         didCommand = true;
                         break;
                     }
-                    else
-                        Debug.Log("Did not run command! " + client.backlog[i]);
+                   
                 }
             }
 
