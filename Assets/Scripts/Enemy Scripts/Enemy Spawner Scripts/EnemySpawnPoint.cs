@@ -66,7 +66,7 @@ public class EnemySpawnPoint : MonoBehaviour
                 else
                     networkManager.SendUpdatedEnemyStatus(spawnPointIndex,i);
 
-            desyncTimer = 5.0f;
+            desyncTimer = 2.0f;
         }
 
     }
