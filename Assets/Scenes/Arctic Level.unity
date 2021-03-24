@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -630,6 +630,100 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players: []
+--- !u!1001 &111472313
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 116937955}
+    m_Modifications:
+    - target: {fileID: 8304376562023453813, guid: ca763301d145227459349a8236b596ec,
+        type: 3}
+      propertyPath: leapFrom
+      value: 
+      objectReference: {fileID: 1560489718}
+    - target: {fileID: 8304376562023453813, guid: ca763301d145227459349a8236b596ec,
+        type: 3}
+      propertyPath: leapTo
+      value: 
+      objectReference: {fileID: 1560489719}
+    - target: {fileID: 8478488282366502876, guid: ca763301d145227459349a8236b596ec,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -250
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478488282366502876, guid: ca763301d145227459349a8236b596ec,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478488282366502876, guid: ca763301d145227459349a8236b596ec,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478488282366502876, guid: ca763301d145227459349a8236b596ec,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478488282366502876, guid: ca763301d145227459349a8236b596ec,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478488282366502876, guid: ca763301d145227459349a8236b596ec,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478488282366502876, guid: ca763301d145227459349a8236b596ec,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478488282366502876, guid: ca763301d145227459349a8236b596ec,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478488282366502876, guid: ca763301d145227459349a8236b596ec,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478488282366502876, guid: ca763301d145227459349a8236b596ec,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478488282366502876, guid: ca763301d145227459349a8236b596ec,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478488282366502876, guid: ca763301d145227459349a8236b596ec,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478488282366502876, guid: ca763301d145227459349a8236b596ec,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478488282366502876, guid: ca763301d145227459349a8236b596ec,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9142998318370274662, guid: ca763301d145227459349a8236b596ec,
+        type: 3}
+      propertyPath: m_Name
+      value: Robo Shark
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ca763301d145227459349a8236b596ec, type: 3}
 --- !u!1 &116937954
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,8 +751,8 @@ Transform:
   m_LocalPosition: {x: -450, y: -125, z: 50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1186533345}
   - {fileID: 1560489717}
+  - {fileID: 831958172}
   m_Father: {fileID: 327539315}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2773,22 +2867,6 @@ Transform:
   m_Father: {fileID: 1385630602}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &618379408
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 793839777}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 793839778}
-  m_Layer: 0
-  m_Name: Missing Prefab (Dummy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1001 &673475401
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3609,119 +3687,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &793839777
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 116937955}
-    m_Modifications:
-    - target: {fileID: 2029165506252613883, guid: e44f6c8150145154995eb674a0de5001,
-        type: 3}
-      propertyPath: m_Name
-      value: Shark Robot
-      objectReference: {fileID: 0}
-    - target: {fileID: 3237053755523227214, guid: e44f6c8150145154995eb674a0de5001,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -250
-      objectReference: {fileID: 0}
-    - target: {fileID: 3237053755523227214, guid: e44f6c8150145154995eb674a0de5001,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -15
-      objectReference: {fileID: 0}
-    - target: {fileID: 3237053755523227214, guid: e44f6c8150145154995eb674a0de5001,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -15
-      objectReference: {fileID: 0}
-    - target: {fileID: 3237053755523227214, guid: e44f6c8150145154995eb674a0de5001,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3237053755523227214, guid: e44f6c8150145154995eb674a0de5001,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3237053755523227214, guid: e44f6c8150145154995eb674a0de5001,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3237053755523227214, guid: e44f6c8150145154995eb674a0de5001,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3237053755523227214, guid: e44f6c8150145154995eb674a0de5001,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3237053755523227214, guid: e44f6c8150145154995eb674a0de5001,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3237053755523227214, guid: e44f6c8150145154995eb674a0de5001,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3237053755523227214, guid: e44f6c8150145154995eb674a0de5001,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3237053755523227214, guid: e44f6c8150145154995eb674a0de5001,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3237053755523227214, guid: e44f6c8150145154995eb674a0de5001,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3237053755523227214, guid: e44f6c8150145154995eb674a0de5001,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5102447631045250149, guid: e44f6c8150145154995eb674a0de5001,
-        type: 3}
-      propertyPath: leapFrom
-      value: 
-      objectReference: {fileID: 1560489719}
-    - target: {fileID: 5102447631045250149, guid: e44f6c8150145154995eb674a0de5001,
-        type: 3}
-      propertyPath: leapTo
-      value: 
-      objectReference: {fileID: 1560489718}
-    - target: {fileID: 5102447631045250149, guid: e44f6c8150145154995eb674a0de5001,
-        type: 3}
-      propertyPath: arcTime
-      value: 2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e44f6c8150145154995eb674a0de5001, type: 3}
---- !u!4 &793839778
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 793839777}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 618379408}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1186533345}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &810098879
 GameObject:
   m_ObjectHideFlags: 0
@@ -3773,6 +3738,12 @@ MonoBehaviour:
   _playerSpawn: {fileID: 1266947899}
   _playerManager: {fileID: 105730811}
   _cameraSplitter: {fileID: 1688805247}
+--- !u!4 &831958172 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8478488282366502876, guid: ca763301d145227459349a8236b596ec,
+    type: 3}
+  m_PrefabInstance: {fileID: 111472313}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &910393244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4601,37 +4572,6 @@ Transform:
   - {fileID: 81788348}
   m_Father: {fileID: 473696142}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1186533344
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 793839777}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1186533345}
-  m_Layer: 0
-  m_Name: Shark Robot (Missing Prefab)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1186533345
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 793839777}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1186533344}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 793839778}
-  m_Father: {fileID: 116937955}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1228637790 stripped
 Transform:
