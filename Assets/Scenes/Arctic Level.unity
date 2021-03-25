@@ -5404,7 +5404,7 @@ MonoBehaviour:
   CameraDistance: 9.05
   CameraCollisionFilter:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 0
   IgnoreTag: Player
   CameraRadius: 0.2
 --- !u!114 &1530570564
@@ -5752,7 +5752,7 @@ GameObject:
   - component: {fileID: 1585292003}
   m_Layer: 0
   m_Name: CameraObject
-  m_TagString: Untagged
+  m_TagString: camOBJ
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
