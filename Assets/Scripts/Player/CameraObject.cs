@@ -14,6 +14,7 @@ public class CameraObject : MonoBehaviour
     private float UpDownCurrent = 0.0f;
     private float UpMax = 5.0f;
     private float DownMax = -5.0f;
+    public bool invertUpDown = false;
 
 
     private void Awake()
@@ -25,6 +26,8 @@ public class CameraObject : MonoBehaviour
         
         // transform.Rotate(new Vector3(0,0,1), UpDownCurrent);
         float updownAfterCalc = upDown * UpDownSpeed;
+        if (!invertUpDown)
+            updownAfterCalc *= -1;
         if (updownAfterCalc > 0 && UpDownCurrent + updownAfterCalc < UpMax) 
         {
              UpDownCurrent += updownAfterCalc;
