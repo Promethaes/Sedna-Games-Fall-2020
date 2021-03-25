@@ -153,7 +153,7 @@ public class PlayerController : MonoBehaviour
         switch (playerType)
         {
             case PlayerType.BISON:
-                _setCombo(10.0f, 25.0f, 35.0f, 0.7f, 1.0f, 1.10f);
+                _setCombo(10.0f, 25.0f, 50.0f, 0.7f, 1.0f, 1.10f);
                 backend.maxHP = 250;
                 break;
             case PlayerType.POLAR_BEAR:
@@ -674,7 +674,7 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator Charge()
     {
-        Debug.Log("Start Charge");
+        //Debug.Log("Start Charge");
         _chargeDuration = 3.0f;
         _dashCooldown = _chargeDuration;
         _jumpCooldown = _chargeDuration;
@@ -695,7 +695,7 @@ public class PlayerController : MonoBehaviour
         turnSpeed = turn;
         abilityHitbox.gameObject.SetActive(false);
         _abilityCD = 10.0f;
-        Debug.Log("End Charge");
+        //Debug.Log("End Charge");
     }
 
     void _Attack()
