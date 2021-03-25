@@ -726,13 +726,13 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        RaycastHit enemy;
-        if (Physics.Raycast(transform.position, _playerMesh.transform.forward, out enemy, 5.0f) && enemy.transform.tag == "Enemy")
-        {
-            EnemyData foe = enemy.collider.GetComponent<EnemyData>();
-            foe.takeDamage(damageValues[comboCounter]);
-            hitEnemy = true;
-        }
+        //RaycastHit enemy;
+        //if (Physics.Raycast(transform.position, _playerMesh.transform.forward, out enemy, 5.0f) && enemy.transform.tag == "Enemy")
+        //{
+        //    EnemyData foe = enemy.collider.GetComponent<EnemyData>();
+        //    foe.takeDamage(damageValues[comboCounter]);
+        //    hitEnemy = true;
+        //}
 
         comboCounter++;
         if (comboCounter > 2) comboCounter = 0;
