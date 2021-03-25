@@ -59,15 +59,15 @@ public class EnemySpawnPoint : MonoBehaviour
         if (!networkManager.isHostClient)
             return;
 
-        desyncTimer -= Time.deltaTime;
-        if (desyncTimer <= 0.0f)
-        {
-            for (int i = 0; i < spawnEnemies.Count; i++)
-                if (spawnEnemies[i].activeSelf)
-                    networkManager.SendEnemyDesyncUpdate(spawnPointIndex, i, spawnEnemies[i].transform.position);
+       desyncTimer -= Time.deltaTime;
+       if (desyncTimer <= 0.0f)
+       {
+           for (int i = 0; i < spawnEnemies.Count; i++)
+               if (spawnEnemies[i].activeSelf)
+                   networkManager.SendEnemyDesyncUpdate(spawnPointIndex, i, spawnEnemies[i].transform.position);
 
-            desyncTimer = 2.0f;
-        }
+           desyncTimer = 10.0f;
+       }
 
     }
 

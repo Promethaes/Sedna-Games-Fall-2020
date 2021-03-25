@@ -191,7 +191,7 @@ public class CSNetworkManager : MonoBehaviour
     public void SendUpdatedEnemyStatus(int spawnPointIndex, int enemyIndex)
     {
         //cli 0 esp 0 e 0 edm
-        client.Send("cli " + localPlayers[0].clientNumber +  " esp " + spawnPointIndex.ToString() + " e " + enemyIndex.ToString() + " edm");
+        client.Send("cli " + localPlayers[0].clientNumber + " esp " + spawnPointIndex.ToString() + " e " + enemyIndex.ToString() + " edm");
     }
 
     public void SendCutsceneStart(int cutsceneIndex)
@@ -399,20 +399,15 @@ public class CSNetworkManager : MonoBehaviour
                 var parts = client.backlog[i].Split(' ');
                 int index = int.Parse(parts[1]);
 
-                for (int j = 0; j < remotePlayers.Count; j++)
+                foreach (var rp in remotePlayerControllers)
                 {
-                    if (remotePlayers[j].clientNumber == index)
+                    var nameParts = rp.gameObject.name.Split(' ');
+                    int rClientN = int.Parse(nameParts[1]);
+
+                    if (rClientN == index)
                     {
-                        //GameObject[] tempList = GameObject.FindGameObjectsWithTag("Enemy");
-                        //foreach(GameObject e in tempList)//remove player from enemy script
-                        //{
-                        //    
-                        //}
-                        if (playerManager.players[j + 1].GetComponentInChildren<Camera>().enabled == false)
-                            playerManager.players[j + 1].SetActive(false);
-                        //Destroy(playerManager.players[j+1]);
-                        playerManager.players.RemoveAt(j + 1);
-                        remotePlayers.RemoveAt(j);
+                        rp.gameObject.SetActive(false);
+                        remotePlayerControllers.Remove(rp);
                         break;
                     }
                 }
@@ -512,7 +507,7 @@ public class CSNetworkManager : MonoBehaviour
                         didCommand = true;
                         break;
                     }
-                   
+
                 }
             }
 

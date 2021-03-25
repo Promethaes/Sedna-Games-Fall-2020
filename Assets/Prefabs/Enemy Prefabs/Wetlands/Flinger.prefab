@@ -235,7 +235,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4338570631340935602}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 811.1379, y: 4.6600037, z: 519.3866}
+  m_LocalPosition: {x: 843.60175, y: 4.6600037, z: 487.08582}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4102905698520272097}
@@ -314,6 +314,8 @@ MonoBehaviour:
   enemyScale: 1
   lowerBoundEnemyScale: 1
   upperBoundEnemyScale: 2
+  spawnPointIndex: 0
+  enemyIndex: 0
 --- !u!195 &3527685000496018687
 NavMeshAgent:
   m_ObjectHideFlags: 0
