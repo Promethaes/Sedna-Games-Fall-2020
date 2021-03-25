@@ -145,7 +145,7 @@ public class CSNetworkManager : MonoBehaviour
         if (isLocal)
         {
             localPlayers.Add(config);
-            byte[] buffer = Encoding.ASCII.GetBytes("initMsg " + sessionID.ToString() + " " + PlayerPrefs.GetString("pid", "peepee"));
+            byte[] buffer = Encoding.ASCII.GetBytes("initMsg " + sessionID.ToString() + " " + PlayerPrefs.GetString("pid", "Player"));
             client.clientSocket.SendTo(buffer, client.endPoint);
 
             return;
@@ -190,10 +190,8 @@ public class CSNetworkManager : MonoBehaviour
 
     public void SendUpdatedEnemyStatus(int spawnPointIndex, int enemyIndex)
     {
-        if (!isHostClient)
-            return;
         //cli 0 esp 0 e 0 edm
-        client.Send("cli 0 esp " + spawnPointIndex.ToString() + " e " + enemyIndex.ToString() + " edm");
+        client.Send("cli " + localPlayers[0].clientNumber +  " esp " + spawnPointIndex.ToString() + " e " + enemyIndex.ToString() + " edm");
     }
 
     public void SendCutsceneStart(int cutsceneIndex)

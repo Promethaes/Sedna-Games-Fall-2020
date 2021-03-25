@@ -19,6 +19,17 @@ public class CombatZone : MonoBehaviour
         }
 
         if (allDone)
+        {
             gameObject.SetActive(false);
+            foreach (var esp in enemySpawnPoints)
+                esp.sendDesyncUpdate = false;
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+            foreach (var esp in enemySpawnPoints)
+                esp.sendDesyncUpdate = true;
     }
 }

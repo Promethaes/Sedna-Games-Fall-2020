@@ -22,6 +22,8 @@ public class EnemySpawnPoint : MonoBehaviour
 
     public CSNetworkManager networkManager = null;
 
+    public bool sendDesyncUpdate = false;
+
     void Start()
     {
         AllEnemySpawnPoints.Add(this);
@@ -63,8 +65,6 @@ public class EnemySpawnPoint : MonoBehaviour
             for (int i = 0; i < spawnEnemies.Count; i++)
                 if (spawnEnemies[i].activeSelf)
                     networkManager.SendEnemyDesyncUpdate(spawnPointIndex, i, spawnEnemies[i].transform.position);
-                else
-                    networkManager.SendUpdatedEnemyStatus(spawnPointIndex,i);
 
             desyncTimer = 2.0f;
         }
@@ -73,7 +73,8 @@ public class EnemySpawnPoint : MonoBehaviour
 
     void Update()
     {
-        EnemyDesyncUpdate();
+        if (sendDesyncUpdate)
+            EnemyDesyncUpdate();
 
         if (overrideAndClear)
             KillSpawnPoint();
@@ -103,6 +104,8 @@ public class EnemySpawnPoint : MonoBehaviour
         {
             spawnEnemies.Add(GameObject.Instantiate(enemyPrefab));
             spawnEnemies[i].SetActive(false);
+            spawnEnemies[i].GetComponent<EnemyData>().spawnPointIndex = spawnPointIndex;
+            spawnEnemies[i].GetComponent<EnemyData>().enemyIndex = i;
         }
     }
 
@@ -158,9 +161,10 @@ public class EnemySpawnPoint : MonoBehaviour
             _barriers.barrierUp();
             return;
         }
-        if(other.gameObject.tag == "Enemy"){
-            foreach(var e in spawnEnemies)
-                if(e == other.gameObject)
+        if (other.gameObject.tag == "Enemy")
+        {
+            foreach (var e in spawnEnemies)
+                if (e == other.gameObject)
                     return;
             spawnEnemies.Add(other.gameObject);
         }

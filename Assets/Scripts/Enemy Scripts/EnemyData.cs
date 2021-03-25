@@ -13,7 +13,7 @@ enum EnemySoundIndex
     DumpageThrow,
     BlasterOneShot,
     BlasterThreeShot,
-    
+
 }
 public class EnemyData : MonoBehaviour
 {
@@ -60,6 +60,10 @@ public class EnemyData : MonoBehaviour
     public float enemyScale = 1.5f;
     public float lowerBoundEnemyScale = 1.0f;
     public float upperBoundEnemyScale = 2.0f;
+
+    //Networking
+    public int spawnPointIndex; // index of the spawn point that this player belongs to
+    public int enemyIndex; // index of this enemy in the spawn point
 
     void DetermineEnemyScale()
     {
@@ -123,8 +127,8 @@ public class EnemyData : MonoBehaviour
 
 
 
-        healthBarBackground.sizeDelta = new Vector2(health/maxHealth*healthBarSize, healthBar.sizeDelta.y);
-        healthBar.sizeDelta = new Vector2(health/maxHealth*healthBarSize, healthBar.sizeDelta.y);
+        healthBarBackground.sizeDelta = new Vector2(health / maxHealth * healthBarSize, healthBar.sizeDelta.y);
+        healthBar.sizeDelta = new Vector2(health / maxHealth * healthBarSize, healthBar.sizeDelta.y);
         players = GameObject.FindGameObjectsWithTag("Player");
         agent = this.GetComponent<NavMeshAgent>();
     }
@@ -135,6 +139,13 @@ public class EnemyData : MonoBehaviour
             DetermineEnemyScale();
         Init();
         enemySounds[(int)EnemySoundIndex.Spawn].Play();
+    }
+
+    private void OnDisable()
+    {
+        var networkManager = FindObjectOfType<CSNetworkManager>();
+        if (networkManager)
+            networkManager.SendUpdatedEnemyStatus(spawnPointIndex, enemyIndex);
     }
 
     public void setHealth(float hp)
@@ -158,7 +169,7 @@ public class EnemyData : MonoBehaviour
     public void takeDamage(float hp)
     {
         health -= hp;
-        healthBar.sizeDelta = new Vector2(health/maxHealth*healthBarSize, healthBar.sizeDelta.y);
+        healthBar.sizeDelta = new Vector2(health / maxHealth * healthBarSize, healthBar.sizeDelta.y);
         billboard.healthChanged();
         enemySounds[(int)EnemySoundIndex.Pain].Play();
         if (health <= 0.0f)
@@ -187,14 +198,14 @@ public class EnemyData : MonoBehaviour
 
     IEnumerator PoisonDebuff()
     {
-        damageValues*=0.8f;
-        while(_poisonDuration > 0.0f)
+        damageValues *= 0.8f;
+        while (_poisonDuration > 0.0f)
         {
-        takeDamage(10.0f);
-        yield return new WaitForSeconds(1.0f);
-        _poisonDuration-=1.0f;
+            takeDamage(10.0f);
+            yield return new WaitForSeconds(1.0f);
+            _poisonDuration -= 1.0f;
         }
-        damageValues/=0.8f;
+        damageValues /= 0.8f;
         yield return null;
     }
 
