@@ -129,7 +129,6 @@ public class PlayerController : MonoBehaviour
         setupPlayer();
         StartCoroutine(SetupWheelUI());
         StartCoroutine(SetupQuestUI());
-
     }
 
     IEnumerator SetupWheelUI()
@@ -304,7 +303,15 @@ public class PlayerController : MonoBehaviour
         playerCamera.transform.RotateAround(transform.position, Vector3.up, mouseInput.x / rotationSpeedInverse * _mouseSpeed);
         //increase/decrease height of camera target
         lookingAt.transform.position = lookingAt.transform.position + new Vector3(0.0f, mouseInput.y / (rotationSpeedInverse * 10.0f), 0.0f);
+        if (GameObject.FindGameObjectWithTag("camOBJ").GetComponent<CameraObject>())
+        {
+            CameraObject ourCamOBJ = GameObject.FindGameObjectWithTag("camOBJ").GetComponent<CameraObject>();
 
+            ourCamOBJ.MoveUpDown(mouseInput.y);
+        }
+        else
+            Debug.LogError("CameraObject not Tagged!");
+        
 
         //clamp y position
         if (lookingAt.transform.localPosition.y > yUpperBound)
@@ -376,8 +383,14 @@ public class PlayerController : MonoBehaviour
             var skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
 
             foreach (var smr in skinnedMeshRenderers)
+            {
                 if (smr.gameObject.transform.parent.parent.gameObject.activeSelf)
+                {
                     CameraObject.ChangeSkinnedMesh(smr);
+                   GameObject temp = GameObject.FindGameObjectWithTag("camOBJ");
+                    temp.GetComponentInChildren<CameraObject>().changeParent();
+                }
+            }
 
         }
     }

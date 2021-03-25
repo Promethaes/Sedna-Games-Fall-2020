@@ -11,6 +11,7 @@ TagManager:
   - UI
   - EnemySpawnPoint
   - virtualCam
+  - camOBJ
   layers:
   - Default
   - TransparentFX
