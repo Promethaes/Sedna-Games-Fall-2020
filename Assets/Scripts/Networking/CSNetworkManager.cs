@@ -188,7 +188,7 @@ public class CSNetworkManager : MonoBehaviour
         " " + pos.x.ToString() + " " + pos.y.ToString() + " " + pos.z.ToString());
     }
 
-    public void SendUpdatedEnemyStatus(int spawnPointIndex, int enemyIndex)
+    public void SendEnemyDeath(int spawnPointIndex, int enemyIndex)
     {
         //cli 0 esp 0 e 0 edm
         client.Send("cli " + localPlayers[0].clientNumber + " esp " + spawnPointIndex.ToString() + " e " + enemyIndex.ToString() + " edm");

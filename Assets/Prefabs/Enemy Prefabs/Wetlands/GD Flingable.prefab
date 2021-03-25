@@ -596,7 +596,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4000317769962500743
 Transform:
   m_ObjectHideFlags: 0
@@ -683,6 +683,8 @@ MonoBehaviour:
   enemyScale: 1
   lowerBoundEnemyScale: 1
   upperBoundEnemyScale: 2
+  spawnPointIndex: 0
+  enemyIndex: 0
 --- !u!195 &3461371096420406640
 NavMeshAgent:
   m_ObjectHideFlags: 0

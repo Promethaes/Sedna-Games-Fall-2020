@@ -143,9 +143,10 @@ public class EnemyData : MonoBehaviour
 
     private void OnDisable()
     {
+        Debug.Log(gameObject.name);
         var networkManager = FindObjectOfType<CSNetworkManager>();
         if (networkManager)
-            networkManager.SendUpdatedEnemyStatus(spawnPointIndex, enemyIndex);
+            networkManager.SendEnemyDeath(spawnPointIndex, enemyIndex);
     }
 
     public void setHealth(float hp)
