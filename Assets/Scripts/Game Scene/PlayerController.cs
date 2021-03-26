@@ -422,7 +422,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (_dashDuration < 0.0f && _animationDuration < 0.0f && !_charging)
+        if (_dashDuration < 0.0f && !_charging)
         {
 
             //NOTE: Camera position affects the rotation of the player's movement, which is stored in the first value of Vector3 vel (Current: 135.0f)
@@ -432,7 +432,7 @@ public class PlayerController : MonoBehaviour
             {
                 float dashX = moveInput.x * -1.0f * 90.0f;
                 _playerMesh.transform.rotation = Quaternion.Euler(0.0f, Mathf.SmoothDampAngle(_playerMesh.transform.eulerAngles.y, playerCamera.transform.eulerAngles.y, ref turnSpeed, 0.25f), 0.0f);
-                dashVFX.transform.rotation = Quaternion.Euler(0.0f, dashX + 180.0f, 0.0f);
+
             }
             float y = _rigidbody.velocity.y;
             //NOTE: Checks for _isGrounded to reduce the effects of gravity such that the player doesn't slide off slopes
@@ -457,6 +457,7 @@ public class PlayerController : MonoBehaviour
                 vel = Vector3.zero;
 
             _rigidbody.velocity = new Vector3(vel.x, y, vel.z);
+            dashVFX.transform.forward = -_rigidbody.velocity.normalized;
             if (_animator) _animator.SetBool("walking", vel.magnitude >= 0.1f);
         }
     }
