@@ -693,7 +693,7 @@ GameObject:
   - component: {fileID: 7880008478409435107}
   m_Layer: 0
   m_Name: Robo Blasta
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -706,7 +706,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2612491112216681419}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 472.95944, y: 33.208588, z: 278.9259}
+  m_LocalPosition: {x: 301.06427, y: 33.208588, z: 6.882309}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6033252493420515823}
@@ -817,7 +817,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 8
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
