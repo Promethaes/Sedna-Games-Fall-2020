@@ -167,7 +167,20 @@ public class EnemyData : MonoBehaviour
     {
         return fear;
     }
-    public void takeDamage(float hp,float knockbackScalar = 1.0f)
+
+    IEnumerator ResetKinematics()
+    {
+        yield return new WaitForSeconds(1.0f);
+        Debug.Log("kinematic");
+        GetComponent<Rigidbody>().isKinematic = true;
+    }
+
+    public void ActivateResetKinematicsCoroutine()
+    {
+        StartCoroutine("ResetKinematics");
+    }
+
+    public void takeDamage(float hp, float knockbackScalar = 20.0f)
     {
         health -= hp;
         healthBar.sizeDelta = new Vector2(health / maxHealth * healthBarSize, healthBar.sizeDelta.y);
@@ -175,8 +188,23 @@ public class EnemyData : MonoBehaviour
         enemySounds[(int)EnemySoundIndex.Pain].Play();
         var rigidBody = GetComponent<Rigidbody>();
         rigidBody.isKinematic = false;
-        rigidBody.AddForce(-transform.forward*knockbackScalar,ForceMode.Impulse);
-        rigidBody.isKinematic = true;
+
+        var players = FindObjectsOfType<PlayerController>();
+
+        float shortestMag = 1000.0f;
+        Vector3 direction = Vector3.zero;
+        foreach (var p in players)
+        {
+            var vec = gameObject.transform.position - p.transform.position;
+            if (vec.magnitude < shortestMag)
+            {
+                shortestMag = vec.magnitude;
+                direction = vec.normalized;
+            }
+        }
+
+        rigidBody.AddForce(direction * knockbackScalar * (hp / 10.0f), ForceMode.Impulse);
+        StartCoroutine("ResetKinematics");
         if (health <= 0.0f)
             die();
     }
@@ -234,5 +262,19 @@ public class EnemyData : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
             gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+    }
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Player")
+            gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        else if (other.gameObject.tag == "Enemy" && other.gameObject.GetComponent<Rigidbody>().isKinematic)
+        {
+            var rigid = other.gameObject.GetComponent<Rigidbody>();
+            rigid.isKinematic = false;
+            rigid.AddForce(gameObject.GetComponent<Rigidbody>().velocity, ForceMode.Impulse);
+            other.gameObject.GetComponent<EnemyData>().ActivateResetKinematicsCoroutine();
+
+        }
     }
 }
