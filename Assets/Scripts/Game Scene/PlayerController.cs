@@ -111,6 +111,8 @@ public class PlayerController : MonoBehaviour
     // VFX
     public ParticleSystem dashVFX;
 
+    public float knockbackScalar = 20.0f;
+
     // -------------------------------------------------------------------------
 
 
@@ -155,21 +157,23 @@ public class PlayerController : MonoBehaviour
             case PlayerType.BISON:
                 _setCombo(10.0f, 25.0f, 35.0f, 0.7f, 1.0f, 1.10f);
                 backend.maxHP = 250;
+                //temp, please remove in refactor
+                knockbackScalar = 50.0f;
                 break;
             case PlayerType.POLAR_BEAR:
                 _setCombo(10.0f, 35.0f, 60.0f, 0.90f / 1.21f, 1.20f / 1.45f, 0.80f / 0.56f);
                 backend.maxHP = 150;
-
+                knockbackScalar = 25.0f;
                 break;
             case PlayerType.RATTLESNAKE:
                 _setCombo(25.0f, 50.0f, 150.0f, 0.35f, 0.75f, 1.10f);
                 backend.maxHP = 50;
-
+                knockbackScalar = 10.0f;
                 break;
             case PlayerType.TURTLE:
                 _setCombo(10.0f, 25.0f, 50.0f, 0.35f, 0.75f, 1.10f);
                 backend.maxHP = 100;
-
+                knockbackScalar = 10.0f;
                 break;
             default:
                 _setCombo(1.0f, 999999.0f, 25.0f, 0.45f, 0.95f, 1.25f);
@@ -311,7 +315,7 @@ public class PlayerController : MonoBehaviour
         }
         else
             Debug.LogError("CameraObject not Tagged!");
-        
+
 
         //clamp y position
         if (lookingAt.transform.localPosition.y > yUpperBound)
@@ -387,7 +391,7 @@ public class PlayerController : MonoBehaviour
                 if (smr.gameObject.transform.parent.parent.gameObject.activeSelf)
                 {
                     CameraObject.ChangeSkinnedMesh(smr);
-                   GameObject temp = GameObject.FindGameObjectWithTag("camOBJ");
+                    GameObject temp = GameObject.FindGameObjectWithTag("camOBJ");
                     temp.GetComponentInChildren<CameraObject>().changeParent();
                 }
             }
@@ -422,7 +426,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (_dashDuration < 0.0f && _animationDuration < 0.0f && !_charging)
+        if (_dashDuration < 0.0f && !_charging)
         {
 
             //NOTE: Camera position affects the rotation of the player's movement, which is stored in the first value of Vector3 vel (Current: 135.0f)
@@ -430,16 +434,16 @@ public class PlayerController : MonoBehaviour
             vel *= moveSpeed;
             //if (vel.magnitude >= 0.1f)
             {
-                float dashX=moveInput.x*-1.0f*90.0f;
+                float dashX = moveInput.x * -1.0f * 90.0f;
                 _playerMesh.transform.rotation = Quaternion.Euler(0.0f, Mathf.SmoothDampAngle(_playerMesh.transform.eulerAngles.y, playerCamera.transform.eulerAngles.y, ref turnSpeed, 0.25f), 0.0f);
-                dashVFX.transform.rotation = Quaternion.Euler(0.0f, dashX+180.0f, 0.0f);
+
             }
             float y = _rigidbody.velocity.y;
             //NOTE: Checks for _isGrounded to reduce the effects of gravity such that the player doesn't slide off slopes
             //TODO: Adjust raycast for actual models' radii
             //NOTE: Raycasts downwards for terrain collision, checking at a distance of 0.6f (0.5f radius, 0.1f actual check)
             _isGrounded = Physics.Raycast(transform.position, -transform.up, out terrain, 0.6f);
-            if (_isGrounded && terrain.transform.tag == "Terrain")
+            if (_isGrounded && terrain.transform.tag == "Terrain" && y < 1.0f)
             {
                 y = -1.0f;
 
@@ -457,6 +461,7 @@ public class PlayerController : MonoBehaviour
                 vel = Vector3.zero;
 
             _rigidbody.velocity = new Vector3(vel.x, y, vel.z);
+            dashVFX.transform.forward = -_rigidbody.velocity.normalized;
             if (_animator) _animator.SetBool("walking", vel.magnitude >= 0.1f);
         }
     }

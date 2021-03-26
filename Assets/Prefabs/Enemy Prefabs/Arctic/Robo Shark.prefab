@@ -986,7 +986,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5dd21bc2f155b164c844ab383641798f, type: 2}
+  - {fileID: 2100000, guid: f5b52dad808059343b8df6282511bfa1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1053,7 +1053,7 @@ GameObject:
   - component: {fileID: 6647634253378240971}
   m_Layer: 0
   m_Name: Robo Shark
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1156,7 +1156,7 @@ MonoBehaviour:
   damageValues: 0
   hitbox: {fileID: 829005103203417448}
   fear: 0
-  enemy: 7
+  enemy: 6
   randomScale: 1
   enemyScale: 1.5
   lowerBoundEnemyScale: 1
@@ -1249,6 +1249,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Healthbar
+      objectReference: {fileID: 0}
+    - target: {fileID: 8970628305453974472, guid: 918a42cbce1e74843b67830f6cf3c9b3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9008868705525029347, guid: 918a42cbce1e74843b67830f6cf3c9b3,
         type: 3}
