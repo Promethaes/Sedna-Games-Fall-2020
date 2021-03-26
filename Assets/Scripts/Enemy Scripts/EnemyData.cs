@@ -48,7 +48,6 @@ public class EnemyData : MonoBehaviour
         splitter,
         flinger,
         dumpageMiniBoss,
-        icePick,
         mechaShark,
         pickRobro,
         roboShooter,
@@ -101,7 +100,7 @@ public class EnemyData : MonoBehaviour
                 setHealth(350.0f);
                 setCombo(20.0f);
                 break;
-            case enemyType.icePick:
+            case enemyType.pickRobro:
                 setHealth(120.0f);
                 setCombo(16.0f);
                 break;
