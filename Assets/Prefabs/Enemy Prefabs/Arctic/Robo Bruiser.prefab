@@ -2927,7 +2927,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7933882479056789253
 Transform:
   m_ObjectHideFlags: 0
@@ -3044,6 +3044,7 @@ MonoBehaviour:
   - {fileID: 3283932733983395404}
   - {fileID: 1424414086877572755}
   - {fileID: 1857913718844088304}
+  - {fileID: 4503198149809551604}
   billboard: {fileID: 6151100088331267475}
   healthBar: {fileID: 3519757479700856274}
   healthBarBackground: {fileID: 4446332047466423572}
@@ -3058,6 +3059,8 @@ MonoBehaviour:
   enemyScale: 1.5
   lowerBoundEnemyScale: 1
   upperBoundEnemyScale: 2
+  spawnPointIndex: 0
+  enemyIndex: 0
 --- !u!114 &8424298110324559629
 MonoBehaviour:
   m_ObjectHideFlags: 0

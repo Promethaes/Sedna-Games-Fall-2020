@@ -40,8 +40,16 @@ public class LobbyManager : MonoBehaviour
         }
     }
 
+    float refreshTimer = 10.0f;
     void Update()
     {
+        refreshTimer -= Time.deltaTime;
+        if (refreshTimer <= 0.0f)
+        {
+            refreshTimer = 10.0f;
+            Refresh();
+        }
+
         for (int i = 0; i < _lobbyClient.backlog.Count; i++)
         {
             if (_lobbyClient.backlog[i].Contains("room"))

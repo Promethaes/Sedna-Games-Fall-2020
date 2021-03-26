@@ -311,7 +311,7 @@ public class PlayerController : MonoBehaviour
         }
         else
             Debug.LogError("CameraObject not Tagged!");
-        
+
 
         //clamp y position
         if (lookingAt.transform.localPosition.y > yUpperBound)
@@ -387,7 +387,7 @@ public class PlayerController : MonoBehaviour
                 if (smr.gameObject.transform.parent.parent.gameObject.activeSelf)
                 {
                     CameraObject.ChangeSkinnedMesh(smr);
-                   GameObject temp = GameObject.FindGameObjectWithTag("camOBJ");
+                    GameObject temp = GameObject.FindGameObjectWithTag("camOBJ");
                     temp.GetComponentInChildren<CameraObject>().changeParent();
                 }
             }
@@ -422,7 +422,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (_dashDuration < 0.0f && _animationDuration < 0.0f && !_charging)
+        if (_dashDuration < 0.0f && !_charging)
         {
 
             //NOTE: Camera position affects the rotation of the player's movement, which is stored in the first value of Vector3 vel (Current: 135.0f)
@@ -430,16 +430,16 @@ public class PlayerController : MonoBehaviour
             vel *= moveSpeed;
             //if (vel.magnitude >= 0.1f)
             {
-                float dashX=moveInput.x*-1.0f*90.0f;
+                float dashX = moveInput.x * -1.0f * 90.0f;
                 _playerMesh.transform.rotation = Quaternion.Euler(0.0f, Mathf.SmoothDampAngle(_playerMesh.transform.eulerAngles.y, playerCamera.transform.eulerAngles.y, ref turnSpeed, 0.25f), 0.0f);
-                dashVFX.transform.rotation = Quaternion.Euler(0.0f, dashX+180.0f, 0.0f);
+
             }
             float y = _rigidbody.velocity.y;
             //NOTE: Checks for _isGrounded to reduce the effects of gravity such that the player doesn't slide off slopes
             //TODO: Adjust raycast for actual models' radii
             //NOTE: Raycasts downwards for terrain collision, checking at a distance of 0.6f (0.5f radius, 0.1f actual check)
             _isGrounded = Physics.Raycast(transform.position, -transform.up, out terrain, 0.6f);
-            if (_isGrounded && terrain.transform.tag == "Terrain")
+            if (_isGrounded && terrain.transform.tag == "Terrain" && y < 1.0f)
             {
                 y = -1.0f;
 
@@ -457,6 +457,7 @@ public class PlayerController : MonoBehaviour
                 vel = Vector3.zero;
 
             _rigidbody.velocity = new Vector3(vel.x, y, vel.z);
+            dashVFX.transform.forward = -_rigidbody.velocity.normalized;
             if (_animator) _animator.SetBool("walking", vel.magnitude >= 0.1f);
         }
     }
