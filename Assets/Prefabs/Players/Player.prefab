@@ -608,6 +608,15 @@ MonoBehaviour:
   jumpSpeed: 7
   dashSpeed: 2
   attackDistance: 8
+  jumpAnimationDelays:
+  - type: 0
+    value: 0.25
+  - type: 1
+    value: 0.18
+  - type: 2
+    value: 0.3
+  - type: 3
+    value: 0.25
   playerType: 0
   abilityScript: {fileID: 0}
   playerCamera: {fileID: 5489993372759476761}
@@ -634,7 +643,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  _animationDelay:
+  _attackAnimationDelay:
   - 0
   - 0
   - 0
@@ -656,6 +665,7 @@ MonoBehaviour:
   inCutscene: 0
   questUI: {fileID: 0}
   dashVFX: {fileID: 7518877416662104826}
+  knockbackScalar: 20
   sendPlayerChanged: 0
   remotePlayer: 0
   sendAttack: 0

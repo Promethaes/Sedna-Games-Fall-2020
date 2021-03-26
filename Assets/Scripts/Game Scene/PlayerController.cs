@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Unity;
 using UnityEngine;
 
@@ -7,6 +9,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [System.Serializable]
+    public class JumpAnimationDelay : PlayerTypeTo<float> {}
 
     [Header("Player variables")]
 
@@ -15,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpSpeed = 3.0f;
     [SerializeField] private float dashSpeed = 2.5f;
     [SerializeField] private float attackDistance = 8.0f;
+    [SerializeField] private List<JumpAnimationDelay> jumpAnimationDelays = new List<JumpAnimationDelay>();
 
     [Header("Player abilities")]
     // Default mesh is turtle, if a turtle has bison abilities, either this or the player mesh in GameInputHandler did not get set properly
@@ -49,6 +54,8 @@ public class PlayerController : MonoBehaviour
     private bool _jumped = false;
     private bool _doubleJumped = false;
     private float _jumpCooldown = 0.0f;
+    private bool _jumpAnimState = false;
+    private float _jumpAnimDelay = 0.25f;
 
     // Dash stuff
     private bool _dashed = false;
@@ -61,7 +68,7 @@ public class PlayerController : MonoBehaviour
     public int comboCounter = 0;
     public float[] damageValues = new float[3];
     public float[] originalDamageValues = new float[3];
-    public float[] _animationDelay = new float[3];
+    public float[] _attackAnimationDelay = new float[3];
     public AttackHitbox[] hitboxes;
 
     RaycastHit terrain;
@@ -188,7 +195,7 @@ public class PlayerController : MonoBehaviour
         damageValues = originalDamageValues;
     }
     Vector3 nLastPos = new Vector3();
-    void SendMovemnt()
+    void SendMovement()
     {
         if ((gameObject.transform.position - nLastPos).magnitude != 0.0f)
             sendMovement = true;
@@ -218,7 +225,7 @@ public class PlayerController : MonoBehaviour
         if (revive) _Revive();
 
         if (!remotePlayer)
-            SendMovemnt();
+            SendMovement();
     }
 
     //Physics update (FixedUpdate); updates at set intervals
@@ -234,8 +241,20 @@ public class PlayerController : MonoBehaviour
         if (!downed && _animationDuration <= 0.0f && !inCutscene)
         {
             //Jump Movement
-            if (isJumping)
+            if(isJumping) {
+                _jumpAnimState = true;
+                _jumpAnimDelay = jumpAnimationDelays.Find((p) => p.type == playerType).value;
+                if (_animator) {
+                    _animator.SetBool("jumping", true);
+                    if(!_isGrounded) _animator.SetTrigger("double_jump");
+                }
+            }
+
+            Logger.Log($"State: {_jumpAnimState} | Delay: {_jumpAnimDelay}");
+            if(_jumpAnimState && (_jumpAnimDelay -= Time.fixedDeltaTime) <= 0.0f) {
+                _jumpAnimState = false;
                 _Jump();
+            }
 
             //Dash Movement
             if (isDashing)
@@ -293,9 +312,9 @@ public class PlayerController : MonoBehaviour
         originalDamageValues[0] = x;
         originalDamageValues[1] = y;
         originalDamageValues[2] = z;
-        _animationDelay[0] = u;
-        _animationDelay[1] = v;
-        _animationDelay[2] = w;
+        _attackAnimationDelay[0] = u;
+        _attackAnimationDelay[1] = v;
+        _attackAnimationDelay[2] = w;
     }
 
     void _MouseInput()
@@ -493,7 +512,6 @@ public class PlayerController : MonoBehaviour
             _rigidbody.AddForce(new Vector3(vel.x * hopSpeed, jump, vel.z * hopSpeed), ForceMode.Impulse);
             _jumped = true;
             _jumpAnimDuration = 0.3f;
-            if (_animator) _animator.SetBool("jumping", true);
         }
         else if (_jumpAnimDuration <= 0.0f && !_doubleJumped)
         {
@@ -503,7 +521,6 @@ public class PlayerController : MonoBehaviour
             _rigidbody.AddForce(new Vector3(vel.x * hopSpeed, jump, vel.z * hopSpeed), ForceMode.Impulse);
             _doubleJumped = true;
             _jumpAnimDuration = 0.3f;
-            if (_animator) _animator.SetTrigger("double_jump");
         }
     }
 
@@ -629,10 +646,12 @@ public class PlayerController : MonoBehaviour
         while (GetComponent<PlayerBackend>().turtleBuff || roarBuff)
         {
             for (int i = 0; i < _players.Count; i++)
-                for (int n = 0; n < damageValues.Length; n++)
-                    _players[i].GetComponent<PlayerController>().damageValues[n] = _players[i].GetComponent<PlayerController>().originalDamageValues[n]
-                    + _players[i].GetComponent<PlayerController>().originalDamageValues[n] * _players[i].GetComponent<PlayerBackend>().turtleBuff.GetHashCode() * 0.1f
-                    + _players[i].GetComponent<PlayerController>().originalDamageValues[n] * roarBuff.GetHashCode() * Mathf.Min(killCount, 3) * .05f;
+                for (int n = 0; n < damageValues.Length; n++) {
+                    var playerController = _players[i].GetComponent<PlayerController>();
+                    playerController.damageValues[n] = playerController.originalDamageValues[n]
+                    + playerController.originalDamageValues[n] * _players[i].GetComponent<PlayerBackend>().turtleBuff.GetHashCode() * 0.1f
+                    + playerController.originalDamageValues[n] * roarBuff.GetHashCode() * Mathf.Min(killCount, 3) * .05f;
+                }
 
             for (int n = 0; n < damageValues.Length; n++)
                 damageValues[n] += 25.0f * (playerType == PlayerType.POLAR_BEAR).GetHashCode();
@@ -710,7 +729,7 @@ public class PlayerController : MonoBehaviour
         sendAttack = true;
 
         if (_comboDuration < 0.0f) comboCounter = 0;
-        _animationDuration = _animationDelay[comboCounter];
+        _animationDuration = _attackAnimationDelay[comboCounter];
 
         if (_animator)
         {
