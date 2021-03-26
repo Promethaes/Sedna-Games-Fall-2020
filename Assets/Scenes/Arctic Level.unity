@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -939,8 +939,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1633364095593088668, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
+      propertyPath: Emitters.Array.data[0].Params.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1633364095593088668, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
       propertyPath: Emitters.Array.data[0].Target
       value: 
+      objectReference: {fileID: 211719780}
+    - target: {fileID: 1633364095593088668, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: Emitters.Array.data[0].Params.Array.data[0].Name
+      value: arc_progress
+      objectReference: {fileID: 0}
+    - target: {fileID: 1633364095593088668, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: Emitters.Array.data[0].Params.Array.data[0].Value
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3574856958149170193, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
@@ -1009,8 +1024,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4852674563116623899, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
+      propertyPath: Emitters.Array.data[0].Params.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4852674563116623899, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
       propertyPath: Emitters.Array.data[0].Target
       value: 
+      objectReference: {fileID: 211719780}
+    - target: {fileID: 4852674563116623899, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: Emitters.Array.data[0].Params.Array.data[0].Name
+      value: arc_progress
+      objectReference: {fileID: 0}
+    - target: {fileID: 4852674563116623899, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: Emitters.Array.data[0].Params.Array.data[0].Value
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5060433708512069856, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
@@ -1798,8 +1828,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1633364095593088668, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
+      propertyPath: Emitters.Array.data[0].Params.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1633364095593088668, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
       propertyPath: Emitters.Array.data[0].Target
       value: 
+      objectReference: {fileID: 211719780}
+    - target: {fileID: 1633364095593088668, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: Emitters.Array.data[0].Params.Array.data[0].Name
+      value: arc_progress
+      objectReference: {fileID: 0}
+    - target: {fileID: 1633364095593088668, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: Emitters.Array.data[0].Params.Array.data[0].Value
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3574856958149170193, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
@@ -1869,13 +1914,23 @@ PrefabInstance:
     - target: {fileID: 4852674563116623899, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
       propertyPath: Emitters.Array.data[0].Params.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4852674563116623899, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
       propertyPath: Emitters.Array.data[0].Target
       value: 
       objectReference: {fileID: 211719780}
+    - target: {fileID: 4852674563116623899, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: Emitters.Array.data[0].Params.Array.data[0].Name
+      value: arc_progress
+      objectReference: {fileID: 0}
+    - target: {fileID: 4852674563116623899, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: Emitters.Array.data[0].Params.Array.data[0].Value
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5060433708512069856, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
       propertyPath: spawnRadiusScalar
@@ -1916,7 +1971,6 @@ GameObject:
   - component: {fileID: 549550726}
   - component: {fileID: 549550731}
   - component: {fileID: 549550730}
-  - component: {fileID: 549550729}
   - component: {fileID: 549550728}
   - component: {fileID: 549550727}
   m_Layer: 0
@@ -1976,25 +2030,6 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 0
   OverrideMaxDistance: 0
---- !u!114 &549550729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 549550725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: Player
-  Emitters:
-  - Target: {fileID: 211719780}
-    Params:
-    - Name: arc_progress
-      Value: 7
-  TriggerEvent: 3
 --- !u!135 &549550730
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2295,6 +2330,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnPoint (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 4198796643681508975, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4852674563116623899, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
       propertyPath: Emitters.Array.data[0].Target
@@ -2362,8 +2402,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1633364095593088668, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
+      propertyPath: Emitters.Array.data[0].Params.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1633364095593088668, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
       propertyPath: Emitters.Array.data[0].Target
       value: 
+      objectReference: {fileID: 211719780}
+    - target: {fileID: 1633364095593088668, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: Emitters.Array.data[0].Params.Array.data[0].Name
+      value: arc_progress
+      objectReference: {fileID: 0}
+    - target: {fileID: 1633364095593088668, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: Emitters.Array.data[0].Params.Array.data[0].Value
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3574856958149170193, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
@@ -2432,8 +2487,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4852674563116623899, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
+      propertyPath: Emitters.Array.data[0].Params.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4852674563116623899, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
       propertyPath: Emitters.Array.data[0].Target
       value: 
+      objectReference: {fileID: 211719780}
+    - target: {fileID: 4852674563116623899, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: Emitters.Array.data[0].Params.Array.data[0].Name
+      value: arc_progress
+      objectReference: {fileID: 0}
+    - target: {fileID: 4852674563116623899, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: Emitters.Array.data[0].Params.Array.data[0].Value
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5060433708512069856, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
@@ -2469,7 +2539,6 @@ GameObject:
   - component: {fileID: 692511480}
   - component: {fileID: 692511485}
   - component: {fileID: 692511484}
-  - component: {fileID: 692511483}
   - component: {fileID: 692511482}
   - component: {fileID: 692511481}
   m_Layer: 0
@@ -2529,25 +2598,6 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 0
   OverrideMaxDistance: 0
---- !u!114 &692511483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 692511479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: Player
-  Emitters:
-  - Target: {fileID: 0}
-    Params:
-    - Name: Progress
-      Value: 6
-  TriggerEvent: 3
 --- !u!135 &692511484
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4258,7 +4308,6 @@ GameObject:
   - component: {fileID: 1324379790}
   - component: {fileID: 1324379795}
   - component: {fileID: 1324379794}
-  - component: {fileID: 1324379793}
   - component: {fileID: 1324379792}
   - component: {fileID: 1324379791}
   m_Layer: 0
@@ -4318,25 +4367,6 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 0
   OverrideMaxDistance: 0
---- !u!114 &1324379793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1324379789}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: Player
-  Emitters:
-  - Target: {fileID: 211719780}
-    Params:
-    - Name: arc_progress
-      Value: 5
-  TriggerEvent: 3
 --- !u!135 &1324379794
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4806,7 +4836,6 @@ GameObject:
   - component: {fileID: 1435079429}
   - component: {fileID: 1435079434}
   - component: {fileID: 1435079433}
-  - component: {fileID: 1435079432}
   - component: {fileID: 1435079431}
   - component: {fileID: 1435079430}
   m_Layer: 0
@@ -4866,25 +4895,6 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 0
   OverrideMaxDistance: 0
---- !u!114 &1435079432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1435079428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: Player
-  Emitters:
-  - Target: {fileID: 211719780}
-    Params:
-    - Name: arc_progress
-      Value: 4
-  TriggerEvent: 3
 --- !u!135 &1435079433
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5782,7 +5792,6 @@ GameObject:
   - component: {fileID: 1698598071}
   - component: {fileID: 1698598076}
   - component: {fileID: 1698598075}
-  - component: {fileID: 1698598074}
   - component: {fileID: 1698598073}
   - component: {fileID: 1698598072}
   m_Layer: 0
@@ -5842,25 +5851,6 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 0
   OverrideMaxDistance: 0
---- !u!114 &1698598074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1698598070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: Player
-  Emitters:
-  - Target: {fileID: 211719780}
-    Params:
-    - Name: arc_progress
-      Value: 2
-  TriggerEvent: 3
 --- !u!135 &1698598075
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5897,7 +5887,6 @@ GameObject:
   - component: {fileID: 1730231942}
   - component: {fileID: 1730231947}
   - component: {fileID: 1730231946}
-  - component: {fileID: 1730231945}
   - component: {fileID: 1730231944}
   - component: {fileID: 1730231943}
   m_Layer: 0
@@ -5957,25 +5946,6 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 0
   OverrideMaxDistance: 0
---- !u!114 &1730231945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1730231941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: Player
-  Emitters:
-  - Target: {fileID: 211719780}
-    Params:
-    - Name: arc_progress
-      Value: 8
-  TriggerEvent: 3
 --- !u!135 &1730231946
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -7549,6 +7519,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnPoint (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4198796643681508975, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4852674563116623899, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
       propertyPath: Emitters.Array.data[0].Target
@@ -7816,6 +7791,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SpawnPoint (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4198796643681508975, guid: 5a6aa22063edefc4a875949879326c1b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4852674563116623899, guid: 5a6aa22063edefc4a875949879326c1b,
         type: 3}
