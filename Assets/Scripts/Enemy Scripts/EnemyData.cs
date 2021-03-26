@@ -167,12 +167,16 @@ public class EnemyData : MonoBehaviour
     {
         return fear;
     }
-    public void takeDamage(float hp)
+    public void takeDamage(float hp,float knockbackScalar = 1.0f)
     {
         health -= hp;
         healthBar.sizeDelta = new Vector2(health / maxHealth * healthBarSize, healthBar.sizeDelta.y);
         billboard.healthChanged();
         enemySounds[(int)EnemySoundIndex.Pain].Play();
+        var rigidBody = GetComponent<Rigidbody>();
+        rigidBody.isKinematic = false;
+        rigidBody.AddForce(-transform.forward*knockbackScalar,ForceMode.Impulse);
+        rigidBody.isKinematic = true;
         if (health <= 0.0f)
             die();
     }
@@ -224,5 +228,11 @@ public class EnemyData : MonoBehaviour
     public GameObject[] getPlayers()
     {
         return players;
+    }
+
+    private void OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.tag == "Player")
+            gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 }
