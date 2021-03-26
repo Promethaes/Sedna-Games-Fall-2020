@@ -117,7 +117,7 @@ public class CSNetworkManager : MonoBehaviour
         client = new Client(IPADDRESS);
         recThread = new Thread(client.Receive);
         recThread.Start();
-            //EEEEEKEKEKEKEKEKKEKk
+        //EEEEEKEKEKEKEKEKKEKk
 
         DontDestroyOnLoad(gameObject);
     }
@@ -145,7 +145,7 @@ public class CSNetworkManager : MonoBehaviour
         if (isLocal)
         {
             localPlayers.Add(config);
-            byte[] buffer = Encoding.ASCII.GetBytes("initMsg " + sessionID.ToString() + " " + PlayerPrefs.GetString("pid", "peepee"));
+            byte[] buffer = Encoding.ASCII.GetBytes("initMsg " + sessionID.ToString() + " " + PlayerPrefs.GetString("pid", "Player"));
             client.clientSocket.SendTo(buffer, client.endPoint);
 
             return;
@@ -188,12 +188,10 @@ public class CSNetworkManager : MonoBehaviour
         " " + pos.x.ToString() + " " + pos.y.ToString() + " " + pos.z.ToString());
     }
 
-    public void SendUpdatedEnemyStatus(int spawnPointIndex, int enemyIndex)
+    public void SendEnemyDeath(int spawnPointIndex, int enemyIndex)
     {
-        if (!isHostClient)
-            return;
         //cli 0 esp 0 e 0 edm
-        client.Send("cli 0 esp " + spawnPointIndex.ToString() + " e " + enemyIndex.ToString() + " edm");
+        client.Send("cli " + localPlayers[0].clientNumber + " esp " + spawnPointIndex.ToString() + " e " + enemyIndex.ToString() + " edm");
     }
 
     public void SendCutsceneStart(int cutsceneIndex)
@@ -335,13 +333,15 @@ public class CSNetworkManager : MonoBehaviour
 
         if (!allReady)
             changeTimer = 3.0f;
-
+        //TEMP: remove the timer changes!
         else
         {
             changeTimer -= Time.deltaTime;
 
             if (changeTimer <= 0.0f)
             {
+                changeTimer = 3.0f;
+
                 changedScene = true;
                 PlayerConfigurationManager.get.allPlayersReady(wetlandsOrArctic);
             }
@@ -355,17 +355,9 @@ public class CSNetworkManager : MonoBehaviour
 
         for (int i = 0; i < client.backlog.Count; i++)
         {
-            var count = client.backlog.Count;
-            if (client.backlog[i].Length >= 100)
+            if (client.backlog[i].Contains("clin"))
             {
-                client.backlog.RemoveAt(i);
-                i--;
-                continue;
-            }
-
-            else if (client.backlog[i].Contains("clin"))
-            {
-                //temp code, will only work for 1 player
+                //temp code, will only work for 1 player??
                 foreach (var lplayer in localPlayers)
                 {
                     if (lplayer.clientNumber == -1)
@@ -407,20 +399,15 @@ public class CSNetworkManager : MonoBehaviour
                 var parts = client.backlog[i].Split(' ');
                 int index = int.Parse(parts[1]);
 
-                for (int j = 0; j < remotePlayers.Count; j++)
+                foreach (var rp in remotePlayerControllers)
                 {
-                    if (remotePlayers[j].clientNumber == index)
+                    var nameParts = rp.gameObject.name.Split(' ');
+                    int rClientN = int.Parse(nameParts[1]);
+
+                    if (rClientN == index)
                     {
-                        //GameObject[] tempList = GameObject.FindGameObjectsWithTag("Enemy");
-                        //foreach(GameObject e in tempList)//remove player from enemy script
-                        //{
-                        //    
-                        //}
-                        if (playerManager.players[j + 1].GetComponentInChildren<Camera>().enabled == false)
-                            playerManager.players[j + 1].SetActive(false);
-                        //Destroy(playerManager.players[j+1]);
-                        playerManager.players.RemoveAt(j + 1);
-                        remotePlayers.RemoveAt(j);
+                        rp.gameObject.SetActive(false);
+                        remotePlayerControllers.Remove(rp);
                         break;
                     }
                 }
@@ -441,8 +428,6 @@ public class CSNetworkManager : MonoBehaviour
             }
             else if (client.backlog[i].Contains("esp"))
             {
-
-
                 var parts = client.backlog[i].Split(' ');
                 var espIndex = int.Parse(parts[3]);
                 var eIndex = int.Parse(parts[5]);
@@ -457,9 +442,16 @@ public class CSNetworkManager : MonoBehaviour
 
                 //cli 0 esp 0 e 0 0 0 0
                 Vector3 pos = new Vector3(float.Parse(parts[6]), float.Parse(parts[7]), float.Parse(parts[8]));
-                var rb = EnemySpawnPoint.AllEnemySpawnPoints[espIndex].spawnEnemies[eIndex].GetComponent<Rigidbody>();
-                if (rb)
-                    rb.velocity = Vector3.zero;
+                try
+                {
+                    var rb = EnemySpawnPoint.AllEnemySpawnPoints[espIndex].spawnEnemies[eIndex].GetComponent<Rigidbody>();
+                    if (rb)
+                        rb.velocity = Vector3.zero;
+                }
+                catch (Exception e)
+                {
+                    Debug.Log(e);
+                }
                 var snm = EnemySpawnPoint.AllEnemySpawnPoints[espIndex].spawnEnemies[eIndex].GetComponent<smoothNetworkMovement>();
                 if (snm)
                     snm.updatePos(pos, true);
@@ -488,37 +480,35 @@ public class CSNetworkManager : MonoBehaviour
             }
 
             bool didCommand = false;
+            var cliCommandParts = client.backlog[i].Split(' ');
+            int cliNumber = int.Parse(cliCommandParts[1]);
             foreach (var p in remotePlayers)
             {
-                string comp = "cli " + p.clientNumber.ToString();
-
-                if (client.backlog[i].Contains(comp))
+                if (cliNumber == p.clientNumber && RunCommand(p, client.backlog[i]))
                 {
-                    if (RunCommand(p, client.backlog[i]))
-                    {
+                    client.backlog.RemoveAt(i);
+                    i--;
+                    didCommand = true;
+                    break;
+                }
+            }
 
+            if (playerManager != null)
+            {
+                foreach (var pc in remotePlayerControllers)
+                {
+                    Debug.Log(pc.name);
+                    var nameParts = pc.name.Split(' ');
+                    int pcNum = int.Parse(nameParts[1]);
+                    if (pcNum == cliNumber && RunCommand(pc.gameObject, client.backlog[i]))
+                    {
                         client.backlog.RemoveAt(i);
                         i--;
                         didCommand = true;
-                        continue;
+                        break;
                     }
-                    else if (playerManager != null)
-                    {
-                        for (int j = 0; j < remotePlayerControllers.Count; j++)
-                        {
-                            if (RunCommand(remotePlayerControllers[j].gameObject, client.backlog[i]))
-                            {
-                                client.backlog.RemoveAt(i);
-                                i--;
-                                didCommand = true;
-                                break;
-                            }
-                            else
-                                Debug.Log("Did not run command! " + client.backlog[i]);
-                        }
-                    }
-                }
 
+                }
             }
 
             if (didCommand)

@@ -558,8 +558,8 @@ MonoBehaviour:
   IPADDRESS: 54.205.45.165
   isHostClient: 0
   wetlandsOrArctic: 1
-  sendRateFPS: 15
-  smoothMovementLerpSpeed: 15
+  sendRateFPS: 3
+  smoothMovementLerpSpeed: 3
 --- !u!4 &1326626068
 Transform:
   m_ObjectHideFlags: 0
