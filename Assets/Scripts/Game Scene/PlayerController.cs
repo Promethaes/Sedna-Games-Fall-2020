@@ -707,6 +707,13 @@ public class PlayerController : MonoBehaviour
     {
         if (_animationDuration >= 0.0f) return;
 
+        //TODO
+        {
+            GameObject temp = GameObject.FindGameObjectWithTag("virtualCam");
+            temp.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow = GameObject.FindGameObjectWithTag("TARGET").transform;
+        }
+       
+
         sendAttack = true;
 
         if (_comboDuration < 0.0f) comboCounter = 0;
