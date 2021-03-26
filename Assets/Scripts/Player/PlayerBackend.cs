@@ -23,10 +23,21 @@ public class PlayerBackend : MonoBehaviour
             hp = maxHP;
     }
 
-    public void takeDamage(float dmg)
+    IEnumerator InvinceFrame()
+    {
+        yield return new WaitForSeconds(1.0f);
+        invuln = false;
+    }
+
+    public void takeDamage(float dmg,float knockbackScalar = 60.0f)
     {
         if (!invuln)
-            hp -= dmg - (dmg*turtleBuff.GetHashCode()*0.1f);
+        {
+            hp -= dmg - (dmg * turtleBuff.GetHashCode() * 0.1f);
+            GetComponent<Rigidbody>().AddForce(-(GetComponent<PlayerController>()._playerMesh.transform.forward)*knockbackScalar*(dmg / 10.0f),ForceMode.Impulse);
+            invuln = true;
+            StartCoroutine("InvinceFrame");
+        }
     }
 
     public void KillPlayer()
