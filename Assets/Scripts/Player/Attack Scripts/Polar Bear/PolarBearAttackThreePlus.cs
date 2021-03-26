@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PolarBearAttackThreePlus : MonoBehaviour
 {
-    bool active = false;
-    public GameObject crack;
     public GameObject[] crackPieces;
     IEnumerator Attack()
     {
@@ -22,17 +20,11 @@ public class PolarBearAttackThreePlus : MonoBehaviour
         foreach (GameObject child in crackPieces)
             child.SetActive(false);
 
-        crack.SetActive(false);
-        active = false;
         transform.parent = temp;
         transform.localPosition = new Vector3(0.0f, -0.1f, 3.0f);
     }
-    void Update()
+    public void SlamAttack()
     {
-        if (!active)
-        {
-            StartCoroutine(Attack());
-            active = true;
-        }
+        StartCoroutine(Attack());
     }
 }

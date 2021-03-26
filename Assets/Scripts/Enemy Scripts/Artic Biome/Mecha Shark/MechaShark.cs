@@ -14,6 +14,7 @@ public class MechaShark : MonoBehaviour
     private void Start() {
         target = leapTo;
         GetComponent<EnemyData>().billboard.gameObject.SetActive(false);
+        transform.LookAt(target);
     }
 
     private void Update() 
@@ -21,7 +22,7 @@ public class MechaShark : MonoBehaviour
         Leap();
         cooldown-=Time.deltaTime;    
     }
-    //NOTE: Need more information. Is it statically leaping between two spots or following the player and leaping?
+    //NOTE: Leaps between leapTo and leapFrom transforms
     public void Leap()
     {
         if (cooldown <= 0.0f)
@@ -47,11 +48,12 @@ public class MechaShark : MonoBehaviour
         rigidBody.useGravity = false;
         rigidBody.velocity = Vector3.zero;
         transform.position = target.position;
-        //NOTE: Minor y-axis correction due to minor differences in deltaTime and WaitForSeconds
+        //NOTE: Minor y-axis correction due to minor differences caused by math
         if ((target.position-leapTo.position).magnitude <= 1.0f)
             target = leapFrom;
         else
             target = leapTo;
+        transform.LookAt(target);
         _hitbox.SetActive(false);
     }
 }

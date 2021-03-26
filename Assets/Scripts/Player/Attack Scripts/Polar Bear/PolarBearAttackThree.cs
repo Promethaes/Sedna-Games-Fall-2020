@@ -11,6 +11,7 @@ public class PolarBearAttackThree : StateMachineBehaviour
         player = animator.GetComponentInParent<PlayerController>();
         player.hitboxes[2].gameObject.SetActive(true);
         player.hitboxes[2].attack.gameObject.SetActive(true);
+        player.GetComponentInChildren<PolarBearAttackThreePlus>().SlamAttack();
         
     }
 
