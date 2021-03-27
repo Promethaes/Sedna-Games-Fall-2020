@@ -656,6 +656,7 @@ MonoBehaviour:
   inCutscene: 0
   questUI: {fileID: 0}
   dashVFX: {fileID: 7518877416662104826}
+  knockbackScalar: 20
   sendPlayerChanged: 0
   remotePlayer: 0
   sendAttack: 0
@@ -1078,7 +1079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/snd/movement_snow
+  Event: event:/snd/movement_water
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
