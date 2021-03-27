@@ -11,8 +11,9 @@ public class PolarBearAttackThree : StateMachineBehaviour
         player = animator.GetComponentInParent<PlayerController>();
         player.hitboxes[2].gameObject.SetActive(true);
         player.hitboxes[2].attack.gameObject.SetActive(true);
-        player.GetComponentInChildren<PolarBearAttackThreePlus>().SlamAttack();
-        
+        if (player.GetComponentInChildren<PolarBearAttackThreePlus>())
+            player.GetComponentInChildren<PolarBearAttackThreePlus>().SlamAttack();
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
