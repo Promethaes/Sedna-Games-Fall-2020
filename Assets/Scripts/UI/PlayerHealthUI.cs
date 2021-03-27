@@ -2,8 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealthUI : MonoBehaviour
-{
+public class PlayerHealthUI : MonoBehaviour {
     [Header("Player backend")]
     public PlayerBackend backend = null;
 
@@ -17,22 +16,13 @@ public class PlayerHealthUI : MonoBehaviour
     [SerializeField] private Image centreImage = null;
     [SerializeField] private List<Sprite> images = new List<Sprite>();
 
-    public void setCharacterImage(int character)
-    {
+    public void setCharacterImage(int character) {
         centreImage.sprite = images[character];
     }
 
-    void Start()
-    {
-        if (backend == null)
-        {
+    void Start() {
+        if(backend == null) {
             Logger.Error("No backend for player health UI!");
-            return;
-        }
-
-        if (backend.gameObject.GetComponent<PlayerController>().remotePlayer)
-        {
-            gameObject.SetActive(false);
             return;
         }
 
@@ -41,8 +31,7 @@ public class PlayerHealthUI : MonoBehaviour
         setCharacterImage(index);
     }
 
-    void Update()
-    {
+    void Update() {
         currentFill = backend.hp;
         maximum = backend.maxHP;
         fillMask.fillAmount = currentFill / maximum;
