@@ -6107,7 +6107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6043bde05a7fc4cba197d06915c1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damping: {x: 0.2, y: 0.6, z: 0.6}
+  Damping: {x: 0.2, y: 0.3, z: 0.6}
   ShoulderOffset: {x: 0.5, y: -1.92, z: 0}
   VerticalArmLength: 5.25
   CameraSide: 1
@@ -6130,7 +6130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TrackedObjectOffset: {x: 0, y: 1.93, z: 0}
-  m_LookaheadTime: 0.006
+  m_LookaheadTime: 0.06
   m_LookaheadSmoothing: 1.1
   m_LookaheadIgnoreY: 0
   m_HorizontalDamping: 0.5
