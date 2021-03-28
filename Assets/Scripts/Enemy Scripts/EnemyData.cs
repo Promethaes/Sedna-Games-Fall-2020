@@ -117,7 +117,7 @@ public class EnemyData : MonoBehaviour
                 setCombo(15.0f);
                 break;
             case enemyType.furnaceRobo:
-                setHealth(360.0f);
+                setHealth(1000.0f);
                 setCombo(30.0f);
                 break;
             default:
