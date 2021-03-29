@@ -691,6 +691,7 @@ GameObject:
   - component: {fileID: 7366657246308792932}
   - component: {fileID: 1812608330756512449}
   - component: {fileID: 7880008478409435107}
+  - component: {fileID: 7155520367615069032}
   m_Layer: 0
   m_Name: Robo Blasta
   m_TagString: Enemy
@@ -781,6 +782,7 @@ MonoBehaviour:
   damageValues: 0
   hitbox: {fileID: 4747825824915275870}
   fear: 0
+  feedbackDisplay: {fileID: 7155520367615069032}
   enemy: 9
   randomScale: 1
   enemyScale: 1.5
@@ -843,6 +845,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &7155520367615069032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2612491112216681419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 064f8ce950e289c43b302cc0776678c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  feedback: {fileID: 11400000, guid: e174cbcb421ad5441afe4ca2e691bb2a, type: 2}
+  turnOnFlicker: 0
 --- !u!1 &3083155760305550218
 GameObject:
   m_ObjectHideFlags: 0

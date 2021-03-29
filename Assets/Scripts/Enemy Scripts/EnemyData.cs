@@ -39,6 +39,8 @@ public class EnemyData : MonoBehaviour
     public bool fear = false;
     float _poisonDuration = 10.0f;
 
+    public CombatFeedbackDisplay feedbackDisplay;
+
 
     public enum enemyType
     {
@@ -204,6 +206,7 @@ public class EnemyData : MonoBehaviour
 
         rigidBody.AddForce(direction * knockbackScalar * (hp / 10.0f), ForceMode.Impulse);
         StartCoroutine("ResetKinematics");
+        feedbackDisplay.OnTakeDamage();
         if (health <= 0.0f)
             die();
     }
