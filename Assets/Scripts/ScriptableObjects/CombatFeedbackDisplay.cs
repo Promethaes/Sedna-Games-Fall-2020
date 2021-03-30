@@ -89,11 +89,12 @@ public class CombatFeedbackDisplay : MonoBehaviour
         if (!FindSkinnedMeshRenderer())
             return;
         skinnedMeshRenderer.sharedMaterial = feedback.flickerMaterial;
-
-        if (postProcessVolume != null)
-            postProcessVolume.SetActive(true);
-
         StartCoroutine("ResetMaterial");
-        StartCoroutine("VignetteFade");
+
+        if (postProcessVolume != null && !gameObject.name.Contains("REMOTE"))
+        {
+            postProcessVolume.SetActive(true);
+            StartCoroutine("VignetteFade");
+        }
     }
 }
