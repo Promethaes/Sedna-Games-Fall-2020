@@ -409,7 +409,7 @@ public class PlayerController : MonoBehaviour
             var pos = gameObject.transform.position;
             pos.y = 0.0f;
             if (_animator && !_animator.GetBool("attacking") && !_animator.GetBool("jumping"))
-                _animator.SetBool("walking", Mathf.Abs(pos.magnitude - _lastPos.magnitude) >= 0.1f);
+                _animator.SetBool("walking", Mathf.Abs(pos.magnitude - _lastPos.magnitude) >= 0.1f * Time.deltaTime);
 
             _lastPos = pos;
             _isGrounded = Physics.Raycast(transform.position, -transform.up, out terrain, 0.6f);
