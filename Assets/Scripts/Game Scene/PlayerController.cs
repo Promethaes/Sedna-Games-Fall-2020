@@ -111,6 +111,8 @@ public class PlayerController : MonoBehaviour
     // VFX
     public ParticleSystem dashVFX;
 
+    public float knockbackScalar = 20.0f;
+
     // -------------------------------------------------------------------------
 
 
@@ -157,19 +159,19 @@ public class PlayerController : MonoBehaviour
                 backend.maxHP = 250;
                 break;
             case PlayerType.POLAR_BEAR:
-                _setCombo(10.0f, 35.0f, 60.0f, 0.90f / 1.21f, 1.20f / 1.45f, 0.80f / 0.56f);
-                backend.maxHP = 150;
-
+                _setCombo(10.0f+ 30.0f, 35.0f+ 30.0f, 60.0f+ 30.0f, 0.90f / 1.21f, 1.20f / 1.45f, 0.80f / 0.56f);
+                backend.maxHP = 150.0f;
+                knockbackScalar = 25.0f;
                 break;
             case PlayerType.RATTLESNAKE:
                 _setCombo(25.0f, 50.0f, 150.0f, 0.35f, 0.75f, 1.10f);
-                backend.maxHP = 50;
-
+                backend.maxHP = 50.0f;
+                knockbackScalar = 10.0f;
                 break;
             case PlayerType.TURTLE:
                 _setCombo(10.0f, 25.0f, 50.0f, 0.35f, 0.75f, 1.10f);
-                backend.maxHP = 100;
-
+                backend.maxHP = 100.0f;
+                knockbackScalar = 10.0f;
                 break;
             default:
                 _setCombo(1.0f, 999999.0f, 25.0f, 0.45f, 0.95f, 1.25f);

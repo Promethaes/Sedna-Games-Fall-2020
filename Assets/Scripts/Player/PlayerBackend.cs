@@ -9,9 +9,12 @@ public class PlayerBackend : MonoBehaviour
     public CheckpointManager manager;
     public bool turtleBuff = false;
     public bool invuln = false;
+    public float invinceDuration = 0.25f;
+    public CombatFeedbackDisplay feedbackDisplay;
     private void Start()
     {
         manager = GameObject.FindGameObjectWithTag("CheckpointManager").GetComponent<CheckpointManager>();
+        feedbackDisplay.feedback.flickerDuration = invinceDuration;
     }
 
     // Update is called once per frame
@@ -23,15 +26,41 @@ public class PlayerBackend : MonoBehaviour
             hp = maxHP;
     }
 
-    public void takeDamage(float dmg)
+    IEnumerator InvinceFrame()
+    {
+        yield return new WaitForSeconds(invinceDuration);
+        invuln = false;
+    }
+
+    public void takeDamage(float dmg, float knockbackScalar = 60.0f)
     {
         if (!invuln)
-            hp -= dmg - (dmg*turtleBuff.GetHashCode()*0.1f);
+        {
+            hp -= dmg - (dmg * turtleBuff.GetHashCode() * 0.1f);
+            GetComponent<Rigidbody>().AddForce(-(GetComponent<PlayerController>()._playerMesh.transform.forward) * knockbackScalar * (dmg / 10.0f), ForceMode.Impulse);
+            invuln = true;
+            StartCoroutine("InvinceFrame");
+            feedbackDisplay.OnTakeDamage();
+        }
     }
 
     public void KillPlayer()
     {
-
+        if (!manager)
+        {
+            Debug.LogError("CheckpointManager was null! Could not kill Players!");
+            return;
+        }
+        else if (!manager.playerManager)
+        {
+            Debug.LogError("CheckpointManager.PlayerManager was null! Could not kill Players!");
+            return;
+        }
+        else if (manager.playerManager.players == null)
+        {
+            Debug.LogError("CheckpointManager.PlayerManager.Players was null! Could not kill Players!");
+            return;
+        }
 
         int _counter = 0;
         for (int i = 0; i < manager.playerManager.players.Count; i++)

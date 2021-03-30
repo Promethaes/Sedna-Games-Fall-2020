@@ -39,6 +39,8 @@ public class EnemyData : MonoBehaviour
     public bool fear = false;
     float _poisonDuration = 10.0f;
 
+    public CombatFeedbackDisplay feedbackDisplay;
+
 
     public enum enemyType
     {
@@ -48,7 +50,6 @@ public class EnemyData : MonoBehaviour
         splitter,
         flinger,
         dumpageMiniBoss,
-        icePick,
         mechaShark,
         pickRobro,
         roboShooter,
@@ -105,7 +106,7 @@ public class EnemyData : MonoBehaviour
                 setHealth(350.0f);
                 setCombo(20.0f);
                 break;
-            case enemyType.icePick:
+            case enemyType.pickRobro:
                 setHealth(120.0f);
                 setCombo(16.0f);
                 break;
@@ -118,7 +119,7 @@ public class EnemyData : MonoBehaviour
                 setCombo(15.0f);
                 break;
             case enemyType.furnaceRobo:
-                setHealth(360.0f);
+                setHealth(1000.0f);
                 setCombo(30.0f);
                 break;
             default:
@@ -167,12 +168,45 @@ public class EnemyData : MonoBehaviour
     {
         return fear;
     }
-    public void takeDamage(float hp)
+
+    IEnumerator ResetKinematics()
+    {
+        yield return new WaitForSeconds(1.0f);
+        Debug.Log("kinematic");
+        GetComponent<Rigidbody>().isKinematic = true;
+    }
+
+    public void ActivateResetKinematicsCoroutine()
+    {
+        StartCoroutine("ResetKinematics");
+    }
+
+    public void takeDamage(float hp, float knockbackScalar = 20.0f)
     {
         health -= hp;
         healthBar.sizeDelta = new Vector2(health / maxHealth * healthBarSize, healthBar.sizeDelta.y);
         billboard.healthChanged();
         enemySounds[(int)EnemySoundIndex.Pain].Play();
+        var rigidBody = GetComponent<Rigidbody>();
+        rigidBody.isKinematic = false;
+
+        var players = FindObjectsOfType<PlayerController>();
+
+        float shortestMag = 1000.0f;
+        Vector3 direction = Vector3.zero;
+        foreach (var p in players)
+        {
+            var vec = gameObject.transform.position - p.transform.position;
+            if (vec.magnitude < shortestMag)
+            {
+                shortestMag = vec.magnitude;
+                direction = vec.normalized;
+            }
+        }
+
+        rigidBody.AddForce(direction * knockbackScalar * (hp / 10.0f), ForceMode.Impulse);
+        StartCoroutine("ResetKinematics");
+        feedbackDisplay.OnTakeDamage();
         if (health <= 0.0f)
             die();
     }
@@ -224,5 +258,25 @@ public class EnemyData : MonoBehaviour
     public GameObject[] getPlayers()
     {
         return players;
+    }
+
+    private void OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.tag == "Player")
+            gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+    }
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Player")
+            gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        else if (other.gameObject.tag == "Enemy" && other.gameObject.GetComponent<Rigidbody>().isKinematic)
+        {
+            var rigid = other.gameObject.GetComponent<Rigidbody>();
+            rigid.isKinematic = false;
+            rigid.AddForce(gameObject.GetComponent<Rigidbody>().velocity, ForceMode.Impulse);
+            other.gameObject.GetComponent<EnemyData>().ActivateResetKinematicsCoroutine();
+
+        }
     }
 }
