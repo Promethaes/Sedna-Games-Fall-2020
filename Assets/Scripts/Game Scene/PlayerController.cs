@@ -190,7 +190,6 @@ public class PlayerController : MonoBehaviour
     Vector3 nLastPos = new Vector3();
     void SendMovemnt()
     {
-        Debug.Log((gameObject.transform.position - nLastPos).magnitude);
         if ((gameObject.transform.position - nLastPos).magnitude >= 0.1f)
             sendMovement = true;
         nLastPos = gameObject.transform.position;
