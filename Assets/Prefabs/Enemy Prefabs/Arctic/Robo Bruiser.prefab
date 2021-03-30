@@ -2921,6 +2921,7 @@ GameObject:
   - component: {fileID: 8424298110324559629}
   - component: {fileID: 5749364666432156550}
   - component: {fileID: 6843240819171144753}
+  - component: {fileID: 5859318405433461339}
   m_Layer: 0
   m_Name: Robo Bruiser
   m_TagString: Enemy
@@ -3054,6 +3055,7 @@ MonoBehaviour:
   damageValues: 0
   hitbox: {fileID: 306394668657934184}
   fear: 0
+  feedbackDisplay: {fileID: 5859318405433461339}
   enemy: 10
   randomScale: 1
   enemyScale: 1.5
@@ -3114,6 +3116,22 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &5859318405433461339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7300617264964847039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 064f8ce950e289c43b302cc0776678c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  feedback: {fileID: 11400000, guid: e174cbcb421ad5441afe4ca2e691bb2a, type: 2}
+  postProcessVolume: {fileID: 0}
+  vignetteDecayStepSize: 0.01
+  test: 0
 --- !u!1 &7530976849869038980
 GameObject:
   m_ObjectHideFlags: 0
@@ -3903,9 +3921,9 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4463866907457679943}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &4446332047466423572 stripped
+--- !u!224 &4681273106261683108 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 19804668603995987, guid: 918a42cbce1e74843b67830f6cf3c9b3,
+  m_CorrespondingSourceObject: {fileID: 9008868705525029347, guid: 918a42cbce1e74843b67830f6cf3c9b3,
     type: 3}
   m_PrefabInstance: {fileID: 4463866907457679943}
   m_PrefabAsset: {fileID: 0}
@@ -3921,9 +3939,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 084a1b8ac8bb5e948b319f2f1e7cf875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &4681273106261683108 stripped
+--- !u!224 &4446332047466423572 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 9008868705525029347, guid: 918a42cbce1e74843b67830f6cf3c9b3,
+  m_CorrespondingSourceObject: {fileID: 19804668603995987, guid: 918a42cbce1e74843b67830f6cf3c9b3,
     type: 3}
   m_PrefabInstance: {fileID: 4463866907457679943}
   m_PrefabAsset: {fileID: 0}
