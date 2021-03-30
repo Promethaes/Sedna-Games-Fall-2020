@@ -684,7 +684,7 @@ MonoBehaviour:
   manager: {fileID: 0}
   turtleBuff: 0
   invuln: 0
-  invinceDuration: 0.25
+  invinceDuration: 0.5
   feedbackDisplay: {fileID: 5263470051661380356}
 --- !u!114 &5369776141784647949
 MonoBehaviour:
@@ -789,6 +789,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   feedback: {fileID: 11400000, guid: 2fe752b5bd0b0364786f33af1c54822f, type: 2}
   postProcessVolume: {fileID: 8519950847580823542}
+  vignetteDecayStepSize: 0.002
+  test: 0
 --- !u!1 &5489993372759476761
 GameObject:
   m_ObjectHideFlags: 0

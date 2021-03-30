@@ -104,8 +104,8 @@ Material:
     m_Colors:
     - Color_2004B0: {r: 0, g: 0, b: 0, a: 0}
     - Color_2305C0AF: {r: 0, g: 0, b: 0, a: 0}
-    - Color_52D3B80: {r: 0.56078434, g: 0, b: 0, a: 0}
-    - Color_75D20D80: {r: 1, g: 0, b: 0, a: 0}
+    - Color_52D3B80: {r: 0.472, g: 0, b: 0, a: 0.37254903}
+    - Color_75D20D80: {r: 1, g: 0.5, b: 0.5, a: 0}
     - Color_A64D17DF: {r: 0, g: 0, b: 0, a: 0}
     - Color_A92BBE3A: {r: 1, g: 0.8962264, b: 0.8962264, a: 0}
     - Color_AA8162C7: {r: 0, g: 0, b: 0, a: 0}

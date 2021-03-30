@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TestDefaultCombatFeedback
   m_EditorClassIdentifier: 
   flickerMaterial: {fileID: 2100000, guid: 3e4a672b81f56ac4b804ce167ac889bb, type: 2}
-  flickerDuration: 0.25
+  flickerDuration: 0.5
