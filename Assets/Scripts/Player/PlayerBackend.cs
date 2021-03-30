@@ -11,9 +11,11 @@ public class PlayerBackend : MonoBehaviour
     public bool invuln = false;
     public float invinceDuration = 0.25f;
     public CombatFeedbackDisplay feedbackDisplay;
+    CSNetworkManager networkManager;
     private void Start()
     {
         manager = GameObject.FindGameObjectWithTag("CheckpointManager").GetComponent<CheckpointManager>();
+        networkManager = FindObjectOfType<CSNetworkManager>();
         feedbackDisplay.feedback.flickerDuration = invinceDuration;
     }
 
@@ -32,7 +34,7 @@ public class PlayerBackend : MonoBehaviour
         invuln = false;
     }
 
-    public void takeDamage(float dmg, float knockbackScalar = 60.0f)
+    public void takeDamage(float dmg, float knockbackScalar = 60.0f, bool local = true)
     {
         if (!invuln)
         {
@@ -41,6 +43,9 @@ public class PlayerBackend : MonoBehaviour
             invuln = true;
             StartCoroutine("InvinceFrame");
             feedbackDisplay.OnTakeDamage();
+
+            if(local)
+                networkManager.SendTakeDamage(dmg);
         }
     }
 
