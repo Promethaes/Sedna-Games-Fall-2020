@@ -155,10 +155,8 @@ public class PlayerController : MonoBehaviour
         switch (playerType)
         {
             case PlayerType.BISON:
-                _setCombo(10.0f + 30.0f, 25.0f+ 30.0f, 35.0f+ 30.0f, 0.7f, 1.0f, 1.10f);
-                backend.maxHP = 259.0f;
-                //temp, please remove in refactor
-                knockbackScalar = 50.0f;
+                _setCombo(10.0f, 25.0f, 50.0f, 0.7f, 1.0f, 1.10f);
+                backend.maxHP = 250;
                 break;
             case PlayerType.POLAR_BEAR:
                 _setCombo(10.0f+ 30.0f, 35.0f+ 30.0f, 60.0f+ 30.0f, 0.90f / 1.21f, 1.20f / 1.45f, 0.80f / 0.56f);
@@ -680,7 +678,7 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator Charge()
     {
-        Debug.Log("Start Charge");
+        //Debug.Log("Start Charge");
         _chargeDuration = 3.0f;
         _dashCooldown = _chargeDuration;
         _jumpCooldown = _chargeDuration;
@@ -701,7 +699,7 @@ public class PlayerController : MonoBehaviour
         turnSpeed = turn;
         abilityHitbox.gameObject.SetActive(false);
         _abilityCD = 10.0f;
-        Debug.Log("End Charge");
+        //Debug.Log("End Charge");
     }
 
     void _Attack()
@@ -732,13 +730,13 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        RaycastHit enemy;
-        if (Physics.Raycast(transform.position, _playerMesh.transform.forward, out enemy, 5.0f) && enemy.transform.tag == "Enemy")
-        {
-            EnemyData foe = enemy.collider.GetComponent<EnemyData>();
-            foe.takeDamage(damageValues[comboCounter]);
-            hitEnemy = true;
-        }
+        //RaycastHit enemy;
+        //if (Physics.Raycast(transform.position, _playerMesh.transform.forward, out enemy, 5.0f) && enemy.transform.tag == "Enemy")
+        //{
+        //    EnemyData foe = enemy.collider.GetComponent<EnemyData>();
+        //    foe.takeDamage(damageValues[comboCounter]);
+        //    hitEnemy = true;
+        //}
 
         comboCounter++;
         if (comboCounter > 2) comboCounter = 0;
