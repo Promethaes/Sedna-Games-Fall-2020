@@ -159,7 +159,7 @@ public class PlayerController : MonoBehaviour
                 backend.maxHP = 250;
                 break;
             case PlayerType.POLAR_BEAR:
-                _setCombo(10.0f+ 30.0f, 35.0f+ 30.0f, 60.0f+ 30.0f, 0.90f / 1.21f, 1.20f / 1.45f, 0.80f / 0.56f);
+                _setCombo(10.0f + 30.0f, 35.0f + 30.0f, 60.0f + 30.0f, 0.90f / 1.21f, 1.20f / 1.45f, 0.80f / 0.56f);
                 backend.maxHP = 150.0f;
                 knockbackScalar = 25.0f;
                 break;
@@ -280,8 +280,9 @@ public class PlayerController : MonoBehaviour
 
             if (!selectWheel && _confirmWheel)
                 _ConfirmWheel();
+            
+            _Move();
         }
-        _Move();
     }
 
 
