@@ -686,6 +686,7 @@ MonoBehaviour:
   invuln: 0
   invinceDuration: 0.5
   feedbackDisplay: {fileID: 5263470051661380356}
+  playerController: {fileID: 816510627477673577}
 --- !u!114 &5369776141784647949
 MonoBehaviour:
   m_ObjectHideFlags: 0
