@@ -14,7 +14,7 @@ public class PlayerBackend : MonoBehaviour
     CSNetworkManager networkManager;
     private void Start()
     {
-        manager = GameObject.FindGameObjectWithTag("CheckpointManager").GetComponent<CheckpointManager>();
+        manager = FindObjectOfType<CheckpointManager>();
         networkManager = FindObjectOfType<CSNetworkManager>();
         feedbackDisplay.feedback.flickerDuration = invinceDuration;
     }
@@ -22,6 +22,13 @@ public class PlayerBackend : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!manager)
+        {
+            Debug.Log(gameObject.name + " Attempting to get checkpoint manager, since it was null on update");
+            manager = FindObjectOfType<CheckpointManager>();
+            if (manager)
+                Debug.Log(gameObject.name + " Found the checkpoint manager");
+        }
         if (hp <= 0.0f)
             KillPlayer();
         if (hp > maxHP)
@@ -34,7 +41,7 @@ public class PlayerBackend : MonoBehaviour
         invuln = false;
     }
 
-    public void takeDamage(float dmg, float knockbackScalar = 60.0f)
+    public void takeDamage(float dmg, float knockbackScalar = 60.0f, bool local = true)
     {
         if (!invuln)
         {
@@ -44,7 +51,8 @@ public class PlayerBackend : MonoBehaviour
             StartCoroutine("InvinceFrame");
             feedbackDisplay.OnTakeDamage();
 
-            networkManager.SendCurrentHP(hp);
+            if (local)
+                networkManager.SendCurrentHP(hp);
         }
     }
 

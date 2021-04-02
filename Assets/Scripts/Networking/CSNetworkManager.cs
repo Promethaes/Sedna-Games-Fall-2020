@@ -569,6 +569,7 @@ public class CSNetworkManager : MonoBehaviour
             else if (command.Contains("hp"))
             {
                 p.GetComponent<PlayerBackend>().hp = float.Parse(parts[4]);
+                p.GetComponent<PlayerBackend>().takeDamage(0.0f, 60.0f, false);
                 return true;
             }
 
