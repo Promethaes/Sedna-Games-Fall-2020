@@ -65,7 +65,7 @@ public class PlayerBackend : MonoBehaviour
         invuln = false;
     }
 
-    public void takeDamage(float dmg, float knockbackScalar = 60.0f, bool local = true)
+    public void takeDamage(float dmg, float knockbackScalar = 60.0f)
     {
         if (!invuln)
         {
@@ -75,7 +75,7 @@ public class PlayerBackend : MonoBehaviour
             StartCoroutine("InvinceFrame");
             feedbackDisplay.OnTakeDamage();
 
-            if (local)
+            if (!gameObject.name.Contains("REMOTE"))
                 networkManager.SendCurrentHP(hp);
             if (hp <= 0.0f)
                 playerController.downed = true;
