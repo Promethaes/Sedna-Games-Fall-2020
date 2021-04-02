@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Arctic Clouds - Plane
+  m_Name: Arctic Cloud 1
   m_Shader: {fileID: -6465566751694194690, guid: 0e00b4b2be801f14d97f711dbf027ce7,
     type: 3}
   m_ShaderKeywords: 
@@ -34,7 +34,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_F0C30D19:
-        m_Texture: {fileID: 2800000, guid: 11e02e6f070547948b3e3e4eda47b41b, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -67,19 +67,19 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_20094A51: 2
-    - Vector1_3488034B: 4.2
+    - Vector1_3488034B: 3.19
     - Vector1_4BCF4099: 0
-    - Vector1_4C7E06A7: 4.56
+    - Vector1_4C7E06A7: 12.1
     - Vector1_5674E9B0: 0
-    - Vector1_5D9E4176: 1
-    - Vector1_61E72A29: 0.45
-    - Vector1_62CB3AE6: -0.21
-    - Vector1_806F0ED2: 0.001
+    - Vector1_5D9E4176: 0
+    - Vector1_61E72A29: 0.75
+    - Vector1_62CB3AE6: -1.2
+    - Vector1_806F0ED2: 0.0007
     - Vector1_873DED01: 1
-    - Vector1_98AD7CD9: 0.19
-    - Vector1_AD8E5D38: 1
-    - Vector1_C0BA46FF: 0.41
-    - Vector1_CBB57BD0: 0.23
+    - Vector1_98AD7CD9: 0.05
+    - Vector1_AD8E5D38: 4.5
+    - Vector1_C0BA46FF: 0.51
+    - Vector1_CBB57BD0: 20
     - Vector1_DBCDD5FC: 0
     - Vector1_DC5B6B9E: 0
     - Vector1_EF4FB3D4: 0
@@ -106,12 +106,12 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_2040761B: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 0}
-    - Color_2A6A4136: {r: 0, g: 0, b: 0, a: 0}
-    - Color_536B569D: {r: 1, g: 1, b: 1, a: 0}
-    - Color_ACF9FF3C: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
-    - Color_CFB2819C: {r: 1, g: 1, b: 1, a: 0}
-    - Color_DD498D27: {r: 0, g: 0.06768179, b: 1, a: 0}
+    - Color_2040761B: {r: 0.6509804, g: 0.79607844, b: 1, a: 0}
+    - Color_2A6A4136: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 0}
+    - Color_536B569D: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 0}
+    - Color_ACF9FF3C: {r: 0, g: 0, b: 0, a: 1}
+    - Color_CFB2819C: {r: 0.6509434, g: 0.79467255, b: 1, a: 0}
+    - Color_DD498D27: {r: 0.41671613, g: 0.38679248, b: 1, a: 0}
     - Vector4_1C91BFA0: {r: 1, g: 1, b: 1, a: 90}
     - Vector4_656E1F9C: {r: 0.88, g: 1.12, b: 0.76, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
