@@ -175,17 +175,4 @@ public class EnemySpawnPoint : MonoBehaviour
         if (other.gameObject.tag == "Player")
             _shouldSpawn = false;
     }
-
-    private void OnDisable()
-    {
-        var backends = FindObjectsOfType<PlayerBackend>();
-        if (backends.Length != 0)
-        {
-            foreach (var back in backends)
-            {
-                back.playerController.downed = false;
-                back.hp = back.maxHP;
-            }
-        }
-    }
 }
