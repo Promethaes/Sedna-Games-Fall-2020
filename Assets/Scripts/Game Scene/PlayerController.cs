@@ -186,12 +186,13 @@ public class PlayerController : MonoBehaviour
         damageValues = originalDamageValues;
     }
     Vector3 nLastPos = new Vector3();
+    Quaternion nLastRot = new Quaternion();
     void SendMovemnt()
     {
-        Debug.Log((gameObject.transform.position - nLastPos).magnitude);
-        if ((gameObject.transform.position - nLastPos).magnitude >= 0.1f * Time.deltaTime)
+        if ((gameObject.transform.position - nLastPos).magnitude >= 0.1f * Time.deltaTime || (_playerMesh.transform.rotation != nLastRot))
             sendMovement = true;
         nLastPos = gameObject.transform.position;
+        nLastRot = _playerMesh.transform.rotation;
     }
 
     void Update()

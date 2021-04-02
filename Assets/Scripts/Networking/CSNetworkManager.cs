@@ -199,9 +199,9 @@ public class CSNetworkManager : MonoBehaviour
         client.Send("cli " + localPlayers[0].clientNumber.ToString() + " cut " + cutsceneIndex.ToString());
     }
 
-    public void SendTakeDamage(float damage)
+    public void SendCurrentHP(float damage)
     {
-        client.Send("cli " + localPlayers[0].clientNumber.ToString() + " plr dmg " + damage.ToString());
+        client.Send("cli " + localPlayers[0].clientNumber.ToString() + " plr hp " + damage.ToString());
     }
 
     public float sendRateFPS = 60.0f;
@@ -568,7 +568,7 @@ public class CSNetworkManager : MonoBehaviour
             }
             else if (command.Contains("dmg"))
             {
-                p.GetComponent<PlayerBackend>().takeDamage(float.Parse(parts[4]), local: false);
+                p.GetComponent<PlayerBackend>().hp = float.Parse(parts[4]);
                 return true;
             }
 
