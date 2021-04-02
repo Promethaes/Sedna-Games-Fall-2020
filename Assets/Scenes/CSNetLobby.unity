@@ -555,7 +555,7 @@ MonoBehaviour:
   send: 1
   interpetCommands: 1
   sessionID: -1
-  IPADDRESS: 54.205.45.165
+  IPADDRESS: 192.168.0.46
   isHostClient: 0
   wetlandsOrArctic: 1
   sendRateFPS: 3

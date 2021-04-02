@@ -28,8 +28,10 @@ public class CombatFeedbackDisplay : MonoBehaviour
         FindSkinnedMeshRenderer();
     }
 
-    private void Update() {
-        if(test){
+    private void Update()
+    {
+        if (test)
+        {
             test = false;
             OnTakeDamage();
         }

@@ -11,19 +11,52 @@ public class PlayerBackend : MonoBehaviour
     public bool invuln = false;
     public float invinceDuration = 0.25f;
     public CombatFeedbackDisplay feedbackDisplay;
+    CSNetworkManager networkManager;
+    public PlayerController playerController;
+    static List<PlayerBackend> backends = new List<PlayerBackend>();
+    int index = -1;
     private void Start()
     {
-        manager = GameObject.FindGameObjectWithTag("CheckpointManager").GetComponent<CheckpointManager>();
+        backends.Add(this);
+        index = backends.Count - 1;
+
+        manager = FindObjectOfType<CheckpointManager>();
+        networkManager = FindObjectOfType<CSNetworkManager>();
         feedbackDisplay.feedback.flickerDuration = invinceDuration;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (hp <= 0.0f)
-            KillPlayer();
+        if (!manager)
+        {
+            Debug.Log(gameObject.name + " Attempting to get checkpoint manager, since it was null on update");
+            manager = FindObjectOfType<CheckpointManager>();
+            if (manager)
+                Debug.Log(gameObject.name + " Found the checkpoint manager");
+        }
+
         if (hp > maxHP)
             hp = maxHP;
+
+        CheckReset();
+    }
+
+    static void CheckReset()
+    {
+        bool allDead = true;
+        foreach (var back in backends)
+            if (back.hp > 0.0f)
+            {
+                allDead = false;
+                break;
+            }
+
+        if (!backends[0].manager)
+            Debug.LogError(backends[0].name + "Manager is null reference!");
+        else if (allDead && backends[0].manager)
+            backends[0].manager.reset();
+
     }
 
     IEnumerator InvinceFrame()
@@ -41,43 +74,12 @@ public class PlayerBackend : MonoBehaviour
             invuln = true;
             StartCoroutine("InvinceFrame");
             feedbackDisplay.OnTakeDamage();
-        }
-    }
 
-    public void KillPlayer()
-    {
-        if (!manager)
-        {
-            Debug.LogError("CheckpointManager was null! Could not kill Players!");
-            return;
-        }
-        else if (!manager.playerManager)
-        {
-            Debug.LogError("CheckpointManager.PlayerManager was null! Could not kill Players!");
-            return;
-        }
-        else if (manager.playerManager.players == null)
-        {
-            Debug.LogError("CheckpointManager.PlayerManager.Players was null! Could not kill Players!");
-            return;
-        }
+            if (!gameObject.name.Contains("REMOTE"))
+                networkManager.SendCurrentHP(hp);
+            if (hp <= 0.0f)
+                playerController.downed = true;
 
-        int _counter = 0;
-        for (int i = 0; i < manager.playerManager.players.Count; i++)
-        {
-            GameObject player = manager.playerManager.players[i];
-            if (player.GetComponent<PlayerBackend>().hp <= 0.0f)
-            {
-                _counter++;
-                player.GetComponent<PlayerController>().downed = true;
-            }
-            if (player == gameObject)
-                manager.uml.csLogDeath(new UserMetricsLoggerScript.Death("temp", Time.time, i + 1));
-
-        }
-        if (_counter == manager.playerManager.players.Count)
-        {
-            manager.reset();
         }
     }
 }

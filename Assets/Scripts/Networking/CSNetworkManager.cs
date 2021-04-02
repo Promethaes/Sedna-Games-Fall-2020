@@ -199,6 +199,11 @@ public class CSNetworkManager : MonoBehaviour
         client.Send("cli " + localPlayers[0].clientNumber.ToString() + " cut " + cutsceneIndex.ToString());
     }
 
+    public void SendCurrentHP(float hp)
+    {
+        client.Send("cli " + localPlayers[0].clientNumber.ToString() + " plr hp " + hp.ToString());
+    }
+
     public float sendRateFPS = 60.0f;
     float timer = 0.0f;
     float changeTimer = 3.0f;
@@ -559,6 +564,17 @@ public class CSNetworkManager : MonoBehaviour
             else if (command.Contains("jmp"))
             {
                 p.GetComponent<PlayerController>().isJumping = true;
+                return true;
+            }
+            else if (command.Contains("hp"))
+            {
+                p.GetComponent<PlayerBackend>().hp = float.Parse(parts[4]);
+                p.GetComponent<PlayerBackend>().takeDamage(0.0f, 60.0f);
+                return true;
+            }
+            else if (command.Contains("down"))
+            {
+                p.GetComponent<PlayerController>().downed = true;
                 return true;
             }
 

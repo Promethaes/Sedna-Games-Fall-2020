@@ -159,7 +159,7 @@ public class PlayerController : MonoBehaviour
                 backend.maxHP = 250;
                 break;
             case PlayerType.POLAR_BEAR:
-                _setCombo(10.0f+ 30.0f, 35.0f+ 30.0f, 60.0f+ 30.0f, 0.90f / 1.21f, 1.20f / 1.45f, 0.80f / 0.56f);
+                _setCombo(10.0f + 30.0f, 35.0f + 30.0f, 60.0f + 30.0f, 0.90f / 1.21f, 1.20f / 1.45f, 0.80f / 0.56f);
                 backend.maxHP = 150.0f;
                 knockbackScalar = 25.0f;
                 break;
@@ -186,11 +186,13 @@ public class PlayerController : MonoBehaviour
         damageValues = originalDamageValues;
     }
     Vector3 nLastPos = new Vector3();
+    Quaternion nLastRot = new Quaternion();
     void SendMovemnt()
     {
-        if ((gameObject.transform.position - nLastPos).magnitude != 0.0f)
+        if ((gameObject.transform.position - nLastPos).magnitude >= 0.1f * Time.deltaTime || (_playerMesh.transform.rotation != nLastRot))
             sendMovement = true;
         nLastPos = gameObject.transform.position;
+        nLastRot = _playerMesh.transform.rotation;
     }
 
     void Update()
@@ -200,8 +202,11 @@ public class PlayerController : MonoBehaviour
 
         if (downed || inCutscene)
         {
+            _rigidbody.isKinematic = true;
             return;
         }
+        else if (!downed || !inCutscene)
+            _rigidbody.isKinematic = false;
 
         if (_animator)
         {
@@ -278,8 +283,9 @@ public class PlayerController : MonoBehaviour
 
             if (!selectWheel && _confirmWheel)
                 _ConfirmWheel();
+
+            _Move();
         }
-        _Move();
     }
 
 
@@ -406,7 +412,7 @@ public class PlayerController : MonoBehaviour
             var pos = gameObject.transform.position;
             pos.y = 0.0f;
             if (_animator && !_animator.GetBool("attacking") && !_animator.GetBool("jumping"))
-                _animator.SetBool("walking", Mathf.Abs(pos.magnitude - _lastPos.magnitude) >= 0.1f);
+                _animator.SetBool("walking", Mathf.Abs(pos.magnitude - _lastPos.magnitude) >= 0.1f * Time.deltaTime);
 
             _lastPos = pos;
             _isGrounded = Physics.Raycast(transform.position, -transform.up, out terrain, 0.6f);
