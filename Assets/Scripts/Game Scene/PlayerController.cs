@@ -202,8 +202,11 @@ public class PlayerController : MonoBehaviour
 
         if (downed || inCutscene)
         {
+            _rigidbody.isKinematic = true;
             return;
         }
+        else if (!downed || !inCutscene)
+            _rigidbody.isKinematic = false;
 
         if (_animator)
         {
@@ -280,7 +283,7 @@ public class PlayerController : MonoBehaviour
 
             if (!selectWheel && _confirmWheel)
                 _ConfirmWheel();
-            
+
             _Move();
         }
     }
