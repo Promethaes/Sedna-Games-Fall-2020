@@ -59,15 +59,15 @@ public class EnemySpawnPoint : MonoBehaviour
         if (!networkManager.isHostClient)
             return;
 
-       desyncTimer -= Time.deltaTime;
-       if (desyncTimer <= 0.0f)
-       {
-           for (int i = 0; i < spawnEnemies.Count; i++)
-               if (spawnEnemies[i].activeSelf)
-                   networkManager.SendEnemyDesyncUpdate(spawnPointIndex, i, spawnEnemies[i].transform.position);
+        desyncTimer -= Time.deltaTime;
+        if (desyncTimer <= 0.0f)
+        {
+            for (int i = 0; i < spawnEnemies.Count; i++)
+                if (spawnEnemies[i].activeSelf)
+                    networkManager.SendEnemyDesyncUpdate(spawnPointIndex, i, spawnEnemies[i].transform.position);
 
-           desyncTimer = 10.0f;
-       }
+            desyncTimer = 10.0f;
+        }
 
     }
 
@@ -174,5 +174,18 @@ public class EnemySpawnPoint : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
             _shouldSpawn = false;
+    }
+
+    private void OnDisable()
+    {
+        var backends = FindObjectsOfType<PlayerBackend>();
+        if (backends.Length != 0)
+        {
+            foreach (var back in backends)
+            {
+                back.playerController.downed = false;
+                back.hp = back.maxHP;
+            }
+        }
     }
 }
