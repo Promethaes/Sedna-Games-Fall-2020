@@ -566,7 +566,7 @@ public class CSNetworkManager : MonoBehaviour
                 p.GetComponent<PlayerController>().isJumping = true;
                 return true;
             }
-            else if (command.Contains("dmg"))
+            else if (command.Contains("hp"))
             {
                 p.GetComponent<PlayerBackend>().hp = float.Parse(parts[4]);
                 return true;
