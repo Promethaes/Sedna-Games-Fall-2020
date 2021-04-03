@@ -50,7 +50,7 @@ public class SceneNavigationScript : MonoBehaviour
     }
     public void ChangeToLeaderboards()
     {
-
+        UnityEngine.SceneManagement.SceneManager.LoadScene("LeaderboardScene");
     }
     public void ChangeToStartMenu()
     {
