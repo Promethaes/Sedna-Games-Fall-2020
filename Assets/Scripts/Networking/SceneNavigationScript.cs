@@ -46,7 +46,14 @@ public class SceneNavigationScript : MonoBehaviour
 
     public void ChangeToLobbyView()
     {
-        //not yet implemented
         UnityEngine.SceneManagement.SceneManager.LoadScene("ViewLobbies");
+    }
+    public void ChangeToLeaderboards()
+    {
+
+    }
+    public void ChangeToStartMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("StartMenu2");
     }
 }
