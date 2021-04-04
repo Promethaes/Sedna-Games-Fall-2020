@@ -95,8 +95,7 @@ public class CSNetworkManager : MonoBehaviour
     public bool send = false;
     public bool interpetCommands = true;
     public int sessionID = -1;
-    [SerializeField]
-    private string IPADDRESS;
+    public string IPADDRESS;
 
     public List<PlayerConfiguration> localPlayers = new List<PlayerConfiguration>();
     List<PlayerConfiguration> remotePlayers = new List<PlayerConfiguration>();
@@ -106,6 +105,8 @@ public class CSNetworkManager : MonoBehaviour
     public bool isHostClient = false;
     //false is for wetlands, true is for arctic
     public bool wetlandsOrArctic = false;
+
+    public LeaderboardMetricsManager leaderboard;
 
     //[SerializeField]
     //UnityEvent OnSpawnEnemy;
@@ -370,8 +371,10 @@ public class CSNetworkManager : MonoBehaviour
                         var parts = client.backlog[i].Split(' ');
                         lplayer.clientNumber = int.Parse(parts[1]);
                         sessionID = int.Parse(parts[2]);
-                        if (lplayer.clientNumber == 0)
+                        if (lplayer.clientNumber == 0){
                             isHostClient = true;
+                            leaderboard.gameObject.SetActive(true);
+                        }
                         break;
                     }
                 }
