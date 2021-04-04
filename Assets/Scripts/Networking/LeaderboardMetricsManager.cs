@@ -7,7 +7,7 @@ public class LeaderboardMetricsManager : MonoBehaviour
     Client client;
     public int enemiesDefeated = 0;
     public CSNetworkManager nm;
-
+    public float sendMetricsInterval = 10.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,11 +19,19 @@ public class LeaderboardMetricsManager : MonoBehaviour
             return;
         }
         DontDestroyOnLoad(gameObject);
+
+        StartCoroutine("SendMetrics");
+    }
+    IEnumerator SendMetrics()
+    {
+        yield return new WaitForSeconds(sendMetricsInterval);
+        SendLeaderboardStats();
+        Debug.Log("Sent Leaderboard Metrics");
+        StartCoroutine("SendMetrics");
     }
 
     private void OnDestroy()
     {
-        SendLeaderboardStats();
         client.leave = true;
 
         client.clientSocket.Close();
@@ -31,7 +39,6 @@ public class LeaderboardMetricsManager : MonoBehaviour
     public void SendLeaderboardStats()
     {
         float seconds = Time.time;
-        Debug.Log(seconds);
         int minutes = 0;
         int hours = 0;
 
@@ -51,7 +58,7 @@ public class LeaderboardMetricsManager : MonoBehaviour
 
         string timeTaken = hours.ToString() + ":" + minutes.ToString() + ":" + seconds.ToString();
 
-        string fstring = PlayerPrefs.GetString("pid","Player") + " ldr defeated " + enemiesDefeated.ToString() + " " + timeTaken;
+        string fstring = PlayerPrefs.GetString("pid", "Player") + " ldr defeated " + enemiesDefeated.ToString() + " " + timeTaken;
         client.Send(fstring);
     }
 }
