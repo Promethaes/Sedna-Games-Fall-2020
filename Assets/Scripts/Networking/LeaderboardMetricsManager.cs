@@ -31,6 +31,7 @@ public class LeaderboardMetricsManager : MonoBehaviour
     public void SendLeaderboardStats()
     {
         float seconds = Time.time;
+        Debug.Log(seconds);
         int minutes = 0;
         int hours = 0;
 

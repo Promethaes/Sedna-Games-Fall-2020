@@ -15,7 +15,7 @@ public class LeaderboardScript : MonoBehaviour
 
     //Networking
     Client _leaderboardClient = null;
-    public string serverIP;
+    string serverIP;
     Thread recThread = null;
     void SendLeaderboardRequest()
     {
@@ -63,6 +63,11 @@ public class LeaderboardScript : MonoBehaviour
     }
     private void Start()
     {
+        serverIP = PlayerPrefs.GetString("serverIP","127.0.0.1");
+
+        if(serverIP == "127.0.0.1")
+            UnityEngine.SceneManagement.SceneManager.LoadScene("OnlineMenu");
+
         _leaderboardClient = new Client(serverIP);
         recThread = new Thread(_leaderboardClient.Receive);
         recThread.Start();

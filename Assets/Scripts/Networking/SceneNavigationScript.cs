@@ -8,8 +8,17 @@ public class SceneNavigationScript : MonoBehaviour
     public TMPro.TMP_InputField SIDField;
     public TMPro.TMP_InputField nameField;
 
+    public TMPro.TMP_InputField ipField;
+
     public int roomButtonSID = 9999;
     public int roomOccupents = -1;
+
+    private void Start()
+    {
+        if (ipField)
+            ipField.text = PlayerPrefs.GetString("serverIP", "127.0.0.1");
+    }
+
     public void JoinLobby()
     {
         if (SIDField.text != "")
@@ -55,5 +64,11 @@ public class SceneNavigationScript : MonoBehaviour
     public void ChangeToStartMenu()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("StartMenu2");
+    }
+
+    public void SetServerIP(string ip)
+    {
+        PlayerPrefs.SetString("serverIP", ip);
+        Debug.Log("Set Server IP to " + ip);
     }
 }

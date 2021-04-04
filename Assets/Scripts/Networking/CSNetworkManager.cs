@@ -114,6 +114,7 @@ public class CSNetworkManager : MonoBehaviour
     void Start()
     {
         //IPADDRESS = PlayerPrefs.GetString("ip","192.168.0.46");
+        IPADDRESS = PlayerPrefs.GetString("serverIP","127.0.0.1");
         sessionID = int.Parse(PlayerPrefs.GetString("SID"));
         client = new Client(IPADDRESS);
         recThread = new Thread(client.Receive);
