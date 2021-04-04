@@ -148,6 +148,7 @@ public class EnemyData : MonoBehaviour
         var networkManager = FindObjectOfType<CSNetworkManager>();
         if (networkManager)
             networkManager.SendEnemyDeath(spawnPointIndex, enemyIndex);
+        
     }
 
     public void setHealth(float hp)
@@ -220,6 +221,11 @@ public class EnemyData : MonoBehaviour
             if (Random.Range(0.0f, 1.0f) < 0.2f)
                 HealthOrbManager.GetHealthOrbManager().getOrb(transform.position);
         }
+        
+        var leaderboard = FindObjectOfType<LeaderboardMetricsManager>();
+        if(leaderboard)
+            leaderboard.enemiesDefeated++;
+
         gameObject.SetActive(false);
     }
 
