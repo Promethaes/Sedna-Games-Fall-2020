@@ -119,7 +119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64d83f8b10dae7844bb00ca5807e9623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crack: {fileID: 2904086919729240083}
   crackPieces:
   - {fileID: 3133790591074504188}
   - {fileID: 1993622370241265592}
@@ -956,7 +955,7 @@ PrefabInstance:
     - target: {fileID: 79799615358661810, guid: 6950517d2de6fbd499322199ac3579e4,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.25
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6124581922203187385, guid: 6950517d2de6fbd499322199ac3579e4,
         type: 3}
