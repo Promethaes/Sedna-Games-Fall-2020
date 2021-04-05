@@ -32,4 +32,17 @@ public class CombatZone : MonoBehaviour
             foreach (var esp in enemySpawnPoints)
                 esp.sendDesyncUpdate = true;
     }
+
+    private void OnDisable()
+    {
+        var backends = FindObjectsOfType<PlayerBackend>();
+        if (backends.Length != 0)
+        {
+            foreach (var back in backends)
+            {
+                back.playerController.downed = false;
+                back.hp = back.maxHP;
+            }
+        }
+    }
 }

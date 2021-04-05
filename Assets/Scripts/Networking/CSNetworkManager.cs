@@ -95,8 +95,7 @@ public class CSNetworkManager : MonoBehaviour
     public bool send = false;
     public bool interpetCommands = true;
     public int sessionID = -1;
-    [SerializeField]
-    private string IPADDRESS;
+    public string IPADDRESS;
 
     public List<PlayerConfiguration> localPlayers = new List<PlayerConfiguration>();
     List<PlayerConfiguration> remotePlayers = new List<PlayerConfiguration>();
@@ -107,12 +106,15 @@ public class CSNetworkManager : MonoBehaviour
     //false is for wetlands, true is for arctic
     public bool wetlandsOrArctic = false;
 
+    public LeaderboardMetricsManager leaderboard;
+
     //[SerializeField]
     //UnityEvent OnSpawnEnemy;
 
     void Start()
     {
         //IPADDRESS = PlayerPrefs.GetString("ip","192.168.0.46");
+        IPADDRESS = PlayerPrefs.GetString("serverIP","127.0.0.1");
         sessionID = int.Parse(PlayerPrefs.GetString("SID"));
         client = new Client(IPADDRESS);
         recThread = new Thread(client.Receive);
@@ -197,6 +199,11 @@ public class CSNetworkManager : MonoBehaviour
     public void SendCutsceneStart(int cutsceneIndex)
     {
         client.Send("cli " + localPlayers[0].clientNumber.ToString() + " cut " + cutsceneIndex.ToString());
+    }
+
+    public void SendCurrentHP(float hp)
+    {
+        client.Send("cli " + localPlayers[0].clientNumber.ToString() + " plr hp " + hp.ToString());
     }
 
     public float sendRateFPS = 60.0f;
@@ -365,8 +372,10 @@ public class CSNetworkManager : MonoBehaviour
                         var parts = client.backlog[i].Split(' ');
                         lplayer.clientNumber = int.Parse(parts[1]);
                         sessionID = int.Parse(parts[2]);
-                        if (lplayer.clientNumber == 0)
+                        if (lplayer.clientNumber == 0){
                             isHostClient = true;
+                            leaderboard.gameObject.SetActive(true);
+                        }
                         break;
                     }
                 }
@@ -559,6 +568,17 @@ public class CSNetworkManager : MonoBehaviour
             else if (command.Contains("jmp"))
             {
                 p.GetComponent<PlayerController>().isJumping = true;
+                return true;
+            }
+            else if (command.Contains("hp"))
+            {
+                p.GetComponent<PlayerBackend>().hp = float.Parse(parts[4]);
+                p.GetComponent<PlayerBackend>().takeDamage(0.0f, 60.0f);
+                return true;
+            }
+            else if (command.Contains("down"))
+            {
+                p.GetComponent<PlayerController>().downed = true;
                 return true;
             }
 

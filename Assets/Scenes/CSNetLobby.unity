@@ -121,6 +121,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: bf3d1bb574eb2504a9c673f421fefb27, type: 2}
+--- !u!1 &164849529
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 164849531}
+  - component: {fileID: 164849530}
+  m_Layer: 0
+  m_Name: LeaderboardMetricsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &164849530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164849529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f8ae8ff0abe45428914c08ca5abe8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemiesDefeated: 0
+  test: 0
+  nm: {fileID: 1326626067}
+--- !u!4 &164849531
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164849529}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1023.7331, y: 588.60266, z: -65.16235}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &180249115
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,9 +601,10 @@ MonoBehaviour:
   send: 1
   interpetCommands: 1
   sessionID: -1
-  IPADDRESS: 54.205.45.165
+  IPADDRESS: 192.168.0.46
   isHostClient: 0
   wetlandsOrArctic: 1
+  leaderboard: {fileID: 164849530}
   sendRateFPS: 3
   smoothMovementLerpSpeed: 3
 --- !u!4 &1326626068

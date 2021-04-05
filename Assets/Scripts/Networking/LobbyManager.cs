@@ -5,7 +5,7 @@ using System.Threading;
 
 public class LobbyManager : MonoBehaviour
 {
-    public string serverIP = "";
+    string serverIP = "";
     Client _lobbyClient = null;
     Thread recThread = null;
     public GameObject roomPrefab;
@@ -16,6 +16,7 @@ public class LobbyManager : MonoBehaviour
 
     void Start()
     {
+        serverIP = PlayerPrefs.GetString("serverIP","127.0.0.1");
         _lobbyClient = new Client(serverIP);
         recThread = new Thread(_lobbyClient.Receive);
         recThread.Start();
