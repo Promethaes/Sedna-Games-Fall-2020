@@ -14,7 +14,7 @@ public class ChargeHitbox : MonoBehaviour
 
             //Knockback
             var dir = Vector3.Normalize(foe.transform.position - transform.position);
-            foe.GetComponentInParent<Rigidbody>().AddForce(dir*100.0f, ForceMode.Impulse);
+            foe.GetComponentInParent<Rigidbody>().AddForce(Secrets.limitKnockBack(dir*100.0f), ForceMode.Impulse);
             player.hitEnemy = true;
         }
     }
