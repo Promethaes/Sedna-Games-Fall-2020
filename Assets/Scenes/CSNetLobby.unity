@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -151,8 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesDefeated: 0
-  test: 0
   nm: {fileID: 1326626067}
+  sendMetricsInterval: 10
 --- !u!4 &164849531
 Transform:
   m_ObjectHideFlags: 0
@@ -605,8 +605,8 @@ MonoBehaviour:
   isHostClient: 0
   wetlandsOrArctic: 1
   leaderboard: {fileID: 164849530}
-  sendRateFPS: 3
-  smoothMovementLerpSpeed: 3
+  sendRateFPS: 5
+  smoothMovementLerpSpeed: 5
 --- !u!4 &1326626068
 Transform:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public class Shooter : MonoBehaviour
 {
     public GameObject[] projectiles;
     public Transform muzzle;
+    public GameObject target;
 
     public float projectileSpeed = 1.0f;
 
@@ -26,7 +27,7 @@ public class Shooter : MonoBehaviour
             var bullet = Instantiate(projectiles[0]);
             bullet.transform.position = muzzle.position;
             bullet.gameObject.SetActive(true);
-            bullet.transform.LookAt(muzzle.position+muzzle.forward);
+            bullet.transform.LookAt(target.transform);
             bullet.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed);
             yield return new WaitForSeconds(0.25f);
         }
@@ -38,7 +39,7 @@ public class Shooter : MonoBehaviour
         var bullet = Instantiate(projectiles[1]);
         bullet.transform.position = muzzle.position;
         bullet.gameObject.SetActive(true);
-        bullet.transform.LookAt(transform.position+transform.forward);
+        bullet.transform.LookAt(target.transform);
         bullet.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed);
         yield return null;
     }
