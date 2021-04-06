@@ -562,7 +562,9 @@ public class PlayerController : MonoBehaviour
             case PlayerType.TURTLE: StartCoroutine(Buff()); break;
             case PlayerType.POLAR_BEAR: StartCoroutine(Roar()); break;
             case PlayerType.RATTLESNAKE: StartCoroutine(Venom()); break;
-            case PlayerType.BISON: StartCoroutine(Charge()); break;
+            case PlayerType.BISON: 
+                if(Secrets.FlyingBison||_isGrounded)
+                    StartCoroutine(Charge()); break;
         }
     }
 
@@ -692,11 +694,21 @@ public class PlayerController : MonoBehaviour
         turnSpeed *= _chargeMultiplier;
         GetComponent<PlayerBackend>().invuln = true;
         abilityHitbox.gameObject.SetActive(true);
+        float inAirTime = 0.0f;
         while (_chargeDuration > 0.0f)
         {
+            bool myGrounded = Physics.Raycast(transform.position, -transform.up, out terrain, 0.6f);//is grounded seems to not work so i contructed my own
+            if (!myGrounded)
+            {
+                inAirTime += Time.deltaTime;
+            }
+                
+            
             _chargeDuration -= Time.deltaTime;
             _rigidbody.velocity = new Vector3(playerCamera.transform.forward.x * moveSpeed * _chargeMultiplier, -1.0f, playerCamera.transform.forward.z * moveSpeed * _chargeMultiplier);
             _playerMesh.transform.rotation = Quaternion.Euler(0.0f, Mathf.SmoothDampAngle(_playerMesh.transform.eulerAngles.y, playerCamera.transform.eulerAngles.y, ref turnSpeed, 0.05f), 0.0f);
+            if (inAirTime >= 0.125f)
+                break;
             yield return null;
         }
         _charging = false;
@@ -731,7 +743,7 @@ public class PlayerController : MonoBehaviour
         if (!remotePlayer)
         {
             _rigidbody.velocity = Vector3.zero;
-            _rigidbody.AddForce(_playerMesh.transform.forward * attackDistance, ForceMode.Impulse);
+            _rigidbody.AddForce(Secrets.limitKnockBack(_playerMesh.transform.forward * attackDistance), ForceMode.Impulse);
         }
 
 
