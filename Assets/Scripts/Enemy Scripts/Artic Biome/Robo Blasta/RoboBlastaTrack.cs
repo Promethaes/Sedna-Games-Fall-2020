@@ -59,6 +59,7 @@ public class RoboBlastaTrack : StateMachineBehaviour
                         animator.SetBool("attack", true);
                     //agent.SetDestination(enemy.transform.position);
                     enemy.transform.LookAt(closestPlayer.transform);
+                    enemy.GetComponent<Shooter>().target = closestPlayer;
                 }
             }
             else

@@ -804,8 +804,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectiles:
   - {fileID: 871639279950886185, guid: 1ba114eb70b248144993b37fd9aa1699, type: 3}
-  - {fileID: 871639279950886185, guid: 1ba114eb70b248144993b37fd9aa1699, type: 3}
+  - {fileID: 871639279950886185, guid: 1d4dd255ff4c4b345ac799305354ef7d, type: 3}
   muzzle: {fileID: 5924963758124768322}
+  target: {fileID: 0}
   projectileSpeed: 500
 --- !u!54 &1812608330756512449
 Rigidbody:
