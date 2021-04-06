@@ -192,7 +192,9 @@ public class PlayerController : MonoBehaviour
             abilityHitbox = GetComponentInChildren<ChargeHitbox>(true);
         damageValues = originalDamageValues;
     }
+
     Vector3 nLastPos = new Vector3();
+    Quaternion nLastRot = new Quaternion();
     void SendMovement()
     {
         if ((gameObject.transform.position - nLastPos).magnitude >= 0.1f * Time.deltaTime || (_playerMesh.transform.rotation != nLastRot))
