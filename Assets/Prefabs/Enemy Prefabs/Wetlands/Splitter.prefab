@@ -240,6 +240,7 @@ GameObject:
   - component: {fileID: 6703472332188093369}
   - component: {fileID: -1138844208907011512}
   - component: {fileID: 49049802165273180}
+  - component: {fileID: 7240394881898526704}
   m_Layer: 0
   m_Name: Splitter
   m_TagString: Enemy
@@ -327,6 +328,7 @@ MonoBehaviour:
   damageValues: 0
   hitbox: {fileID: 0}
   fear: 0
+  feedbackDisplay: {fileID: 7240394881898526704}
   enemy: 0
   randomScale: 1
   enemyScale: 1
@@ -400,6 +402,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7240394881898526704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3548892170378463101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 064f8ce950e289c43b302cc0776678c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  feedback: {fileID: 11400000, guid: e174cbcb421ad5441afe4ca2e691bb2a, type: 2}
+  turnOnFlicker: 0
 --- !u!1 &5895545915735587060
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,9 +648,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 918a42cbce1e74843b67830f6cf3c9b3, type: 3}
---- !u!224 &7306385553829920281 stripped
+--- !u!224 &1534310351600167023 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 9008868705525029347, guid: 918a42cbce1e74843b67830f6cf3c9b3,
+  m_CorrespondingSourceObject: {fileID: 948684517117595541, guid: 918a42cbce1e74843b67830f6cf3c9b3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1756562905985198074}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1740303249466536105 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 19804668603995987, guid: 918a42cbce1e74843b67830f6cf3c9b3,
     type: 3}
   m_PrefabInstance: {fileID: 1756562905985198074}
   m_PrefabAsset: {fileID: 0}
@@ -650,15 +672,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 084a1b8ac8bb5e948b319f2f1e7cf875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &1740303249466536105 stripped
+--- !u!224 &7306385553829920281 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 19804668603995987, guid: 918a42cbce1e74843b67830f6cf3c9b3,
-    type: 3}
-  m_PrefabInstance: {fileID: 1756562905985198074}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &1534310351600167023 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 948684517117595541, guid: 918a42cbce1e74843b67830f6cf3c9b3,
+  m_CorrespondingSourceObject: {fileID: 9008868705525029347, guid: 918a42cbce1e74843b67830f6cf3c9b3,
     type: 3}
   m_PrefabInstance: {fileID: 1756562905985198074}
   m_PrefabAsset: {fileID: 0}

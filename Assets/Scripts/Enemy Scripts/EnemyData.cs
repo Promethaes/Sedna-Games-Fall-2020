@@ -39,6 +39,8 @@ public class EnemyData : MonoBehaviour
     public bool fear = false;
     float _poisonDuration = 10.0f;
 
+    public CombatFeedbackDisplay feedbackDisplay;
+
 
     public enum enemyType
     {
@@ -48,7 +50,6 @@ public class EnemyData : MonoBehaviour
         splitter,
         flinger,
         dumpageMiniBoss,
-        icePick,
         mechaShark,
         pickRobro,
         roboShooter,
@@ -105,7 +106,7 @@ public class EnemyData : MonoBehaviour
                 setHealth(350.0f);
                 setCombo(20.0f);
                 break;
-            case enemyType.icePick:
+            case enemyType.pickRobro:
                 setHealth(120.0f);
                 setCombo(16.0f);
                 break;
@@ -118,7 +119,7 @@ public class EnemyData : MonoBehaviour
                 setCombo(15.0f);
                 break;
             case enemyType.furnaceRobo:
-                setHealth(360.0f);
+                setHealth(1000.0f);
                 setCombo(30.0f);
                 break;
             default:
@@ -147,6 +148,7 @@ public class EnemyData : MonoBehaviour
         var networkManager = FindObjectOfType<CSNetworkManager>();
         if (networkManager)
             networkManager.SendEnemyDeath(spawnPointIndex, enemyIndex);
+        
     }
 
     public void setHealth(float hp)
@@ -205,6 +207,7 @@ public class EnemyData : MonoBehaviour
 
         rigidBody.AddForce(direction * knockbackScalar * (hp / 10.0f), ForceMode.Impulse);
         StartCoroutine("ResetKinematics");
+        feedbackDisplay.OnTakeDamage();
         if (health <= 0.0f)
             die();
     }
@@ -218,6 +221,11 @@ public class EnemyData : MonoBehaviour
             if (Random.Range(0.0f, 1.0f) < 0.2f)
                 HealthOrbManager.GetHealthOrbManager().getOrb(transform.position);
         }
+        
+        var leaderboard = FindObjectOfType<LeaderboardMetricsManager>();
+        if(leaderboard)
+            leaderboard.enemiesDefeated++;
+
         gameObject.SetActive(false);
     }
 

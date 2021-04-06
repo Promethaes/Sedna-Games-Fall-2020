@@ -34,6 +34,7 @@ public class Dumpage_Idle : StateMachineBehaviour
             if ((enemy.transform.position - player.transform.position).magnitude < enemyData.searchRadius)
             {
                 animator.SetBool("tracking", true);
+                 animator.SetFloat("idleTime", 0.0f);
                 break;
             }
         }
