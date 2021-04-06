@@ -1,29 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PolarBearAttackThreePlus : MonoBehaviour
 {
-    public GameObject[] crackPieces;
+    public VisualEffect crack;
     IEnumerator Attack()
     {
-        Transform temp = transform.parent;
         transform.parent = null;
 
-        yield return new WaitForSeconds(0.8f);
-        
-        foreach (GameObject child in crackPieces)
-            child.SetActive(true);
-
-        yield return new WaitForSeconds(2.5f);
-
-        foreach (GameObject child in crackPieces)
-            child.SetActive(false);
-
-        transform.parent = temp;
-        transform.localPosition = new Vector3(0.0f, -0.1f, 3.0f);
+        crack.Play();        
+        yield return new WaitForSeconds(3.5f);
+        Destroy(gameObject);
     }
-    public void SlamAttack()
+    private void Start()
     {
         StartCoroutine(Attack());
     }

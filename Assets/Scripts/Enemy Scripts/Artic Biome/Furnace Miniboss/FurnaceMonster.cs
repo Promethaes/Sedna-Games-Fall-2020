@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class FurnaceMonster : MonoBehaviour
 {
     public FlamethrowerHitbox flamethrower;
     public float flameSpeed = 2.5f;
     public float flameDamage = 10.0f;
-
+    public VisualEffect flamethrowerVFX;
     public void Attack()
     {
         float _attackPattern = Random.Range(0.0f, 1.0f);
@@ -35,10 +36,11 @@ public class FurnaceMonster : MonoBehaviour
 
     IEnumerator Flamethrower()
     {
-        float _lifeTime = 15.0f;
-        flamethrower.gameObject.SetActive(true);
+        float _lifeTime = 2.7f;
         float _angle = 15.0f;
         bool _clockwise = true;
+        flamethrower.gameObject.SetActive(true);
+        flamethrowerVFX.Play();
         while (_lifeTime > 0.0f)
         {
             if (flamethrower.transform.parent.rotation.eulerAngles.y > 30.0f && flamethrower.transform.parent.rotation.eulerAngles.y < 45.0f)
@@ -54,6 +56,8 @@ public class FurnaceMonster : MonoBehaviour
             yield return null;
         }
 
+        flamethrowerVFX.Stop();
+        yield return new WaitForSeconds(0.5f);
         flamethrower.gameObject.SetActive(false);
 
         yield return null;
