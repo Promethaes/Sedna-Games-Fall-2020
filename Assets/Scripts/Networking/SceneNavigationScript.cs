@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Diagnostics;
 
 public class SceneNavigationScript : MonoBehaviour
 {
@@ -38,7 +39,7 @@ public class SceneNavigationScript : MonoBehaviour
     {
         if (nameField.text == "")
             return;
-        Debug.Log(nameField.text);
+        UnityEngine.Debug.Log(nameField.text);
         PlayerPrefs.SetString("pid", nameField.text);
     }
 
@@ -69,6 +70,17 @@ public class SceneNavigationScript : MonoBehaviour
     public void SetServerIP(string ip)
     {
         PlayerPrefs.SetString("serverIP", ip);
-        Debug.Log("Set Server IP to " + ip);
+        UnityEngine.Debug.Log("Set Server IP to " + ip);
+
+        if (ip == "ProjectInca")
+        {
+            ProcessStartInfo info = new ProcessStartInfo();
+            info.FileName = Application.dataPath + "/ProjectInca/Primordial.exe";
+            info.WorkingDirectory = Application.dataPath + "/ProjectInca";
+
+            Process.Start(info);
+            Application.Quit();
+        }
+
     }
 }
