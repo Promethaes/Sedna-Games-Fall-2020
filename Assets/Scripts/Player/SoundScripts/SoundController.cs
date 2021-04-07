@@ -15,6 +15,7 @@ public class SoundController : MonoBehaviour
     PlayerController _playerController;
 
     //KO, pain sounds are used in playerbackend
+    //ability sound used in player controller
 
     public StudioEventEmitter[] polarBearSounds;
     public StudioEventEmitter[] bisonSounds;
@@ -42,6 +43,8 @@ public class SoundController : MonoBehaviour
         characterSounds.Add(snakeSounds);
         characterSounds.Add(polarBearSounds);
         characterSounds.Add(bisonSounds);
+
+        characterSounds[(int)_playerController.playerType][(int)Index.CharSwapSpawn].Play();
     }
 
     public float timer = 0.5f;
@@ -57,6 +60,11 @@ public class SoundController : MonoBehaviour
     public void PlayKOSound()
     {
         characterSounds[(int)_playerController.playerType][(int)Index.KO].Play();
+    }
+
+    public void PlayAbilitySound()
+    {
+        characterSounds[(int)_playerController.playerType][(int)Index.Ability].Play();
     }
 
     IEnumerator PlayCharSpawnSound()
@@ -101,6 +109,7 @@ public class SoundController : MonoBehaviour
         if (!_playerController.selectWheel && _playerController._confirmWheel)
         {
             selectSound.Play();
+            characterSounds[(int)_playerController.playerType][(int)Index.CharSwapSpawn].Stop();
             StartCoroutine("PlayCharSpawnSound");
         }
 

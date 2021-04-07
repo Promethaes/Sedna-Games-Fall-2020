@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/characters/snk/snk_spawn
+  Event: event:/characters/trt/trt_spawn
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/characters/snk/snk_ko
+  Event: event:/characters/trt/trt_ko
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -778,7 +778,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/characters/snk/snk_venom
+  Event: event:/characters/trt/trt_shield
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -2185,7 +2185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/characters/snk/snk_pain
+  Event: event:/characters/trt/trt_pain
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -2293,7 +2293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/characters/snk/snk_attack
+  Event: event:/characters/trt/trt_attack
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
