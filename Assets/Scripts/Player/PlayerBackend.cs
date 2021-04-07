@@ -15,6 +15,7 @@ public class PlayerBackend : MonoBehaviour
     public PlayerController playerController;
     static List<PlayerBackend> backends = new List<PlayerBackend>();
     int index = -1;
+    SoundController soundController;
     private void Start()
     {
         backends.Add(this);
@@ -23,6 +24,8 @@ public class PlayerBackend : MonoBehaviour
         manager = FindObjectOfType<CheckpointManager>();
         networkManager = FindObjectOfType<CSNetworkManager>();
         feedbackDisplay.feedback.flickerDuration = invinceDuration;
+
+        soundController = GetComponent<SoundController>();
     }
 
     // Update is called once per frame
@@ -75,10 +78,15 @@ public class PlayerBackend : MonoBehaviour
             StartCoroutine("InvinceFrame");
             feedbackDisplay.OnTakeDamage();
 
+            soundController.PlayPainSound();
+
             if (!gameObject.name.Contains("REMOTE"))
                 networkManager.SendCurrentHP(hp);
             if (hp <= 0.0f)
+            {
                 playerController.downed = true;
+                soundController.PlayKOSound();
+            }
 
         }
     }
