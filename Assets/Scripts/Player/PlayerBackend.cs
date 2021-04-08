@@ -28,6 +28,10 @@ public class PlayerBackend : MonoBehaviour
         soundController = GetComponent<SoundController>();
     }
 
+    private void OnDestroy() {
+        backends.RemoveAt(index);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -55,8 +59,12 @@ public class PlayerBackend : MonoBehaviour
                 break;
             }
 
-        if (!backends[0].manager)
+        if (!backends[0].manager){
             Debug.LogError(backends[0].name + "Manager is null reference!");
+            backends[0].manager = FindObjectOfType<CheckpointManager>();
+            if(!backends[0].manager)
+            Debug.LogError(backends[0].name + "Manager is null reference and it could not be found!");
+        }
         else if (allDead && backends[0].manager)
             backends[0].manager.reset();
 
