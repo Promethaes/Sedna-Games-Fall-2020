@@ -114,7 +114,7 @@ public class CSNetworkManager : MonoBehaviour
     void Start()
     {
         //IPADDRESS = PlayerPrefs.GetString("ip","192.168.0.46");
-        IPADDRESS = PlayerPrefs.GetString("serverIP","127.0.0.1");
+        IPADDRESS = PlayerPrefs.GetString("serverIP", "127.0.0.1");
         sessionID = int.Parse(PlayerPrefs.GetString("SID"));
         client = new Client(IPADDRESS);
         recThread = new Thread(client.Receive);
@@ -204,6 +204,15 @@ public class CSNetworkManager : MonoBehaviour
     public void SendCurrentHP(float hp)
     {
         client.Send("cli " + localPlayers[0].clientNumber.ToString() + " plr hp " + hp.ToString());
+    }
+
+    //will be hard coded for now
+    public void SendSceneChange()
+    {
+        if (!isHostClient)
+            return;
+
+        client.Send("cli 0 scenechange");
     }
 
     public float sendRateFPS = 60.0f;
@@ -372,7 +381,8 @@ public class CSNetworkManager : MonoBehaviour
                         var parts = client.backlog[i].Split(' ');
                         lplayer.clientNumber = int.Parse(parts[1]);
                         sessionID = int.Parse(parts[2]);
-                        if (lplayer.clientNumber == 0){
+                        if (lplayer.clientNumber == 0)
+                        {
                             isHostClient = true;
                             leaderboard.gameObject.SetActive(true);
                         }
@@ -396,7 +406,7 @@ public class CSNetworkManager : MonoBehaviour
                 remotePlayer.index = PlayerConfigurationManager.get.playerConfigurations.Count - 1;
                 var np = GameObject.Instantiate(PlayerConfigurationManager.get._configPrefab);
 
-                PlayerConfigurationManager.get.setPlayerCharacter(remotePlayer.index, np.GetComponent<MakePlayerCharSelectMenu>().playerSetupMenu.GetComponent<PlayerCharSelectMenu>()._characterPrefabs[1]);
+                PlayerConfigurationManager.get.setPlayerCharacter(remotePlayer.index, np.GetComponent<MakePlayerCharSelectMenu>().playerSetupMenu.GetComponent<PlayerCharSelectMenu>()._characterPrefabs[0]);
                 DontDestroyOnLoad(np);
                 //tempRemoteMenuPlayers.Add(np);
                 client.backlog.RemoveAt(i);
@@ -477,6 +487,13 @@ public class CSNetworkManager : MonoBehaviour
 
                 Cutscene.AllCutscenes[cutsceneIndex].startCutscene(false);
 
+                client.backlog.RemoveAt(i);
+                i--;
+                continue;
+            }
+            else if (client.backlog[i].Contains("scenechange"))
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Artic Level");
                 client.backlog.RemoveAt(i);
                 i--;
                 continue;
