@@ -212,6 +212,9 @@ public class CSNetworkManager : MonoBehaviour
         if (!isHostClient)
             return;
 
+        //fuggin, remake local players list
+        localPlayerControllers.Clear();
+        remotePlayerControllers.Clear();
         client.Send("cli 0 scenechange");
     }
 
@@ -223,6 +226,8 @@ public class CSNetworkManager : MonoBehaviour
     GamePlayerManager playerManager;
     List<PlayerController> localPlayerControllers = new List<PlayerController>();
     List<PlayerController> remotePlayerControllers = new List<PlayerController>();
+
+
     // Update is called once per frame
     void Update()
     {
