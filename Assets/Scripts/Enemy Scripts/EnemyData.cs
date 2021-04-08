@@ -95,24 +95,24 @@ public class EnemyData : MonoBehaviour
                 setCombo(20.0f);
                 break;
             case enemyType.splitter:
-                setHealth(120.0f);
-                setCombo(10.0f);
+                setHealth(200.0f);
+                setCombo(20f);
                 break;
             case enemyType.flinger:
-                setHealth(160.0f);
-                setCombo(20.0f);
+                setHealth(120.0f);
+                setCombo(12.5f);
                 break;
             case enemyType.dumpageMiniBoss:
-                setHealth(350.0f);
+                setHealth(1000.0f);
                 setCombo(20.0f);
                 break;
             case enemyType.pickRobro:
-                setHealth(120.0f);
-                setCombo(16.0f);
+                setHealth(300.0f);
+                setCombo(30.0f);
                 break;
             case enemyType.roboShooter:
-                setHealth(120.0f);
-                setCombo(8.0f);
+                setHealth(250.0f);
+                setCombo(15.0f);
                 break;
             case enemyType.mechaShark:
                 setHealth(99999.0f);
@@ -120,7 +120,7 @@ public class EnemyData : MonoBehaviour
                 break;
             case enemyType.furnaceRobo:
                 setHealth(1000.0f);
-                setCombo(30.0f);
+                setCombo(50.0f);
                 break;
             default:
                 break;

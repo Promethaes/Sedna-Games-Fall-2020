@@ -3169,7 +3169,7 @@ MonoBehaviour:
   hitbox: {fileID: 306394668657934184}
   fear: 0
   feedbackDisplay: {fileID: 5859318405433461339}
-  enemy: 10
+  enemy: 9
   randomScale: 1
   enemyScale: 1.5
   lowerBoundEnemyScale: 1

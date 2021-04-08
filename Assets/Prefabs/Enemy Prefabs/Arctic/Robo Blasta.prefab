@@ -783,7 +783,7 @@ MonoBehaviour:
   hitbox: {fileID: 4747825824915275870}
   fear: 0
   feedbackDisplay: {fileID: 7155520367615069032}
-  enemy: 9
+  enemy: 8
   randomScale: 1
   enemyScale: 1.5
   lowerBoundEnemyScale: 1

@@ -139,7 +139,7 @@ MonoBehaviour:
   hitbox: {fileID: 3749918051608701801}
   fear: 0
   feedbackDisplay: {fileID: 8956775892491204211}
-  enemy: 8
+  enemy: 7
   randomScale: 1
   enemyScale: 1.5
   lowerBoundEnemyScale: 1
@@ -197,7 +197,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   feedback: {fileID: 11400000, guid: e174cbcb421ad5441afe4ca2e691bb2a, type: 2}
-  turnOnFlicker: 0
+  postProcessVolume: {fileID: 0}
+  vignetteDecayStepSize: 0.01
+  test: 0
 --- !u!1 &3699046989884664326
 GameObject:
   m_ObjectHideFlags: 0

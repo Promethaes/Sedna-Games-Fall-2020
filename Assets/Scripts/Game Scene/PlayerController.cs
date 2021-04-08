@@ -158,22 +158,22 @@ public class PlayerController : MonoBehaviour
         switch (playerType)
         {
             case PlayerType.BISON:
-                _setCombo(10.0f, 25.0f, 50.0f, 0.7f, 1.0f, 1.10f);
-                backend.maxHP = 250;
+                _setCombo(20.0f, 30.0f, 50.0f, 0.7f, 1.0f, 1.10f);
+                backend.maxHP = 450f;
                 break;
             case PlayerType.POLAR_BEAR:
-                _setCombo(10.0f + 30.0f, 35.0f + 30.0f, 60.0f + 30.0f, 0.90f / 1.21f, 1.20f / 1.45f, 0.80f / 0.56f);
-                backend.maxHP = 150.0f;
+                _setCombo(40.0f, 70.0f, 100.0f, 0.90f / 1.21f, 1.20f / 1.45f, 0.80f / 0.56f);
+                backend.maxHP = 350.0f;
                 knockbackScalar = 25.0f;
                 break;
             case PlayerType.RATTLESNAKE:
-                _setCombo(25.0f, 50.0f, 150.0f, 0.35f, 0.75f, 1.10f);
-                backend.maxHP = 50.0f;
+                _setCombo(30.0f, 50.0f, 175.0f, 0.35f, 0.75f, 1.10f);
+                backend.maxHP = 150.0f;
                 knockbackScalar = 10.0f;
                 break;
             case PlayerType.TURTLE:
-                _setCombo(10.0f, 25.0f, 50.0f, 0.35f, 0.75f, 1.10f);
-                backend.maxHP = 100.0f;
+                _setCombo(20.0f, 35.0f, 60.0f, 0.35f, 0.75f, 1.10f);
+                backend.maxHP = 600.0f;
                 knockbackScalar = 10.0f;
                 break;
             default:
@@ -646,7 +646,7 @@ public class PlayerController : MonoBehaviour
                     + _players[i].GetComponent<PlayerController>().originalDamageValues[n] * roarBuff.GetHashCode() * Mathf.Min(killCount, 3) * .05f;
 
             for (int n = 0; n < damageValues.Length; n++)
-                damageValues[n] += 25.0f * (playerType == PlayerType.POLAR_BEAR).GetHashCode();
+                damageValues[n] += 10.0f * (playerType == PlayerType.POLAR_BEAR).GetHashCode();
             yield return new WaitForSeconds(1);
         }
         for (int n = 0; n < damageValues.Length; n++)
