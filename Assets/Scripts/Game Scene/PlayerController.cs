@@ -113,6 +113,8 @@ public class PlayerController : MonoBehaviour
 
     public float knockbackScalar = 20.0f;
 
+    SoundController soundController;
+
     // -------------------------------------------------------------------------
 
 
@@ -131,6 +133,7 @@ public class PlayerController : MonoBehaviour
         setupPlayer();
         StartCoroutine(SetupWheelUI());
         StartCoroutine(SetupQuestUI());
+        soundController = GetComponent<SoundController>();
     }
 
     IEnumerator SetupWheelUI()
@@ -155,13 +158,11 @@ public class PlayerController : MonoBehaviour
         switch (playerType)
         {
             case PlayerType.BISON:
-                _setCombo(10.0f + 30.0f, 25.0f+ 30.0f, 35.0f+ 30.0f, 0.7f, 1.0f, 1.10f);
-                backend.maxHP = 259.0f;
-                //temp, please remove in refactor
-                knockbackScalar = 50.0f;
+                _setCombo(10.0f, 25.0f, 50.0f, 0.7f, 1.0f, 1.10f);
+                backend.maxHP = 250;
                 break;
             case PlayerType.POLAR_BEAR:
-                _setCombo(10.0f+ 30.0f, 35.0f+ 30.0f, 60.0f+ 30.0f, 0.90f / 1.21f, 1.20f / 1.45f, 0.80f / 0.56f);
+                _setCombo(10.0f + 30.0f, 35.0f + 30.0f, 60.0f + 30.0f, 0.90f / 1.21f, 1.20f / 1.45f, 0.80f / 0.56f);
                 backend.maxHP = 150.0f;
                 knockbackScalar = 25.0f;
                 break;
@@ -188,11 +189,13 @@ public class PlayerController : MonoBehaviour
         damageValues = originalDamageValues;
     }
     Vector3 nLastPos = new Vector3();
+    Quaternion nLastRot = new Quaternion();
     void SendMovemnt()
     {
-        if ((gameObject.transform.position - nLastPos).magnitude != 0.0f)
+        if ((gameObject.transform.position - nLastPos).magnitude >= 0.1f * Time.deltaTime || (_playerMesh.transform.rotation != nLastRot))
             sendMovement = true;
         nLastPos = gameObject.transform.position;
+        nLastRot = _playerMesh.transform.rotation;
     }
 
     void Update()
@@ -202,8 +205,11 @@ public class PlayerController : MonoBehaviour
 
         if (downed || inCutscene)
         {
+            _rigidbody.isKinematic = true;
             return;
         }
+        else if (!downed || !inCutscene)
+            _rigidbody.isKinematic = false;
 
         if (_animator)
         {
@@ -249,7 +255,7 @@ public class PlayerController : MonoBehaviour
             }
 
             //Combat Ability
-            if (useCombatAbility)
+            if (useCombatAbility && _abilityCD <= 0.0f)
                 _useCombatAbility();
 
             if (toggle)
@@ -280,8 +286,9 @@ public class PlayerController : MonoBehaviour
 
             if (!selectWheel && _confirmWheel)
                 _ConfirmWheel();
+
+            _Move();
         }
-        _Move();
     }
 
 
@@ -408,7 +415,7 @@ public class PlayerController : MonoBehaviour
             var pos = gameObject.transform.position;
             pos.y = 0.0f;
             if (_animator && !_animator.GetBool("attacking") && !_animator.GetBool("jumping"))
-                _animator.SetBool("walking", Mathf.Abs(pos.magnitude - _lastPos.magnitude) >= 0.1f);
+                _animator.SetBool("walking", Mathf.Abs(pos.magnitude - _lastPos.magnitude) >= 0.1f * Time.deltaTime);
 
             _lastPos = pos;
             _isGrounded = Physics.Raycast(transform.position, -transform.up, out terrain, 0.6f);
@@ -551,15 +558,18 @@ public class PlayerController : MonoBehaviour
     public bool sendUsedCombatAbility = false;
     void _useCombatAbility()
     {
-        if (_abilityCD > 0.0f) return;
+        
         sendUsedCombatAbility = true;
         switch (playerType)
         {
             case PlayerType.TURTLE: StartCoroutine(Buff()); break;
             case PlayerType.POLAR_BEAR: StartCoroutine(Roar()); break;
             case PlayerType.RATTLESNAKE: StartCoroutine(Venom()); break;
-            case PlayerType.BISON: StartCoroutine(Charge()); break;
+            case PlayerType.BISON:
+                if (Secrets.FlyingBison || _isGrounded)//clever
+                    StartCoroutine(Charge()); break;
         }
+
     }
 
     public void slowed()
@@ -603,6 +613,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Buff()
     {
+        soundController.PlayAbilitySound();
         Debug.Log("Start Buff");
         GetComponent<PlayerBackend>().turtleBuff = true;
         Coroutine _damageFormula = StartCoroutine(DamageFormula());
@@ -656,6 +667,7 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator Roar()
     {
+        soundController.PlayAbilitySound();
         killCount = 0;
         roarBuff = true;
         Coroutine _damageFormula = StartCoroutine(DamageFormula());
@@ -671,6 +683,7 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator Venom()
     {
+        soundController.PlayAbilitySound();
         venomBuff = true;
         yield return new WaitForSeconds(_abilityDuration);
         venomBuff = false;
@@ -679,7 +692,8 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator Charge()
     {
-        Debug.Log("Start Charge");
+        soundController.PlayAbilitySound();
+        //Debug.Log("Start Charge");
         _chargeDuration = 3.0f;
         _dashCooldown = _chargeDuration;
         _jumpCooldown = _chargeDuration;
@@ -688,11 +702,21 @@ public class PlayerController : MonoBehaviour
         turnSpeed *= _chargeMultiplier;
         GetComponent<PlayerBackend>().invuln = true;
         abilityHitbox.gameObject.SetActive(true);
+        float inAirTime = 0.0f;
         while (_chargeDuration > 0.0f)
         {
+            bool myGrounded = Physics.Raycast(transform.position, -transform.up, out terrain, 0.6f);//is grounded seems to not work so i contructed my own
+            if (!myGrounded)
+            {
+                inAirTime += Time.deltaTime;
+            }
+
+
             _chargeDuration -= Time.deltaTime;
             _rigidbody.velocity = new Vector3(playerCamera.transform.forward.x * moveSpeed * _chargeMultiplier, -1.0f, playerCamera.transform.forward.z * moveSpeed * _chargeMultiplier);
             _playerMesh.transform.rotation = Quaternion.Euler(0.0f, Mathf.SmoothDampAngle(_playerMesh.transform.eulerAngles.y, playerCamera.transform.eulerAngles.y, ref turnSpeed, 0.05f), 0.0f);
+            if (inAirTime >= 0.125f)
+                break;
             yield return null;
         }
         _charging = false;
@@ -700,7 +724,7 @@ public class PlayerController : MonoBehaviour
         turnSpeed = turn;
         abilityHitbox.gameObject.SetActive(false);
         _abilityCD = 10.0f;
-        Debug.Log("End Charge");
+        //Debug.Log("End Charge");
     }
 
     void _Attack()
@@ -727,17 +751,17 @@ public class PlayerController : MonoBehaviour
         if (!remotePlayer)
         {
             _rigidbody.velocity = Vector3.zero;
-            _rigidbody.AddForce(_playerMesh.transform.forward * attackDistance, ForceMode.Impulse);
+            _rigidbody.AddForce(Secrets.limitKnockBack(_playerMesh.transform.forward * attackDistance), ForceMode.Impulse);
         }
 
 
-        RaycastHit enemy;
-        if (Physics.Raycast(transform.position, _playerMesh.transform.forward, out enemy, 5.0f) && enemy.transform.tag == "Enemy")
-        {
-            EnemyData foe = enemy.collider.GetComponent<EnemyData>();
-            foe.takeDamage(damageValues[comboCounter]);
-            hitEnemy = true;
-        }
+        //RaycastHit enemy;
+        //if (Physics.Raycast(transform.position, _playerMesh.transform.forward, out enemy, 5.0f) && enemy.transform.tag == "Enemy")
+        //{
+        //    EnemyData foe = enemy.collider.GetComponent<EnemyData>();
+        //    foe.takeDamage(damageValues[comboCounter]);
+        //    hitEnemy = true;
+        //}
 
         comboCounter++;
         if (comboCounter > 2) comboCounter = 0;

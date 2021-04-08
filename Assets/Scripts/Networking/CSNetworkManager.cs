@@ -95,8 +95,7 @@ public class CSNetworkManager : MonoBehaviour
     public bool send = false;
     public bool interpetCommands = true;
     public int sessionID = -1;
-    [SerializeField]
-    private string IPADDRESS;
+    public string IPADDRESS;
 
     public List<PlayerConfiguration> localPlayers = new List<PlayerConfiguration>();
     List<PlayerConfiguration> remotePlayers = new List<PlayerConfiguration>();
@@ -107,12 +106,15 @@ public class CSNetworkManager : MonoBehaviour
     //false is for wetlands, true is for arctic
     public bool wetlandsOrArctic = false;
 
+    public LeaderboardMetricsManager leaderboard;
+
     //[SerializeField]
     //UnityEvent OnSpawnEnemy;
 
     void Start()
     {
         //IPADDRESS = PlayerPrefs.GetString("ip","192.168.0.46");
+        IPADDRESS = PlayerPrefs.GetString("serverIP", "127.0.0.1");
         sessionID = int.Parse(PlayerPrefs.GetString("SID"));
         client = new Client(IPADDRESS);
         recThread = new Thread(client.Receive);
@@ -199,6 +201,24 @@ public class CSNetworkManager : MonoBehaviour
         client.Send("cli " + localPlayers[0].clientNumber.ToString() + " cut " + cutsceneIndex.ToString());
     }
 
+    public void SendCurrentHP(float hp)
+    {
+        client.Send("cli " + localPlayers[0].clientNumber.ToString() + " plr hp " + hp.ToString());
+    }
+
+    //will be hard coded for now
+    public void SendSceneChange()
+    {
+        if (!isHostClient)
+            return;
+
+        //fuggin, remake local players list
+        localPlayerControllers.Clear();
+        remotePlayerControllers.Clear();
+        playerManager = null;
+        client.Send("cli 0 scenechange");
+    }
+
     public float sendRateFPS = 60.0f;
     float timer = 0.0f;
     float changeTimer = 3.0f;
@@ -207,6 +227,8 @@ public class CSNetworkManager : MonoBehaviour
     GamePlayerManager playerManager;
     List<PlayerController> localPlayerControllers = new List<PlayerController>();
     List<PlayerController> remotePlayerControllers = new List<PlayerController>();
+
+
     // Update is called once per frame
     void Update()
     {
@@ -366,7 +388,10 @@ public class CSNetworkManager : MonoBehaviour
                         lplayer.clientNumber = int.Parse(parts[1]);
                         sessionID = int.Parse(parts[2]);
                         if (lplayer.clientNumber == 0)
+                        {
                             isHostClient = true;
+                            leaderboard.gameObject.SetActive(true);
+                        }
                         break;
                     }
                 }
@@ -387,7 +412,7 @@ public class CSNetworkManager : MonoBehaviour
                 remotePlayer.index = PlayerConfigurationManager.get.playerConfigurations.Count - 1;
                 var np = GameObject.Instantiate(PlayerConfigurationManager.get._configPrefab);
 
-                PlayerConfigurationManager.get.setPlayerCharacter(remotePlayer.index, np.GetComponent<MakePlayerCharSelectMenu>().playerSetupMenu.GetComponent<PlayerCharSelectMenu>()._characterPrefabs[1]);
+                PlayerConfigurationManager.get.setPlayerCharacter(remotePlayer.index, np.GetComponent<MakePlayerCharSelectMenu>().playerSetupMenu.GetComponent<PlayerCharSelectMenu>()._characterPrefabs[0]);
                 DontDestroyOnLoad(np);
                 //tempRemoteMenuPlayers.Add(np);
                 client.backlog.RemoveAt(i);
@@ -468,6 +493,13 @@ public class CSNetworkManager : MonoBehaviour
 
                 Cutscene.AllCutscenes[cutsceneIndex].startCutscene(false);
 
+                client.backlog.RemoveAt(i);
+                i--;
+                continue;
+            }
+            else if (client.backlog[i].Contains("scenechange"))
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Arctic Level");
                 client.backlog.RemoveAt(i);
                 i--;
                 continue;
@@ -559,6 +591,17 @@ public class CSNetworkManager : MonoBehaviour
             else if (command.Contains("jmp"))
             {
                 p.GetComponent<PlayerController>().isJumping = true;
+                return true;
+            }
+            else if (command.Contains("hp"))
+            {
+                p.GetComponent<PlayerBackend>().hp = float.Parse(parts[4]);
+                p.GetComponent<PlayerBackend>().takeDamage(0.0f, 60.0f);
+                return true;
+            }
+            else if (command.Contains("down"))
+            {
+                p.GetComponent<PlayerController>().downed = true;
                 return true;
             }
 
