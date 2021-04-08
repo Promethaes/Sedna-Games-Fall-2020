@@ -12,7 +12,7 @@ public class NextLevel : MonoBehaviour
 
             var netManager = FindObjectOfType<CSNetworkManager>();
             if(netManager)
-                
+                netManager.SendSceneChange();
 
             changer.changeScene(sceneIndex);
         }
