@@ -27,7 +27,7 @@ public class DumpageSplitter : MonoBehaviour
     {
         for (int i = 0; i < _splitlings.Count; i++)
         {
-            if (!_splitlings[1])
+            if (!_splitlings[i])
                 continue;
             _splitlings[i].transform.position = gameObject.transform.position;
             _splitlings[i].SetActive(true);
