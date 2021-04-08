@@ -499,6 +499,9 @@ public class CSNetworkManager : MonoBehaviour
             }
             else if (client.backlog[i].Contains("scenechange"))
             {
+                localPlayerControllers.Clear();
+                remotePlayerControllers.Clear();
+                playerManager = null;
                 UnityEngine.SceneManagement.SceneManager.LoadScene("Arctic Level");
                 client.backlog.RemoveAt(i);
                 i--;
