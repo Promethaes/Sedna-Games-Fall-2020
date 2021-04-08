@@ -247,7 +247,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4182685223653383623
 Transform:
   m_ObjectHideFlags: 0
@@ -415,7 +415,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   feedback: {fileID: 11400000, guid: e174cbcb421ad5441afe4ca2e691bb2a, type: 2}
-  turnOnFlicker: 0
+  postProcessVolume: {fileID: 0}
+  vignetteDecayStepSize: 0.01
+  test: 0
 --- !u!1 &5895545915735587060
 GameObject:
   m_ObjectHideFlags: 0
