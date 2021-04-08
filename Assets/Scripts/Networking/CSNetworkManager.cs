@@ -493,7 +493,7 @@ public class CSNetworkManager : MonoBehaviour
             }
             else if (client.backlog[i].Contains("scenechange"))
             {
-                UnityEngine.SceneManagement.SceneManager.LoadScene("Artic Level");
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Arctic Level");
                 client.backlog.RemoveAt(i);
                 i--;
                 continue;
