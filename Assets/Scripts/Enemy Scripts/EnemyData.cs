@@ -242,7 +242,7 @@ public class EnemyData : MonoBehaviour
         damageValues *= 0.8f;
         while (_poisonDuration > 0.0f)
         {
-            takeDamage(10.0f);
+            takeDamage(20.0f);
             yield return new WaitForSeconds(1.0f);
             _poisonDuration -= 1.0f;
         }

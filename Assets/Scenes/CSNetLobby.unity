@@ -603,7 +603,7 @@ MonoBehaviour:
   sessionID: -1
   IPADDRESS: 192.168.0.46
   isHostClient: 0
-  wetlandsOrArctic: 1
+  wetlandsOrArctic: 0
   leaderboard: {fileID: 164849530}
   sendRateFPS: 5
   smoothMovementLerpSpeed: 5
