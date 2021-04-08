@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Ice Material 2
-  m_Shader: {fileID: -6465566751694194690, guid: 9fc68457dfd9426409f607ed60047a21,
+  m_Shader: {fileID: -6465566751694194690, guid: d4d732c73d5acf74f8715f3d766f64dd,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -33,6 +33,14 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_197391E4:
+        m_Texture: {fileID: 2800000, guid: b7f4a073cc77b42468cae7384cacdd21, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_48B495BC:
+        m_Texture: {fileID: 2800000, guid: f3a1dddff23b57c4184bebdc5137a086, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Texture2D_FF6EAB6E:
         m_Texture: {fileID: 2800000, guid: b7f4a073cc77b42468cae7384cacdd21, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -66,10 +74,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_2DF4A926: 0
     - Vector1_30A214B5: 0.189
     - Vector1_456A1357: 1
+    - Vector1_49A67467: 0.276
     - Vector1_7FF45A7D: 0
+    - Vector1_B322F29A: 0
+    - Vector1_D67839D4: 0.2
     - Vector1_E58C147F: 0
+    - Vector1_EB170F8E: 0
     - Vector1_EB7C4E51: 0.04
     - _AlphaClip: 0
     - _Blend: 0
@@ -95,7 +108,11 @@ Material:
     m_Colors:
     - Color_2004B0: {r: 0.36862746, g: 0.36862746, b: 0.36862746, a: 0}
     - Color_2305C0AF: {r: 0, g: 0, b: 0, a: 0}
+    - Color_52D3B80: {r: 0, g: 0, b: 0, a: 0}
+    - Color_75D20D80: {r: 0.8679245, g: 0.9520095, b: 1, a: 0}
+    - Color_A64D17DF: {r: 0, g: 0, b: 0, a: 0}
     - Color_A92BBE3A: {r: 1, g: 1, b: 1, a: 0}
+    - Color_AA8162C7: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 0}
     - Color_F7ABCC44: {r: 0, g: 0.21960784, b: 1, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
