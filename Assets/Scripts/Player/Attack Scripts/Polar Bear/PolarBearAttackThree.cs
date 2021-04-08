@@ -5,14 +5,14 @@ using UnityEngine;
 public class PolarBearAttackThree : StateMachineBehaviour
 {
     PlayerController player;
+    public PolarBearAttackThreePlus crack;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         player = animator.GetComponentInParent<PlayerController>();
         player.hitboxes[2].gameObject.SetActive(true);
-        player.hitboxes[2].attack.gameObject.SetActive(true);
-        if (player.GetComponentInChildren<PolarBearAttackThreePlus>())
-            player.GetComponentInChildren<PolarBearAttackThreePlus>().SlamAttack();
+        var temp = Instantiate(crack,player.transform);
+        temp.transform.position += player._playerMesh.transform.forward*3.0f;
 
     }
 

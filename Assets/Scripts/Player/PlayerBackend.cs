@@ -14,17 +14,17 @@ public class PlayerBackend : MonoBehaviour
     CSNetworkManager networkManager;
     public PlayerController playerController;
     static List<PlayerBackend> backends = new List<PlayerBackend>();
-    int index = -1;
+    SoundController soundController;
     private void Start()
     {
         backends.Add(this);
-        index = backends.Count - 1;
 
         manager = FindObjectOfType<CheckpointManager>();
         networkManager = FindObjectOfType<CSNetworkManager>();
         feedbackDisplay.feedback.flickerDuration = invinceDuration;
-    }
 
+        soundController = GetComponent<SoundController>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -44,6 +44,13 @@ public class PlayerBackend : MonoBehaviour
 
     static void CheckReset()
     {
+        foreach (var backend in backends)
+            if (backend == null)
+            {
+                backends.Remove(backend);
+                return;
+            }
+
         bool allDead = true;
         foreach (var back in backends)
             if (back.hp > 0.0f)
@@ -53,7 +60,12 @@ public class PlayerBackend : MonoBehaviour
             }
 
         if (!backends[0].manager)
+        {
             Debug.LogError(backends[0].name + "Manager is null reference!");
+            backends[0].manager = FindObjectOfType<CheckpointManager>();
+            if (!backends[0].manager)
+                Debug.LogError(backends[0].name + "Manager is null reference and it could not be found!");
+        }
         else if (allDead && backends[0].manager)
             backends[0].manager.reset();
 
@@ -75,10 +87,15 @@ public class PlayerBackend : MonoBehaviour
             StartCoroutine("InvinceFrame");
             feedbackDisplay.OnTakeDamage();
 
+            soundController.PlayPainSound();
+
             if (!gameObject.name.Contains("REMOTE"))
                 networkManager.SendCurrentHP(hp);
             if (hp <= 0.0f)
+            {
                 playerController.downed = true;
+                soundController.PlayKOSound();
+            }
 
         }
     }

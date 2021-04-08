@@ -205,7 +205,7 @@ public class EnemyData : MonoBehaviour
             }
         }
 
-        rigidBody.AddForce(direction * knockbackScalar * (hp / 10.0f), ForceMode.Impulse);
+        rigidBody.AddForce(Secrets.limitKnockBack(direction * knockbackScalar * (hp / 10.0f)), ForceMode.Impulse);
         StartCoroutine("ResetKinematics");
         feedbackDisplay.OnTakeDamage();
         if (health <= 0.0f)
