@@ -215,6 +215,7 @@ public class CSNetworkManager : MonoBehaviour
         //fuggin, remake local players list
         localPlayerControllers.Clear();
         remotePlayerControllers.Clear();
+        playerManager = null;
         client.Send("cli 0 scenechange");
     }
 
