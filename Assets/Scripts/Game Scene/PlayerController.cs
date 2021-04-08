@@ -120,6 +120,8 @@ public class PlayerController : MonoBehaviour
 
     public float knockbackScalar = 20.0f;
 
+    SoundController soundController;
+
     // -------------------------------------------------------------------------
 
 
@@ -138,6 +140,7 @@ public class PlayerController : MonoBehaviour
         setupPlayer();
         StartCoroutine(SetupWheelUI());
         StartCoroutine(SetupQuestUI());
+        soundController = GetComponent<SoundController>();
     }
 
     IEnumerator SetupWheelUI()
@@ -272,7 +275,7 @@ public class PlayerController : MonoBehaviour
             }
 
             //Combat Ability
-            if (useCombatAbility)
+            if (useCombatAbility && _abilityCD <= 0.0f)
                 _useCombatAbility();
 
             if (toggle)
@@ -573,15 +576,18 @@ public class PlayerController : MonoBehaviour
     public bool sendUsedCombatAbility = false;
     void _useCombatAbility()
     {
-        if (_abilityCD > 0.0f) return;
+        
         sendUsedCombatAbility = true;
         switch (playerType)
         {
             case PlayerType.TURTLE: StartCoroutine(Buff()); break;
             case PlayerType.POLAR_BEAR: StartCoroutine(Roar()); break;
             case PlayerType.RATTLESNAKE: StartCoroutine(Venom()); break;
-            case PlayerType.BISON: StartCoroutine(Charge()); break;
+            case PlayerType.BISON:
+                if (Secrets.FlyingBison || _isGrounded)//clever
+                    StartCoroutine(Charge()); break;
         }
+
     }
 
     public void slowed()
@@ -625,6 +631,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Buff()
     {
+        soundController.PlayAbilitySound();
         Debug.Log("Start Buff");
         GetComponent<PlayerBackend>().turtleBuff = true;
         Coroutine _damageFormula = StartCoroutine(DamageFormula());
@@ -680,6 +687,7 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator Roar()
     {
+        soundController.PlayAbilitySound();
         killCount = 0;
         roarBuff = true;
         Coroutine _damageFormula = StartCoroutine(DamageFormula());
@@ -695,6 +703,7 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator Venom()
     {
+        soundController.PlayAbilitySound();
         venomBuff = true;
         yield return new WaitForSeconds(_abilityDuration);
         venomBuff = false;
@@ -703,6 +712,7 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator Charge()
     {
+        soundController.PlayAbilitySound();
         //Debug.Log("Start Charge");
         _chargeDuration = 3.0f;
         _dashCooldown = _chargeDuration;
@@ -712,11 +722,21 @@ public class PlayerController : MonoBehaviour
         turnSpeed *= _chargeMultiplier;
         GetComponent<PlayerBackend>().invuln = true;
         abilityHitbox.gameObject.SetActive(true);
+        float inAirTime = 0.0f;
         while (_chargeDuration > 0.0f)
         {
+            bool myGrounded = Physics.Raycast(transform.position, -transform.up, out terrain, 0.6f);//is grounded seems to not work so i contructed my own
+            if (!myGrounded)
+            {
+                inAirTime += Time.deltaTime;
+            }
+
+
             _chargeDuration -= Time.deltaTime;
             _rigidbody.velocity = new Vector3(playerCamera.transform.forward.x * moveSpeed * _chargeMultiplier, -1.0f, playerCamera.transform.forward.z * moveSpeed * _chargeMultiplier);
             _playerMesh.transform.rotation = Quaternion.Euler(0.0f, Mathf.SmoothDampAngle(_playerMesh.transform.eulerAngles.y, playerCamera.transform.eulerAngles.y, ref turnSpeed, 0.05f), 0.0f);
+            if (inAirTime >= 0.125f)
+                break;
             yield return null;
         }
         _charging = false;
@@ -751,7 +771,7 @@ public class PlayerController : MonoBehaviour
         if (!remotePlayer)
         {
             _rigidbody.velocity = Vector3.zero;
-            _rigidbody.AddForce(_playerMesh.transform.forward * attackDistance, ForceMode.Impulse);
+            _rigidbody.AddForce(Secrets.limitKnockBack(_playerMesh.transform.forward * attackDistance), ForceMode.Impulse);
         }
 
 

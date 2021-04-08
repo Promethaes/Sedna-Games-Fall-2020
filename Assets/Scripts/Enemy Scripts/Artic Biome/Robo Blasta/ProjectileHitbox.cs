@@ -5,7 +5,10 @@ using UnityEngine;
 public class ProjectileHitbox : MonoBehaviour
 {
     float _lifeTime = 5.0f;
-
+    public ParticleSystem fireball;
+    private void Start() {
+        fireball.Play();
+    }
     private void Update() 
     {
         _lifeTime -= Time.deltaTime;

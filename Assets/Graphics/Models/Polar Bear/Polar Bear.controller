@@ -705,6 +705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee3a10edaed8a38408f3d079ee0669a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crack: {fileID: 5440762496379195290, guid: 6950517d2de6fbd499322199ac3579e4, type: 3}
 --- !u!1102 &1629642281592604385
 AnimatorState:
   serializedVersion: 5
