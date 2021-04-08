@@ -11,7 +11,7 @@ namespace SednaFmod
         [FMODUnity.EventRef]
         public string eventRef;
         [SerializeField][Range(0.0f,1.0f)]
-        float clearObstacle;
+        float clearObstacle = 0.0f;
         // Start is called before the first frame update
         void Start()
         {

@@ -28,7 +28,8 @@ public class PlayerController : MonoBehaviour
     public AbilityScript abilityScript = null;
 
     [Header("Player camera")]
-    // [SerializeField] private GameObject player = null;  // @Cleanup? This shouldn't be needed since this gets attached to the player object itself and not a child
+    // @Cleanup? This shouldn't be needed since this gets attached to the player object itself and not a child
+    // [SerializeField] private GameObject player = null;
     [SerializeField] private GameObject playerCamera = null;
     [SerializeField] private GameObject lookingAt = null;
     [SerializeField] private float yUpperBound = 4.0f;
@@ -257,7 +258,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            Logger.Log($"State: {_jumpAnimState} | Delay: {_jumpAnimDelay}");
+            // Logger.Log($"State: {_jumpAnimState} | Delay: {_jumpAnimDelay}");
             if(_jumpAnimState && (_jumpAnimDelay -= Time.fixedDeltaTime) <= 0.0f) {
                 _jumpAnimState = false;
                 _Jump();
