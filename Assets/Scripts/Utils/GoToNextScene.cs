@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
 public class GoToNextScene : MonoBehaviour {
-    [SerializeField] VideoPlayer _videoPlayer;
+    [SerializeField] VideoPlayer _videoPlayer = null;
 
     // Update is called once per frame
     void Update() {

@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerConfigurationManager : MonoBehaviour
 {
 
+    // @Cleanup: if we're gonna be using Unity's SceneManager directly this reference is unnecessary
     [SerializeField] private SceneChanger _sceneChanger = null;
 
     private PlayerInputManager _manager = null;
