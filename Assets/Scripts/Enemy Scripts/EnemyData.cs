@@ -37,7 +37,7 @@ public class EnemyData : MonoBehaviour
     public float damageValues;
     public GameObject hitbox;
     public bool fear = false;
-    float _poisonDuration = 10.0f;
+    int _poisonDuration = 0;
 
     public CombatFeedbackDisplay feedbackDisplay;
 
@@ -231,20 +231,27 @@ public class EnemyData : MonoBehaviour
 
     public void Poison()
     {
-        if (_poisonDuration > 0.0f)
-            _poisonDuration = 10.0f;
-        else
+        if (_poisonDuration == 0)
+        {
+            _poisonDuration = 10;
             StartCoroutine(PoisonDebuff());
+        }
+        else if (_poisonDuration <= 10)
+        {
+            _poisonDuration = 10;
+            
+        }
+            
     }
 
     IEnumerator PoisonDebuff()
     {
         damageValues *= 0.8f;
-        while (_poisonDuration > 0.0f)
+        while (_poisonDuration >= 0)
         {
-            takeDamage(20.0f);
+            takeDamage(20.0f,0f);
             yield return new WaitForSeconds(1.0f);
-            _poisonDuration -= 1.0f;
+            _poisonDuration -= 1;
         }
         damageValues /= 0.8f;
         yield return null;
