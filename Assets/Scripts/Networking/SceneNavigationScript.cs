@@ -67,6 +67,11 @@ public class SceneNavigationScript : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("StartMenu2");
     }
 
+    public void ChangeToCredits()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Credits Scene");
+    }
+
     public void SetServerIP(string ip)
     {
         PlayerPrefs.SetString("serverIP", ip);
