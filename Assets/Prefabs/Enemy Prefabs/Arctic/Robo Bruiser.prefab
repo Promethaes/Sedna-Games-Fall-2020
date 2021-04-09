@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1962989600275089940}
   - component: {fileID: 552066958934022013}
   - component: {fileID: 1707554092792178158}
-  - component: {fileID: 7215453221860364341}
+  - component: {fileID: 1784091483910350479}
   m_Layer: 0
   m_Name: Melee Hitbox
   m_TagString: Untagged
@@ -94,7 +94,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.355262, y: 3.4241312, z: 3.046336}
   m_Center: {x: -0.23402719, y: 1.2120649, z: 1.0231673}
---- !u!114 &7215453221860364341
+--- !u!114 &1784091483910350479
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 306394668657934184}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd9d1bc1bf21e79498bf59f2e3a4c9c6, type: 3}
+  m_Script: {fileID: 11500000, guid: ae981e4b3469a6149b0a0363486aecd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &591606611047122385
