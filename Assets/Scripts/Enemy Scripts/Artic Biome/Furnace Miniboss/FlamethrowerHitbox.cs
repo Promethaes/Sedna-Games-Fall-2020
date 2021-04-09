@@ -9,7 +9,7 @@ public class FlamethrowerHitbox : MonoBehaviour
         if (other.tag == "Player")
         {
             PlayerBackend foe = other.GetComponentInParent<PlayerBackend>();
-            foe.takeDamage(gameObject.GetComponentInParent<FurnaceMonster>().flameDamage*Time.deltaTime);
+            foe.takeDamage(gameObject.GetComponentInParent<FurnaceMonster>().flameDamage);
             if (Random.Range(0.0f,1.0f) <= 0.3f)
                 foe.GetComponent<PlayerController>().poisoned();
         }
