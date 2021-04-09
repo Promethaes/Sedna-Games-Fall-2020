@@ -8,7 +8,7 @@ public class FurnaceMonster : MonoBehaviour
     public FlamethrowerHitbox flamethrower;
     public GameObject[] hitboxes;
     public float flameSpeed = 2.5f;
-    public float flameDamage = 10.0f;
+    public float flameDamage = 50.0f;
     public VisualEffect flamethrowerVFX;
     public void Attack()
     {
