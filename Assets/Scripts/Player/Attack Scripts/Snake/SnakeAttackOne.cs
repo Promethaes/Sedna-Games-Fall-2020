@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurtleAttackOne : StateMachineBehaviour
+public class SnakeAttackOne : StateMachineBehaviour
 {
     PlayerController player;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -10,6 +10,9 @@ public class TurtleAttackOne : StateMachineBehaviour
     {
         player = animator.GetComponentInParent<PlayerController>();
         player.hitboxes[0].gameObject.SetActive(true);
+        var bite = player.hitboxes[0].GetComponent<AttackHitbox>().attack;
+        bite.SetActive(true);
+        bite.GetComponentInChildren<ParticleSystem>().Play();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

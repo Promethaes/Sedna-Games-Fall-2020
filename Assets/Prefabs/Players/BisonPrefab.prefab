@@ -107,6 +107,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attack: {fileID: 0}
+  hitEffect: {fileID: 1414324971765142418, guid: 9e26679bbe1d4d540a90eec864e97e5c,
+    type: 3}
 --- !u!95 &6519882303594665057
 Animator:
   serializedVersion: 3

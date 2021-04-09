@@ -1,15 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
-public class SnakeAttackTwo : StateMachineBehaviour
+public class TurtleAttackThree : StateMachineBehaviour
 {
     PlayerController player;
+    public GameObject slam;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         player = animator.GetComponentInParent<PlayerController>();
         player.hitboxes[0].gameObject.SetActive(true);
+        GameObject vfx = Instantiate(slam, player.transform);
+        vfx.transform.parent = null;
+        vfx.GetComponentInChildren<VisualEffect>().Play();
+        vfx.GetComponent<DestroyVFX>().destroyVFX(3.5f);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

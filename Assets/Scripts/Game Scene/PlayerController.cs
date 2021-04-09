@@ -118,6 +118,7 @@ public class PlayerController : MonoBehaviour
 
     // VFX
     public ParticleSystem dashVFX;
+    public ParticleSystem jumpVFX;
 
     public float knockbackScalar = 20.0f;
 
@@ -519,6 +520,8 @@ public class PlayerController : MonoBehaviour
         {
             sendJump = true;
             Vector3 vel = _rigidbody.velocity;
+            jumpVFX.gameObject.SetActive(true);
+            jumpVFX.Play();
             _rigidbody.AddForce(new Vector3(vel.x * hopSpeed, jump, vel.z * hopSpeed), ForceMode.Impulse);
             _jumped = true;
             _jumpAnimDuration = 0.3f;
@@ -528,6 +531,8 @@ public class PlayerController : MonoBehaviour
             Vector3 vel = _rigidbody.velocity;
             //NOTE: Adjusts double jump to give full jump height rather than being affected by gravity. Remove if necessary
             _rigidbody.velocity = new Vector3(vel.x, 0.0f, vel.z);
+            jumpVFX.gameObject.SetActive(true);
+            jumpVFX.Play();
             _rigidbody.AddForce(new Vector3(vel.x * hopSpeed, jump, vel.z * hopSpeed), ForceMode.Impulse);
             _doubleJumped = true;
             _jumpAnimDuration = 0.3f;

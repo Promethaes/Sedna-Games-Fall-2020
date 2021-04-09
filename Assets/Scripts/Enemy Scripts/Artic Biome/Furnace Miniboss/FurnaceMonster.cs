@@ -6,6 +6,7 @@ using UnityEngine.VFX;
 public class FurnaceMonster : MonoBehaviour
 {
     public FlamethrowerHitbox flamethrower;
+    public GameObject[] hitboxes;
     public float flameSpeed = 2.5f;
     public float flameDamage = 50.0f;
     public VisualEffect flamethrowerVFX;
@@ -40,6 +41,7 @@ public class FurnaceMonster : MonoBehaviour
         float _angle = 15.0f;
         bool _clockwise = true;
         flamethrower.gameObject.SetActive(true);
+        flamethrowerVFX.gameObject.SetActive(true);
         flamethrowerVFX.Play();
         while (_lifeTime > 0.0f)
         {
@@ -59,13 +61,19 @@ public class FurnaceMonster : MonoBehaviour
         flamethrowerVFX.Stop();
         yield return new WaitForSeconds(0.5f);
         flamethrower.gameObject.SetActive(false);
+        flamethrowerVFX.gameObject.SetActive(false);
 
         yield return null;
     }
     IEnumerator Claw()
     {
         //TODO: Do animator calls in here
-        GetComponentInParent<EnemyData>().hitbox.SetActive(true);
+        foreach (GameObject hit in hitboxes)
+            hit.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.65f);
+        foreach (GameObject hit in hitboxes)
+            hit.gameObject.SetActive(false);
+
         yield return null;
     }
 }

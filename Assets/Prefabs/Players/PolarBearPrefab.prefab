@@ -107,6 +107,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attack: {fileID: 0}
+  hitEffect: {fileID: 1414324971765142418, guid: 9e26679bbe1d4d540a90eec864e97e5c,
+    type: 3}
 --- !u!1 &4232636971887773028
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,6 +216,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attack: {fileID: 4515969859416939204}
+  hitEffect: {fileID: 1414324971765142418, guid: 9e26679bbe1d4d540a90eec864e97e5c,
+    type: 3}
 --- !u!1 &5599863337556979104
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,6 +358,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attack: {fileID: 260286862909501034}
+  hitEffect: {fileID: 1414324971765142418, guid: 9e26679bbe1d4d540a90eec864e97e5c,
+    type: 3}
 --- !u!95 &3429999119684530310
 Animator:
   serializedVersion: 3

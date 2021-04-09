@@ -3188,6 +3188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flamethrower: {fileID: 446414177640449964}
+  hitboxes: []
   flameSpeed: 2.5
   flameDamage: 10
   flamethrowerVFX: {fileID: 5776033787884932208}
