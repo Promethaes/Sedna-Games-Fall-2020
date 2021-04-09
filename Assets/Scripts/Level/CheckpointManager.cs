@@ -6,7 +6,6 @@ public class CheckpointManager : MonoBehaviour
 {
     public Transform[] spawnPoints;
     public GamePlayerManager playerManager;
-    public EnemySpawnPoint[] enemySpawners;
     public int counter = 0;
     public UserMetricsLoggerScript uml;
     public Transform checkSpawn()
@@ -24,16 +23,18 @@ public class CheckpointManager : MonoBehaviour
     }
     public void reset()
     {
+        var enemySpawners = FindObjectsOfType<EnemySpawnPoint>();
         foreach (EnemySpawnPoint spawner in enemySpawners)
         {
             spawner.ResetSpawnPoint();
         }
 
-        foreach (GameObject player in playerManager.players)
+        var players = FindObjectsOfType<PlayerController>();
+        foreach (var player in players)
         {
-            player.GetComponent<PlayerBackend>().hp = player.GetComponent<PlayerBackend>().maxHP;
-            player.transform.position = spawnPoints[counter].position;
-            player.GetComponent<PlayerController>().downed = false;
+            player.gameObject.GetComponent<PlayerBackend>().hp = player.gameObject.GetComponent<PlayerBackend>().maxHP;
+            player.gameObject.transform.position = spawnPoints[counter].position;
+            player.gameObject.GetComponent<PlayerController>().downed = false;
         }
     }
 }
