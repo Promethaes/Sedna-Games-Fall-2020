@@ -1,6 +1,7 @@
-﻿using System.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
 public class PlayerConfigurationManager : MonoBehaviour
@@ -69,12 +70,13 @@ public class PlayerConfigurationManager : MonoBehaviour
 
     public void allPlayersReady(bool tempDebugBool)
     {
-        if (_playerConfigs.Count <= _manager.maxPlayerCount && _playerConfigs.All(p => p.isReady))
+        if(_playerConfigs.Count <= _manager.maxPlayerCount && _playerConfigs.All(p => p.isReady))
         {
             if(tempDebugBool)
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Arctic Level"); // This should be the game scene
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Arctic Level"); // This should be the game scene
             else
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Game Scene"); // This should be the game scene
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                // SceneManager.LoadScene("Game Scene"); // This should be the game scene
 
         }
     }
