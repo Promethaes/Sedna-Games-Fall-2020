@@ -81,7 +81,10 @@ public class PlayerBackend : MonoBehaviour
     {
         if (!invuln)
         {
-            hp -= dmg - (dmg * turtleBuff.GetHashCode() * 0.1f);
+            if(turtleBuff)
+                hp -= (dmg - (dmg * turtleBuff.GetHashCode() * 0.1f))/2;
+            else
+                hp -= dmg - (dmg * turtleBuff.GetHashCode() * 0.1f);
             GetComponent<Rigidbody>().AddForce(-(GetComponent<PlayerController>()._playerMesh.transform.forward) * knockbackScalar * (dmg / 10.0f), ForceMode.Impulse);
             invuln = true;
             StartCoroutine("InvinceFrame");

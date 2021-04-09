@@ -3041,7 +3041,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7933882479056789253
 Transform:
   m_ObjectHideFlags: 0
@@ -3117,10 +3117,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.2825699
+  m_Radius: 0.63922954
   m_Height: 2.559555
   m_Direction: 1
-  m_Center: {x: 0.88375854, y: 1.2164612, z: -0.020606995}
+  m_Center: {x: 0.5270991, y: 1.2164612, z: -0.020607}
 --- !u!136 &6964566579252785504
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3131,10 +3131,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.26193237
+  m_Radius: 0.6591801
   m_Height: 2.559555
   m_Direction: 1
-  m_Center: {x: -0.92297363, y: 1.2164612, z: -0.020606995}
+  m_Center: {x: -0.525726, y: 1.2164612, z: -0.020607}
 --- !u!114 &6712935066860271700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3169,7 +3169,7 @@ MonoBehaviour:
   hitbox: {fileID: 306394668657934184}
   fear: 0
   feedbackDisplay: {fileID: 5859318405433461339}
-  enemy: 10
+  enemy: 9
   randomScale: 1
   enemyScale: 1.5
   lowerBoundEnemyScale: 1
