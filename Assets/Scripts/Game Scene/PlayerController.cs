@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Unity;
 using UnityEngine;
 
@@ -7,6 +9,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [System.Serializable]
+    public class JumpAnimationDelay : PlayerTypeTo<float> {}
 
     [Header("Player variables")]
 
@@ -15,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpSpeed = 3.0f;
     [SerializeField] private float dashSpeed = 2.5f;
     [SerializeField] private float attackDistance = 8.0f;
+    [SerializeField] private List<JumpAnimationDelay> jumpAnimationDelays = new List<JumpAnimationDelay>();
 
     [Header("Player abilities")]
     // Default mesh is turtle, if a turtle has bison abilities, either this or the player mesh in GameInputHandler did not get set properly
@@ -23,7 +28,8 @@ public class PlayerController : MonoBehaviour
     public AbilityScript abilityScript = null;
 
     [Header("Player camera")]
-    // [SerializeField] private GameObject player = null;  // @Cleanup? This shouldn't be needed since this gets attached to the player object itself and not a child
+    // @Cleanup? This shouldn't be needed since this gets attached to the player object itself and not a child
+    // [SerializeField] private GameObject player = null;
     [SerializeField] private GameObject playerCamera = null;
     [SerializeField] private GameObject lookingAt = null;
     [SerializeField] private float yUpperBound = 4.0f;
@@ -49,6 +55,8 @@ public class PlayerController : MonoBehaviour
     private bool _jumped = false;
     private bool _doubleJumped = false;
     private float _jumpCooldown = 0.0f;
+    private bool _jumpAnimState = false;
+    private float _jumpAnimDelay = 0.25f;
 
     // Dash stuff
     private bool _dashed = false;
@@ -61,7 +69,7 @@ public class PlayerController : MonoBehaviour
     public int comboCounter = 0;
     public float[] damageValues = new float[3];
     public float[] originalDamageValues = new float[3];
-    public float[] _animationDelay = new float[3];
+    public float[] _attackAnimationDelay = new float[3];
     public AttackHitbox[] hitboxes;
 
     RaycastHit terrain;
@@ -116,9 +124,6 @@ public class PlayerController : MonoBehaviour
 
     SoundController soundController;
 
-    // -------------------------------------------------------------------------
-
-
     //Network variables
     public bool sendPlayerChanged = false;
     public bool remotePlayer = false;
@@ -126,15 +131,21 @@ public class PlayerController : MonoBehaviour
     public bool sendJump = false;
     public bool sendMovement = false;
     public string userName = "";
+
+    // -------------------------------------------------------------------------
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         backend = this.GetComponentInParent<PlayerBackend>();
         backend.hp = backend.maxHP;
-        setupPlayer();
         StartCoroutine(SetupWheelUI());
         StartCoroutine(SetupQuestUI());
         soundController = GetComponent<SoundController>();
+    }
+
+    private void Start() {
+        setupPlayer();
     }
 
     IEnumerator SetupWheelUI()
@@ -159,22 +170,22 @@ public class PlayerController : MonoBehaviour
         switch (playerType)
         {
             case PlayerType.BISON:
-                _setCombo(10.0f, 25.0f, 50.0f, 0.7f, 1.0f, 1.10f);
-                backend.maxHP = 250;
+                _setCombo(20.0f, 30.0f, 50.0f, 0.7f, 1.0f, 1.10f);
+                backend.maxHP = 450f;
                 break;
             case PlayerType.POLAR_BEAR:
-                _setCombo(10.0f + 30.0f, 35.0f + 30.0f, 60.0f + 30.0f, 0.90f / 1.21f, 1.20f / 1.45f, 0.80f / 0.56f);
-                backend.maxHP = 150.0f;
+                _setCombo(40.0f, 70.0f, 100.0f, 0.90f / 1.21f, 1.20f / 1.45f, 0.80f / 0.56f);
+                backend.maxHP = 350.0f;
                 knockbackScalar = 25.0f;
                 break;
             case PlayerType.RATTLESNAKE:
-                _setCombo(25.0f, 50.0f, 150.0f, 0.35f, 0.75f, 1.10f);
-                backend.maxHP = 50.0f;
+                _setCombo(30.0f, 50.0f, 175.0f, 0.35f, 0.75f, 1.10f);
+                backend.maxHP = 150.0f;
                 knockbackScalar = 10.0f;
                 break;
             case PlayerType.TURTLE:
-                _setCombo(10.0f, 25.0f, 50.0f, 0.35f, 0.75f, 1.10f);
-                backend.maxHP = 100.0f;
+                _setCombo(20.0f, 35.0f, 60.0f, 0.35f, 0.75f, 1.10f);
+                backend.maxHP = 600.0f;
                 knockbackScalar = 10.0f;
                 break;
             default:
@@ -182,6 +193,10 @@ public class PlayerController : MonoBehaviour
                 break;
         }
         _playerMesh = GetComponentInParent<GameInputHandler>()._playerPrefabs[(int)playerType].prefab;
+        _animator = GetComponent<GameInputHandler>()._animator;
+        // @Temp @Temp @Temp REMOVE THIS
+        if(_animator != null) Logger.Log("Animator found!");
+        else Logger.Error("Animator not found!");
 
         backend.hp = backend.maxHP * percentage;
         hitboxes = _playerMesh.GetComponentsInChildren<AttackHitbox>(true);
@@ -189,9 +204,10 @@ public class PlayerController : MonoBehaviour
             abilityHitbox = GetComponentInChildren<ChargeHitbox>(true);
         damageValues = originalDamageValues;
     }
+
     Vector3 nLastPos = new Vector3();
     Quaternion nLastRot = new Quaternion();
-    void SendMovemnt()
+    void SendMovement()
     {
         if ((gameObject.transform.position - nLastPos).magnitude >= 0.1f * Time.deltaTime || (_playerMesh.transform.rotation != nLastRot))
             sendMovement = true;
@@ -225,7 +241,7 @@ public class PlayerController : MonoBehaviour
         if (revive) _Revive();
 
         if (!remotePlayer)
-            SendMovemnt();
+            SendMovement();
     }
 
     //Physics update (FixedUpdate); updates at set intervals
@@ -241,8 +257,20 @@ public class PlayerController : MonoBehaviour
         if (!downed && _animationDuration <= 0.0f && !inCutscene)
         {
             //Jump Movement
-            if (isJumping)
+            if(isJumping) {
+                _jumpAnimState = true;
+                _jumpAnimDelay = jumpAnimationDelays.Find((p) => p.type == playerType).value;
+                if (_animator) {
+                    _animator.SetBool("jumping", true);
+                    if(!_isGrounded) _animator.SetTrigger("double_jump");
+                }
+            }
+
+            // Logger.Log($"State: {_jumpAnimState} | Delay: {_jumpAnimDelay}");
+            if(_jumpAnimState && (_jumpAnimDelay -= Time.fixedDeltaTime) <= 0.0f) {
+                _jumpAnimState = false;
                 _Jump();
+            }
 
             //Dash Movement
             if (isDashing)
@@ -301,9 +329,9 @@ public class PlayerController : MonoBehaviour
         originalDamageValues[0] = x;
         originalDamageValues[1] = y;
         originalDamageValues[2] = z;
-        _animationDelay[0] = u;
-        _animationDelay[1] = v;
-        _animationDelay[2] = w;
+        _attackAnimationDelay[0] = u;
+        _attackAnimationDelay[1] = v;
+        _attackAnimationDelay[2] = w;
     }
 
     void _MouseInput()
@@ -371,11 +399,7 @@ public class PlayerController : MonoBehaviour
     public void ChangeCharFromNetwork(int selec)
     {
         GetComponentInParent<GameInputHandler>().swapPlayer(selec);
-        _animator = GetComponentInParent<GameInputHandler>()._animator;
-
         setupPlayer();
-
-
     }
 
     void _ConfirmWheel()
@@ -385,9 +409,7 @@ public class PlayerController : MonoBehaviour
         if (_wheelSelection != (int)playerType)
         {
             _wheelCooldown = 2.0f;
-
             GetComponentInParent<GameInputHandler>().swapPlayer(_wheelSelection);
-            _animator = GetComponentInParent<GameInputHandler>()._animator;
 
             sendPlayerChanged = true;
             setupPlayer();
@@ -503,7 +525,6 @@ public class PlayerController : MonoBehaviour
             _rigidbody.AddForce(new Vector3(vel.x * hopSpeed, jump, vel.z * hopSpeed), ForceMode.Impulse);
             _jumped = true;
             _jumpAnimDuration = 0.3f;
-            if (_animator) _animator.SetBool("jumping", true);
         }
         else if (_jumpAnimDuration <= 0.0f && !_doubleJumped)
         {
@@ -515,7 +536,6 @@ public class PlayerController : MonoBehaviour
             _rigidbody.AddForce(new Vector3(vel.x * hopSpeed, jump, vel.z * hopSpeed), ForceMode.Impulse);
             _doubleJumped = true;
             _jumpAnimDuration = 0.3f;
-            if (_animator) _animator.SetTrigger("double_jump");
         }
     }
 
@@ -563,7 +583,6 @@ public class PlayerController : MonoBehaviour
     public bool sendUsedCombatAbility = false;
     void _useCombatAbility()
     {
-        
         sendUsedCombatAbility = true;
         switch (playerType)
         {
@@ -572,7 +591,12 @@ public class PlayerController : MonoBehaviour
             case PlayerType.RATTLESNAKE: StartCoroutine(Venom()); break;
             case PlayerType.BISON:
                 if (Secrets.FlyingBison || _isGrounded)//clever
-                    StartCoroutine(Charge()); break;
+                {
+                    soundController.PlayAbilitySound();
+                    StartCoroutine(Charge());
+                }
+                break;
+
         }
 
     }
@@ -618,11 +642,14 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Buff()
     {
+        _abilityCD = 10.0f;
         soundController.PlayAbilitySound();
-        Debug.Log("Start Buff");
-        GetComponent<PlayerBackend>().turtleBuff = true;
-        Coroutine _damageFormula = StartCoroutine(DamageFormula());
-        Coroutine _speedFormula = StartCoroutine(SpeedFormula());
+        //GetComponent<PlayerBackend>().turtleBuff = true;
+        var _players = GetComponentInParent<GamePlayerManager>().players;
+        foreach (GameObject p in _players)
+            p.GetComponent<PlayerBackend>().turtleBuff = true;
+        //Coroutine _damageFormula = StartCoroutine(DamageFormula());
+        //Coroutine _speedFormula = StartCoroutine(SpeedFormula());
 
         //TODO: Implement debuff cleansing once debuffs are in
         _poisonDuration = 0.0f;
@@ -633,71 +660,89 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(_abilityDuration);
 
         // Resets values
-        GetComponent<PlayerBackend>().turtleBuff = false;
-
-        _abilityCD = 10.0f;
-        Debug.Log("End Buff");
-
+        foreach (GameObject p in _players)
+            p.GetComponent<PlayerBackend>().turtleBuff = false;
+        //GetComponent<PlayerBackend>().turtleBuff = false;
+        yield return null;
     }
     IEnumerator DamageFormula()
     {
-        var _players = GetComponentInParent<GamePlayerManager>().players;
-        while (GetComponent<PlayerBackend>().turtleBuff || roarBuff)
-        {
-            for (int i = 0; i < _players.Count; i++)
-                for (int n = 0; n < damageValues.Length; n++)
-                    _players[i].GetComponent<PlayerController>().damageValues[n] = _players[i].GetComponent<PlayerController>().originalDamageValues[n]
-                    + _players[i].GetComponent<PlayerController>().originalDamageValues[n] * _players[i].GetComponent<PlayerBackend>().turtleBuff.GetHashCode() * 0.1f
-                    + _players[i].GetComponent<PlayerController>().originalDamageValues[n] * roarBuff.GetHashCode() * Mathf.Min(killCount, 3) * .05f;
 
-            for (int n = 0; n < damageValues.Length; n++)
-                damageValues[n] += 25.0f * (playerType == PlayerType.POLAR_BEAR).GetHashCode();
-            yield return new WaitForSeconds(1);
+        var _players = GetComponentInParent<GamePlayerManager>().players;
+        foreach(GameObject var in _players){
+            for (int n = 0; n < var.GetComponent<PlayerController>().damageValues.Length; n++)
+            {
+                var.GetComponent<PlayerController>().damageValues[n] += 20;
+            }
         }
-        for (int n = 0; n < damageValues.Length; n++)
-            damageValues[n] = originalDamageValues[n]
-            + originalDamageValues[n] * GetComponent<PlayerBackend>().turtleBuff.GetHashCode() * 0.1f
-            + originalDamageValues[n] * roarBuff.GetHashCode() * Mathf.Min(killCount, 3) * .05f;
+        yield return new WaitForSeconds(5);
+        foreach (GameObject var in _players)
+        {
+            for (int n = 0; n < var.GetComponent<PlayerController>().damageValues.Length; n++)
+            {
+                var.GetComponent<PlayerController>().damageValues[n] -= 20;
+            }
+        }
+        //doesn't work nicely
+        //while (GetComponent<PlayerBackend>().turtleBuff || roarBuff)
+        //{
+        //    for (int i = 0; i < _players.Count; i++)
+        //        for (int n = 0; n < damageValues.Length; n++)
+        //            _players[i].GetComponent<PlayerController>().damageValues[n] = _players[i].GetComponent<PlayerController>().originalDamageValues[n]
+        //            + _players[i].GetComponent<PlayerController>().originalDamageValues[n] * _players[i].GetComponent<PlayerBackend>().turtleBuff.GetHashCode() * 0.1f
+        //            + _players[i].GetComponent<PlayerController>().originalDamageValues[n] * roarBuff.GetHashCode() * Mathf.Min(killCount, 3) * .05f;
+        //
+        //    for (int n = 0; n < damageValues.Length; n++)
+        //        damageValues[n] += 10.0f * (playerType == PlayerType.POLAR_BEAR).GetHashCode();
+        //    yield return new WaitForSeconds(1);
+        //}
+        //for (int n = 0; n < damageValues.Length; n++)
+        //    damageValues[n] = originalDamageValues[n]
+        //    + originalDamageValues[n] * GetComponent<PlayerBackend>().turtleBuff.GetHashCode() * 0.1f
+        //    + originalDamageValues[n] * roarBuff.GetHashCode() * Mathf.Min(killCount, 3) * .05f;
         yield return null;
     }
     IEnumerator SpeedFormula()
     {
-        while (GetComponent<PlayerBackend>().turtleBuff || _slowDebuff)
-        {
-            moveSpeed = _originalSpeed + _originalSpeed * GetComponent<PlayerBackend>().turtleBuff.GetHashCode() * 0.1f - _originalSpeed * _slowDebuff.GetHashCode() * 0.1f;
-            yield return new WaitForSeconds(1);
-        }
-        moveSpeed = _originalSpeed + _originalSpeed * GetComponent<PlayerBackend>().turtleBuff.GetHashCode() * 0.1f - _originalSpeed * _slowDebuff.GetHashCode() * 0.1f;
+        //while (GetComponent<PlayerBackend>().turtleBuff || _slowDebuff)
+        //{
+        //    moveSpeed = _originalSpeed + _originalSpeed * GetComponent<PlayerBackend>().turtleBuff.GetHashCode() * 0.1f - _originalSpeed * _slowDebuff.GetHashCode() * 0.1f;
+        //    yield return new WaitForSeconds(1);
+        //}
+        //moveSpeed = _originalSpeed + _originalSpeed * GetComponent<PlayerBackend>().turtleBuff.GetHashCode() * 0.1f - _originalSpeed * _slowDebuff.GetHashCode() * 0.1f;
         yield return null;
     }
     IEnumerator Roar()
     {
+        _abilityCD = 10.0f;
         soundController.PlayAbilitySound();
         killCount = 0;
         roarBuff = true;
         Coroutine _damageFormula = StartCoroutine(DamageFormula());
 
+        var _players = GetComponentInParent<GamePlayerManager>().players;
+        Debug.Log(_players[0].GetComponent<PlayerController>().damageValues[0]);
         yield return new WaitForSeconds(_abilityDuration);
 
         // Reset values
         killCount = 0;
         roarBuff = false;
 
-        _abilityCD = 10.0f;
+
         yield return null;
     }
     IEnumerator Venom()
     {
+        _abilityCD = 10.0f;
         soundController.PlayAbilitySound();
         venomBuff = true;
         yield return new WaitForSeconds(_abilityDuration);
         venomBuff = false;
-        _abilityCD = 10.0f;
         yield return null;
     }
     IEnumerator Charge()
     {
-        soundController.PlayAbilitySound();
+        _abilityCD = 10.0f;
         //Debug.Log("Start Charge");
         _chargeDuration = 3.0f;
         _dashCooldown = _chargeDuration;
@@ -708,6 +753,7 @@ public class PlayerController : MonoBehaviour
         GetComponent<PlayerBackend>().invuln = true;
         abilityHitbox.gameObject.SetActive(true);
         float inAirTime = 0.0f;
+
         while (_chargeDuration > 0.0f)
         {
             bool myGrounded = Physics.Raycast(transform.position, -transform.up, out terrain, 0.6f);//is grounded seems to not work so i contructed my own
@@ -728,7 +774,7 @@ public class PlayerController : MonoBehaviour
         GetComponent<PlayerBackend>().invuln = false;
         turnSpeed = turn;
         abilityHitbox.gameObject.SetActive(false);
-        _abilityCD = 10.0f;
+
         //Debug.Log("End Charge");
     }
 
@@ -739,7 +785,7 @@ public class PlayerController : MonoBehaviour
         sendAttack = true;
 
         if (_comboDuration < 0.0f) comboCounter = 0;
-        _animationDuration = _animationDelay[comboCounter];
+        _animationDuration = _attackAnimationDelay[comboCounter];
 
         if (_animator)
         {

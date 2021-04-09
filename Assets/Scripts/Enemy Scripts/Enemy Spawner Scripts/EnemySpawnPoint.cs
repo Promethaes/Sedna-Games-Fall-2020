@@ -42,12 +42,21 @@ public class EnemySpawnPoint : MonoBehaviour
         }
     }
 
-    public void OneTimeSpawn()
+    public void ResetSpawnPoint()
     {
-        _pvtSpawnTimeInterval = 0.0f;
-        spawnTimeInterval = 0.0f;
-        for (int i = 0; i < spawnEnemies.Count; i++)
-            SpawnEnemy();
+        foreach (var enemy in spawnEnemies)
+        {
+            enemy.SetActive(false);
+            enemy.GetComponent<EnemyData>().health = enemy.GetComponent<EnemyData>().getMaxHealth();
+
+        }
+        if (oneTimeSpawn)
+        {
+            _pvtSpawnTimeInterval = 0.0f;
+            spawnTimeInterval = 0.0f;
+            for (int i = 0; i < spawnEnemies.Count; i++)
+                SpawnEnemy();
+        }
     }
 
     void HandleDoneSpawning()
@@ -136,7 +145,10 @@ public class EnemySpawnPoint : MonoBehaviour
         for (int i = 0; i < spawnEnemies.Count; i++)
         {
             if (!spawnEnemies[i].activeSelf)
+            {
                 spawnIndex = i;
+                break;
+            }
         }
         if (spawnIndex == -1)
             return;//no availible enemy spawns
@@ -148,7 +160,7 @@ public class EnemySpawnPoint : MonoBehaviour
         if (randomizeSpawnPos)
             placeVec = new Vector3(Random.Range(-radius, radius), 0.0f, Random.Range(-radius, radius));
 
-        spawnEnemies[spawnIndex].transform.position = gameObject.transform.position + Vector3.up*3.0f + (placeVec * spawnRadiusScalar);
+        spawnEnemies[spawnIndex].transform.position = gameObject.transform.position + placeVec * spawnRadiusScalar;
         spawnEnemies[spawnIndex].SetActive(true);
         var enemy = spawnEnemies[spawnIndex].GetComponentInChildren<EnemyData>();
         enemy.health = enemy.maxHealth;
