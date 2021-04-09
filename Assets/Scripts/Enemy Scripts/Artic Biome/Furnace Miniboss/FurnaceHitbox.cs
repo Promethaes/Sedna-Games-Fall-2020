@@ -9,7 +9,7 @@ public class FurnaceHitbox : MonoBehaviour
         if (other.tag == "Player")
         {
             PlayerBackend foe = other.GetComponentInParent<PlayerBackend>();
-            foe.takeDamage(gameObject.GetComponentInParent<EnemyData>().damageValues);
+            foe.takeDamage(gameObject.GetComponentInParent<EnemyData>().damageValues,30.0f);
             gameObject.SetActive(false);
         }
     }
