@@ -617,11 +617,14 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Buff()
     {
+        _abilityCD = 10.0f;
         soundController.PlayAbilitySound();
-        Debug.Log("Start Buff");
-        GetComponent<PlayerBackend>().turtleBuff = true;
-        Coroutine _damageFormula = StartCoroutine(DamageFormula());
-        Coroutine _speedFormula = StartCoroutine(SpeedFormula());
+        //GetComponent<PlayerBackend>().turtleBuff = true;
+        var _players = GetComponentInParent<GamePlayerManager>().players;
+        foreach (GameObject p in _players)
+            p.GetComponent<PlayerBackend>().turtleBuff = true;
+        //Coroutine _damageFormula = StartCoroutine(DamageFormula());
+        //Coroutine _speedFormula = StartCoroutine(SpeedFormula());
 
         //TODO: Implement debuff cleansing once debuffs are in
         _poisonDuration = 0.0f;
@@ -632,11 +635,10 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(_abilityDuration);
 
         // Resets values
-        GetComponent<PlayerBackend>().turtleBuff = false;
-
-        _abilityCD = 10.0f;
-        Debug.Log("End Buff");
-
+        foreach (GameObject p in _players)
+            p.GetComponent<PlayerBackend>().turtleBuff = false;
+        //GetComponent<PlayerBackend>().turtleBuff = false;
+        yield return null;
     }
     IEnumerator DamageFormula()
     {
@@ -677,12 +679,12 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator SpeedFormula()
     {
-        while (GetComponent<PlayerBackend>().turtleBuff || _slowDebuff)
-        {
-            moveSpeed = _originalSpeed + _originalSpeed * GetComponent<PlayerBackend>().turtleBuff.GetHashCode() * 0.1f - _originalSpeed * _slowDebuff.GetHashCode() * 0.1f;
-            yield return new WaitForSeconds(1);
-        }
-        moveSpeed = _originalSpeed + _originalSpeed * GetComponent<PlayerBackend>().turtleBuff.GetHashCode() * 0.1f - _originalSpeed * _slowDebuff.GetHashCode() * 0.1f;
+        //while (GetComponent<PlayerBackend>().turtleBuff || _slowDebuff)
+        //{
+        //    moveSpeed = _originalSpeed + _originalSpeed * GetComponent<PlayerBackend>().turtleBuff.GetHashCode() * 0.1f - _originalSpeed * _slowDebuff.GetHashCode() * 0.1f;
+        //    yield return new WaitForSeconds(1);
+        //}
+        //moveSpeed = _originalSpeed + _originalSpeed * GetComponent<PlayerBackend>().turtleBuff.GetHashCode() * 0.1f - _originalSpeed * _slowDebuff.GetHashCode() * 0.1f;
         yield return null;
     }
     IEnumerator Roar()
