@@ -9,7 +9,7 @@ public class Cutscene : MonoBehaviour
 
     public GameObject[] blocks;
     public Camera cam;
-    float _fadeTime = 2.5f;
+    float _fadeTime = 2.5f; // @Cleanup? This is apparently never used
     Color _color;
     public bool cutsceneComplete = false;
     public GameObject abilityZone;
