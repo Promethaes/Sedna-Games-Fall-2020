@@ -42,6 +42,14 @@ public class EnemySpawnPoint : MonoBehaviour
         }
     }
 
+    public void OneTimeSpawn()
+    {
+        _pvtSpawnTimeInterval = 0.0f;
+        spawnTimeInterval = 0.0f;
+        for (int i = 0; i < spawnEnemies.Count; i++)
+            SpawnEnemy();
+    }
+
     void HandleDoneSpawning()
     {
         if (AnyEnemiesActive())
@@ -140,7 +148,7 @@ public class EnemySpawnPoint : MonoBehaviour
         if (randomizeSpawnPos)
             placeVec = new Vector3(Random.Range(-radius, radius), 0.0f, Random.Range(-radius, radius));
 
-        spawnEnemies[spawnIndex].transform.position = gameObject.transform.position + placeVec * spawnRadiusScalar;
+        spawnEnemies[spawnIndex].transform.position = gameObject.transform.position + Vector3.up*3.0f + (placeVec * spawnRadiusScalar);
         spawnEnemies[spawnIndex].SetActive(true);
         var enemy = spawnEnemies[spawnIndex].GetComponentInChildren<EnemyData>();
         enemy.health = enemy.maxHealth;

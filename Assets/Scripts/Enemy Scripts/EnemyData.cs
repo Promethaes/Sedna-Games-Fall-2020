@@ -69,7 +69,7 @@ public class EnemyData : MonoBehaviour
     void DetermineEnemyScale()
     {
         enemyScale = Random.Range(lowerBoundEnemyScale, upperBoundEnemyScale);
-        transform.localScale = new Vector3(1.0f, 1.0f, 1.0f) * enemyScale;
+        transform.localScale = transform.localScale * enemyScale;
         searchRadius *= enemyScale;
         foreach (var sound in enemySounds)
         {
