@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Graphics/Materials/Clouds.meta
 guid: 230d3c458a3a1ad498e4b01019c2c123
-=======
-guid: 1f5ccb29c9adef344a1ea9bb4939aab6
->>>>>>> master:Assets/FMOD/Metadata/DAWProject.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
