@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MenuMusic : MonoBehaviour
 {
+    public FMODUnity.StudioEventEmitter emitter;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,5 +16,10 @@ public class MenuMusic : MonoBehaviour
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "IntroCutscene")
             gameObject.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        emitter.Stop();
     }
 }
