@@ -1,12 +1,13 @@
-﻿using System.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
 public class PlayerConfigurationManager : MonoBehaviour
 {
-
-    [SerializeField] private SceneChanger _sceneChanger = null;
+    // @Cleanup: If we're gonna use Unity's Scene manager, scene changer doesn't need to exist here
+    // [SerializeField] private SceneChanger _sceneChanger = null;
 
     private PlayerInputManager _manager = null;
     private List<PlayerConfiguration> _playerConfigs = null;
@@ -69,7 +70,14 @@ public class PlayerConfigurationManager : MonoBehaviour
 
     public void allPlayersReady(bool tempDebugBool)
     {
-        if (_playerConfigs.Count <= _manager.maxPlayerCount && _playerConfigs.All(p => p.isReady))
-            UnityEngine.SceneManagement.SceneManager.LoadScene("TutorialPrompts"); // This should be the game scene
+        if(_playerConfigs.Count <= _manager.maxPlayerCount && _playerConfigs.All(p => p.isReady))
+        {
+            if(tempDebugBool)
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Arctic Level"); // This should be the game scene
+            else
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                // SceneManager.LoadScene("Game Scene"); // This should be the game scene
+
+        }
     }
 }

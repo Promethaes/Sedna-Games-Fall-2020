@@ -36,6 +36,36 @@ ModelImporter:
   - first:
       74: 8349542763059015795
     second: Armature|Walk
+  - first:
+      74: -1962111147472363628
+    second: Attack 1
+  - first:
+      74: 296130795608717920
+    second: Attack 2
+  - first:
+      74: -4084516132872533229
+    second: Attack 3
+  - first:
+      74: 842011099488704110
+    second: Charge
+  - first:
+      74: -8444228808809566427
+    second: Dash
+  - first:
+      74: -797771277372797640
+    second: Double jump
+  - first:
+      74: -3648429919849848933
+    second: Environmental Ability
+  - first:
+      74: -3100369314251171874
+    second: Idle
+  - first:
+      74: 5539831331247536789
+    second: Jump
+  - first:
+      74: 2667949614841947897
+    second: Walk
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -65,8 +95,8 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|Attack 1
-      takeName: Armature|Attack 1
+      name: Attack 1
+      takeName: Attack 1
       internalID: 0
       firstFrame: 0
       lastFrame: 19
@@ -94,8 +124,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Attack 2
-      takeName: Armature|Attack 2
+      name: Attack 2
+      takeName: Attack 2
       internalID: 0
       firstFrame: 0
       lastFrame: 14
@@ -123,8 +153,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Attack 3
-      takeName: Armature|Attack 3
+      name: Attack 3
+      takeName: Attack 3
       internalID: 0
       firstFrame: 0
       lastFrame: 14
@@ -152,8 +182,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Charge
-      takeName: Armature|Charge
+      name: Charge
+      takeName: Charge
       internalID: 0
       firstFrame: 0
       lastFrame: 41
@@ -181,10 +211,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Dash
-      takeName: Armature|Dash
+      name: Dash
+      takeName: Dash
       internalID: 0
-      firstFrame: 0
+      firstFrame: 5
       lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
@@ -210,10 +240,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Double jump
-      takeName: Armature|Double jump
+      name: Double jump
+      takeName: Double jump
       internalID: 0
-      firstFrame: 0
+      firstFrame: 5
       lastFrame: 19
       wrapMode: 0
       orientationOffsetY: 0
@@ -239,8 +269,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Environmental Ability
-      takeName: Armature|Environmental Ability
+      name: Environmental Ability
+      takeName: Environmental Ability
       internalID: 0
       firstFrame: 0
       lastFrame: 39
@@ -268,8 +298,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Idle
-      takeName: Armature|Idle
+      name: Idle
+      takeName: Idle
       internalID: 0
       firstFrame: 0
       lastFrame: 39
@@ -297,10 +327,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Jump
-      takeName: Armature|Jump
+      name: Jump
+      takeName: Jump
       internalID: 0
-      firstFrame: 0
+      firstFrame: 4
       lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
@@ -326,8 +356,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Walk
-      takeName: Armature|Walk
+      name: Walk
+      takeName: Walk
       internalID: 0
       firstFrame: 0
       lastFrame: 39
@@ -338,7 +368,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 1
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
