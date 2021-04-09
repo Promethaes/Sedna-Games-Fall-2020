@@ -14,7 +14,24 @@ public class SoundController : MonoBehaviour
     public StudioEventEmitter selectSound;
     PlayerController _playerController;
 
+    //KO, pain sounds are used in playerbackend
+    //ability sound used in player controller
 
+    public StudioEventEmitter[] polarBearSounds;
+    public StudioEventEmitter[] bisonSounds;
+    public StudioEventEmitter[] snakeSounds;
+    public StudioEventEmitter[] turtleSounds;
+
+    enum Index : int
+    {
+        Attack,
+        CharSwapSpawn,
+        KO,
+        Pain,
+        Ability
+    }
+
+    private List<StudioEventEmitter[]> characterSounds = new List<StudioEventEmitter[]>();
 
     Vector3 _lastPosition = new Vector3();
     // Start is called before the first frame update
@@ -22,13 +39,40 @@ public class SoundController : MonoBehaviour
     {
         _timer = timer;
         _playerController = GetComponent<PlayerController>();
+        characterSounds.Add(turtleSounds);
+        characterSounds.Add(snakeSounds);
+        characterSounds.Add(polarBearSounds);
+        characterSounds.Add(bisonSounds);
+
+        characterSounds[(int)_playerController.playerType][(int)Index.CharSwapSpawn].Play();
     }
 
     public float timer = 0.5f;
     float _timer = 0.5f;
     bool landed = false;
     int _lastWheel = -1;
-    // Update is called once per frame
+
+    public void PlayPainSound()
+    {
+        characterSounds[(int)_playerController.playerType][(int)Index.Pain].Play();
+    }
+
+    public void PlayKOSound()
+    {
+        characterSounds[(int)_playerController.playerType][(int)Index.KO].Play();
+    }
+
+    public void PlayAbilitySound()
+    {
+        characterSounds[(int)_playerController.playerType][(int)Index.Ability].Play();
+    }
+
+    IEnumerator PlayCharSpawnSound()
+    {
+        yield return new WaitForSeconds(0.25f);
+        characterSounds[(int)_playerController.playerType][(int)Index.CharSwapSpawn].Play();
+    }
+
     void Update()
     {
         _timer -= Time.deltaTime;
@@ -63,18 +107,24 @@ public class SoundController : MonoBehaviour
         }
 
         if (!_playerController.selectWheel && _playerController._confirmWheel)
+        {
             selectSound.Play();
+            characterSounds[(int)_playerController.playerType][(int)Index.CharSwapSpawn].Stop();
+            StartCoroutine("PlayCharSpawnSound");
+        }
 
         if (_playerController.playAttackSound)
         {
             attackSound.Play();
             _playerController.playAttackSound = false;
+            characterSounds[(int)_playerController.playerType][(int)Index.Attack].Play();
         }
         if (_playerController.hitEnemy)
         {
             _playerController.hitEnemy = false;
             impactSound.Play();
         }
+
     }
 
 }

@@ -11,19 +11,64 @@ public class PlayerBackend : MonoBehaviour
     public bool invuln = false;
     public float invinceDuration = 0.25f;
     public CombatFeedbackDisplay feedbackDisplay;
+    CSNetworkManager networkManager;
+    public PlayerController playerController;
+    static List<PlayerBackend> backends = new List<PlayerBackend>();
+    SoundController soundController;
     private void Start()
     {
-        manager = GameObject.FindGameObjectWithTag("CheckpointManager").GetComponent<CheckpointManager>();
-        feedbackDisplay.feedback.flickerDuration = invinceDuration;
-    }
+        backends.Add(this);
 
+        manager = FindObjectOfType<CheckpointManager>();
+        networkManager = FindObjectOfType<CSNetworkManager>();
+        feedbackDisplay.feedback.flickerDuration = invinceDuration;
+
+        soundController = GetComponent<SoundController>();
+    }
     // Update is called once per frame
     void Update()
     {
-        if (hp <= 0.0f)
-            KillPlayer();
+        if (!manager)
+        {
+            Debug.Log(gameObject.name + " Attempting to get checkpoint manager, since it was null on update");
+            manager = FindObjectOfType<CheckpointManager>();
+            if (manager)
+                Debug.Log(gameObject.name + " Found the checkpoint manager");
+        }
+
         if (hp > maxHP)
             hp = maxHP;
+
+        CheckReset();
+    }
+
+    static void CheckReset()
+    {
+        foreach (var backend in backends)
+            if (backend == null)
+            {
+                backends.Remove(backend);
+                return;
+            }
+
+        bool allDead = true;
+        foreach (var back in backends)
+            if (back.hp > 0.0f)
+            {
+                allDead = false;
+                break;
+            }
+
+        if (!backends[0].manager)
+        {
+            Debug.LogError(backends[0].name + "Manager is null reference!");
+            backends[0].manager = FindObjectOfType<CheckpointManager>();
+            if (!backends[0].manager)
+                Debug.LogError(backends[0].name + "Manager is null reference and it could not be found!");
+        }
+        else if (allDead && backends[0].manager)
+            backends[0].manager.reset();
+
     }
 
     IEnumerator InvinceFrame()
@@ -36,48 +81,25 @@ public class PlayerBackend : MonoBehaviour
     {
         if (!invuln)
         {
-            hp -= dmg - (dmg * turtleBuff.GetHashCode() * 0.1f);
+            if(turtleBuff)
+                hp -= (dmg - (dmg * turtleBuff.GetHashCode() * 0.1f))/2;
+            else
+                hp -= dmg - (dmg * turtleBuff.GetHashCode() * 0.1f);
             GetComponent<Rigidbody>().AddForce(-(GetComponent<PlayerController>()._playerMesh.transform.forward) * knockbackScalar * (dmg / 10.0f), ForceMode.Impulse);
             invuln = true;
             StartCoroutine("InvinceFrame");
             feedbackDisplay.OnTakeDamage();
-        }
-    }
 
-    public void KillPlayer()
-    {
-        if (!manager)
-        {
-            Debug.LogError("CheckpointManager was null! Could not kill Players!");
-            return;
-        }
-        else if (!manager.playerManager)
-        {
-            Debug.LogError("CheckpointManager.PlayerManager was null! Could not kill Players!");
-            return;
-        }
-        else if (manager.playerManager.players == null)
-        {
-            Debug.LogError("CheckpointManager.PlayerManager.Players was null! Could not kill Players!");
-            return;
-        }
+            soundController.PlayPainSound();
 
-        int _counter = 0;
-        for (int i = 0; i < manager.playerManager.players.Count; i++)
-        {
-            GameObject player = manager.playerManager.players[i];
-            if (player.GetComponent<PlayerBackend>().hp <= 0.0f)
+            if (!gameObject.name.Contains("REMOTE"))
+                networkManager.SendCurrentHP(hp);
+            if (hp <= 0.0f)
             {
-                _counter++;
-                player.GetComponent<PlayerController>().downed = true;
+                playerController.downed = true;
+                soundController.PlayKOSound();
             }
-            if (player == gameObject)
-                manager.uml.csLogDeath(new UserMetricsLoggerScript.Death("temp", Time.time, i + 1));
 
-        }
-        if (_counter == manager.playerManager.players.Count)
-        {
-            manager.reset();
         }
     }
 }

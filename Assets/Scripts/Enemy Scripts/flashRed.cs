@@ -5,9 +5,9 @@ using UnityEngine;
 public class flashRed : MonoBehaviour
 {
     [SerializeField]
-    private Material _red;
+    private Material _red = null;
     [SerializeField]
-    private Material _original;
+    private Material _original = null;
     [SerializeField]
     private float _flashTime = 0.1f;
     private SkinnedMeshRenderer _renderer;

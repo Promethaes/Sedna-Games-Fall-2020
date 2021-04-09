@@ -2,35 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckpointManager : MonoBehaviour {
+public class CheckpointManager : MonoBehaviour
+{
     public Transform[] spawnPoints;
     public GamePlayerManager playerManager;
-    public EnemySpawnPoint[] enemySpawners;
     public int counter = 0;
     public UserMetricsLoggerScript uml;
-    public Transform checkSpawn() {
+    public Transform checkSpawn()
+    {
         return spawnPoints[counter];
     }
-    public Vector3 getSpawn() {
+    public Vector3 getSpawn()
+    {
         return spawnPoints[counter].position;
     }
-    public void newSpawn() {
+    public void newSpawn()
+    {
         spawnPoints[counter].gameObject.SetActive(false);
         counter++;
     }
-    public void reset() {
-        foreach(EnemySpawnPoint spawner in enemySpawners) {
-            foreach(GameObject enemy in spawner.spawnEnemies) {
-                enemy.SetActive(false);
-                enemy.GetComponent<EnemyData>().health = enemy.GetComponent<EnemyData>().getMaxHealth();
-            }
-            spawner.setShouldSpawn(false);
+    public void reset()
+    {
+        var enemySpawners = FindObjectsOfType<EnemySpawnPoint>();
+        foreach (EnemySpawnPoint spawner in enemySpawners)
+        {
+            spawner.ResetSpawnPoint();
         }
 
-        foreach(GameObject player in playerManager.players) {
-            player.GetComponent<PlayerBackend>().hp = player.GetComponent<PlayerBackend>().maxHP;
-            player.transform.position = spawnPoints[counter].position;
-            player.GetComponent<PlayerController>().downed = false;
+        var players = FindObjectsOfType<PlayerController>();
+        foreach (var player in players)
+        {
+            player.gameObject.GetComponent<PlayerBackend>().hp = player.gameObject.GetComponent<PlayerBackend>().maxHP;
+            player.gameObject.transform.position = spawnPoints[counter].position;
+            player.gameObject.GetComponent<PlayerController>().downed = false;
         }
     }
 }

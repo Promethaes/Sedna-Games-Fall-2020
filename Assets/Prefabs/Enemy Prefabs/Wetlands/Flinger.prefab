@@ -401,7 +401,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   feedback: {fileID: 11400000, guid: e174cbcb421ad5441afe4ca2e691bb2a, type: 2}
-  turnOnFlicker: 0
+  postProcessVolume: {fileID: 0}
+  vignetteDecayStepSize: 0.01
+  test: 0
 --- !u!1 &5600217152425000415
 GameObject:
   m_ObjectHideFlags: 0

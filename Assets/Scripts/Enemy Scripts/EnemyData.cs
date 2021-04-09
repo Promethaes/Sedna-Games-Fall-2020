@@ -37,7 +37,7 @@ public class EnemyData : MonoBehaviour
     public float damageValues;
     public GameObject hitbox;
     public bool fear = false;
-    float _poisonDuration = 10.0f;
+    int _poisonDuration = 0;
 
     public CombatFeedbackDisplay feedbackDisplay;
 
@@ -95,32 +95,32 @@ public class EnemyData : MonoBehaviour
                 setCombo(20.0f);
                 break;
             case enemyType.splitter:
-                setHealth(120.0f);
-                setCombo(10.0f);
+                setHealth(200.0f);
+                setCombo(20f);
                 break;
             case enemyType.flinger:
-                setHealth(160.0f);
-                setCombo(20.0f);
+                setHealth(120.0f);
+                setCombo(12.5f);
                 break;
             case enemyType.dumpageMiniBoss:
-                setHealth(350.0f);
+                setHealth(1000.0f);
                 setCombo(20.0f);
                 break;
             case enemyType.pickRobro:
-                setHealth(120.0f);
-                setCombo(16.0f);
+                setHealth(300.0f);
+                setCombo(30.0f);
                 break;
             case enemyType.roboShooter:
-                setHealth(120.0f);
-                setCombo(8.0f);
+                setHealth(250.0f);
+                setCombo(15.0f);
                 break;
             case enemyType.mechaShark:
                 setHealth(99999.0f);
                 setCombo(15.0f);
                 break;
             case enemyType.furnaceRobo:
-                setHealth(1000.0f);
-                setCombo(30.0f);
+                setHealth(3000.0f);
+                setCombo(50.0f);
                 break;
             default:
                 break;
@@ -148,6 +148,7 @@ public class EnemyData : MonoBehaviour
         var networkManager = FindObjectOfType<CSNetworkManager>();
         if (networkManager)
             networkManager.SendEnemyDeath(spawnPointIndex, enemyIndex);
+        
     }
 
     public void setHealth(float hp)
@@ -204,7 +205,7 @@ public class EnemyData : MonoBehaviour
             }
         }
 
-        rigidBody.AddForce(direction * knockbackScalar * (hp / 10.0f), ForceMode.Impulse);
+        rigidBody.AddForce(Secrets.limitKnockBack(direction * knockbackScalar * (hp / 10.0f)), ForceMode.Impulse);
         StartCoroutine("ResetKinematics");
         feedbackDisplay.OnTakeDamage();
         if (health <= 0.0f)
@@ -220,25 +221,37 @@ public class EnemyData : MonoBehaviour
             if (Random.Range(0.0f, 1.0f) < 0.2f)
                 HealthOrbManager.GetHealthOrbManager().getOrb(transform.position);
         }
+        
+        var leaderboard = FindObjectOfType<LeaderboardMetricsManager>();
+        if(leaderboard)
+            leaderboard.enemiesDefeated++;
+
         gameObject.SetActive(false);
     }
 
     public void Poison()
     {
-        if (_poisonDuration > 0.0f)
-            _poisonDuration = 10.0f;
-        else
+        if (_poisonDuration == 0)
+        {
+            _poisonDuration = 10;
             StartCoroutine(PoisonDebuff());
+        }
+        else if (_poisonDuration <= 10)
+        {
+            _poisonDuration = 10;
+            
+        }
+            
     }
 
     IEnumerator PoisonDebuff()
     {
         damageValues *= 0.8f;
-        while (_poisonDuration > 0.0f)
+        while (_poisonDuration >= 0)
         {
-            takeDamage(10.0f);
+            takeDamage(20.0f,0f);
             yield return new WaitForSeconds(1.0f);
-            _poisonDuration -= 1.0f;
+            _poisonDuration -= 1;
         }
         damageValues /= 0.8f;
         yield return null;
