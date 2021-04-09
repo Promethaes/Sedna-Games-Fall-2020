@@ -33,6 +33,33 @@ ModelImporter:
   - first:
       74: 8349542763059015795
     second: Armature|Walk
+  - first:
+      74: -1962111147472363628
+    second: Attack 1
+  - first:
+      74: 296130795608717920
+    second: Attack 2
+  - first:
+      74: -4084516132872533229
+    second: Attack 3
+  - first:
+      74: -8444228808809566427
+    second: Dash
+  - first:
+      74: -4626348630705726067
+    second: Double Jump
+  - first:
+      74: -3648429919849848933
+    second: Environmental Ability
+  - first:
+      74: -3100369314251171874
+    second: Idle
+  - first:
+      74: 5539831331247536789
+    second: Jump
+  - first:
+      74: 2667949614841947897
+    second: Walk
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -62,8 +89,8 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|Attack 1
-      takeName: Armature|Attack 1
+      name: Attack 1
+      takeName: Attack 1
       internalID: 0
       firstFrame: 0
       lastFrame: 15
@@ -91,8 +118,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Attack 2
-      takeName: Armature|Attack 2
+      name: Attack 2
+      takeName: Attack 2
       internalID: 0
       firstFrame: 0
       lastFrame: 13
@@ -120,11 +147,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Attack 3
-      takeName: Armature|Attack 3
+      name: Attack 3
+      takeName: Attack 3
       internalID: 0
       firstFrame: 0
-      lastFrame: 19
+      lastFrame: 39
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -149,11 +176,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Dash
-      takeName: Armature|Dash
+      name: Dash
+      takeName: Dash
       internalID: 0
-      firstFrame: 0
-      lastFrame: 50
+      firstFrame: 3
+      lastFrame: 48
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -178,10 +205,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Double Jump
-      takeName: Armature|Double Jump
+      name: Double Jump
+      takeName: Double Jump
       internalID: 0
-      firstFrame: 0
+      firstFrame: 6
       lastFrame: 36
       wrapMode: 0
       orientationOffsetY: 0
@@ -207,8 +234,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Environmental Ability
-      takeName: Armature|Environmental Ability
+      name: Environmental Ability
+      takeName: Environmental Ability
       internalID: 0
       firstFrame: 0
       lastFrame: 29
@@ -236,8 +263,37 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Jump
-      takeName: Armature|Jump
+      name: Idle
+      takeName: Idle
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Jump
+      takeName: Jump
       internalID: 0
       firstFrame: 0
       lastFrame: 14
@@ -265,8 +321,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Walk
-      takeName: Armature|Walk
+      name: Walk
+      takeName: Walk
       internalID: 0
       firstFrame: 0
       lastFrame: 50

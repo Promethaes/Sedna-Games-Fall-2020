@@ -228,7 +228,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -257,7 +257,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -279,7 +279,7 @@ ModelImporter:
       takeName: Walk
       internalID: 0
       firstFrame: 0
-      lastFrame: 50
+      lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -365,7 +365,7 @@ ModelImporter:
       name: Jump
       takeName: Jump
       internalID: 0
-      firstFrame: 0
+      firstFrame: 10
       lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0

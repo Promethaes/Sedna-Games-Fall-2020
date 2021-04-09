@@ -28,7 +28,8 @@ public class PlayerController : MonoBehaviour
     public AbilityScript abilityScript = null;
 
     [Header("Player camera")]
-    // [SerializeField] private GameObject player = null;  // @Cleanup? This shouldn't be needed since this gets attached to the player object itself and not a child
+    // @Cleanup? This shouldn't be needed since this gets attached to the player object itself and not a child
+    // [SerializeField] private GameObject player = null;
     [SerializeField] private GameObject playerCamera = null;
     [SerializeField] private GameObject lookingAt = null;
     [SerializeField] private float yUpperBound = 4.0f;
@@ -122,9 +123,6 @@ public class PlayerController : MonoBehaviour
 
     SoundController soundController;
 
-    // -------------------------------------------------------------------------
-
-
     //Network variables
     public bool sendPlayerChanged = false;
     public bool remotePlayer = false;
@@ -132,15 +130,21 @@ public class PlayerController : MonoBehaviour
     public bool sendJump = false;
     public bool sendMovement = false;
     public string userName = "";
+
+    // -------------------------------------------------------------------------
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         backend = this.GetComponentInParent<PlayerBackend>();
         backend.hp = backend.maxHP;
-        setupPlayer();
         StartCoroutine(SetupWheelUI());
         StartCoroutine(SetupQuestUI());
         soundController = GetComponent<SoundController>();
+    }
+
+    private void Start() {
+        setupPlayer();
     }
 
     IEnumerator SetupWheelUI()
@@ -188,6 +192,10 @@ public class PlayerController : MonoBehaviour
                 break;
         }
         _playerMesh = GetComponentInParent<GameInputHandler>()._playerPrefabs[(int)playerType].prefab;
+        _animator = GetComponent<GameInputHandler>()._animator;
+        // @Temp @Temp @Temp REMOVE THIS
+        if(_animator != null) Logger.Log("Animator found!");
+        else Logger.Error("Animator not found!");
 
         backend.hp = backend.maxHP * percentage;
         hitboxes = _playerMesh.GetComponentsInChildren<AttackHitbox>(true);
@@ -257,7 +265,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            Logger.Log($"State: {_jumpAnimState} | Delay: {_jumpAnimDelay}");
+            // Logger.Log($"State: {_jumpAnimState} | Delay: {_jumpAnimDelay}");
             if(_jumpAnimState && (_jumpAnimDelay -= Time.fixedDeltaTime) <= 0.0f) {
                 _jumpAnimState = false;
                 _Jump();
@@ -390,11 +398,7 @@ public class PlayerController : MonoBehaviour
     public void ChangeCharFromNetwork(int selec)
     {
         GetComponentInParent<GameInputHandler>().swapPlayer(selec);
-        _animator = GetComponentInParent<GameInputHandler>()._animator;
-
         setupPlayer();
-
-
     }
 
     void _ConfirmWheel()
@@ -404,9 +408,7 @@ public class PlayerController : MonoBehaviour
         if (_wheelSelection != (int)playerType)
         {
             _wheelCooldown = 2.0f;
-
             GetComponentInParent<GameInputHandler>().swapPlayer(_wheelSelection);
-            _animator = GetComponentInParent<GameInputHandler>()._animator;
 
             sendPlayerChanged = true;
             setupPlayer();

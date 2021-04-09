@@ -1333,13 +1333,13 @@ MonoBehaviour:
   attackDistance: 8
   jumpAnimationDelays:
   - type: 0
-    value: 0.25
+    value: 0.01
   - type: 1
-    value: 0.18
+    value: 0.01
   - type: 2
-    value: 0.3
+    value: 0.01
   - type: 3
-    value: 0.25
+    value: 0.01
   playerType: 0
   abilityScript: {fileID: 0}
   playerCamera: {fileID: 5489993372759476761}

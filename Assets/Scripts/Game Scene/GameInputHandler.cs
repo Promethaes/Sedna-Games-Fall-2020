@@ -45,6 +45,10 @@ public class GameInputHandler : MonoBehaviour
         _playerMesh.SetActive(true);
         _playerController.playerType = config.character.type;
         _animator = _playerMesh.GetComponentInChildren<Animator>();
+        
+        // @Temp @Temp @Temp REMOVE THIS
+        if(_animator != null) Logger.Log("Animator found!");
+        else Logger.Error("Animator not found!");
 
         if (_playerConfig.input != null)
         {
