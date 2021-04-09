@@ -14,12 +14,11 @@ public class PlayerController : MonoBehaviour
 
     [Header("Player variables")]
 
-    [SerializeField] private float _originalSpeed = 12.0f;
+    [SerializeField] private float _originalSpeed = 12.0f; // @Cleanup: Unity says this is never used
     [SerializeField] private float moveSpeed = 12.0f;
     [SerializeField] private float jumpSpeed = 3.0f;
     [SerializeField] private float dashSpeed = 2.5f;
     [SerializeField] private float attackDistance = 8.0f;
-    [SerializeField] private List<JumpAnimationDelay> jumpAnimationDelays = new List<JumpAnimationDelay>();
 
     [Header("Player abilities")]
     // Default mesh is turtle, if a turtle has bison abilities, either this or the player mesh in GameInputHandler did not get set properly
@@ -35,6 +34,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float yUpperBound = 4.0f;
     [SerializeField] private float yLowerBound = -1.0f;
     [SerializeField] private float rotationSpeedInverse = 1.0f;
+
+    [Header("Animation delays")]
+    [SerializeField] private List<JumpAnimationDelay> jumpAnimationDelays = new List<JumpAnimationDelay>(); // @Cleanup: Might still be useful, but probably not
+    [SerializeField] private float walkAnimationFinishDelay = 0.8f;
+    [SerializeField] private float attackAnimationFinishDelay = 0.8f;
 
     // -------------------------------------------------------------------------
 
@@ -147,6 +151,44 @@ public class PlayerController : MonoBehaviour
         setupPlayer();
     }
 
+    // -----------------------------------------------------------------------
+
+    void SetAttackAnimation(bool attacking) {
+        if(attacking) {
+            _animator.SetBool("attacking", true);
+            Logger.Log("Attack true"); // @Cleanup
+            StopCoroutine(_AttackAnimationFinish());
+        }
+        else {
+            StartCoroutine(_AttackAnimationFinish());
+        }
+    }
+
+    void SetWalkAnimation(bool walking) {
+        if(walking) {
+            _animator.SetBool("walking", true);
+            Logger.Log("Walk true"); // @Cleanup
+            StopCoroutine(_WalkAnimationFinish());
+        }
+        else {
+            StartCoroutine(_WalkAnimationFinish());
+        }
+    }
+
+    IEnumerator _AttackAnimationFinish() {
+        yield return new WaitForSeconds(attackAnimationFinishDelay);
+        _animator.SetBool("attacking", false);
+        Logger.Log("Attack false"); // @Cleanup
+    }
+
+    IEnumerator _WalkAnimationFinish() {
+        yield return new WaitForSeconds(walkAnimationFinishDelay);
+        _animator.SetBool("walking", false);
+        Logger.Log("Walk false"); // @Cleanup
+    }
+
+    // -----------------------------------------------------------------------
+
     IEnumerator SetupWheelUI()
     {
         while (_wheelUI == null)
@@ -229,7 +271,7 @@ public class PlayerController : MonoBehaviour
 
         if (_animator)
         {
-            _animator.SetBool("attacking", false);
+            SetAttackAnimation(false);
             _animator.SetBool("ability", false);
         }
 
@@ -428,6 +470,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    
+
     Vector3 _lastPos = Vector3.zero;
     void _Move()
     {
@@ -436,8 +480,8 @@ public class PlayerController : MonoBehaviour
         {
             var pos = gameObject.transform.position;
             pos.y = 0.0f;
-            if (_animator && !_animator.GetBool("attacking") && !_animator.GetBool("jumping"))
-                _animator.SetBool("walking", Mathf.Abs(pos.magnitude - _lastPos.magnitude) >= 0.1f * Time.deltaTime);
+            if (!_animator.GetBool("attacking") && !_animator.GetBool("jumping"))
+                SetWalkAnimation(Mathf.Abs(pos.magnitude - _lastPos.magnitude) >= 0.1f * Time.deltaTime);
 
             _lastPos = pos;
             _isGrounded = Physics.Raycast(transform.position, -transform.up, out terrain, 0.6f);
@@ -449,7 +493,7 @@ public class PlayerController : MonoBehaviour
                 {
                     _jumped = false;
                     _doubleJumped = false;
-                    if (_animator) _animator.SetBool("jumping", false);
+                    _animator.SetBool("jumping", false);
                 }
             }
             return;
@@ -491,7 +535,7 @@ public class PlayerController : MonoBehaviour
 
             _rigidbody.velocity = new Vector3(vel.x, y, vel.z);
             dashVFX.transform.forward = -_rigidbody.velocity.normalized;
-            if (_animator) _animator.SetBool("walking", vel.magnitude >= 0.1f);
+            SetWalkAnimation(vel.magnitude >= 0.1f);
         }
     }
 
@@ -504,7 +548,7 @@ public class PlayerController : MonoBehaviour
         {
             if (_animator)
             {
-                _animator.SetBool("walking", false);
+                SetWalkAnimation(false);
                 _animator.SetBool("jumping", true);
             }
             return;
@@ -782,16 +826,14 @@ public class PlayerController : MonoBehaviour
         if (_comboDuration < 0.0f) comboCounter = 0;
         _animationDuration = _attackAnimationDelay[comboCounter];
 
-        if (_animator)
+
+        SetAttackAnimation(true);
+        switch (comboCounter)
         {
-            _animator.SetBool("attacking", true);
-            switch (comboCounter)
-            {
-                case 0: _animator.SetTrigger("attack1"); break;
-                case 1: _animator.SetTrigger("attack2"); break;
-                case 2: _animator.SetTrigger("attack3"); break;
-                default: _animator.SetTrigger("attack1"); break;
-            }
+            case 0: _animator.SetTrigger("attack1"); break;
+            case 1: _animator.SetTrigger("attack2"); break;
+            case 2: _animator.SetTrigger("attack3"); break;
+            default: _animator.SetTrigger("attack1"); break;
         }
 
         if (!remotePlayer)
