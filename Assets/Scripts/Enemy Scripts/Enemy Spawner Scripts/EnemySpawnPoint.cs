@@ -42,6 +42,23 @@ public class EnemySpawnPoint : MonoBehaviour
         }
     }
 
+    public void ResetSpawnPoint()
+    {
+        foreach (var enemy in spawnEnemies)
+        {
+            enemy.SetActive(false);
+            enemy.GetComponent<EnemyData>().health = enemy.GetComponent<EnemyData>().getMaxHealth();
+
+        }
+        if (oneTimeSpawn)
+        {
+            _pvtSpawnTimeInterval = 0.0f;
+            spawnTimeInterval = 0.0f;
+            for (int i = 0; i < spawnEnemies.Count; i++)
+                SpawnEnemy();
+        }
+    }
+
     void HandleDoneSpawning()
     {
         if (AnyEnemiesActive())
@@ -128,7 +145,10 @@ public class EnemySpawnPoint : MonoBehaviour
         for (int i = 0; i < spawnEnemies.Count; i++)
         {
             if (!spawnEnemies[i].activeSelf)
+            {
                 spawnIndex = i;
+                break;
+            }
         }
         if (spawnIndex == -1)
             return;//no availible enemy spawns
